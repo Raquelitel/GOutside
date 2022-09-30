@@ -6,6 +6,14 @@
     on that page only (the ones not reused in other pages).
 */
 
-* {
-  font-size: 14px;
+:root {
+  --color-dark-grey: #2c3333;
+  --color-dark-blue: #395b64;
+  --color-light-blue: #a5c9ca;
+  --color-light: #e7f6f2;
+  --color-red: #ff4c29;
+}
+
+body {
+  background-color: var(--color-dark-grey);
 }

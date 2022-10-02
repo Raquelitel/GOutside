@@ -1,19 +1,16 @@
-import React, { useState } from "react";
-import "./signup.css";
+import React from "react";
 import logo from "../../../img/logo-GOutside.png";
 import { Link } from "react-router-dom";
+import "./login.css";
 
-const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password1, setPassword1] = useState("");
-  const [password2, setPassword2] = useState("");
+const Login = () => {
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">
       <div className="">
         <img src={logo} alt="GOutside" />
       </div>
       <form className="d-flex flex-column col-md-5">
-        <h1 className="text-capitalize text-center">Crear cuenta</h1>
+        <h1 className="text-capitalize text-center">Iniciar sesión</h1>
         <input
           placeholder="Email..."
           className="h-100 form-control mb-1"
@@ -26,22 +23,16 @@ const Signup = () => {
           type="password"
           onChange={(e) => setPassword1(e.target.value)}
         />
-        <input
-          placeholder="Repetir contraseña..."
-          className="h-100 form-control mb-1"
-          type="password"
-          onChange={(e) => setPassword2(e.target.value)}
-        />
-        <button className="btn text-uppercase mb-1 shadow signup-btn">
-          crear usuario
+        <button className="btn text-uppercase mb-1 shadow login-btn">
+          login
         </button>
         <div className="d-flex justify-content-around">
-          <p>¿Ya tienes cuenta?</p>
+          <p>¿Todavía no tienes cuenta?</p>
           <Link
-            to="/login"
-            className="text-decoration-none text-capitalize signup-link"
+            to="/signup"
+            className="text-decoration-none text-capitalize login-link"
           >
-            Inicia sesión
+            Crear cuenta
           </Link>
         </div>
       </form>
@@ -49,4 +40,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

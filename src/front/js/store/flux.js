@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			message: null,
+  return {
+    store: {
+      /* 			message: null,
 			demo: [
 				{
 					title: "FIRST",
@@ -13,11 +13,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
-		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
+			] */
+    },
+    actions: {
+      // Use getActions to call a function within a fuction
+      /* exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
 
@@ -46,9 +46,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
-		}
-	};
+			} */
+    },
+  };
 };
 
 export default getState;

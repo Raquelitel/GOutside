@@ -24,7 +24,7 @@ class User(db.Model):
 
 
 class Rol(Enum):
-    admin = 1
+    administration = 1
     competitor = 2
 
 
@@ -61,7 +61,7 @@ class Competitor(db.Model):
         }
 
 
-class Admin(db.Model):
+class Administration(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(40), unique=False, nullable=False)
@@ -70,6 +70,7 @@ class Admin(db.Model):
     adress = db.Column(db.String(240), unique=False, nullable=True)
     phone = db.Column(db.Integer, unique=False, nullable=True)
     vat = db.Column(db.Integer, unique=False, nullable=True)
+    rol = db.Column(db.Enum(Rol))
 
     def serialize(self):
         return {
@@ -79,7 +80,8 @@ class Admin(db.Model):
             "last_name": self.last_name,
             "adress": self.adress,
             "phone": self.phone,
-            "vat": self.vat
+            "vat": self.vat,
+            "rol": self.rol
         }
 
 

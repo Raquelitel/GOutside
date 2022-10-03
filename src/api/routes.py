@@ -8,6 +8,7 @@ from flask_jwt_extended import (
     JWTManager, jwt_required, get_jwt_identity,
     create_access_token, get_jwt)
 
+
 api = Blueprint('api', __name__)
 
 
@@ -35,3 +36,8 @@ def login():
         "message": "Ususario registrado correctamente, acceso permitido"
     }
     return jsonify(response_body), 200
+
+
+@api.route('/videoteca', methods=['GET'])
+def videoteca():
+    data = request.execute()

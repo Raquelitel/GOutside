@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
-import "./signup.css";
-import logo from "../../../img/logo-GOutside.png";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
+import logo from "../../../img/logo-GOutside.png";
+import "./signup.css";
 
 const Signup = () => {
   const { store, actions } = useContext(Context);
@@ -39,6 +39,9 @@ const Signup = () => {
     if (signupUser) {
       navigate("/private/competitor");
     }
+    setEmail("");
+    setPassword1("");
+    setPassword2("");
   };
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">

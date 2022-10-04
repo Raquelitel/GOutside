@@ -1,0 +1,4 @@
+.mensaje-aviso {
+  color: var (--color-light-blue);
+  background-color: var(--color-red);
+}

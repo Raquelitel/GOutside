@@ -27,6 +27,12 @@ class Rol(Enum):
     administration = 1
     competitor = 2
 
+    def serialize(self):
+        return {
+            "administration": self.administration,
+            "competitor": self.competitor
+        }
+
 
 class Gender(Enum):
     masculino = 1

@@ -1,19 +1,53 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { Context } from "../../store/appContext";
+import { Link, useNavigate } from "react-router-dom";
 import "./signup.css";
 import logo from "../../../img/logo-GOutside.png";
-import { Link } from "react-router-dom";
+import Mensaje from "../../component/mensaje/Mensaje.jsx";
 
 const Signup = () => {
+  const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
+  const [mensaje, setMensaje] = useState("");
+
+  let navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if ([email, password1, password2].includes("")) {
+      setMensaje("Todos los campos son obligatorios");
+
+      setTimeout(() => {
+        setMensaje("");
+      }, 2500);
+    } else if (password1 != password2) {
+      setMensaje("Las contraseñas deben ser iguales");
+
+      setTimeout(() => {
+        setMensaje("");
+      }, 2500);
+    }
+
+    let signupUser = await actions.signupCompetitor(
+      email,
+      password1,
+      password2
+    );
+    if (signupUser) {
+      navigate("/private/competitor");
+    }
+  };
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">
       <div className="">
         <img src={logo} alt="GOutside" />
       </div>
-      <form className="d-flex flex-column col-md-5">
+      <form className="d-flex flex-column col-md-5" onSubmit={handleSubmit}>
         <h1 className="text-capitalize text-center">Crear cuenta</h1>
+        {mensaje && <Mensaje>{mensaje}</Mensaje>}
         <input
           placeholder="Email..."
           className="h-100 form-control mb-1"

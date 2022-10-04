@@ -32,6 +32,6 @@ def login():
     response_body = {
         "token": accesss_token,
         "user_id": user.id,
-        "message": "Ususario registrado correctamente, acceso permitido"
+        "message": "Usuario registrado correctamente, acceso permitido"
     }
     return jsonify(response_body), 200

@@ -1,7 +1,9 @@
+import json
+import enum
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Enum, DateTime
-from enum import Enum
 from datetime import datetime
+
 
 db = SQLAlchemy()
 
@@ -23,9 +25,9 @@ class User(db.Model):
         }
 
 
-class Rol(Enum):
-    administration = 1
-    competitor = 2
+class Rol(enum.Enum):
+    competitor = 1
+    administration = 2
 
     def serialize(self):
         return {
@@ -34,7 +36,7 @@ class Rol(Enum):
         }
 
 
-class Gender(Enum):
+class Gender(enum.Enum):
     masculino = 1
     femenino = 2
 
@@ -46,9 +48,10 @@ class Competitor(db.Model):
     name = db.Column(db.String(120), unique=False, nullable=True)
     last_name = db.Column(db.String(120), unique=False, nullable=True)
     adress = db.Column(db.String(240), unique=False, nullable=True)
-    gender = db.Column(db.Enum(Gender))
+    gender = db.Column(Enum(Gender), nullable=True)
     phone = db.Column(db.Integer, unique=False, nullable=True)
-    rol = db.Column(db.Enum(Rol))
+    rol = db.Column(Enum(Rol, name="name"),
+                    default="competitor", nullable=False)
     competition_competitor = db.relationship(
         'Competition_competitor', backref='competitor', lazy=True)
     qualifier_competitor = db.relationship(
@@ -63,7 +66,7 @@ class Competitor(db.Model):
             "adress": self.adress,
             "gender": self.gender,
             "phone": self.phone,
-            "rol": self.rol
+            "rol": str(self.rol)
         }
 
 
@@ -99,7 +102,7 @@ class Competition_competitor(db.Model):
         'competition.id'), nullable=False)
 
 
-class Category(Enum):
+class Category(enum.Enum):
     rx_femenino = 1
     rx_masculino = 2
     scalled_femenino = 3
@@ -114,7 +117,7 @@ class Competition(db.Model):
     competition_name = db.Column(db.String(120), unique=False, nullable=False)
     qualifier_date = db.Column(db.DateTime())
     location = db.Column(db.String(240), unique=False, nullable=False)
-    category = db.Column(db.Enum(Category))
+    category = db.Column(Enum(Category), nullable=False)
     requirements = db.Column(db.String(500), unique=False, nullable=False)
     description = db.Column(db.String(500), unique=False, nullable=False)
     create_at = db.Column(db.DateTime())

@@ -1,21 +1,36 @@
-import React from "react";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import React, { useState } from "react";
+import { Map, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "../MapView/MapView.css";
 
 const MapView = () => {
+  const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+
+  function handleMapClick(event) {
+    console.log(event);
+    const { lat, lng } = event.latlng;
+    setPosition({
+      latitude: lat,
+      longitude: lng,
+    });
+  }
+
   return (
     <div>
-      <MapContainer
-        center={{ lat: "37.7820847", lng: "-3.7767728" }}
-        zoom={13}
-        scrollWheelZoom={false}
+      <Map
+        center={[37.7797221, -3.7943167]}
+        className="leaflet-container"
+        zoom={15}
+        onclick={handleMapClick}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYWxlamFuZHJvcm9tbyIsImEiOiJjbDh0NDVvYzEwMzM2M25wNzl5MGhzYXZ4In0.2rb46ZKM7zgCjMnr0rkMsA`}
         />
-      </MapContainer>
+        <Marker
+          interactive={false}
+          position={[position.latitude, position.longitude]}
+        />
+      </Map>
     </div>
   );
 };

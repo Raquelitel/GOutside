@@ -1,14 +1,9 @@
+import { Draggable } from "leaflet";
 import React from "react";
-import { Marker } from "react-leaflet";
-import { BsFillGeoAltFill } from "react-icons/bs";
+import { Marker, L, MapContainer } from "react-leaflet";
 
 const Markers = () => {
-  return (
-    <Marker
-      position={{ lat: "37.7820847", lng: "-3.7767728" }}
-      icon={<BsFillGeoAltFill />}
-    />
-  );
+  return <Marker position={{ lat: "37.7820847", lng: "-3.7767728" }} />;
 };
 
 export default Markers;

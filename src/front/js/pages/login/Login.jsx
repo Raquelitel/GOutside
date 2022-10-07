@@ -39,7 +39,7 @@ const Login = () => {
 
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">
-      <div className="">
+      <div>
         <img src={logo} alt="GOutside" />
       </div>
       <form className="d-flex flex-column col-md-5" onSubmit={handleSubmit}>

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../store/appContext";
-import VideoLibrary, { getServerSideProps } from "./videoLibrary.jsx";
+import VideoLibrary, { getServerSideProps } from "./videoLibrary/videoLibrary.jsx";
 import "../../styles/home.css";
 
 const Home = () => {
@@ -10,7 +9,8 @@ const Home = () => {
     getServerSideProps().then((data) => {
       setLibrary(data.props.data);
     });
-  }, []);
+  	}, []);
+	
   return (
     <div className="text-center mt-5 videos-container">
       <VideoLibrary library={library} />

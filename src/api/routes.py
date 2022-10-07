@@ -79,3 +79,50 @@ def signup():
         return jsonify({"logged": True, "token": access_token, "message": "Usuario creado correctamente", "Competitor": new_competitor.serialize()}), 200
     else:
         return jsonify({"message": "Error, el email ya existe como usuario"}), 400
+
+
+@api.route('/create-competition', methods=['POST'])
+def create_competition():
+    data = request.get_json()
+    competition = Competition(
+        competition_name=data["competition_name"],
+        qualifier_date=data["qualifier_date"],
+        location=data["location"],
+        category=data["category"],
+        requirements=data["requirements"],
+        description=data["description"],
+        create_at=data["create_at"],
+        stage=data["stage"],
+        competition_competitor=data["competition_competitor"]
+    )
+    db.session.add(competition)
+    db.session.commit()
+    response_body = {
+        "result": "Competición añadida correctamente"
+    }
+    return jsonify(response_body), 200
+
+
+@api.route('/create-competition/<int:competition_id>', methods=['PUT'])
+def modify_competition(competition_id):
+    data = request.get_json()
+    competition = Competition.query.get(competition_id)
+    if data is not None and competition:
+        competition.competition_name = data["competition_name"],
+        competition.qualifier_date = data["qualifier_date"],
+        competition.location = data["location"],
+        competition.category = data["category"],
+        competition.requirements = data["requirements"],
+        competition.description = data["description"],
+        competition.create_at = data["create_at"],
+        competition.stage = data["stage"],
+        competition.competition_competitor = data["competition_competitor"]
+        db.session.commit()
+
+        response_body = {
+            "result": "competición modificada correctamente"
+        }
+
+        return jsonify(response_body), 200
+
+    return jsonify({"result": "competición no modificada"}), 400

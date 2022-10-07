@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			message: null,
+  return {
+    store: {
+      /* 			message: null,
 			demo: [
 				{
 					title: "FIRST",
@@ -13,11 +13,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
-		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
+			] */
+      tokenLS: null,
+      userRol: null,
+    },
+    actions: {
+      // Use getActions to call a function within a fuction
+      /* exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
 
@@ -46,9 +48,59 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
-		}
-	};
+			} */
+      signupCompetitor: async (email, password1, password2) => {
+        try {
+          const resp = await fetch(process.env.BACKEND_URL + "/api/singup", {
+            method: "POST",
+            body: JSON.stringify({
+              email: email,
+              password1: password1,
+              password2: password2,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          const data = await resp.json();
+          if (resp.status === 200) {
+            localStorage.setItem("token", data.token);
+            setStore({ tokenLS: data.token, userRol: data.rol });
+            return true;
+          } else {
+            return false;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+
+      login: async (email, password) => {
+        try {
+          const resp = await fetch(process.env.BACKEND_URL + "/api/login", {
+            method: "POST",
+            body: JSON.stringify({
+              email: email,
+              password: password,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          const data = await resp.json();
+          if (resp.status === 200) {
+            localStorage.setItem("token", data.token);
+            setStore({ tokenLS: data.token, userRol: data.rol });
+            return true;
+          } else {
+            return false;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+    },
+  };
 };
 
 export default getState;

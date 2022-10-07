@@ -6,7 +6,7 @@
     on that page only (the ones not reused in other pages).
 */
 
-:root {
+/* :root {
   --color-dark-grey: #2c3333;
   --color-dark-blue: #395b64;
   --color-light-blue: #a5c9ca;
@@ -17,3 +17,4 @@
 body {
   background-color: var(--color-dark-grey);
 }
+ */

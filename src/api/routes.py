@@ -9,6 +9,7 @@ from flask_jwt_extended import (
     create_access_token, get_jwt)
 import json
 
+
 api = Blueprint('api', __name__)
 
 

@@ -4,7 +4,6 @@ import VideoLibrary, { getServerSideProps } from "./videoLibrary.jsx";
 import "../../styles/home.css";
 
 const Home = () => {
-  const { store, actions } = useContext(Context);
   const [library, setLibrary] = useState([]);
 
   useEffect(() => {

@@ -1,11 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import EditProfile from "../editProfile/EditProfile.jsx";
 
 const HomeUser = () => {
   return (
     <>
       <Outlet />
-      <div>Hello World</div>
+      <div>
+        <EditProfile />
+      </div>
     </>
   );
 };

@@ -117,3 +117,20 @@ def modify_competition(competition_id):
         return jsonify(response_body), 200
 
     return jsonify({"result": "competición no modificada"}), 400
+
+
+@api.route('/upload', methods=['POST'])
+def handle_upload():
+    data = request.get_json()
+    user = Competitor.query.filter_by(
+        id=data["id"])
+
+    if user is not None:
+        result = cloudinary.uploader.upload(
+            request.files["profile_image"], public_id=f'my_folder/photo')
+        user.profile_image_url = result["secure_url"]
+
+       # db.session.add(user)
+        db.session.commit()
+        return jsonify("all good"), 200
+    return jsonify("error id doesn't exist"), 405

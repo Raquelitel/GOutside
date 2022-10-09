@@ -13,6 +13,8 @@ import json
 api = Blueprint('api', __name__)
 
 
+# ------------  USER ROUTES --------------------------
+
 @api.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -28,6 +30,39 @@ def login():
         "rol": str(user.rol)
     }
     return jsonify(response_body), 200
+
+
+@api.route('/signup', methods=['POST'])
+def signup():
+    data = request.get_json()
+    if data.get("password1") != data.get("password2"):
+        return jsonify({"message": "Las contraseñas no coinciden"}), 403
+
+    if User.query.filter_by(email=data.get("email")).first() == None:
+        new_user = User(
+            email=data.get("email"),
+            password=data.get("password1")
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        access_token = create_access_token(identity=new_user.id)
+        return jsonify({"logged": True, "token": access_token, "message": "Usuario creado correctamente", "rol": str(new_user.rol), "competitor": new_user.serialize()}), 200
+    else:
+        return jsonify({"message": "Error, el email ya existe como usuario"}), 400
+
+
+@api.route('/home/user', methods=['GET'])
+@jwt_required()
+def private():
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+    if user:
+        return jsonify({"resultado": "acceso permitido"}), 200
+    else:
+        return jsonify({"resultado": "usuario no autenticado"}), 400
+
+
+# ------------  COMPETITIONS --------------------------
 
 
 @api.route('/competitions', methods=['GET'])
@@ -51,25 +86,6 @@ def get_one_competition(id):
         "competition": competition_serializer
     }
     return jsonify(response_body), 200
-
-
-@api.route('/signup', methods=['POST'])
-def signup():
-    data = request.get_json()
-    if data.get("password1") != data.get("password2"):
-        return jsonify({"message": "Las contraseñas no coinciden"}), 403
-
-    if User.query.filter_by(email=data.get("email")).first() == None:
-        new_user = User(
-            email=data.get("email"),
-            password=data.get("password1")
-        )
-        db.session.add(new_user)
-        db.session.commit()
-        access_token = create_access_token(identity=new_user.id)
-        return jsonify({"logged": True, "token": access_token, "message": "Usuario creado correctamente", "Competitor": new_user.serialize()}), 200
-    else:
-        return jsonify({"message": "Error, el email ya existe como usuario"}), 400
 
 
 @api.route('/create-competition', methods=['POST'])
@@ -118,6 +134,10 @@ def modify_competition(competition_id):
 
     return jsonify({"result": "competición no modificada"}), 400
 
+
+# ------------  CLOUDINARY --------------------------
+
+# NOT FINISH !!!!!!!!!!!!!
 
 @api.route('/upload', methods=['POST'])
 def handle_upload():

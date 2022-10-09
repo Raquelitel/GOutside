@@ -31,17 +31,19 @@ const Signup = () => {
       }, 2500);
     }
 
-    let signupUser = await actions.signupCompetitor(
-      email,
-      password1,
-      password2
-    );
+    let signupUser = await actions.signup(email, password1, password2);
     if (signupUser) {
-      navigate("/private/competitor");
+      navigate("/home/user");
+    } else {
+      setMensaje("Datos Inválidos");
+
+      setTimeout(() => {
+        setMensaje("");
+      }, 2500);
     }
-    setEmail("");
+    /*     setEmail("");
     setPassword1("");
-    setPassword2("");
+    setPassword2(""); */
   };
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">

@@ -1,9 +1,9 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import Home from "./pages/Home.jsx";
-import injectContext from "./store/appContext";
+import injectContext, { Context } from "./store/appContext";
 import { Navbar } from "./component/navbar/navbar.jsx";
 import Signup from "./pages/signup/Signup.jsx";
 import Login from "./pages/login/Login.jsx";
@@ -15,6 +15,8 @@ const Layout = () => {
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
 
+  const { store, actions } = useContext(Context);
+
   return (
     <div>
       <BrowserRouter basename={basename}>
@@ -24,9 +26,14 @@ const Layout = () => {
             <Route element={<Signup />} path="/signup" />
             <Route element={<Login />} path="/login" />
 
-            <Route element={<HomeUser />}>
+            <Route
+              element={
+                !(store.tokenLS === null) ? <HomeUser /> : <Navigate to="/" />
+              }
+            >
               <Route path="/home/user" element={<Navbar />} />
             </Route>
+
             <Route element={<h1>Not found!</h1>} />
           </Routes>
         </ScrollToTop>

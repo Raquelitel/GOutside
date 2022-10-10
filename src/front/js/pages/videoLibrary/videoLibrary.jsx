@@ -14,7 +14,7 @@ export async function getServerSideProps() {
 
 export default function VideoLibrary({ library }) {
   return (
-    <div className="card col-8 position-absolute top-50 start-50 translate-middle align-items-center justify-content-center videos-container">
+    <div className="col-8 d-flex flex-row align-items-center justify-content-center m-auto mt-5 videos-container">
       {library &&
         library.items &&
         library.items.map((item) => {
@@ -25,7 +25,7 @@ export default function VideoLibrary({ library }) {
           return (
             <li
               key={id}
-              className="card col-4 align-items-center justify-content-center"
+              className="d-flex justify-content-between"
             >
               <a
                 href={`https://www.youtube.com/watch?v=YPSFcYAeR64&list=${id}`} target="_blank"

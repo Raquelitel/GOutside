@@ -51,6 +51,22 @@ def get_all_competitions():
     return jsonify(response_body), 200
 
 
+@api.route('/create', methods=['POST'])
+def create_one_competition():
+    data = request.get_json()
+    if data and data.get("name"):
+        new_competition = Competition(
+                name=data.get("competition_name"),
+                date=data.get("qualifier_date"),
+                location=data.get("location"),
+                category=data.get("category"),
+                requirements=data.get("requirements"),
+                description=data.get("description")
+            )
+        db.session.add(new_competition)
+        db.session.commit()
+    return jsonify({"message": "Competición creado correctamente"}), 200
+
 @api.route('/competition/<int:id>')
 def get_one_competition(id):
     competition = Competition.query.get(id)

@@ -156,6 +156,20 @@ def modify_competition(competition_id):
     return jsonify({"result": "competición no modificada"}), 400
 
 
+@api.route('/my-competitions', methods=['GET'])
+@jwt_required()
+def my_competition():
+    competitor_id = get_jwt_identity()
+    competitor = User.query.get(competitor_id)
+    my_competitions = Competition.query.filter(Competition.competition_competitor.any(User.id == competitor_id)).all()
+    print(competitor)
+    if len(my_competitions) > 0:
+        my_competition_serializer = list(
+            map(lambda param: param.serialize(), my_competitions))
+        return jsonify({"data": my_competition_serializer}), 200
+    return jsonify({"message": "Todavía no se ha inscrito en ninguna competición"}), 204
+
+
 # ------------  CLOUDINARY --------------------------
 
 # NOT FINISH !!!!!!!!!!!!!
@@ -177,3 +191,4 @@ def handle_upload():
         }
         return jsonify(response_body), 200
     return jsonify("error id doesn't exist"), 405
+

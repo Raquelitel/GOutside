@@ -72,6 +72,17 @@ class Category(enum.Enum):
     elite_masculino = 6
     equipos = 7
 
+    def serialize(self):
+        return {
+            "rx_femenino": self.rx_femenino,
+            "rx_masculino": self.rx_masculino,
+            "scalled_femenino": self.scalled_femenino,
+            "scalled_masculino": self.scalled_masculino,
+            "elite_femenino": self.elite_femenino,
+            "elite_masculino": self.elite_masculino,
+            "equipos": self.equipos
+        }
+
 
 class Competition(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -81,7 +92,7 @@ class Competition(db.Model):
     category = db.Column(Enum(Category), nullable=False)
     requirements = db.Column(db.String(500), unique=False, nullable=False)
     description = db.Column(db.String(500), unique=False, nullable=False)
-    create_at = db.Column(db.DateTime())
+    create_at = db.Column(db.DateTime(), default=datetime.utcnow())
     profile_image_url = db.Column(db.String(255), unique=False, nullable=True)
     stage = db.Column(db.String(80), unique=False, nullable=False)
     competition_competitor = db.relationship(
@@ -93,7 +104,7 @@ class Competition(db.Model):
             "competition_name": self.competition_name,
             "qualifier_date": self.qualifier_date,
             "location": self.location,
-            "category": self.category,
+            "category": str(self.category),
             "requirements": self.requirements,
             "description": self.description,
             "create_at": self.create_at,

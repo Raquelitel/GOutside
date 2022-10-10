@@ -4,7 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import ScrollToTop from "./component/scrollToTop";
 
-import Home from "./pages/Home.jsx";
+import { Home } from "./pages/Home/Home.jsx";
 import injectContext, { Context } from "./store/appContext";
 import { Navbar } from "./component/navbar/navbar.jsx";
 import Signup from "./pages/signup/Signup.jsx";

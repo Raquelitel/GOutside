@@ -5,9 +5,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       userRol: null,
     },
     actions: {
-      signupCompetitor: async (email, password1, password2) => {
+      signup: async (email, password1, password2) => {
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/singup", {
+          const resp = await fetch(process.env.BACKEND_URL + "/api/signup", {
             method: "POST",
             body: JSON.stringify({
               email: email,

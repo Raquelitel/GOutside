@@ -48,7 +48,7 @@ export const Navbar = () => {
                 </button>
               </li>
             </Link>
-            <Link to="/">
+            <Link to="/videoLibrary">
               <li className="nav-item">
                 <button className="btn btn-menu mx-2">
                   <span className="btn-icon" style={{ fontSize: "1rem" }}>
@@ -60,7 +60,7 @@ export const Navbar = () => {
                 </button>
               </li>
             </Link>
-            <Link to="/">
+            <Link to="/edit-profile">
               <li className="nav-item">
                 <button className="btn btn-menu mx-2">
                   <span className="btn-icon" style={{ fontSize: "1rem" }}>

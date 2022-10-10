@@ -24,7 +24,7 @@ def login():
     response_body = {
         "token": accesss_token,
         "user_id": user.id,
-        "message": "Ususario registrado correctamente, acceso permitido",
+        "message": "Usuario registrado correctamente, acceso permitido",
         "rol": str(user.rol)
     }
     return jsonify(response_body), 200
@@ -37,7 +37,7 @@ def get_all_competitions():
     competition_serializer = list(
         map(lambda param: param.serialize(), all_competitions))
     response_body = {
-        "result": "obtenidas competiciones correctamente",
+        "result": "Obtenidas competiciones correctamente",
         "competitions": competition_serializer
     }
     return jsonify(response_body), 200
@@ -49,7 +49,7 @@ def get_one_competition(id):
     competition = Competition.query.get(id)
     competition_serializer = competition.serialize()
     response_body = {
-        "result": "competición obtenida",
+        "result": "Competición obtenida",
         "competition": competition_serializer
     }
     return jsonify(response_body), 200
@@ -115,9 +115,9 @@ def modify_competition(competition_id):
         db.session.commit()
 
         response_body = {
-            "result": "competición modificada correctamente"
+            "result": "Competición modificada correctamente"
         }
 
         return jsonify(response_body), 200
 
-    return jsonify({"result": "competición no modificada"}), 400
+    return jsonify({"result": "Competición no modificada"}), 400

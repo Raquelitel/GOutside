@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
-import { Context } from "../store/appContext";
-import "../../styles/home.css";
-import GOutside_transp from "../../img/GOutside_transp.png";
-import X_transp from "../../img/X_transp.png";
-import Logo_Malaga_Throwdown from "../../img/Logo_Malaga_Throwdown.jpg";
-import Logo_Battle_Cancer from "../../img/Logo_Battle_Cancer.jpg";
-import Logo_Costa_Azahar from "../../img/Logo_Costa_Azahar.jpg";
+import { Context } from "../../store/appContext";
+import "../Home/Home.css";
+import GOutside_transp from "../../../img/GOutside_transp.png";
+import X_transp from "../../../img/X_transp.png";
+import Logo_Malaga_Throwdown from "../../../img/Logo_Malaga_Throwdown.jpg";
+import Logo_Battle_Cancer from "../../../img/Logo_Battle_Cancer.jpg";
+import Logo_Costa_Azahar from "../../../img/Logo_Costa_Azahar.jpg";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
-  const { store, actions } = useContext(Context);
 
   return (
     <div className="container-fluid text-center">
@@ -28,7 +28,7 @@ export const Home = () => {
 
       <div className="row d-flex p-0 m-0">
         <div className="col-6 logo-container-fluid">
-          <img className="logo" src={GOutside_transp} />
+          <img className="logo" src={GOutside_transp} /> 
         </div>
 
         <div className="col-6 container__slider ms-3">
@@ -59,8 +59,12 @@ export const Home = () => {
             <h1>¿Quieres estar al día de las competiciones de tu región?</h1>
           </div>
           <div className="col-md-12 d-flex align-items-center justify-content-evenly">
-            <button className="button2">Conviértete en GOutsider</button>
-            <button className="button2">Inicia sesión</button>
+          <Link to="/Signup">
+              <button className="button2">Conviértete en GOutsider</button>
+            </Link>
+            <Link to="/Login">
+              <button className="button2">Inicia sesión</button>
+            </Link>
           </div>
         </div>
       </div>

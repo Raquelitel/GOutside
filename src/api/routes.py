@@ -8,6 +8,8 @@ from flask_jwt_extended import (
     JWTManager, jwt_required, get_jwt_identity,
     create_access_token, get_jwt)
 import json
+import cloudinary
+import cloudinary.uploader
 
 
 api = Blueprint('api', __name__)
@@ -141,16 +143,15 @@ def modify_competition(competition_id):
 
 @api.route('/upload', methods=['POST'])
 def handle_upload():
-    data = request.get_json()
-    user = Competitor.query.filter_by(
-        id=data["id"])
+    # data = request.get_json()
+    user3 = User.query.get(3)
 
-    if user is not None:
+    if user3 is not None:
         result = cloudinary.uploader.upload(
             request.files["profile_image"], public_id=f'my_folder/photo')
-        user.profile_image_url = result["secure_url"]
+        user3.profile_image_url = result["secure_url"]
 
-       # db.session.add(user)
+        db.session.add(user3)
         db.session.commit()
         return jsonify("all good"), 200
     return jsonify("error id doesn't exist"), 405

@@ -30,6 +30,21 @@ def login():
     return jsonify(response_body), 200
 
 
+@api.route("/user", methods=['DELETE'])
+@jwt_required()
+def delete_user():
+    current_user = get_jwt_identity()
+    delete_user = User.query.filter_by(email = current_user).first()
+    
+    db.session.delete(delete_user)
+    db.session.commit()
+    
+    response_body = {
+        "message": "Usuario eliminado correctamente"
+    }
+    return jsonify(response_body),200
+
+
 @api.route('/competitions', methods=['GET'])
 def get_all_competitions():
     all_competitions = Competition.query.order_by(Competition.id.asc()).all()

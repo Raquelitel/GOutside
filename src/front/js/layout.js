@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
@@ -8,12 +8,21 @@ import { Navbar } from "./component/navbar/navbar.jsx";
 import Signup from "./pages/signup/Signup.jsx";
 import Login from "./pages/login/Login.jsx";
 import HomeUser from "./pages/homeUser/HomeUser.jsx";
+import VideoLibrary, { getServerSideProps } from "./pages/videoLibrary/videoLibrary.jsx";
+import CreateCompetition from "./pages/CreateCompetition/CreateCompetition.jsx";
 
-//create your first component
+
+
 const Layout = () => {
-  //the basename is used when your project is published in a subdirectory and not in the root of the domain
-  // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
+
   const basename = process.env.BASENAME || "";
+  const [library, setLibrary] = useState([]);
+
+  useEffect(() => {
+    getServerSideProps().then((data) => {
+      setLibrary(data.props.data);
+    });
+  	}, []);
 
   return (
     <div>
@@ -24,9 +33,13 @@ const Layout = () => {
             <Route element={<Home />} path="/" />
             <Route element={<Signup />} path="/signup" />
             <Route element={<Login />} path="/login" />
+            <Route element={<VideoLibrary library={library} />} path="/VideoLibrary" />
+
 
             <Route element={<HomeUser />}>
               <Route path="/home/user" element={<Navbar />} />
+              <Route element={<CreateCompetition />} path="/createCompetition" />
+              
             </Route>
             <Route element={<h1>Not found!</h1>} />
           </Routes>

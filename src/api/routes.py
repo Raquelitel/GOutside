@@ -23,7 +23,7 @@ def login():
     user = User.query.filter_by(email=data["email"], password=data["password"]).first(
     )
     if user is None:
-        return "Usuario incorrecto", 401
+        return jsonify({"error": "Usuario incorrecto"} ), 401
     accesss_token = create_access_token(identity=user.id)
     response_body = {
         "token": accesss_token,
@@ -153,5 +153,8 @@ def handle_upload():
 
         db.session.add(user3)
         db.session.commit()
-        return jsonify("all good"), 200
+        response_body = {
+            "user": user3.serialize()
+        }
+        return jsonify(response_body), 200
     return jsonify("error id doesn't exist"), 405

@@ -22,7 +22,7 @@ const EditProfile = () => {
         options
       );
       const data = await resp.json();
-      console.log("sucesssssss", data);
+      console.log(data);
     } catch (error) {
       console.log("Error loading message from backend", error);
     }

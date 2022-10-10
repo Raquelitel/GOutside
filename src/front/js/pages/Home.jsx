@@ -3,7 +3,6 @@ import VideoLibrary, {
   getServerSideProps,
 } from "./videoLibrary/videoLibrary.jsx";
 import "../../styles/home.css";
-import EditProfile from "./editProfile/EditProfile.jsx";
 
 const Home = () => {
   const [library, setLibrary] = useState([]);
@@ -15,10 +14,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="text-center mt-5 videos-container">
-      <EditProfile />
-      {/*  <VideoLibrary library={library} /> */}
-    </div>
+    <div className="text-center mt-5 videos-container">Hello desde el home</div>
   );
 };
 

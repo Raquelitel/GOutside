@@ -64,10 +64,26 @@ def private():
         return jsonify({"resultado": "usuario no autenticado"}), 400
 
 
+@api.route("/user", methods=['DELETE'])
+@jwt_required()
+def delete_user():
+    current_user = get_jwt_identity()
+    delete_user = User.query.filter_by(email = current_user).first()
+    
+    db.session.delete(delete_user)
+    db.session.commit()
+    
+    response_body = {
+        "message": "Usuario eliminado correctamente"
+    }
+    return jsonify(response_body),200
+
+
 # ------------  COMPETITIONS --------------------------
 
 
 @api.route('/competitions', methods=['GET'])
+@jwt_required()
 def get_all_competitions():
     all_competitions = Competition.query.order_by(Competition.id.asc()).all()
     competition_serializer = list(
@@ -80,6 +96,7 @@ def get_all_competitions():
 
 
 @api.route('/competition/<int:id>', methods=['GET'])
+@jwt_required()
 def get_one_competition(id):
     competition = Competition.query.get(id)
     competition_serializer = competition.serialize()
@@ -91,6 +108,7 @@ def get_one_competition(id):
 
 
 @api.route('/create-competition', methods=['POST'])
+@jwt_required()
 def create_competition():
     data = request.get_json()
     competition = Competition(
@@ -113,6 +131,7 @@ def create_competition():
 
 
 @api.route('/create-competition/<int:competition_id>', methods=['PUT'])
+@jwt_required()
 def modify_competition(competition_id):
     data = request.get_json()
     competition = Competition.query.get(competition_id)

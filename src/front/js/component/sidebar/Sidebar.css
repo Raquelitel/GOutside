@@ -1,0 +1,3 @@
+.my-dropdown::after {
+    content: none;
+}

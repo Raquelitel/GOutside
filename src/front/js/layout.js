@@ -53,11 +53,11 @@ const Layout = () => {
 
 
             <Route
-              element={
-                !(store.tokenLS === null) ? <HomeUser /> : <Navigate to="/" />
-              }
+              // element={
+              //   !(store.tokenLS === null) ? <HomeUser /> : <Navigate to="/" />
+              // }
             >
-              <Route path="/home/user" element={<Navbar />} />
+              <Route path="/home/user" element={[<Navbar />, <Sidebar />]} />
 
               <Route path="edit-profile" element={<EditProfile />} />
 

@@ -25,16 +25,14 @@ const Login = () => {
 
     let loginUser = await actions.login(email, password);
     if (loginUser) {
-      if (store.userRol == "Rol.administration") {
-        navigate("/private/admin");
-      } else if (store.userRol == "Rol.competitor") {
-        navigate("/private/competitor");
-      } else {
-        alert("datos inválidos");
-      }
+      navigate("/home/user");
+    } else {
+      setMensaje("Datos Inválidos");
+
+      setTimeout(() => {
+        setMensaje("");
+      }, 2500);
     }
-    setEmail("");
-    setPassword("");
   };
 
   return (

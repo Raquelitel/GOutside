@@ -55,9 +55,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
-      getTokenLS: () => {
+      /*       getTokenLS: () => {
         return localStorage.getItem("tokenLS");
-      },
+      }, */
     },
   };
 };

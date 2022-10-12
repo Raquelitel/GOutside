@@ -170,6 +170,30 @@ def my_competition():
         return jsonify({"data": my_competition_serializer}), 200
     return jsonify({"message": "Todavía no se ha inscrito en ninguna competición"}), 204
 
+# ------------  COMPETITORS (Tabla USERS) --------------------------
+
+@api.route('/create-competitor/<int:competitor_id>', methods=['PUT'])
+@jwt_required()
+def modify_competitor(user_id):
+    data = request.get_json()
+    competitor = User.query.get(user_id)
+    if data is not None and competitor:
+        competitor.name = data["name"],
+        competitor.last_name = data["last_name"],
+        competitor.profile_image_url = data["profile_image_url"],
+        competitor.adress = data["adress"],
+        competitor.gender = data["gender"],
+        competitor.phone = data["phone"],
+        competitor.rol = data["rol"],
+
+        response_body = {
+            "result": "Competidor modificado correctamente"
+        }
+
+        return jsonify(response_body), 200
+
+    return jsonify({"result": "Competidor no modificado"}), 400
+
 
 # ------------  CLOUDINARY --------------------------
 

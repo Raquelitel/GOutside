@@ -28,7 +28,7 @@ const EditProfile = () => {
     }
   };
   return (
-    <>
+    <div className="">
       <div className="card mb-3 editprofile-bg">
         <div className="row g-0">
           <div className="col-md-4">
@@ -45,7 +45,7 @@ const EditProfile = () => {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="text-uppercase">Mi perfil</h5>
-              <form className="container col-md-8 text-start">
+              <form className="container row col-md-8 text-start">
                 <div className="my-2">
                   <label className="col-12 col-md-2 mx-2">Nombre</label>
                   <input type="text" />
@@ -84,7 +84,7 @@ const EditProfile = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

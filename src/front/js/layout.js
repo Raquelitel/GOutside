@@ -22,6 +22,7 @@ import VideoLibrary, {
 } from "./pages/videoLibrary/videoLibrary.jsx";
 import CreateCompetition from "./pages/CreateCompetition/CreateCompetition.jsx";
 import ProtectedRoute from "./component/protectedRoute";
+import MyAllCompetition from "./pages/myAllCompetition/MyAllCompetition.jsx";
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";
@@ -61,13 +62,17 @@ const Layout = () => {
                 element={<InfoCompetition />}
               />
               <Route
-                path="/clasification/<int:id/>"
-                element={<Clasification />}
+                path="/createCompetition"
+                element={<CreateCompetition />}
               />
               <Route
-                element={<CreateCompetition />}
-                path="/createCompetition"
+                path="/my-all-competition"
+                element={<MyAllCompetition />}
               />
+              {/*               <Route
+                path="/clasification/<int:id/>"
+                element={<Clasification />}
+              /> */}
             </Route>
 
             <Route element={<h1>Not found!</h1>} />

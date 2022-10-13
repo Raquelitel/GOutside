@@ -23,7 +23,7 @@ def login():
     user = User.query.filter_by(email=data["email"], password=data["password"]).first(
     )
     if user is None:
-        return jsonify({"error": "Usuario incorrecto"} ), 401
+        return jsonify({"error": "Usuario incorrecto"}), 401
     accesss_token = create_access_token(identity=user.id)
     response_body = {
         "token": accesss_token,
@@ -68,15 +68,15 @@ def private():
 @jwt_required()
 def delete_user():
     current_user = get_jwt_identity()
-    delete_user = User.query.filter_by(email = current_user).first()
-    
+    delete_user = User.query.filter_by(email=current_user).first()
+
     db.session.delete(delete_user)
     db.session.commit()
-    
+
     response_body = {
         "message": "Usuario eliminado correctamente"
     }
-    return jsonify(response_body),200
+    return jsonify(response_body), 200
 
 
 # ------------  COMPETITIONS --------------------------
@@ -161,7 +161,8 @@ def modify_competition(competition_id):
 def my_competition():
     competitor_id = get_jwt_identity()
     competitor = User.query.get(competitor_id)
-    my_competitions = Competition.query.filter(Competition.competition_competitor.any(User.id == competitor_id)).all()
+    my_competitions = Competition.query.filter(
+        Competition.competition_competitor.any(User.id == competitor_id)).all()
     print(competitor)
     if len(my_competitions) > 0:
         my_competition_serializer = list(
@@ -174,10 +175,10 @@ def my_competition():
 
 # NOT FINISH !!!!!!!!!!!!!
 
-@api.route('/upload', methods=['POST'])
+""" @api.route('/upload', methods=['POST'])
 def handle_upload():
     # data = request.get_json()
-    user3 = User.query.get(3)
+    user3 = User.query.get(2)
 
     if user3 is not None:
         result = cloudinary.uploader.upload(
@@ -186,9 +187,22 @@ def handle_upload():
 
         db.session.add(user3)
         db.session.commit()
-        response_body = {
-            "user": user3.serialize()
-        }
-        return jsonify(response_body), 200
-    return jsonify("error id doesn't exist"), 405
+        return jsonify("perfect"), 200
+    return jsonify("error id doesn't exist"), 405  """
 
+
+@api.route('/upload', methods=['POST'])
+@jwt_required()
+def handle_upload():
+    userMail = get_jwt_identity()
+
+    if 'profile_image' in request.files:
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+        user_update = User.query.filter_by(email=userMail).first()
+        user_update.profile_image_url = result['secure_url']
+
+        db.session.add(user_update)
+        db.session.commit()
+
+        return jsonify(user_update.serialize()), 200
+    return jsonify({"message": "error"}), 400

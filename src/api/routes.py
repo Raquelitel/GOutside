@@ -28,7 +28,7 @@ def login():
     response_body = {
         "token": accesss_token,
         "user_id": user.id,
-        "message": "Ususario registrado correctamente, acceso permitido",
+        "message": "Usuario registrado correctamente, acceso permitido",
         "rol": str(user.rol)
     }
     return jsonify(response_body), 200
@@ -89,7 +89,7 @@ def get_all_competitions():
     competition_serializer = list(
         map(lambda param: param.serialize(), all_competitions))
     response_body = {
-        "result": "obtenidas competiciones correctamente",
+        "result": "Obtenidas competiciones correctamente",
         "competitions": competition_serializer
     }
     return jsonify(response_body), 200
@@ -101,7 +101,7 @@ def get_one_competition(id):
     competition = Competition.query.get(id)
     competition_serializer = competition.serialize()
     response_body = {
-        "result": "competición obtenida",
+        "result": "Competición obtenida",
         "competition": competition_serializer
     }
     return jsonify(response_body), 200
@@ -148,7 +148,7 @@ def modify_competition(competition_id):
         db.session.commit()
 
         response_body = {
-            "result": "competición modificada correctamente"
+            "result": "Competición modificada correctamente"
         }
 
         return jsonify(response_body), 200
@@ -169,6 +169,30 @@ def my_competition():
             map(lambda param: param.serialize(), my_competitions))
         return jsonify({"data": my_competition_serializer}), 200
     return jsonify({"message": "Todavía no se ha inscrito en ninguna competición"}), 204
+
+# ------------  COMPETITORS (Tabla USERS) --------------------------
+
+@api.route('/create-competitor/<int:competitor_id>', methods=['PUT'])
+@jwt_required()
+def modify_competitor(user_id):
+    data = request.get_json()
+    competitor = User.query.get(user_id)
+    if data is not None and competitor:
+        competitor.name = data["name"],
+        competitor.last_name = data["last_name"],
+        competitor.profile_image_url = data["profile_image_url"],
+        competitor.adress = data["adress"],
+        competitor.gender = data["gender"],
+        competitor.phone = data["phone"],
+        competitor.rol = data["rol"],
+
+        response_body = {
+            "result": "Competidor modificado correctamente"
+        }
+
+        return jsonify(response_body), 200
+
+    return jsonify({"result": "Competidor no modificado"}), 400
 
 
 # ------------  CLOUDINARY --------------------------
@@ -227,5 +251,6 @@ def contactForm():
         "result": "Petición de contacto recibida correctamente"
     }
     return jsonify(response_body), 200
+
 
 

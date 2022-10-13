@@ -48,7 +48,7 @@ class User(db.Model):
             "name": self.name,
             "last_name": self.last_name,
             "adress": self.adress,
-            "profile_image": profile_image_url,
+            "profile_image": self.profile_image_url,
             "gender": self.gender,
             "phone": self.phone,
             "rol": str(self.rol)
@@ -134,4 +134,21 @@ class Qualifier(db.Model):
             "media": self.media,
             "comment": self.comment,
             "previous_result": self.previous_result
+        }
+
+
+class About_us(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=False, nullable=False)
+    surname = db.Column(db.String(120), unique=False, nullable=False)
+    phone = db.Column(db.Integer, unique=False, nullable=False)
+    contact_request = db.Column(db.String(3000), unique=False, nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "surname": self.surname,
+            "phone": self.phone,
+            "contact_request": self.contact_request,
         }

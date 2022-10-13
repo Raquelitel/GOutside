@@ -8,7 +8,6 @@ import Logo_Costa_Azahar from "../../../img/Logo_Costa_Azahar.jpg";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
-
   return (
     <div className="container-fluid text-center">
       <div className="row">
@@ -27,10 +26,10 @@ export const Home = () => {
 
       <div className="row d-flex p-0 m-0">
         <div className="col-6 logo-container-fluid">
-          <img className="logo" src={GOutside_transp} /> 
+          <img className="logo" src={GOutside_transp} />
         </div>
 
-        <div className="col-6 container__slider ms-3">
+        {/*         <div className="col-6 container__slider ms-3">
           <div className="container">
             <input type="radio" name="slider" id="item-1" checked></input>
             <input type="radio" name="slider" id="item-2"></input>
@@ -48,7 +47,7 @@ export const Home = () => {
               </label>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="row buttons mx-auto">
@@ -58,7 +57,7 @@ export const Home = () => {
             <h1>¿Quieres estar al día de las competiciones de tu región?</h1>
           </div>
           <div className="col-md-12 d-flex align-items-center justify-content-evenly">
-          <Link to="/Signup">
+            <Link to="/Signup">
               <button className="button2">Conviértete en GOutsider</button>
             </Link>
             <Link to="/Login">
@@ -67,7 +66,6 @@ export const Home = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

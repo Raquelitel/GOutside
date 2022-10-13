@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Rol, Competition
+from api.models import db, User, Rol, Competition, About_us
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import (
     JWTManager, jwt_required, get_jwt_identity,
@@ -23,7 +23,7 @@ def login():
     user = User.query.filter_by(email=data["email"], password=data["password"]).first(
     )
     if user is None:
-        return jsonify({"error": "Usuario incorrecto"} ), 401
+        return jsonify({"error": "Usuario incorrecto"}), 401
     accesss_token = create_access_token(identity=user.id)
     response_body = {
         "token": accesss_token,
@@ -68,15 +68,15 @@ def private():
 @jwt_required()
 def delete_user():
     current_user = get_jwt_identity()
-    delete_user = User.query.filter_by(email = current_user).first()
-    
+    delete_user = User.query.filter_by(email=current_user).first()
+
     db.session.delete(delete_user)
     db.session.commit()
-    
+
     response_body = {
         "message": "Usuario eliminado correctamente"
     }
-    return jsonify(response_body),200
+    return jsonify(response_body), 200
 
 
 # ------------  COMPETITIONS --------------------------
@@ -161,7 +161,8 @@ def modify_competition(competition_id):
 def my_competition():
     competitor_id = get_jwt_identity()
     competitor = User.query.get(competitor_id)
-    my_competitions = Competition.query.filter(Competition.competition_competitor.any(User.id == competitor_id)).all()
+    my_competitions = Competition.query.filter(
+        Competition.competition_competitor.any(User.id == competitor_id)).all()
     print(competitor)
     if len(my_competitions) > 0:
         my_competition_serializer = list(
@@ -192,3 +193,22 @@ def handle_upload():
         return jsonify(response_body), 200
     return jsonify("error id doesn't exist"), 405
 
+# ------------  ABOUT_US --------------------------
+
+
+@api.route('/about-us', methods=['POST'])
+def contactForm():
+    data = request.get_json()
+    aboutUs = About_us(
+        name=data["name"],
+        surmane=data["surname"],
+        phone=data["phone"],
+        contact_request=data["contact_request"],
+
+    )
+    db.session.add(aboutUs)
+    db.session.commit()
+    response_body = {
+        "result": "Petición de contacto recibida correctamente"
+    }
+    return jsonify(response_body), 200

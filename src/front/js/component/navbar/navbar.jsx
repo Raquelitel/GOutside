@@ -39,7 +39,7 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="inputbox">
             <input
-              placeholder="Search..."
+              placeholder="Buscar..."
               type="text"
               className="navbar-input"
               required=""

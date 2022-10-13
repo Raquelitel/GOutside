@@ -29,8 +29,8 @@ const EditProfile = () => {
     }
   };
   return (
-    <div className="">
-      <div className="card mb-3 editprofile-bg">
+    <>
+      <div className="card mt-5 editprofile-bg">
         <div className="row g-0">
           <div className="col-md-4">
             <img
@@ -48,7 +48,9 @@ const EditProfile = () => {
               <h5 className="text-uppercase">Mi perfil</h5>
               <form className="container row col-md-8 text-start">
                 <div className="my-2">
-                  <label className="col-12 col-md-2 mx-2">Nombre</label>
+                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                    Nombre*
+                  </label>
                   <input type="text" />
                 </div>
                 <div>
@@ -56,7 +58,7 @@ const EditProfile = () => {
                   <input type="text" />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-2 mx-2">E-mail</label>
+                  <label className="col-12 col-md-2 mx-2">E-mail*</label>
                   <input type="email" disabled />
                 </div>
                 <div className="my-2">
@@ -65,17 +67,18 @@ const EditProfile = () => {
                 </div>
                 <div className="my-2">
                   <label className="col-12 col-md-2 mx-2">Teléfono</label>
-                  <input type="number" />
+                  <input type="tel" />
                 </div>
                 <div className="my-2">
                   <label className="col-2 mx-2">Género</label>
                   <select>
+                    <option selected>Seleccionar</option>
                     <option>Mujer</option>
                     <option>Hombre</option>
                   </select>
                 </div>
                 <div className="d-flex justify-content-end">
-                  <button className="btn btn-primary mx-2">Borrar</button>
+                  <button className="btn btn-danger mx-2">Borrar</button>
                   <button className="btn btn-primary me-5">
                     Guardar Cambios
                   </button>
@@ -85,7 +88,7 @@ const EditProfile = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -199,9 +199,10 @@ def handle_upload():
 @api.route('/about-us', methods=['POST'])
 def contactForm():
     data = request.get_json()
+    print(data)
     aboutUs = About_us(
         name=data["name"],
-        surmane=data["surname"],
+        surname=data["surname"],
         phone=data["phone"],
         contact_request=data["contact_request"],
 

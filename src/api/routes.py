@@ -175,10 +175,10 @@ def my_competition():
 
 # NOT FINISH !!!!!!!!!!!!!
 
-@api.route('/upload', methods=['POST'])
+""" @api.route('/upload', methods=['POST'])
 def handle_upload():
     # data = request.get_json()
-    user3 = User.query.get(3)
+    user3 = User.query.get(2)
 
     if user3 is not None:
         result = cloudinary.uploader.upload(
@@ -187,14 +187,28 @@ def handle_upload():
 
         db.session.add(user3)
         db.session.commit()
-        response_body = {
-            "user": user3.serialize()
-        }
-        return jsonify(response_body), 200
-    return jsonify("error id doesn't exist"), 405
+        return jsonify("perfect"), 200
+    return jsonify("error id doesn't exist"), 405  """
+
+
+@api.route('/upload', methods=['POST'])
+@jwt_required()
+def handle_upload():
+    userMail = get_jwt_identity()
+
+    if 'profile_image' in request.files:
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+        user_update = User.query.filter_by(email=userMail).first()
+        user_update.profile_image_url = result['secure_url']
+
+        db.session.add(user_update)
+        db.session.commit()
+        return jsonify(user_update.serialize()), 200
+    return jsonify({"message": "error"}), 400
+
+
 
 # ------------  ABOUT_US --------------------------
-
 
 @api.route('/about-us', methods=['POST'])
 def contactForm():
@@ -213,3 +227,5 @@ def contactForm():
         "result": "Petición de contacto recibida correctamente"
     }
     return jsonify(response_body), 200
+
+

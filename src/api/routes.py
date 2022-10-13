@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Rol, Competition
+from api.models import db, User, Rol, Competition, About_us
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import (
     JWTManager, jwt_required, get_jwt_identity,
@@ -203,6 +203,29 @@ def handle_upload():
 
         db.session.add(user_update)
         db.session.commit()
-
         return jsonify(user_update.serialize()), 200
     return jsonify({"message": "error"}), 400
+
+
+
+# ------------  ABOUT_US --------------------------
+
+@api.route('/about-us', methods=['POST'])
+def contactForm():
+    data = request.get_json()
+    print(data)
+    aboutUs = About_us(
+        name=data["name"],
+        surname=data["surname"],
+        phone=data["phone"],
+        contact_request=data["contact_request"],
+
+    )
+    db.session.add(aboutUs)
+    db.session.commit()
+    response_body = {
+        "result": "Petición de contacto recibida correctamente"
+    }
+    return jsonify(response_body), 200
+
+

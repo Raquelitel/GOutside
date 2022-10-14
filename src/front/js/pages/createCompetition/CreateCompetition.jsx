@@ -21,9 +21,8 @@ function CreateCompetition() {
   const [stage, setStage] = useState("");
 
   const create_competition = () => {
-    const url =
-      "https://3001-raquelitel-goutside-tu14qsfqas6.ws-eu70.gitpod.io/api/create-competition";
-    const body={
+    const url = process.env.BACKEND_URL + "/api/create-competition";
+    const body = {
       competition_name: name,
       qualifier_date: date,
       location: location,
@@ -35,7 +34,7 @@ function CreateCompetition() {
     const options = {
       headers: { "Content-Type": "application/json" },
       method: "POST",
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     };
     fetch(url, options);
   };
@@ -121,10 +120,15 @@ function CreateCompetition() {
             ></textarea>
           </div>
         </div>
-        <div className='position-absolute bottom-0 end-0 d-flex mb-3 me-5 create-button'>
-          <button className='btn btn-success' onClick={()=> create_competition()}>Crear competición</button>
+        <div className="position-absolute bottom-0 end-0 d-flex mb-3 me-5 create-button">
+          <button
+            className="btn btn-success"
+            onClick={() => create_competition()}
+          >
+            Crear competición
+          </button>
           <br />
-          <button className='btn btn-danger'>Borrar</button>
+          <button className="btn btn-danger">Borrar</button>
         </div>
       </div>
     </div>

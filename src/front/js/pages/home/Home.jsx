@@ -7,7 +7,6 @@ import Logo_Battle_Cancer from "../../../img/Logo_Battle_Cancer.jpg";
 import Logo_Costa_Azahar from "../../../img/Logo_Costa_Azahar.jpg";
 
 export const Home = () => {
-
   return (
     <div className="container-fluid text-center">
       <div className="row">
@@ -19,14 +18,16 @@ export const Home = () => {
         <div className="fs-2 home-subtitle">
           <h1>
             ¿Organizador de eventos deportivos?{" "}
-            <a className="link">Nosotros te ayudamos</a>
+            <Link to="/api/about-us" className="home-link">
+              Nosotros te ayudamos
+            </Link>
           </h1>
         </div>
       </div>
 
       <div className="row d-flex p-0 m-0">
-        <div className="col-6 logo-container-fluid">
-          <img className="logo" src={GOutside_transp} />
+        <div className="col-4 container-fluid m-auto">
+          <img className="home-logo" src={GOutside_transp} />
         </div>
 
         <div className="col-6 ms-3 container-slider-home">
@@ -37,13 +38,13 @@ export const Home = () => {
 
             <div className="cards">
               <label className="card" for="item-1" id="selector-1">
-                <img src={Logo_Malaga_Throwdown}/>
+                <img src={Logo_Malaga_Throwdown} />
               </label>
               <label className="card" for="item-2" id="selector-2">
-                <img src={Logo_Battle_Cancer}/>
+                <img src={Logo_Battle_Cancer} />
               </label>
               <label className="card" for="item-3" id="selector-3">
-                <img src={Logo_Costa_Azahar}/>
+                <img src={Logo_Costa_Azahar} />
               </label>
             </div>
           </div>
@@ -57,12 +58,15 @@ export const Home = () => {
             <h1>¿Quieres estar al día de las competiciones de tu región?</h1>
           </div>
           <div className="col-md-12 d-flex align-items-center justify-content-evenly">
-            <button className="home-button2">Conviértete en GOutsider</button>
-            <button className="home-button2">Inicia sesión</button>
+            <Link to="/Signup">
+              <button className="home-button2">Conviértete en GOutsider</button>
+            </Link>
+            <Link to="/Login">
+              <button className="home-button2">Inicia sesión</button>
+            </Link>
           </div>
         </div>
       </div>
-
     </div>
   );
 };

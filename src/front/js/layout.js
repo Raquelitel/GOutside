@@ -43,7 +43,6 @@ const Layout = () => {
             <Route element={<ProtectedRoute />}>
               <Route path="/home/user" element={<HomeUser />} />
               <Route element={<VideoLibrary />} path="/VideoLibrary" />
-
               <Route path="edit-profile" element={<EditProfile />} />
               <Route
                 path="/all-commpetition"

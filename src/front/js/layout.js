@@ -18,7 +18,7 @@ import InfoCompetition from "./pages/infoCompetition/InfoCompetition.jsx";
 import Clasification from "./pages/clasification/Clasification.jsx";
 import AboutUs from "./pages/aboutUs/AboutUs.jsx";
 
-import VideoLibrary, { getServerSideProps } from "./pages/videoLibrary/videoLibrary.jsx";
+import VideoLibrary from "./pages/videoLibrary/components/VideoLibrary.jsx";
 import CreateCompetition from "./pages/CreateCompetition/CreateCompetition.jsx";
 
 
@@ -26,14 +26,7 @@ import CreateCompetition from "./pages/CreateCompetition/CreateCompetition.jsx";
 
 const Layout = () => {
 
-  const basename = process.env.BASENAME || "";
-  const [library, setLibrary] = useState([]);
-
-  useEffect(() => {
-    getServerSideProps().then((data) => {
-      setLibrary(data.props.data);
-    });
-  	}, []);
+  const basename = process.env.BASENAME || ""
 
   const { store, actions } = useContext(Context);
 
@@ -48,7 +41,7 @@ const Layout = () => {
 
             <Route element={<AboutUs />} path="/aboutus" />
 
-            <Route element={<VideoLibrary library={library} />} path="/VideoLibrary" />
+            <Route element={<VideoLibrary />} path="/VideoLibrary" />
 
 
 

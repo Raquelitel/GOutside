@@ -1,5 +1,5 @@
 import React from "react";
-import "../Home/Home.css";
+import "./Home.css";
 import GOutside_transp from "../../../img/GOutside_transp.png";
 import X_transp from "../../../img/X_transp.png";
 import Logo_Malaga_Throwdown from "../../../img/Logo_Malaga_Throwdown.jpg";

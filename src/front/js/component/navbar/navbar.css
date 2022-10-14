@@ -1,0 +1,97 @@
+.navbar-color {
+  background-color: var(--color-dark-blue);
+  width: 100%;
+}
+
+.navbar-input {
+  line-height: 28px;
+  border: 2px solid transparent;
+  border-bottom-color: var(--color-light-blue);
+  padding: 0.2rem 0;
+  outline: none;
+  background-color: transparent;
+  color: var(--color-light);
+  transition: 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.navbar-input:focus,
+/* input:hover {
+  outline: none;
+  padding: 0.2rem 1rem;
+  border-radius: 1rem;
+  border-color: var(--color-light-blue);
+}
+ */
+.navbar-input::placeholder {
+  color: var(--color-light);
+}
+
+.navbar-input:focus::placeholder {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-menu {
+  width: 9rem;
+  height: 3rem;
+  background: var(--color-dark-blue);
+  color: var(--color-light);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-menu span {
+  text-transform: uppercase;
+  transition: top 0.5s;
+}
+
+.btn-icon {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.btn-text {
+  position: absolute;
+  color: var(--color-light);
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  top: 150%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.btn:hover .btn-icon {
+  top: -100%;
+}
+
+.btn:hover .btn-text {
+  top: 50%;
+}
+
+.navbar-photo-profile {
+  width: 15vh;
+  height: 15vh;
+  border-radius: 50%;
+}
+
+.navbar-menu-size {
+  width: 50vh;
+}
+
+.navbar-menu-button {
+  color: var(--color-red);
+}
+
+.navbar-menu-li {
+  color: var(--color-light-blue);
+}
+.navbar-menu-li:hover {
+  background-color: var(--color-light-blue);
+  color: var(--color-dark-grey);
+}

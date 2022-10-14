@@ -10,20 +10,26 @@
     background-color: var(--color-dark-grey);
   }
   
-  .X {
-    height: 6vw;
-    width: 6vw;
+  h1{
+    font-family: "Raleway", sans-serif;
+    font-size: 3vw;
+    color: var(--color-dark-blue);
+    filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.425));
+  }
+
+  .home-X-icon {
+    height:3vw;
+    width:3vw;
     filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.425));;
   }
-  .welcome {
+  .home-welcome {
     font-family: "Raleway", sans-serif;
-    /* -webkit-text-stroke: 2px white; */
-    font-size: 6vw;
+    font-size: vw;
     color: var(--color-dark-blue);
     filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.425));
   }
   
-  .subtitle{
+  .home-subtitle{
     color: #A5C9CA;
     /* filter: drop-shadow(0px 5px 10px #000); */
   }
@@ -32,7 +38,7 @@
     color:#A5C9CA;
     text-decoration: underline; 
   }
-  a:hover {
+  .link:hover {
     color: #ff4c29;
   }
   
@@ -43,7 +49,7 @@
     padding: 3vw 1vw
   }
   
-  img.logo{
+  img.home-logo{
     width: 30vw;
     height: 30vw;
     -o-object-fit: cover;
@@ -59,7 +65,7 @@
     font-family: "Raleway", sans-serif;
   }
   
-  .container__slider{
+  .home-container__slider{
     width: 30vw;
     height: 20vw;
     margin: auto;
@@ -138,11 +144,11 @@
   
   /* BUTTON */
   
-  .buttons{
+  .home-buttons{
     font-family: "Montserrat", sans-serif;
   }
   
-  .button2 {
+  .home-button2 {
     display: inline-block;
     transition: all 0.2s ease-in;
     position: relative;
@@ -157,13 +163,13 @@
     
   }
   
-  .button2:active {
+  .home-button2:active {
     color: #666;
     box-shadow: inset 4px 4px 12px #c5c5c5,
                inset -4px -4px 12px #ffffff;
   }
   
-  .button2:before {
+  .home-button2:before {
     content: "";
     position: absolute;
     left: 50%;
@@ -178,7 +184,7 @@
     z-index: -1;
   }
   
-  .button2:after {
+  .home-button2:after {
     content: "";
     position: absolute;
     left: 55%;
@@ -193,18 +199,18 @@
     z-index: -1;
   }
   
-  .button2:hover {
+  .home-button2:hover {
     color: #ffffff;
     border: 1px solid #009087;
   }
   
-  .button2:hover:before {
+  .home-button2:hover:before {
     top: -35%;
     background-color: #009087;
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
   }
   
-  .button2:hover:after {
+  .home-button2:hover:after {
     top: -45%;
     background-color: #009087;
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);

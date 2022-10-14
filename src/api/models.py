@@ -48,7 +48,7 @@ class User(db.Model):
             "name": self.name,
             "last_name": self.last_name,
             "adress": self.adress,
-            "profile_image": profile_image_url,
+            "profile_image": self.profile_image_url,
             "gender": self.gender,
             "phone": self.phone,
             "rol": str(self.rol)

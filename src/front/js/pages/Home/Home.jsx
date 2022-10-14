@@ -1,5 +1,5 @@
 import React from "react";
-import "../Home/Home.css";
+import "./Home.css";
 import GOutside_transp from "../../../img/GOutside_transp.png";
 import X_transp from "../../../img/X_transp.png";
 import Logo_Malaga_Throwdown from "../../../img/Logo_Malaga_Throwdown.jpg";
@@ -8,7 +8,6 @@ import Logo_Costa_Azahar from "../../../img/Logo_Costa_Azahar.jpg";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
-
   return (
     <div className="container-fluid text-center">
       <div className="row">
@@ -30,7 +29,6 @@ export const Home = () => {
         <div className="col-4 container-fluid m-auto">
           <img className="home-logo" src={GOutside_transp} /> 
         </div>
-
         <div className="col-6 m-auto home-container__slider">
           <div className="container">
             <input type="radio" name="slider" id="item-1" checked />
@@ -49,7 +47,7 @@ export const Home = () => {
               </label>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="row mx-auto home-buttons">
@@ -68,7 +66,6 @@ export const Home = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

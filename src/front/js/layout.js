@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
@@ -18,22 +17,15 @@ import InfoCompetition from "./pages/infoCompetition/InfoCompetition.jsx";
 import Clasification from "./pages/clasification/Clasification.jsx";
 import AboutUs from "./pages/aboutUs/AboutUs.jsx";
 
-import VideoLibrary, { getServerSideProps } from "./pages/videoLibrary/videoLibrary.jsx";
+
+import VideoLibrary from "./pages/videoLibrary/components/VideoLibrary.jsx";
 import CreateCompetition from "./pages/CreateCompetition/CreateCompetition.jsx";
-
-
-
+import ProtectedRoute from "./component/protectedRoute";
+import MyAllCompetition from "./pages/myAllCompetition/MyAllCompetition.jsx";
 
 const Layout = () => {
 
-  const basename = process.env.BASENAME || "";
-  const [library, setLibrary] = useState([]);
-
-  useEffect(() => {
-    getServerSideProps().then((data) => {
-      setLibrary(data.props.data);
-    });
-  	}, []);
+  const basename = process.env.BASENAME || ""
 
   const { store, actions } = useContext(Context);
 
@@ -45,22 +37,13 @@ const Layout = () => {
             <Route element={<Home />} path="/" />
             <Route element={<Signup />} path="/signup" />
             <Route element={<Login />} path="/login" />
-
             <Route element={<AboutUs />} path="/aboutus" />
 
-            <Route element={<VideoLibrary library={library} />} path="/VideoLibrary" />
 
-
-
-            <Route
-              // element={
-              //   !(store.tokenLS === null) ? <HomeUser /> : <Navigate to="/" />
-              // }
-            >
-              <Route path="/home/user" element={[<Navbar />, <Sidebar />]} />
-
+            <Route element={<ProtectedRoute />}>
+              <Route path="/home/user" element={<HomeUser />} />
+              <Route element={<VideoLibrary />} path="/VideoLibrary" />
               <Route path="edit-profile" element={<EditProfile />} />
-
               <Route
                 path="/all-commpetition"
                 element={<AllCompetition.jsx />}
@@ -70,13 +53,17 @@ const Layout = () => {
                 element={<InfoCompetition />}
               />
               <Route
+                path="/createCompetition"
+                element={<CreateCompetition />}
+              />
+              <Route
+                path="/my-all-competition"
+                element={<MyAllCompetition />}
+              />
+              {/*               <Route
                 path="/clasification/<int:id/>"
                 element={<Clasification />}
-              />
-
-              <Route element={<CreateCompetition />} path="/createCompetition" />
-              
-
+              /> */}
             </Route>
 
             <Route element={<h1>Not found!</h1>} />

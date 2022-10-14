@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Rol, Competition
+from api.models import db, User, Rol, Competition, About_us
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import (
     JWTManager, jwt_required, get_jwt_identity,
@@ -23,12 +23,12 @@ def login():
     user = User.query.filter_by(email=data["email"], password=data["password"]).first(
     )
     if user is None:
-        return jsonify({"error": "Usuario incorrecto"} ), 401
+        return jsonify({"error": "Usuario incorrecto"}), 401
     accesss_token = create_access_token(identity=user.id)
     response_body = {
         "token": accesss_token,
         "user_id": user.id,
-        "message": "Ususario registrado correctamente, acceso permitido",
+        "message": "Usuario registrado correctamente, acceso permitido",
         "rol": str(user.rol)
     }
     return jsonify(response_body), 200
@@ -68,15 +68,15 @@ def private():
 @jwt_required()
 def delete_user():
     current_user = get_jwt_identity()
-    delete_user = User.query.filter_by(email = current_user).first()
-    
+    delete_user = User.query.filter_by(email=current_user).first()
+
     db.session.delete(delete_user)
     db.session.commit()
-    
+
     response_body = {
         "message": "Usuario eliminado correctamente"
     }
-    return jsonify(response_body),200
+    return jsonify(response_body), 200
 
 
 # ------------  COMPETITIONS --------------------------
@@ -89,7 +89,7 @@ def get_all_competitions():
     competition_serializer = list(
         map(lambda param: param.serialize(), all_competitions))
     response_body = {
-        "result": "obtenidas competiciones correctamente",
+        "result": "Obtenidas competiciones correctamente",
         "competitions": competition_serializer
     }
     return jsonify(response_body), 200
@@ -101,7 +101,7 @@ def get_one_competition(id):
     competition = Competition.query.get(id)
     competition_serializer = competition.serialize()
     response_body = {
-        "result": "competición obtenida",
+        "result": "Competición obtenida",
         "competition": competition_serializer
     }
     return jsonify(response_body), 200
@@ -148,7 +148,7 @@ def modify_competition(competition_id):
         db.session.commit()
 
         response_body = {
-            "result": "competición modificada correctamente"
+            "result": "Competición modificada correctamente"
         }
 
         return jsonify(response_body), 200
@@ -161,7 +161,8 @@ def modify_competition(competition_id):
 def my_competition():
     competitor_id = get_jwt_identity()
     competitor = User.query.get(competitor_id)
-    my_competitions = Competition.query.filter(Competition.competition_competitor.any(User.id == competitor_id)).all()
+    my_competitions = Competition.query.filter(
+        Competition.competition_competitor.any(User.id == competitor_id)).all()
     print(competitor)
     if len(my_competitions) > 0:
         my_competition_serializer = list(
@@ -169,15 +170,39 @@ def my_competition():
         return jsonify({"data": my_competition_serializer}), 200
     return jsonify({"message": "Todavía no se ha inscrito en ninguna competición"}), 204
 
+# ------------  COMPETITORS (Tabla USERS) --------------------------
+
+@api.route('/create-competitor/<int:competitor_id>', methods=['PUT'])
+@jwt_required()
+def modify_competitor(user_id):
+    data = request.get_json()
+    competitor = User.query.get(user_id)
+    if data is not None and competitor:
+        competitor.name = data["name"],
+        competitor.last_name = data["last_name"],
+        competitor.profile_image_url = data["profile_image_url"],
+        competitor.adress = data["adress"],
+        competitor.gender = data["gender"],
+        competitor.phone = data["phone"],
+        competitor.rol = data["rol"],
+
+        response_body = {
+            "result": "Competidor modificado correctamente"
+        }
+
+        return jsonify(response_body), 200
+
+    return jsonify({"result": "Competidor no modificado"}), 400
+
 
 # ------------  CLOUDINARY --------------------------
 
 # NOT FINISH !!!!!!!!!!!!!
 
-@api.route('/upload', methods=['POST'])
+""" @api.route('/upload', methods=['POST'])
 def handle_upload():
     # data = request.get_json()
-    user3 = User.query.get(3)
+    user3 = User.query.get(2)
 
     if user3 is not None:
         result = cloudinary.uploader.upload(
@@ -186,9 +211,46 @@ def handle_upload():
 
         db.session.add(user3)
         db.session.commit()
-        response_body = {
-            "user": user3.serialize()
-        }
-        return jsonify(response_body), 200
-    return jsonify("error id doesn't exist"), 405
+        return jsonify("perfect"), 200
+    return jsonify("error id doesn't exist"), 405  """
+
+
+@api.route('/upload', methods=['POST'])
+@jwt_required()
+def handle_upload():
+    userMail = get_jwt_identity()
+
+    if 'profile_image' in request.files:
+        result = cloudinary.uploader.upload(request.files['profile_image'])
+        user_update = User.query.filter_by(email=userMail).first()
+        user_update.profile_image_url = result['secure_url']
+
+        db.session.add(user_update)
+        db.session.commit()
+        return jsonify(user_update.serialize()), 200
+    return jsonify({"message": "error"}), 400
+
+
+
+# ------------  ABOUT_US --------------------------
+
+@api.route('/about-us', methods=['POST'])
+def contactForm():
+    data = request.get_json()
+    print(data)
+    aboutUs = About_us(
+        name=data["name"],
+        surname=data["surname"],
+        phone=data["phone"],
+        contact_request=data["contact_request"],
+
+    )
+    db.session.add(aboutUs)
+    db.session.commit()
+    response_body = {
+        "result": "Petición de contacto recibida correctamente"
+    }
+    return jsonify(response_body), 200
+
+
 

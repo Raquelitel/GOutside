@@ -7,8 +7,7 @@ function AboutUs() {
   const [contact_request, setContact_request] = useState("");
 
   const contact_us = () => {
-    const url =
-      "https://3001-raquelitel-goutside-tu14qsfqas6.ws-eu70.gitpod.io/api/about-us";
+    const url = process.env.BACKEND_URL + "/api/about-us";
     const body = {
       name: name,
       surname: surname,

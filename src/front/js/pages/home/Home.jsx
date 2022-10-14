@@ -19,7 +19,9 @@ export const Home = () => {
         <div className="fs-2 home-subtitle">
           <h1>
             ¿Organizador de eventos deportivos?{" "}
-            <a className="link" href="/">Nosotros te ayudamos</a>
+            <a className="link" href="/">
+              Nosotros te ayudamos
+            </a>
             <a href=""></a>
           </h1>
         </div>
@@ -27,7 +29,7 @@ export const Home = () => {
 
       <div className="row d-flex p-0 m-0">
         <div className="col-4 container-fluid m-auto">
-          <img className="home-logo" src={GOutside_transp} /> 
+          <img className="home-logo" src={GOutside_transp} />
         </div>
         <div className="col-6 m-auto home-container__slider">
           <div className="container">
@@ -47,7 +49,7 @@ export const Home = () => {
               </label>
             </div>
           </div>
-        </div> */}
+        </div>{" "}
       </div>
 
       <div className="row mx-auto home-buttons">
@@ -57,7 +59,7 @@ export const Home = () => {
             <h1>¿Quieres estar al día de las competiciones de tu región?</h1>
           </div>
           <div className="col-md-12 d-flex align-items-center justify-content-evenly">
-          <Link to="/Signup">
+            <Link to="/Signup">
               <button className="home-button2">Conviértete en GOutsider</button>
             </Link>
             <Link to="/Login">

@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import { Navigate } from "react-router-dom";
-import EditProfile from "../pages/editProfile/EditProfile.jsx";
+import { Navigate, Outlet } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Navbar } from "./navbar/navbar.jsx";
 import Sidebar from "./sidebar/Sidebar.jsx";
@@ -18,10 +17,10 @@ const ProtectedRoute = ({ children }) => {
         <div className="col-2">
           <Sidebar />
         </div>
-        <EditProfile />
       </div>
-
-      <main>{children}</main>
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 };

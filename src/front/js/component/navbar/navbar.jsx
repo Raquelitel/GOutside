@@ -58,7 +58,7 @@ export const Navbar = () => {
                 </button>
               </li>
             </Link>
-            <Link to="/videoLibrary">
+            <Link to="/video-library">
               <li className="nav-item">
                 <button className="btn btn-menu mx-2">
                   <span className="btn-icon" style={{ fontSize: "1rem" }}>
@@ -116,7 +116,7 @@ export const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/aboutus"
+                to="/about-us"
                 className="dropdown-item text-capitalize my-2 border-top border-bottom border-secondary navbar-menu-li "
               >
                 sobre nosotros

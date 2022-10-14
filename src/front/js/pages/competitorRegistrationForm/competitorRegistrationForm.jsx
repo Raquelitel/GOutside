@@ -14,8 +14,7 @@ function CompetitorRegistrationForm() {
   const [phone, setPhone] = useState("");
 
   const create_competitor = () => {
-    const url =
-      "https://3001-raquelitel-goutside-xc5r76ca7ra.ws-eu70.gitpod.io/admin/competition_user/";
+    const url = process.env.BACKEND_URL + "/api/create-competitor/id";
     const body = {
       name: name,
       last_name: surname,

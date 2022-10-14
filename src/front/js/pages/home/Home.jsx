@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
 import GOutside_transp from "../../../img/GOutside_transp.png";
 import X_transp from "../../../img/X_transp.png";
@@ -41,7 +42,7 @@ export const Home = () => {
                 <img src={Logo_Malaga_Throwdown} />
               </label>
               <label className="card" for="item-2" id="selector-2">
-                <img src={Logo_Battle_Cancer} />
+                <img src={Logo_Battle_Cancer} alt="cartel-competition" />
               </label>
               <label className="card" for="item-3" id="selector-3">
                 <img src={Logo_Costa_Azahar} />
@@ -52,7 +53,6 @@ export const Home = () => {
       </div>
 
       <div className="row mx-auto home-buttons">
-        <div className="col-md-12 align-items-center justify-content-center"></div>
         <div className="row mx-auto">
           <div className="col-md-12 ms-auto align-items-center justify-content-center home-subtitle">
             <h1>¿Quieres estar al día de las competiciones de tu región?</h1>

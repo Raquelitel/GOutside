@@ -50,7 +50,6 @@ export const Home = () => {
             </div>
           </div>
         </div>{" "}
-        */}
       </div>
 
       <div className="row mx-auto home-buttons">

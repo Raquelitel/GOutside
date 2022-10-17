@@ -15,7 +15,7 @@ const EditProfile = () => {
     const options = {
       method: "POST",
       body,
-      headers: { Authorization: "Bearer " + actions.getTokenLS },
+      headers: { Authorization: "Bearer " + actions.getTokenLS() },
     };
     try {
       const resp = await fetch(
@@ -34,7 +34,12 @@ const EditProfile = () => {
         <div className="row g-0">
           <div className="col-md-4">
             <img
-              src="https://images.pexels.com/photos/97082/weimaraner-puppy-dog-snout-97082.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src={
+                store.userProfileImagen === null
+                  ? "https://images.pexels.com/photos/97082/weimaraner-puppy-dog-snout-97082.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  : store.userProfileImagen
+              }
+              /*               src="https://images.pexels.com/photos/97082/weimaraner-puppy-dog-snout-97082.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" */
               className="mt-4 img-fluid editprofile-photo"
               alt="profile photo"
             />
@@ -51,7 +56,7 @@ const EditProfile = () => {
                   <label className="col-12 col-md-10 col-lg-2 mx-2">
                     Nombre*
                   </label>
-                  <input type="text" />
+                  <input type="text" value={store.name} />
                 </div>
                 <div>
                   <label className="col-12 col-md-2 mx-2">Apellidos</label>
@@ -70,12 +75,12 @@ const EditProfile = () => {
                   <input type="tel" />
                 </div>
                 <div className="my-2">
-                  <label className="col-2 mx-2">Género</label>
-                  <select>
+                  <label className="col-2 mx-2">Sexo</label>
+                  {/*                   <select>
                     <option selected>Seleccionar</option>
                     <option>Mujer</option>
                     <option>Hombre</option>
-                  </select>
+                  </select> */}
                 </div>
                 <div className="d-flex justify-content-end">
                   <button className="btn btn-danger mx-2">Borrar</button>

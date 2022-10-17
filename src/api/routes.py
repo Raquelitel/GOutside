@@ -210,7 +210,8 @@ def modify_competitor(user_id):
 @jwt_required()
 def handle_upload():
     user_id = get_jwt_identity()
-
+    print("=============")
+    print(request.files)
     if 'profile_image' in request.files:
         result = cloudinary.uploader.upload(request.files['profile_image'])
         user_update = User.query.filter_by(id=user_id).first()
@@ -227,7 +228,6 @@ def handle_upload():
 @api.route('/about-us', methods=['POST'])
 def contactForm():
     data = request.get_json()
-    print(data)
     aboutUs = About_us(
         name=data["name"],
         surname=data["surname"],

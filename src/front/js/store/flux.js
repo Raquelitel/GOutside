@@ -59,9 +59,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       deleteTokenLS: () => {
         setStore({ tokenLS: null });
       },
-      /*       getTokenLS: () => {
-        return localStorage.getItem("tokenLS");
-      }, */
+      getTokenLS: () => {
+        return localStorage.getItem("token");
+      },
     },
   };
 };

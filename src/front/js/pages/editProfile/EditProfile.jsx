@@ -15,7 +15,7 @@ const EditProfile = () => {
     const options = {
       method: "POST",
       body,
-      headers: { Authorization: "Bearer " + store.tokenLS },
+      headers: { Authorization: "Bearer " + actions.getTokenLS },
     };
     try {
       const resp = await fetch(

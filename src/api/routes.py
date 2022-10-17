@@ -198,9 +198,6 @@ def modify_competitor(user_id):
 
 # ------------  CLOUDINARY --------------------------
 
-# NOT FINISH !!!!!!!!!!!!!
-
-
 @api.route('/upload', methods=['POST'])
 @jwt_required()
 def handle_upload():

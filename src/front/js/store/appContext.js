@@ -23,7 +23,6 @@ const injectContext = (PassedComponent) => {
 
     useEffect(() => {
       state.actions.getUser();
-      console.log("entro en useEffect de app context");
     }, [state.store.tokenLS]);
 
     // The initial value for the context is not null anymore, but the current state of this component,

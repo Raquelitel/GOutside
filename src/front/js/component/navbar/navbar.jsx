@@ -92,7 +92,11 @@ export const Navbar = () => {
             aria-expanded="false"
           >
             <img
-              src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+              src={
+                store.userProfileImagen === null
+                  ? logo
+                  : store.userProfileImagen
+              }
               className="navbar-photo-profile"
               alt="profile photo"
             />

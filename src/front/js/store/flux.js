@@ -73,7 +73,6 @@ const getState = ({ getStore, getActions, setStore }) => {
             options
           );
           const data = await resp.json();
-          console.log(data);
           if (resp.status === 200) {
             setStore({
               userEmail: data.email,

@@ -24,7 +24,6 @@ const EditProfile = () => {
         options
       );
       const data = await resp.json();
-      console.log(data);
       actions.getUser();
     } catch (error) {
       console.log("Error loading message from backend", error);
@@ -57,7 +56,7 @@ const EditProfile = () => {
                   <label className="col-12 col-md-10 col-lg-2 mx-2">
                     Nombre*
                   </label>
-                  <input type="text" value={store.userName} />
+                  <input type="text" />
                 </div>
                 <div>
                   <label className="col-12 col-md-2 mx-2">Apellidos</label>

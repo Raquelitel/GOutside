@@ -3,7 +3,13 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       tokenLS: null,
       userRol: null,
-      profile_imagen: null,
+      userEmail: null,
+      userName: null,
+      userLastName: null,
+      userAdress: null,
+      userGender: null,
+      userPhone: null,
+      userProfileImagen: null,
     },
     actions: {
       signup: async (email, password1, password2) => {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
+import MapView from "../../component/MapView/MapView";
 
 const categories = [
   { label: "RX Femenino", value: "rx_femenino" },
@@ -67,15 +68,8 @@ function CreateCompetition() {
         </div>
 
         <div className="row d-flex justify-content-center">
-          <div className="col-4 align-items-center justify-content-center ">
-            <input
-              placeholder="Localización"
-              className="form-control"
-              type="text"
-              onChange={(e) => {
-                setLocation(e.target.value);
-              }}
-            />
+          <div className="col-4 align-items-center justify-content-center">
+            <MapView />
           </div>
 
           <div className="col-4 align-items-center justify-content-center mb-5 ">

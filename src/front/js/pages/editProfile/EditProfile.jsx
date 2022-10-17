@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/appContext";
 import "./editProfile.css";
+import logo from "../../../img/logo-GOutside.png";
 
 const EditProfile = () => {
   const { store, actions } = useContext(Context);
@@ -24,6 +25,7 @@ const EditProfile = () => {
       );
       const data = await resp.json();
       console.log(data);
+      actions.getUser();
     } catch (error) {
       console.log("Error loading message from backend", error);
     }
@@ -36,10 +38,9 @@ const EditProfile = () => {
             <img
               src={
                 store.userProfileImagen === null
-                  ? "https://images.pexels.com/photos/97082/weimaraner-puppy-dog-snout-97082.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  ? logo
                   : store.userProfileImagen
               }
-              /*               src="https://images.pexels.com/photos/97082/weimaraner-puppy-dog-snout-97082.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" */
               className="mt-4 img-fluid editprofile-photo"
               alt="profile photo"
             />
@@ -56,14 +57,20 @@ const EditProfile = () => {
                   <label className="col-12 col-md-10 col-lg-2 mx-2">
                     Nombre*
                   </label>
-                  <input type="text" value={store.name} />
+                  <input type="text" value={store.userName} />
                 </div>
                 <div>
                   <label className="col-12 col-md-2 mx-2">Apellidos</label>
                   <input type="text" />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-2 mx-2">E-mail*</label>
+                  <label
+                    className="col-12 col-md-2 mx-2"
+                    value={store.userEmail}
+                    placeholder={store.userEmail}
+                  >
+                    E-mail*
+                  </label>
                   <input type="email" disabled />
                 </div>
                 <div className="my-2">
@@ -76,11 +83,11 @@ const EditProfile = () => {
                 </div>
                 <div className="my-2">
                   <label className="col-2 mx-2">Sexo</label>
-                  {/*                   <select>
-                    <option selected>Seleccionar</option>
+                  <select placeholder="seleccionar">
+                    <option>Seleccionar</option>
                     <option>Mujer</option>
                     <option>Hombre</option>
-                  </select> */}
+                  </select>
                 </div>
                 <div className="d-flex justify-content-end">
                   <button className="btn btn-danger mx-2">Borrar</button>

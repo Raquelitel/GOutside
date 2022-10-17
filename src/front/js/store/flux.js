@@ -63,9 +63,17 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       getUser: async () => {
+        const options = {
+          method: "GET",
+          headers: { Authorization: "Bearer " + getActions().getTokenLS() },
+        };
         try {
-          const resp = await fetch(process.env.BACKEND_URL + "/api/user");
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/user",
+            options
+          );
           const data = await resp.json();
+          console.log(data);
           if (resp.status === 200) {
             setStore({
               userEmail: data.email,

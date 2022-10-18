@@ -11,6 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       userPhone: null,
       userProfileImagen: null,
       posterImagen: null,
+      competitions: [],
     },
     actions: {
       signup: async (email, password1, password2) => {

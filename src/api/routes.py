@@ -26,9 +26,9 @@ def login():
         return jsonify({"error": "Usuario incorrecto"}), 401
     accesss_token = create_access_token(identity=user.id)
     response_body = {
+        "message": "Usuario registrado correctamente, acceso permitido",
         "token": accesss_token,
         "user_id": user.id,
-        "message": "Usuario registrado correctamente, acceso permitido",
         "rol": str(user.rol)
     }
     return jsonify(response_body), 200
@@ -62,6 +62,14 @@ def private():
         return jsonify({"resultado": "acceso permitido"}), 200
     else:
         return jsonify({"resultado": "usuario no autenticado"}), 400
+
+
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user():
+    user_id = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).first()
+    return jsonify(user.serialize()), 200
 
 
 @api.route("/user", methods=['DELETE'])
@@ -198,14 +206,12 @@ def modify_competitor(user_id):
 
 # ------------  CLOUDINARY --------------------------
 
-# NOT FINISH !!!!!!!!!!!!!
-
-
 @api.route('/upload', methods=['POST'])
 @jwt_required()
 def handle_upload():
     user_id = get_jwt_identity()
-
+    print("=============")
+    print(request.files)
     if 'profile_image' in request.files:
         result = cloudinary.uploader.upload(request.files['profile_image'])
         user_update = User.query.filter_by(id=user_id).first()
@@ -222,7 +228,6 @@ def handle_upload():
 @api.route('/about-us', methods=['POST'])
 def contactForm():
     data = request.get_json()
-    print(data)
     aboutUs = About_us(
         name=data["name"],
         surname=data["surname"],

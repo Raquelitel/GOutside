@@ -83,6 +83,18 @@ class Category(enum.Enum):
             "equipos": self.equipos
         }
 
+class Stages(enum.Enum):
+    inscripción_abierta = 1
+    inscripción_cerrada = 2
+    competición_finalizada = 3
+
+    def serialize(self):
+        return {
+            "inscripción_abierta": self.inscripción_abierta,
+            "inscripción_cerrada": self.inscripción_cerrada,
+            "competición_finalizada": self.competición_finalizada,
+        }
+
 
 class Competition(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -94,7 +106,7 @@ class Competition(db.Model):
     description = db.Column(db.String(500), unique=False, nullable=False)
     create_at = db.Column(db.DateTime(), default=datetime.utcnow())
     profile_image_url = db.Column(db.String(255), unique=False, nullable=True)
-    stage = db.Column(db.String(80), unique=False, nullable=False)
+    stage = db.Column(Enum(Stages), nullable=False)
     competition_competitor = db.relationship(
         'Competition_user', backref='competition', lazy=True)
 

@@ -210,12 +210,25 @@ def modify_competitor(user_id):
 @jwt_required()
 def handle_upload():
     user_id = get_jwt_identity()
-    print("=============")
-    print(request.files)
     if 'profile_image' in request.files:
         result = cloudinary.uploader.upload(request.files['profile_image'])
         user_update = User.query.filter_by(id=user_id).first()
         user_update.profile_image_url = result['secure_url']
+
+        db.session.add(user_update)
+        db.session.commit()
+        return jsonify(user_update.serialize()), 200
+    return jsonify({"message": "error"}), 400
+
+
+@api.route('/poster-upload', methods=['POST'])
+@jwt_required()
+def handle_poster_upload():
+    user_id = get_jwt_identity()
+    if 'poster_image' in request.files:
+        result = cloudinary.uploader.upload(request.files['poster_image'])
+        user_update = User.query.filter_by(id=user_id).first()
+        user_update.poster_image_url = result['secure_url']
 
         db.session.add(user_update)
         db.session.commit()

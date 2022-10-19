@@ -26,8 +26,8 @@ export const Navbar = () => {
         <div className="navbar-brand">
           <img src={logo} alt="GOutside Logo" style={{ width: "4rem" }} />
         </div>
-        <div className="col-6 col-md-6 col-lg-9">
-          <div className="d-flex">
+        <div className="col-6 col-md-8 col-lg-9">
+          <div className="d-flex justify-content-between">
             <form className="">
               <input
                 placeholder="Buscar..."
@@ -35,7 +35,7 @@ export const Navbar = () => {
                 className="navbar-input"
               />
             </form>
-            <div className="d-flex justify-content-around">
+            <div className="d-flex ">
               <Link to="/home/user">
                 <button className="btn btn-menu mx-2">
                   <BsHouseFill className="btn-icon" />

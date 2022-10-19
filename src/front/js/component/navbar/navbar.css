@@ -55,7 +55,6 @@
 
 .btn-icon {
   position: absolute;
-  /* width: 100%; */
   top: 50%;
   left: 0;
   transform: translateY(-50%);
@@ -64,8 +63,6 @@
 .btn-text {
   position: absolute;
   color: var(--color-light);
-  font-family: "Montserrat", sans-serif;
-  /*  width: 100%; */
   top: 150%;
   left: 0;
   transform: translateY(-50%);
@@ -90,7 +87,12 @@
 }
 
 .navbar-menu-button {
-  color: var(--color-red);
+  color: var(--color-light-blue);
+}
+
+.navbar-menu-button:hover {
+  background-color: var(--color-red);
+  color: var(--color-light);
 }
 
 .navbar-menu-li {

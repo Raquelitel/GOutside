@@ -87,25 +87,9 @@ export const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link
-                to=""
-                className="dropdown-item text-capitalize navbar-menu-li "
-              >
-                Mis Competiciones
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/about-us"
-                className="dropdown-item text-capitalize my-2 border-top border-bottom border-secondary navbar-menu-li "
-              >
-                sobre nosotros
-              </Link>
-            </li>
-            <li>
               <button
                 onClick={logout}
-                className="btn text-uppercase navbar-menu-button"
+                className="btn text-uppercase border-top border-bottom border-secondary navbar-menu-button"
               >
                 Cerrar sesión
               </button>

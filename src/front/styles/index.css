@@ -7,9 +7,13 @@
 }
 
 * {
+  margin: 0vw;
+  padding: 0vw;
+  box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
 
 body {
   background-color: var(--color-dark-grey);
+  font-family: "Montserrat", sans-serif;
 }

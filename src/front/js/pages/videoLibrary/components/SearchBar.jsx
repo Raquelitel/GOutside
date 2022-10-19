@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const SearchBar = (props) => {
   // const {handleFormSubmit} = props
@@ -8,11 +8,10 @@ const SearchBar = (props) => {
   };
 
   return (
-    <div>
-      <div className="search-bar">
+      <div className="container-fluid search-bar">
         <div className="field">
-          <label htmlFor="video-search">Video Search</label>
           <input
+          className="form-control"
             onChange={(event) => handleChange(event)}
             name="video-search"
             type="text"
@@ -20,7 +19,6 @@ const SearchBar = (props) => {
           />
         </div>
       </div>
-    </div>
   );
 };
 

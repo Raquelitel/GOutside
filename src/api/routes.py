@@ -86,6 +86,15 @@ def delete_user():
     }
     return jsonify(response_body), 200
 
+@api.route("/token/refresh", methods=['GET'])
+@jwt_required(refresh=True)
+def refresh_users_token():
+    identity = get_jwt_identity()
+    access_token = create_access_token(identity=user.id)
+
+    response_body = {'token': access}
+
+    return jsonify(response_body), 200
 
 # ------------  COMPETITIONS --------------------------
 

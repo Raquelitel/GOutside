@@ -20,3 +20,12 @@ input {
   color: var(--color-light-blue);
   height: auto;
 }
+
+.editprofile-btn-borrar {
+  background-color: var(--color-red);
+  color: var(--color-light);
+}
+
+.editprofile-btn-borrar:hover {
+  background-color: var(--color-red-hover);
+}

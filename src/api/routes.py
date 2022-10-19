@@ -108,9 +108,12 @@ def get_one_competition(id):
 
 
 @api.route('/create-competition', methods=['POST'])
-@jwt_required()
+# @jwt_required()
 def create_competition():
     data = request.get_json()
+    category= list(data["category"])
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    print(category)
     competition = Competition(
         competition_name=data["competition_name"],
         qualifier_date=data["qualifier_date"],
@@ -118,9 +121,9 @@ def create_competition():
         category=data["category"],
         requirements=data["requirements"],
         description=data["description"],
-        create_at=data["create_at"],
+        # create_at=data["create_at"],
         stage=data["stage"],
-        competition_competitor=data["competition_competitor"]
+        # competition_competitor=data["competition_competitor"]
     )
     db.session.add(competition)
     db.session.commit()

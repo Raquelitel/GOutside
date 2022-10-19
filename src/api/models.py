@@ -2,11 +2,11 @@ import json
 import enum
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Enum, DateTime
+from sqlalchemy.dialects.postgresql import ARRAY
 from datetime import datetime
 
 
 db = SQLAlchemy()
-
 
 class Rol(enum.Enum):
     competitor = 1
@@ -83,6 +83,7 @@ class Category(enum.Enum):
             "equipos": self.equipos
         }
 
+
 class Stages(enum.Enum):
     inscripción_abierta = 1
     inscripción_cerrada = 2
@@ -101,10 +102,11 @@ class Competition(db.Model):
     competition_name = db.Column(db.String(120), unique=False, nullable=False)
     qualifier_date = db.Column(db.DateTime())
     location = db.Column(db.String(240), unique=False, nullable=False)
-    category = db.Column(Enum(Category), nullable=False)
+    category = db.Column(ARRAY(Enum(Category)))
     requirements = db.Column(db.String(500), unique=False, nullable=False)
     description = db.Column(db.String(500), unique=False, nullable=False)
     create_at = db.Column(db.DateTime(), default=datetime.utcnow())
+    poster_image_url = db.Column(db.String(255), unique=False, nullable=True)
     profile_image_url = db.Column(db.String(255), unique=False, nullable=True)
     stage = db.Column(Enum(Stages), nullable=False)
     competition_competitor = db.relationship(

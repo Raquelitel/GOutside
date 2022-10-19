@@ -18,21 +18,26 @@ const stages = [
 ];
 
 function CreateCompetition() {
+  // if (store.tokenLS === null) {
+  //   return <Navigate to="/login" replace />;
+  // }
+
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState([]);
   const [requirements, setRequirements] = useState("");
   const [description, setDescription] = useState("");
   const [stage, setStage] = useState("");
 
   const create_competition = () => {
-    const url = process.env.BACKEND_URL + "/api/create-competition";
+    const url = process.env.BACKEND_URL + "api/create-competition";
+
     const body = {
       competition_name: name,
       qualifier_date: date,
       location: location,
-      category: category,
+      category: category.map(cat => cat.value),
       requirements: requirements,
       description: description,
       stage: stage,
@@ -85,7 +90,7 @@ function CreateCompetition() {
 
         <div className="col-4 align-items-center justify-content-center ">
           <Select
-            name="category"
+            name="stage"
             placeholder="Estado de la competición"
             options={stages}
             className="basic-single"
@@ -119,7 +124,7 @@ function CreateCompetition() {
               className="basic-multi-select"
               classNamePrefix="select"
               onChange={(e) => {
-                setCategory(e.value);
+                setCategory(e);
               }}
             />
           </div>

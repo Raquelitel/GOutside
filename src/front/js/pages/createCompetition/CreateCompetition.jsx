@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import MapView from "../../component/MapView/MapView.jsx";
+import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 
 const categories = [
   { label: "RX Femenino", value: "rx_femenino" },
@@ -42,7 +43,8 @@ function CreateCompetition() {
 
   return (
     <div className="container text-center align-items-center justify-content-center">
-      <h1 className="text-center">Crea tu competición</h1>
+      <PosterCompetition />
+      <h1 className="text-center text-uppercase">Crea tu competición</h1>
       <div className="card p-5">
         <div className="row justify-content-center mt-5 mb-5">
           <div className="col-4 align-items-center justify-content-center">

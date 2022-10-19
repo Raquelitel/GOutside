@@ -1,10 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { Context } from "../../store/appContext";
 import "./editProfile.css";
+import logo from "../../../img/logo-GOutside.png";
 
 const EditProfile = () => {
   const { store, actions } = useContext(Context);
   const [files, setFiles] = useState(null);
+
+  const ref = useRef(null);
 
   const uploadImage = async (e) => {
     e.preventDefault();
@@ -15,7 +18,7 @@ const EditProfile = () => {
     const options = {
       method: "POST",
       body,
-      headers: { Authorization: "Bearer " + store.tokenLS },
+      headers: { Authorization: "Bearer " + actions.getTokenLS() },
     };
     try {
       const resp = await fetch(
@@ -24,6 +27,7 @@ const EditProfile = () => {
       );
       const data = await resp.json();
       console.log(data);
+      actions.getUser();
     } catch (error) {
       console.log("Error loading message from backend", error);
     }
@@ -34,7 +38,11 @@ const EditProfile = () => {
         <div className="row g-0">
           <div className="col-md-4">
             <img
-              src="https://images.pexels.com/photos/97082/weimaraner-puppy-dog-snout-97082.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src={
+                store.userProfileImagen === null
+                  ? logo
+                  : store.userProfileImagen
+              }
               className="mt-4 img-fluid editprofile-photo"
               alt="profile photo"
             />
@@ -51,34 +59,45 @@ const EditProfile = () => {
                   <label className="col-12 col-md-10 col-lg-2 mx-2">
                     Nombre*
                   </label>
-                  <input type="text" />
+                  <input type="text" ref={ref} defaultValue={store.userName} />
                 </div>
                 <div>
                   <label className="col-12 col-md-2 mx-2">Apellidos</label>
-                  <input type="text" />
+                  <input type="text" ref={ref} defaultValue={store.userName} />
                 </div>
                 <div className="my-2">
                   <label className="col-12 col-md-2 mx-2">E-mail*</label>
-                  <input type="email" disabled />
+                  <input
+                    type="email"
+                    ref={ref}
+                    defaultValue={store.userEmail}
+                    disabled
+                  />
                 </div>
                 <div className="my-2">
                   <label className="col-12 col-md-2 mx-2">Dirección</label>
-                  <input type="text" />
+                  <input
+                    type="text"
+                    ref={ref}
+                    defaultValue={store.userAdress}
+                  />
                 </div>
                 <div className="my-2">
                   <label className="col-12 col-md-2 mx-2">Teléfono</label>
-                  <input type="tel" />
+                  <input type="tel" ref={ref} defaultValue={store.userPhone} />
                 </div>
                 <div className="my-2">
-                  <label className="col-2 mx-2">Género</label>
-                  <select>
-                    <option selected>Seleccionar</option>
+                  <label className="col-2 mx-2">Sexo</label>
+                  <select placeholder="seleccionar">
+                    <option>Seleccionar</option>
                     <option>Mujer</option>
                     <option>Hombre</option>
                   </select>
                 </div>
                 <div className="d-flex justify-content-end">
-                  <button className="btn btn-danger mx-2">Borrar</button>
+                  <button className="btn editprofile-btn-borrar mx-2">
+                    Borrar
+                  </button>
                   <button className="btn btn-primary me-5">
                     Guardar Cambios
                   </button>

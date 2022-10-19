@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import MapView from "../../component/MapView/MapView";
+import MapView from "../../component/MapView/MapView.jsx";
 
 const categories = [
   { label: "RX Femenino", value: "rx_femenino" },

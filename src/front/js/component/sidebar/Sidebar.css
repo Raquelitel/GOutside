@@ -1,3 +1,16 @@
 .my-dropdown::after {
-    content: none;
+  content: none;
+}
+
+.sidebar-bg {
+  background-color: var(--color-dark-blue);
+}
+
+.sidebar-text {
+  color: var(--color-light-blue);
+}
+
+.sidebar-text:hover {
+  background-color: var(--color-light-blue);
+  color: var(--color-dark-grey);
 }

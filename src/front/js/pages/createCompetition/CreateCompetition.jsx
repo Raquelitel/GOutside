@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
+import MapView from "../../component/MapView/MapView.jsx";
+import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 
 const categories = [
   { label: "RX Femenino", value: "rx_femenino" },
@@ -62,10 +64,12 @@ function CreateCompetition() {
   // }
 
   return (
+
     <div className="container-lg-fluid text-center align-items-center justify-content-center m-auto p-5">
       <div className="row d-flex create-title">
         <h1 className="text-center">Crea tu competición</h1>
       </div>
+      // <PosterCompetition />
       <div className="row justify-content-center mt-5 mb-5">
         <div className="col-4 align-items-center justify-content-center">
           <input
@@ -87,7 +91,7 @@ function CreateCompetition() {
             }}
           />
         </div>
-
+        
         <div className="col-4 align-items-center justify-content-center ">
           <Select
             name="stage"
@@ -100,19 +104,17 @@ function CreateCompetition() {
             }}
           />
         </div>
+        
       </div>
-
-      <div className="row d-flex justify-content-center">
-        <div className="col-6 align-items-center justify-content-center ">
-          <input
-            placeholder="Localización"
-            className="form-control"
-            type="text"
-            onChange={(e) => {
-              setLocation(e.target.value);
-            }}
-          />
-        </div>
+        <div className="row d-flex justify-content-center">
+          <div className="col-4 align-items-center justify-content-center">
+            <MapView />
+          </div>
+          
+        <div className="row d-flex justify-content-center">
+          <div className="col-4 align-items-center justify-content-center">
+            <MapView />
+          </div>
 
         <div className="col-6 align-items-center justify-content-center mb-5 ">
           <div className="create-category">

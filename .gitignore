@@ -65,7 +65,6 @@ public/
 !.gitkeep
 !.htaccess
 !.eslintrc
-!.env.example
 .now
 
 # backend stuff

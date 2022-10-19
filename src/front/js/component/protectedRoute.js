@@ -13,14 +13,13 @@ const ProtectedRoute = ({ children }) => {
   return (
     <div>
       <Navbar />
-      <div className="row">
-        <div className="col-2">
-          <Sidebar />
-        </div>
+      <div className="d-flex">
+        <Sidebar />
+
+        <main className="">
+          <Outlet />
+        </main>
       </div>
-      <main>
-        <Outlet />
-      </main>
     </div>
   );
 };

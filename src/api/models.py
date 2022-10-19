@@ -107,7 +107,6 @@ class Competition(db.Model):
     description = db.Column(db.String(500), unique=False, nullable=False)
     create_at = db.Column(db.DateTime(), default=datetime.utcnow())
     poster_image_url = db.Column(db.String(255), unique=False, nullable=True)
-    profile_image_url = db.Column(db.String(255), unique=False, nullable=True)
     stage = db.Column(Enum(Stages), nullable=False)
     competition_competitor = db.relationship(
         'Competition_user', backref='competition', lazy=True)

@@ -32,7 +32,7 @@
 }
 
 .btn-menu {
-  width: 9rem;
+  /* width: 9rem; */
   height: 3rem;
   background: var(--color-dark-blue);
   color: var(--color-light);
@@ -42,6 +42,11 @@
   position: relative;
   overflow: hidden;
 }
+@media (min-width: 780px) {
+  .btn-menu {
+    width: 9rem;
+  }
+}
 
 .btn-menu span {
   text-transform: uppercase;
@@ -50,7 +55,7 @@
 
 .btn-icon {
   position: absolute;
-  width: 100%;
+  /* width: 100%; */
   top: 50%;
   left: 0;
   transform: translateY(-50%);
@@ -60,7 +65,7 @@
   position: absolute;
   color: var(--color-light);
   font-family: "Montserrat", sans-serif;
-  width: 100%;
+  /*  width: 100%; */
   top: 150%;
   left: 0;
   transform: translateY(-50%);
@@ -81,7 +86,7 @@
 }
 
 .navbar-menu-size {
-  width: 50vh;
+  /* width: 25rem; */
 }
 
 .navbar-menu-button {

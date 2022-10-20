@@ -72,6 +72,26 @@ def get_user():
     return jsonify(user.serialize()), 200
 
 
+""" @api.route('/user', methods=['PUT'])
+@jwt_required()
+def post_user():
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+    user.name = data["name"],
+    data.last_name = data["last_name"],
+    data.adress = data["adress"],
+    data.gender = data["gender"],
+    data.phone = data["phone"],
+    data.rol = data["rol"],
+
+    db.session.commit()
+    response_body = {
+        "result": "Competidor modificado correctamente"
+    }
+
+    return jsonify(response_body), 200 """
+
+
 @api.route("/user", methods=['DELETE'])
 @jwt_required()
 def delete_user():
@@ -119,7 +139,7 @@ def get_one_competition(id):
 # @jwt_required()
 def create_competition():
     data = request.get_json()
-    category= list(data["category"])
+    category = list(data["category"])
     print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     print(category)
     competition = Competition(

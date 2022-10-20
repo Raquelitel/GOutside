@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { Context } from "../../store/appContext";
 import "./editProfile.css";
 import logo from "../../../img/logo-GOutside.png";
+import DeleteProfile from "../../component/deleteProfile/DeleteProfile.jsx";
 
 const EditProfile = () => {
   const { store, actions } = useContext(Context);
@@ -101,12 +102,14 @@ const EditProfile = () => {
                   <button className="btn btn-primary me-5">
                     Guardar Cambios
                   </button>
+                  <DeleteProfile />
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
+      <div className="row editprofile-bg"></div>
     </>
   );
 };

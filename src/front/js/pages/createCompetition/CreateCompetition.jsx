@@ -39,7 +39,7 @@ function CreateCompetition() {
       competition_name: name,
       qualifier_date: date,
       location: location,
-      category: category.map(cat => cat.value),
+      category: category.map((cat) => cat.value),
       requirements: requirements,
       description: description,
       stage: stage,
@@ -64,12 +64,11 @@ function CreateCompetition() {
   // }
 
   return (
-
     <div className="container-lg-fluid text-center align-items-center justify-content-center m-auto p-5">
       <div className="row d-flex create-title">
         <h1 className="text-center">Crea tu competición</h1>
       </div>
-      // <PosterCompetition />
+      {/* <PosterCompetition /> */}
       <div className="row justify-content-center mt-5 mb-5">
         <div className="col-4 align-items-center justify-content-center">
           <input
@@ -91,7 +90,7 @@ function CreateCompetition() {
             }}
           />
         </div>
-        
+
         <div className="col-4 align-items-center justify-content-center ">
           <Select
             name="stage"
@@ -104,17 +103,12 @@ function CreateCompetition() {
             }}
           />
         </div>
-        
       </div>
-        <div className="row d-flex justify-content-center">
-          <div className="col-4 align-items-center justify-content-center">
-            <MapView />
-          </div>
-          
-        <div className="row d-flex justify-content-center">
-          <div className="col-4 align-items-center justify-content-center">
-            <MapView />
-          </div>
+
+      <div className="row d-flex justify-content-center">
+        <div className="col-4 align-items-center justify-content-center">
+          <MapView />
+        </div>
 
         <div className="col-6 align-items-center justify-content-center mb-5 ">
           <div className="create-category">
@@ -158,6 +152,7 @@ function CreateCompetition() {
           ></textarea>
         </div>
       </div>
+
       <div className="row create-button">
         <div className="d-flex justify-content-around text-center align-items-center">
           <button
@@ -171,7 +166,6 @@ function CreateCompetition() {
             Borrar
           </button>
         </div>
-        <div></div>
       </div>
     </div>
   );

@@ -1,21 +1,22 @@
 import React from "react";
 
 const SearchBar = (props) => {
-  // const {handleFormSubmit} = props
 
   const handleChange = (event) => {
-    props.handleFormSubmit(event.target.value);
+    event.persist()
+    const term = event.target.value
+    props.handleFormSubmit(term);
   };
 
   return (
       <div className="container-fluid search-bar">
         <div className="field">
           <input
-          className="form-control"
+            className="form-control"
             onChange={(event) => handleChange(event)}
             name="video-search"
             type="text"
-            placeholder="Buscar..."
+            placeholder="Busca tu ejercicio aquí"
           />
         </div>
       </div>

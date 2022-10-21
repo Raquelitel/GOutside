@@ -72,7 +72,7 @@ def get_user():
     return jsonify(user.serialize()), 200
 
 
-""" @api.route('/user', methods=['PUT'])
+@api.route('/user', methods=['PUT'])
 @jwt_required()
 def post_user():
     current_user_id = get_jwt_identity()
@@ -89,7 +89,7 @@ def post_user():
         "result": "Competidor modificado correctamente"
     }
 
-    return jsonify(response_body), 200 """
+    return jsonify(response_body), 200
 
 
 @api.route("/user", methods=['DELETE'])

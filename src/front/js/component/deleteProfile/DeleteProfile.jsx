@@ -4,6 +4,7 @@ import "./deleteprofile.css";
 
 const DeleteProfile = () => {
   const { store, actions } = useContext(Context);
+
   return (
     <div>
       {/* <!-- Button trigger modal --> */}
@@ -12,6 +13,7 @@ const DeleteProfile = () => {
         class="btn btn-warning profile-btn-delete-bg"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
+        onClick={actions.deleteUser()}
       >
         Eliminar cuenta
       </button>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MapView from "../../component/MapView/MapView.jsx";
+import { Context } from "../../store/appContext.js";
 
 const InfoCompetition = () => {
   const [name, setName] = useState("");
@@ -30,10 +31,6 @@ const InfoCompetition = () => {
     };
     fetch(url, options);
   };
-
-  useEffect(() => {
-    get_competition_info;
-  }, []);
 
   return (
     <div className="container-lg-fluid text-center align-items-center justify-content-center m-auto p-5">

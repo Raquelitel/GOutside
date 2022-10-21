@@ -24,7 +24,7 @@ def login():
     )
     if user is None:
         return jsonify({"error": "Usuario incorrecto"}), 401
-    accesss_token = create_access_token(identity=user.id)
+    accesss_token = create_access_token(identity=user.id , expires_delta=datetime.timedelta(days=20))
     response_body = {
         "message": "Usuario registrado correctamente, acceso permitido",
         "token": accesss_token,
@@ -47,7 +47,7 @@ def signup():
         )
         db.session.add(new_user)
         db.session.commit()
-        access_token = create_access_token(identity=new_user.id)
+        access_token = create_access_token(identity=new_user.id, expires_delta=datetime.timedelta(days=20))
         return jsonify({"logged": True, "token": access_token, "message": "Usuario creado correctamente", "rol": str(new_user.rol), "competitor": new_user.serialize()}), 200
     else:
         return jsonify({"message": "Error, el email ya existe como usuario"}), 400

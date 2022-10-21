@@ -93,8 +93,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
-      changeDataUser: async (e) => {
-        e.preventDefault();
+      changeDataUser: async () => {
         const body = {
           name: userName,
           last_name: userLastName,
@@ -118,8 +117,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
-      deleteUser: async (e) => {
-        e.preventDefault();
+      deleteUser: async () => {
+        /* e.preventDefault(); */
         const options = {
           method: "DELETE",
           headers: { Authorization: "Bearer " + getActions().getTokenLS() },

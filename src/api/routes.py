@@ -76,17 +76,18 @@ def get_user():
 @jwt_required()
 def post_user():
     current_user_id = get_jwt_identity()
+    data = request.get_json()
     user = User.query.get(current_user_id)
-    user.name = data["name"],
-    data.last_name = data["last_name"],
-    data.adress = data["adress"],
-    data.gender = data["gender"],
-    data.phone = data["phone"],
-    data.rol = data["rol"],
+    if data["name"]:
+        user.name = data["name"]
+    user.last_name = data["last_name"]
+    user.adress = data["adress"]
+    user.gender = data["gender"]
+    user.phone = data["phone"]
 
     db.session.commit()
     response_body = {
-        "result": "Competidor modificado correctamente"
+        "result": "Datos modificados correctamente"
     }
 
     return jsonify(response_body), 200

@@ -57,7 +57,10 @@ const EditProfile = () => {
               <h5 className="text-uppercase">Mi perfil</h5>
               <form
                 className="container row col-md-8 text-start"
-                onSubmit={actions.changeDataUser()}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  actions.changeDataUser(e);
+                }}
               >
                 <div className="my-2">
                   <label className="col-12 col-md-10 col-lg-2 mx-2">
@@ -104,10 +107,11 @@ const EditProfile = () => {
                   </button>
                   <button
                     className="btn btn-primary me-5"
-                    onClick={actions.changeDataUser()}
+                    onClick={(e) => actions.changeDataUser(e)}
                   >
                     Guardar Cambios
                   </button>
+
                   <DeleteProfile />
                 </div>
               </form>

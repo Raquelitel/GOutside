@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { Context } from "../../store/appContext";
 import "./editProfile.css";
 import logo from "../../../img/logo-GOutside.png";
+import DeleteProfile from "../../component/deleteProfile/DeleteProfile.jsx";
 
 const EditProfile = () => {
   const { store, actions } = useContext(Context);
@@ -54,7 +55,13 @@ const EditProfile = () => {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="text-uppercase">Mi perfil</h5>
-              <form className="container row col-md-8 text-start">
+              <form
+                className="container row col-md-8 text-start"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  actions.changeDataUser(e);
+                }}
+              >
                 <div className="my-2">
                   <label className="col-12 col-md-10 col-lg-2 mx-2">
                     Nombre*
@@ -98,15 +105,21 @@ const EditProfile = () => {
                   <button className="btn editprofile-btn-borrar mx-2">
                     Borrar
                   </button>
-                  <button className="btn btn-primary me-5">
+                  <button
+                    className="btn btn-primary me-5"
+                    onClick={(e) => actions.changeDataUser(e)}
+                  >
                     Guardar Cambios
                   </button>
+
+                  <DeleteProfile />
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
+      <div className="row editprofile-bg"></div>
     </>
   );
 };

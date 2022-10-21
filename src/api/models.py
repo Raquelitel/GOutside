@@ -8,6 +8,7 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+
 class Rol(enum.Enum):
     competitor = 1
     administration = 2
@@ -121,7 +122,7 @@ class Competition(db.Model):
             "requirements": self.requirements,
             "description": self.description,
             "create_at": self.create_at,
-            "stage": self.stage
+            "stage": str(self.stage)
         }
 
 

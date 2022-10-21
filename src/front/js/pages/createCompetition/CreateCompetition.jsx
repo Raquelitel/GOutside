@@ -20,8 +20,11 @@ const stages = [
 ];
 
 function CreateCompetition() {
-  // if (store.tokenLS === null) {
-  //   return <Navigate to="/login" replace />;
+  
+  //CAMBIAR ESTO LO PRIMERO
+
+  // if (store.tokenLS === user) {
+  //   return <Navigate to="/" replace />;
   // }
 
   const [name, setName] = useState("");

@@ -33,16 +33,17 @@ const Layout = () => {
             <Route element={<Signup />} path="/signup" />
             <Route element={<Login />} path="/login" />
             <Route element={<AboutUs />} path="/about-us" />
-            <Route element={<VideoLibrary />} path="/Video-library" />
-            <Route
-                path="/create-competition"
-                element={<CreateCompetition />}
-              />
 
             <Route element={<ProtectedRoute />}>
               <Route path="/home/user" element={<HomeUser />} />
 
-              
+              <Route element={<VideoLibrary />} path="/Video-library" />
+
+              <Route
+                path="/create-competition"
+                element={<CreateCompetition />}
+              />
+
               <Route path="/edit-profile" element={<EditProfile />} />
               <Route
                 path="/all-commpetition"

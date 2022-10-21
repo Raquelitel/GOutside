@@ -72,6 +72,27 @@ def get_user():
     return jsonify(user.serialize()), 200
 
 
+@api.route('/user', methods=['PUT'])
+@jwt_required()
+def post_user():
+    current_user_id = get_jwt_identity()
+    data = request.get_json()
+    user = User.query.get(current_user_id)
+    if data["name"]:
+        user.name = data["name"]
+    user.last_name = data["last_name"]
+    user.adress = data["adress"]
+    user.gender = data["gender"]
+    user.phone = data["phone"]
+
+    db.session.commit()
+    response_body = {
+        "result": "Datos modificados correctamente"
+    }
+
+    return jsonify(response_body), 200
+
+
 @api.route("/user", methods=['DELETE'])
 # @jwt_required()
 def delete_user():

@@ -9,7 +9,7 @@ function Sidebar() {
   const { store, actions } = useContext(Context);
   return (
     <div className="col-12">
-      <div className="row flex-nowrap">
+      <div className="row ">
         <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 sidebar-bg">
           <div className="min-vh-100">
             <ul
@@ -21,7 +21,7 @@ function Sidebar() {
                   to="/edit-profile"
                   className="nav-link text-capitalize sidebar-text"
                 >
-                  <i class="fs-4 bi bi-person"></i>{" "}
+                  <i className="fs-4 bi bi-person"></i>{" "}
                   <span className="ms-1 d-none d-sm-inline">Editar perfil</span>
                 </Link>
               </li>

@@ -4,6 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Rol, Competition, About_us
 from api.utils import generate_sitemap, APIException
+from datetime import timedelta
 from flask_jwt_extended import (
     JWTManager, jwt_required, get_jwt_identity,
     create_access_token, get_jwt)
@@ -24,7 +25,8 @@ def login():
     )
     if user is None:
         return jsonify({"error": "Usuario incorrecto"}), 401
-    accesss_token = create_access_token(identity=user.id , expires_delta=datetime.timedelta(days=20))
+    accesss_token = create_access_token(
+        identity=user.id, expires_delta=datetime.timedelta(days=20))
     response_body = {
         "message": "Usuario registrado correctamente, acceso permitido",
         "token": accesss_token,
@@ -47,7 +49,8 @@ def signup():
         )
         db.session.add(new_user)
         db.session.commit()
-        access_token = create_access_token(identity=new_user.id, expires_delta=datetime.timedelta(days=20))
+        access_token = create_access_token(
+            identity=new_user.id, expires_delta=datetime.timedelta(days=20))
         return jsonify({"logged": True, "token": access_token, "message": "Usuario creado correctamente", "rol": str(new_user.rol), "competitor": new_user.serialize()}), 200
     else:
         return jsonify({"message": "Error, el email ya existe como usuario"}), 400
@@ -94,7 +97,7 @@ def post_user():
 
 
 @api.route("/user", methods=['DELETE'])
-# @jwt_required()
+@jwt_required()
 def delete_user():
     current_user = get_jwt_identity()
     delete_user = User.query.filter_by(email=current_user).first()
@@ -106,6 +109,7 @@ def delete_user():
         "message": "Usuario eliminado correctamente"
     }
     return jsonify(response_body), 200
+
 
 @api.route("/token/refresh", methods=['GET'])
 @jwt_required(refresh=True)

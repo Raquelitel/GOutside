@@ -7,13 +7,13 @@ import Sidebar from "./sidebar/Sidebar.jsx";
 const ProtectedRoute = ({ children }) => {
   const { store, actions } = useContext(Context);
 
-  /*   if (store.tokenLS === null) {
+  if (store.tokenLS === null) {
     return <Navigate to="/login" replace />;
-  } */
+  }
   return (
     <div>
       <Navbar />
-      <div className="d-flex">
+      <div className="">
         <Sidebar />
 
         <main className="">

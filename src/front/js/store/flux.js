@@ -118,7 +118,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
       deleteUser: async () => {
-        /* e.preventDefault(); */
         const options = {
           method: "DELETE",
           headers: { Authorization: "Bearer " + getActions().getTokenLS() },

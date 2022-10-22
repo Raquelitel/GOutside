@@ -13,7 +13,6 @@ const DeleteProfile = () => {
         className="btn btn-warning profile-btn-delete-bg"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
-        onClick={actions.deleteUser()}
       >
         Eliminar cuenta
       </button>
@@ -22,15 +21,18 @@ const DeleteProfile = () => {
       <div
         className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Modal title
+              <h1
+                className="modal-title fs-5 text-capitalize"
+                id="exampleModalLabel"
+              >
+                Eliminar cuenta
               </h1>
               <button
                 type="button"
@@ -51,7 +53,14 @@ const DeleteProfile = () => {
               >
                 Cancelar
               </button>
-              <button type="button" className="btn btn-primary">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={(e) => {
+                  e.preventDefault();
+                  actions.deleteUser(e);
+                }}
+              >
                 Eliminar
               </button>
             </div>

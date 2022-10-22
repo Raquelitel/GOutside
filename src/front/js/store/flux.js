@@ -122,21 +122,21 @@ const getState = ({ getStore, getActions, setStore }) => {
           method: "DELETE",
           headers: { Authorization: "Bearer " + getActions().getTokenLS() },
         };
-        try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/user",
-            options
-          );
-          const data = await resp.json();
-          if (resp.status === 200) {
-            getActions.deleteTokenLS();
-            return true;
-          } else {
-            return false;
-          }
-        } catch (error) {
-          console.log("Error loading message from backend", error);
+        /*         try { */
+        const resp = await fetch(
+          process.env.BACKEND_URL + "/api/user",
+          options
+        );
+        const data = await resp.json();
+        if (resp.status === 200) {
+          getActions.deleteTokenLS();
+          return true;
+        } else {
+          return false;
         }
+        /*         } catch (error) {
+          console.log("Error loading message from backend", error);
+        } */
       },
 
       deleteTokenLS: () => {

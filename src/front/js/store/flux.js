@@ -95,12 +95,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       changeDataUser: async () => {
         const body = {
-          name: userName,
-          last_name: userLastName,
-          adress: userAdress,
-          gender: userGender,
-          phone: userPhone,
+          /* "name" */
+          last_name: "amigo",
+          adress: "direcciones",
+          gender: "femenino",
+          phone: 123,
         };
+
         const options = {
           method: "PUT",
           body: JSON.stringify(body),
@@ -112,7 +113,19 @@ const getState = ({ getStore, getActions, setStore }) => {
             process.env.BACKEND_URL + "/api/user",
             options
           );
-          return resp;
+          const data = await resp.json();
+          if (resp.status === 200) {
+            setStore({
+              userName: data.name,
+              userLastName: data.userLastName,
+              userAdress: data.userAdress,
+              userGender: data.userGender,
+              userPhone: data.phone,
+            });
+            return true;
+          } else {
+            return false;
+          }
         } catch (error) {
           console.log("Error loading message from backend", error);
         }
@@ -122,21 +135,21 @@ const getState = ({ getStore, getActions, setStore }) => {
           method: "DELETE",
           headers: { Authorization: "Bearer " + getActions().getTokenLS() },
         };
-        /*         try { */
-        const resp = await fetch(
-          process.env.BACKEND_URL + "/api/user",
-          options
-        );
-        const data = await resp.json();
-        if (resp.status === 200) {
-          getActions.deleteTokenLS();
-          return true;
-        } else {
-          return false;
-        }
-        /*         } catch (error) {
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/user",
+            options
+          );
+          const data = await resp.json();
+          if (resp.status === 200) {
+            getActions().deleteTokenLS();
+            return true;
+          } else {
+            return false;
+          }
+        } catch (error) {
           console.log("Error loading message from backend", error);
-        } */
+        }
       },
 
       deleteTokenLS: () => {

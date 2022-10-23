@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import "./deleteprofile.css";
 
 const DeleteProfile = () => {
   const { store, actions } = useContext(Context);
 
+  let navigate = useNavigate();
+
+  const goNavigate = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <div>
-      {/* <!-- Button trigger modal --> */}
       <button
         type="button"
         className="btn btn-warning profile-btn-delete-bg"
@@ -16,8 +23,6 @@ const DeleteProfile = () => {
       >
         Eliminar cuenta
       </button>
-
-      {/* <!-- Modal --> */}
       <div
         className="modal fade"
         id="exampleModal"
@@ -59,6 +64,7 @@ const DeleteProfile = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   actions.deleteUser(e);
+                  goNavigate();
                 }}
               >
                 Eliminar

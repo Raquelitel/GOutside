@@ -8,6 +8,12 @@ const EditProfile = () => {
   const { store, actions } = useContext(Context);
   const [files, setFiles] = useState(null);
 
+  const [name, setName] = useState("");
+  const [lastName, setLastname] = useState("");
+  const [adress, setAdress] = useState("");
+  const [gender, setGender] = useState("");
+  const [phone, setPhone] = useState("");
+
   const ref = useRef(null);
 
   const uploadImage = async (e) => {
@@ -33,6 +39,36 @@ const EditProfile = () => {
       console.log("Error loading message from backend", error);
     }
   };
+
+  /* const changeDataUser = async () => {
+    const body = {
+      name,
+      last_name: lastName,
+      adress,
+      gender,
+      phone,
+    };
+    const options = {
+      method: "PUT",
+      body: JSON.stringify(body),
+      headers: { Authorization: "Bearer " + actions.getTokenLS() },
+    };
+
+    try {
+      const resp = await fetch(process.env.BACKEND_URL + "/api/user", options);
+      setStore({
+        userName: name,
+        userLastName: lastName,
+        userAdress: adress,
+        userGender: gender,
+        userPhone: phone,
+      });
+      return resp;
+    } catch (error) {
+      console.log("Error loading message from backend", error);
+    }
+  }; */
+
   return (
     <>
       <div className="card mt-5 editprofile-bg">

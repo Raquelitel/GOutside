@@ -50,7 +50,7 @@ class User(db.Model):
             "last_name": self.last_name,
             "adress": self.adress,
             "profile_image": self.profile_image_url,
-            "gender": self.gender,
+            "gender": str(self.gender),
             "phone": self.phone,
             "rol": str(self.rol)
         }

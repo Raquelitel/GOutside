@@ -81,8 +81,8 @@ def post_user():
     current_user_id = get_jwt_identity()
     data = request.get_json()
     user = User.query.get(current_user_id)
-    # if data["name"]:
-    user.name = data["name"]
+    if data["name"]:
+        user.name = data["name"]
     user.last_name = data["last_name"]
     user.adress = data["adress"]
     user.gender = data["gender"]
@@ -90,7 +90,7 @@ def post_user():
 
     db.session.commit()
     response_body = {
-        "result": "Datos modificados correctamente"
+        "result": "Datos modificados correctamente",
     }
 
     return jsonify(response_body), 200
@@ -99,8 +99,8 @@ def post_user():
 @api.route("/user", methods=['DELETE'])
 @jwt_required()
 def delete_user():
-    current_user = get_jwt_identity()
-    delete_user = User.query.filter_by(email=current_user).first()
+    current_user_id = get_jwt_identity()
+    delete_user = User.query.filter_by(id=current_user_id).first()
 
     db.session.delete(delete_user)
     db.session.commit()

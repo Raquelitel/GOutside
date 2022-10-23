@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { Context } from "../../store/appContext";
-import "./editProfile.css";
-import logo from "../../../img/logo-GOutside.png";
 import DeleteProfile from "../../component/deleteProfile/DeleteProfile.jsx";
+import logo from "../../../img/logo-GOutside.png";
+import "./editProfile.css";
+import "../../component/mensaje/mensaje.css";
 
 const EditProfile = () => {
   const { store, actions } = useContext(Context);
   const [files, setFiles] = useState(null);
 
+  const [mensaje, setMensaje] = useState("");
   const [name, setName] = useState("");
   const [lastName, setLastname] = useState("");
   const [adress, setAdress] = useState("");

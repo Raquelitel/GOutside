@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./login.css";
+import "../../component/mensaje/mensaje.css";
 
 const Login = () => {
   const { store, actions } = useContext(Context);
@@ -42,7 +43,7 @@ const Login = () => {
       </div>
       <form className="d-flex flex-column col-md-5" onSubmit={handleSubmit}>
         <h1 className="text-capitalize text-center">Iniciar sesión</h1>
-        {mensaje && <Mensaje>{mensaje}</Mensaje>}
+        {mensaje && <Mensaje tipo="mensaje-error">{mensaje}</Mensaje>}
         <input
           placeholder="Email..."
           className="h-100 form-control mb-1"

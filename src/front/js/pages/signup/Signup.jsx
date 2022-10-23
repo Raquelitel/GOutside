@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./signup.css";
+import "../../component/mensaje/mensaje.css";
 
 const Signup = () => {
   const { store, actions } = useContext(Context);
@@ -41,9 +42,6 @@ const Signup = () => {
         setMensaje("");
       }, 2500);
     }
-    /*     setEmail("");
-    setPassword1("");
-    setPassword2(""); */
   };
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">
@@ -52,7 +50,7 @@ const Signup = () => {
       </div>
       <form className="d-flex flex-column col-md-5" onSubmit={handleSubmit}>
         <h1 className="text-capitalize text-center">Crear cuenta</h1>
-        {mensaje && <Mensaje>{mensaje}</Mensaje>}
+        {mensaje && <Mensaje tipo="mensaje-error">{mensaje}</Mensaje>}
         <input
           placeholder="Email..."
           className="h-100 form-control mb-1"

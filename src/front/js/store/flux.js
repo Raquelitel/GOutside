@@ -3,7 +3,15 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       tokenLS: null,
       userRol: null,
-      profile_imagen: null,
+      userEmail: null,
+      userName: null,
+      userLastName: null,
+      userAdress: null,
+      userGender: null,
+      userPhone: null,
+      userProfileImagen: null,
+      posterImagen: null,
+      competitions: [],
     },
     actions: {
       signup: async (email, password1, password2) => {
@@ -56,12 +64,106 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
+      getUser: async () => {
+        const options = {
+          method: "GET",
+          headers: { Authorization: "Bearer " + getActions().getTokenLS() },
+        };
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/user",
+            options
+          );
+          const data = await resp.json();
+          if (resp.status === 200) {
+            setStore({
+              userEmail: data.email,
+              userName: data.name,
+              userLastName: data.last_name,
+              userAdress: data.adress,
+              userGender: data.gender,
+              userPhone: data.phone,
+              userProfileImagen: data.profile_image,
+            });
+            return true;
+          } else {
+            return false;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+      changeDataUser: async (name, last_name, adress, gender, phone) => {
+        const body = {
+          name: name,
+          last_name: last_name,
+          adress: adress,
+          gender: gender,
+          phone: phone,
+        };
+
+        const options = {
+          method: "PUT",
+          body: JSON.stringify(body),
+          headers: {
+            Authorization: "Bearer " + getActions().getTokenLS(),
+            "Content-Type": "application/json",
+          },
+        };
+
+        /*  try { */
+        const resp = await fetch(
+          process.env.BACKEND_URL + "/api/user",
+          options
+        );
+        const data = await resp.json();
+        if (resp.status === 200) {
+          getActions().getUser();
+          console.log(data);
+          setStore({
+            userName: data.name,
+            userLastName: data.last_name,
+            userAdress: data.adress,
+            userGender: data.gender,
+            userPhone: data.phone,
+          });
+
+          return true;
+        } else {
+          return false;
+        }
+        /*         } catch (error) {
+          console.log("Error loading message from backend", error);
+        } */
+      },
+      deleteUser: async () => {
+        const options = {
+          method: "DELETE",
+          headers: { Authorization: "Bearer " + getActions().getTokenLS() },
+        };
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/user",
+            options
+          );
+          const data = await resp.json();
+          if (resp.status === 200) {
+            getActions().deleteTokenLS();
+            return true;
+          } else {
+            return false;
+          }
+        } catch (error) {
+          console.log("Error loading message from backend", error);
+        }
+      },
+
       deleteTokenLS: () => {
         setStore({ tokenLS: null });
       },
-      /*       getTokenLS: () => {
-        return localStorage.getItem("tokenLS");
-      }, */
+      getTokenLS: () => {
+        return localStorage.getItem("token");
+      },
     },
   };
 };

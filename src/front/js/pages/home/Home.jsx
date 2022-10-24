@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Home.css";
 import GOutside_transp from "../../../img/GOutside_transp.png";
 import X_transp from "../../../img/X_transp.png";
 import Logo_Malaga_Throwdown from "../../../img/Logo_Malaga_Throwdown.jpg";
@@ -19,7 +18,7 @@ export const Home = () => {
         <div className="fs-2 home-subtitle">
           <h1>
             ¿Organizador de eventos deportivos?{" "}
-            <Link to="/api/about-us" className="home-link">
+            <Link to="/about-us" className="home-link">
               Nosotros te ayudamos
             </Link>
           </h1>
@@ -31,23 +30,47 @@ export const Home = () => {
           <img className="home-logo" src={GOutside_transp} />
         </div>
 
-        <div className="col-6 ms-3 container-slider-home">
-          <div className="container">
-            <input type="radio" name="slider" id="item-1" checked />
-            <input type="radio" name="slider" id="item-2" />
-            <input type="radio" name="slider" id="item-3" />
-
-            <div className="cards">
-              <label className="card" for="item-1" id="selector-1">
-                <img src={Logo_Malaga_Throwdown} />
-              </label>
-              <label className="card" for="item-2" id="selector-2">
-                <img src={Logo_Battle_Cancer} alt="cartel-competition" />
-              </label>
-              <label className="card" for="item-3" id="selector-3">
-                <img src={Logo_Costa_Azahar} />
-              </label>
+        <div className="col-6 mt-5 container-slider-home">
+          <div
+            id="carouselExampleFade"
+            className="carousel slide carousel-fade"
+            data-bs-ride="carousel"
+          >
+            <div className="align-items-center justify-content-center text-center carousel-inner">
+              <div className="carousel-item active">
+                <img src={Logo_Malaga_Throwdown} className="w-50" alt="..." />
+              </div>
+              <div className="carousel-item">
+                <img src={Logo_Battle_Cancer} className="w-50" alt="..." />
+              </div>
+              <div className="carousel-item">
+                <img src={Logo_Costa_Azahar} className="w-50" alt="..." />
+              </div>
             </div>
+            <button
+              className="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleFade"
+              data-bs-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button
+              className="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleFade"
+              data-bs-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
       </div>

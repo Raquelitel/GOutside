@@ -1,14 +1,20 @@
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
 :root {
   --color-dark-grey: #2c3333;
   --color-dark-blue: #395b64;
   --color-light-blue: #a5c9ca;
   --color-light: #e7f6f2;
   --color-red: #ff4c29;
+  --color-red-hover: #ff1c10;
+}
+
+* {
+  margin: 0vw;
+  padding: 0vw;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
   background-color: var(--color-dark-grey);
+  font-family: "Montserrat", sans-serif;
 }

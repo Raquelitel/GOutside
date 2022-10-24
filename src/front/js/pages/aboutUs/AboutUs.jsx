@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 function AboutUs() {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
-  const [contact_request, setContact_request] = useState("");
+  const [contactRequest, setContactRequest] = useState("");
 
   const contact_us = () => {
     const url = process.env.BACKEND_URL + "/api/about-us";
@@ -12,7 +12,7 @@ function AboutUs() {
       name: name,
       surname: surname,
       phone: phone,
-      contact_request: contact_request,
+      contact_request: contactRequest,
     };
     const options = {
       headers: { "Content-Type": "application/json" },
@@ -69,7 +69,7 @@ function AboutUs() {
               aria-label="With textarea"
               placeholder="Cuentanos tú consulta, queremos escucharte"
               onChange={(e) => {
-                setContact_request(e.target.value);
+                setContactRequest(e.target.value);
               }}
             ></textarea>
           </div>
@@ -77,7 +77,7 @@ function AboutUs() {
 
         <div className="position-absolute bottom-0 end-0 d-flex mb-3 me-5 create-button">
           <button className="btn btn-success" onClick={() => contact_us()}>
-            Crear competición
+            Quiero más información
           </button>
           <br />
           <button className="btn btn-danger">Borrar</button>

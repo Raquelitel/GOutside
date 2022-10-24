@@ -4,12 +4,17 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Rol, Competition, About_us
 from api.utils import generate_sitemap, APIException
+from datetime import timedelta
 from flask_jwt_extended import (
     JWTManager, jwt_required, get_jwt_identity,
     create_access_token, get_jwt)
 import json
 import cloudinary
 import cloudinary.uploader
+from flask_cors import cross_origin, CORS
+
+app = Flask(__name__)
+cors = CORS(app)
 
 
 api = Blueprint('api', __name__)
@@ -24,11 +29,12 @@ def login():
     )
     if user is None:
         return jsonify({"error": "Usuario incorrecto"}), 401
-    accesss_token = create_access_token(identity=user.id)
+    accesss_token = create_access_token(
+        identity=user.id, expires_delta=timedelta(days=20))
     response_body = {
+        "message": "Usuario registrado correctamente, acceso permitido",
         "token": accesss_token,
         "user_id": user.id,
-        "message": "Usuario registrado correctamente, acceso permitido",
         "rol": str(user.rol)
     }
     return jsonify(response_body), 200
@@ -47,7 +53,8 @@ def signup():
         )
         db.session.add(new_user)
         db.session.commit()
-        access_token = create_access_token(identity=new_user.id)
+        access_token = create_access_token(
+            identity=new_user.id, expires_delta=timedelta(days=20))
         return jsonify({"logged": True, "token": access_token, "message": "Usuario creado correctamente", "rol": str(new_user.rol), "competitor": new_user.serialize()}), 200
     else:
         return jsonify({"message": "Error, el email ya existe como usuario"}), 400
@@ -64,11 +71,61 @@ def private():
         return jsonify({"resultado": "usuario no autenticado"}), 400
 
 
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user():
+    user_id = get_jwt_identity()
+    user = User.query.filter_by(id=user_id).first()
+    return jsonify(user.serialize()), 200
+
+
+@api.route('/user', methods=['PUT'])
+# @jwt_required()
+def post_user():
+    current_user_id = get_jwt_identity()
+    data = request.get_json()
+    user = User.query.get(current_user_id)
+    if data["name"]:
+        user.name = data["name"]
+    if data["last_name"]:
+        user.last_name = data["last_name"]
+    if data["adress"]:
+        user.adress = data["adress"]
+    if data["gender"]:
+        user.gender = data["gender"]
+    if data["phone"]:
+        user.phone = data["phone"]
+
+    db.session.query(User).filter(
+        User.id == current_user_id).update({"name": user.name})
+    db.session.query(User).filter(
+        User.id == current_user_id).update({"last_name": user.last_name})
+    db.session.query(User).filter(
+        User.id == current_user_id).update({"adress": user.adress})
+
+    db.session.query(User).filter(
+        User.id == current_user_id).update({"phone": user.phone})
+    db.session.query(User).filter(
+        User.id == current_user_id).update({"gender": user.gender})
+    db.session.commit()
+    response_body = {
+        "result": "Datos modificados correctamente",
+        "name": user.name,
+        "last_name": user.last_name,
+        "adress": user.adress,
+        "gender": str(user.gender),
+        "phone": user.phone,
+
+    }
+
+    return jsonify(response_body), 200
+
+
 @api.route("/user", methods=['DELETE'])
 @jwt_required()
 def delete_user():
-    current_user = get_jwt_identity()
-    delete_user = User.query.filter_by(email=current_user).first()
+    current_user_id = get_jwt_identity()
+    delete_user = User.query.filter_by(id=current_user_id).first()
 
     db.session.delete(delete_user)
     db.session.commit()
@@ -78,6 +135,16 @@ def delete_user():
     }
     return jsonify(response_body), 200
 
+
+@api.route("/token/refresh", methods=['GET'])
+# @jwt_required(refresh=True)
+def refresh_users_token():
+    identity = get_jwt_identity()
+    access_token = create_access_token(identity=user.id)
+
+    response_body = {'token': access}
+
+    return jsonify(response_body), 200
 
 # ------------  COMPETITIONS --------------------------
 
@@ -111,6 +178,7 @@ def get_one_competition(id):
 @jwt_required()
 def create_competition():
     data = request.get_json()
+    category = list(data["category"])
     competition = Competition(
         competition_name=data["competition_name"],
         qualifier_date=data["qualifier_date"],
@@ -118,9 +186,9 @@ def create_competition():
         category=data["category"],
         requirements=data["requirements"],
         description=data["description"],
-        create_at=data["create_at"],
+        # create_at=data["create_at"],
         stage=data["stage"],
-        competition_competitor=data["competition_competitor"]
+        # competition_competitor=data["competition_competitor"]
     )
     db.session.add(competition)
     db.session.commit()
@@ -157,7 +225,7 @@ def modify_competition(competition_id):
 
 
 @api.route('/my-competitions', methods=['GET'])
-@jwt_required()
+# @jwt_required()
 def my_competition():
     competitor_id = get_jwt_identity()
     competitor = User.query.get(competitor_id)
@@ -174,7 +242,7 @@ def my_competition():
 
 
 @api.route('/create-competitor/<int:competitor_id>', methods=['PUT'])
-@jwt_required()
+# @jwt_required()
 def modify_competitor(user_id):
     data = request.get_json()
     competitor = User.query.get(user_id)
@@ -198,18 +266,29 @@ def modify_competitor(user_id):
 
 # ------------  CLOUDINARY --------------------------
 
-# NOT FINISH !!!!!!!!!!!!!
-
-
 @api.route('/upload', methods=['POST'])
-@jwt_required()
+# @jwt_required()
 def handle_upload():
     user_id = get_jwt_identity()
-
     if 'profile_image' in request.files:
         result = cloudinary.uploader.upload(request.files['profile_image'])
         user_update = User.query.filter_by(id=user_id).first()
         user_update.profile_image_url = result['secure_url']
+
+        db.session.add(user_update)
+        db.session.commit()
+        return jsonify(user_update.serialize()), 200
+    return jsonify({"message": "error"}), 400
+
+
+@api.route('/poster-upload', methods=['POST'])
+# @jwt_required()
+def handle_poster_upload():
+    user_id = get_jwt_identity()
+    if 'poster_image' in request.files:
+        result = cloudinary.uploader.upload(request.files['poster_image'])
+        user_update = User.query.filter_by(id=user_id).first()
+        user_update.poster_image_url = result['secure_url']
 
         db.session.add(user_update)
         db.session.commit()
@@ -222,7 +301,6 @@ def handle_upload():
 @api.route('/about-us', methods=['POST'])
 def contactForm():
     data = request.get_json()
-    print(data)
     aboutUs = About_us(
         name=data["name"],
         surname=data["surname"],

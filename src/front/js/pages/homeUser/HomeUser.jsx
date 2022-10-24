@@ -7,7 +7,7 @@ import EditProfile from "../editProfile/EditProfile.jsx";
 const HomeUser = () => {
   return (
     <>
-      <div>hola homeuser</div>
+      <div className="text-center">hola homeuser</div>
     </>
   );
 };

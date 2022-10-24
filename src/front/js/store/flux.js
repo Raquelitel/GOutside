@@ -93,32 +93,50 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
-      changeDataUser: async () => {
+      changeDataUser: async (name, last_name, adress, gender, phone) => {
         const body = {
-          name: userName,
-          last_name: userLastName,
-          adress: userAdress,
-          gender: userGender,
-          phone: userPhone,
+          name: name,
+          last_name: last_name,
+          adress: adress,
+          gender: gender,
+          phone: phone,
         };
+
         const options = {
           method: "PUT",
           body: JSON.stringify(body),
-          headers: { Authorization: "Bearer " + getActions().getTokenLS() },
+          headers: {
+            Authorization: "Bearer " + getActions().getTokenLS(),
+            "Content-Type": "application/json",
+          },
         };
 
-        try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/user",
-            options
-          );
-          return resp;
-        } catch (error) {
-          console.log("Error loading message from backend", error);
+        /*  try { */
+        const resp = await fetch(
+          process.env.BACKEND_URL + "/api/user",
+          options
+        );
+        const data = await resp.json();
+        if (resp.status === 200) {
+          getActions().getUser();
+          console.log(data);
+          setStore({
+            userName: data.name,
+            userLastName: data.last_name,
+            userAdress: data.adress,
+            userGender: data.gender,
+            userPhone: data.phone,
+          });
+
+          return true;
+        } else {
+          return false;
         }
+        /*         } catch (error) {
+          console.log("Error loading message from backend", error);
+        } */
       },
       deleteUser: async () => {
-        /* e.preventDefault(); */
         const options = {
           method: "DELETE",
           headers: { Authorization: "Bearer " + getActions().getTokenLS() },
@@ -130,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           );
           const data = await resp.json();
           if (resp.status === 200) {
-            getActions.deleteTokenLS();
+            getActions().deleteTokenLS();
             return true;
           } else {
             return false;

@@ -30,7 +30,7 @@ def login():
     if user is None:
         return jsonify({"error": "Usuario incorrecto"}), 401
     accesss_token = create_access_token(
-        identity=user.id, expires_delta=datetime.timedelta(days=20))
+        identity=user.id, expires_delta=timedelta(days=20))
     response_body = {
         "message": "Usuario registrado correctamente, acceso permitido",
         "token": accesss_token,
@@ -54,14 +54,14 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
         access_token = create_access_token(
-            identity=new_user.id, expires_delta=datetime.timedelta(days=20))
+            identity=new_user.id, expires_delta=timedelta(days=20))
         return jsonify({"logged": True, "token": access_token, "message": "Usuario creado correctamente", "rol": str(new_user.rol), "competitor": new_user.serialize()}), 200
     else:
         return jsonify({"message": "Error, el email ya existe como usuario"}), 400
 
 
 @api.route('/home/user', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def private():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
@@ -72,7 +72,7 @@ def private():
 
 
 @api.route('/user', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def get_user():
     user_id = get_jwt_identity()
     user = User.query.filter_by(id=user_id).first()
@@ -87,24 +87,45 @@ def post_user():
     user = User.query.get(current_user_id)
     if data["name"]:
         user.name = data["name"]
-    user.last_name = data["last_name"]
-    user.adress = data["adress"]
-    user.gender = data["gender"]
-    user.phone = data["phone"]
+    if data["last_name"]:
+        user.last_name = data["last_name"]
+    if data["adress"]:
+        user.adress = data["adress"]
+    if data["gender"]:
+        user.gender = data["gender"]
+    if data["phone"]:
+        user.phone = data["phone"]
 
+    db.session.query(User).filter(
+        User.id == current_user_id).update({"name": user.name})
+    db.session.query(User).filter(
+        User.id == current_user_id).update({"last_name": user.last_name})
+    db.session.query(User).filter(
+        User.id == current_user_id).update({"adress": user.adress})
+
+    db.session.query(User).filter(
+        User.id == current_user_id).update({"phone": user.phone})
+    db.session.query(User).filter(
+        User.id == current_user_id).update({"gender": user.gender})
     db.session.commit()
     response_body = {
-        "result": "Datos modificados correctamente"
+        "result": "Datos modificados correctamente",
+        "name": user.name,
+        "last_name": user.last_name,
+        "adress": user.adress,
+        "gender": str(user.gender),
+        "phone": user.phone,
+
     }
 
     return jsonify(response_body), 200
 
 
 @api.route("/user", methods=['DELETE'])
-# @jwt_required()
+@jwt_required()
 def delete_user():
-    current_user = get_jwt_identity()
-    delete_user = User.query.filter_by(email=current_user).first()
+    current_user_id = get_jwt_identity()
+    delete_user = User.query.filter_by(id=current_user_id).first()
 
     db.session.delete(delete_user)
     db.session.commit()
@@ -129,7 +150,7 @@ def refresh_users_token():
 
 
 @api.route('/competitions', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def get_all_competitions():
     all_competitions = Competition.query.order_by(Competition.id.asc()).all()
     competition_serializer = list(
@@ -142,7 +163,7 @@ def get_all_competitions():
 
 
 @api.route('/competition/<int:id>', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def get_one_competition(id):
     competition = Competition.query.get(id)
     competition_serializer = competition.serialize()
@@ -154,7 +175,7 @@ def get_one_competition(id):
 
 
 @api.route('/create-competition', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 def create_competition():
     data = request.get_json()
     category = list(data["category"])
@@ -178,7 +199,7 @@ def create_competition():
 
 
 @api.route('/create-competition/<int:competition_id>', methods=['PUT'])
-# @jwt_required()
+@jwt_required()
 def modify_competition(competition_id):
     data = request.get_json()
     competition = Competition.query.get(competition_id)

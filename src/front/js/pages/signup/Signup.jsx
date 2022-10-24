@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./signup.css";
+import "../../component/mensaje/mensaje.css";
 
 const Signup = () => {
   const { store, actions } = useContext(Context);
@@ -17,33 +18,37 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    let regex = new RegExp(
+      "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
+    );
+
     if ([email, password1, password2].includes("")) {
       setMensaje("Todos los campos son obligatorios");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
+      return;
     } else if (password1 != password2) {
       setMensaje("Las contraseñas deben ser iguales");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
-    }
-
-    let signupUser = await actions.signup(email, password1, password2);
-    if (signupUser) {
-      navigate("/home/user");
-    } else {
-      setMensaje("Datos Inválidos");
+      return;
+    } /* else if (!regex.test(email)) {
+      setMensaje("E-mail no válido");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
+      return;
+    } */
+    let signupUser = await actions.signup(email, password1, password2);
+
+    if (signupUser) {
+      navigate("/home/user");
     }
-    /*     setEmail("");
-    setPassword1("");
-    setPassword2(""); */
   };
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">
@@ -52,7 +57,7 @@ const Signup = () => {
       </div>
       <form className="d-flex flex-column col-md-5" onSubmit={handleSubmit}>
         <h1 className="text-capitalize text-center">Crear cuenta</h1>
-        {mensaje && <Mensaje>{mensaje}</Mensaje>}
+        {mensaje && <Mensaje tipo="mensaje-error">{mensaje}</Mensaje>}
         <input
           placeholder="Email..."
           className="h-100 form-control mb-1"

@@ -18,7 +18,7 @@ export const Home = () => {
         <div className="fs-2 home-subtitle">
           <h1>
             ¿Organizador de eventos deportivos?{" "}
-            <Link to="/api/about-us" className="home-link">
+            <Link to="/about-us" className="home-link">
               Nosotros te ayudamos
             </Link>
           </h1>

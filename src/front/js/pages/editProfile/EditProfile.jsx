@@ -1,12 +1,20 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { Context } from "../../store/appContext";
-import "./editProfile.css";
-import logo from "../../../img/logo-GOutside.png";
 import DeleteProfile from "../../component/deleteProfile/DeleteProfile.jsx";
+import logo from "../../../img/logo-GOutside.png";
+import "./editProfile.css";
+import "../../component/mensaje/mensaje.css";
 
 const EditProfile = () => {
   const { store, actions } = useContext(Context);
   const [files, setFiles] = useState(null);
+
+  const [mensaje, setMensaje] = useState("");
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [adress, setAdress] = useState("");
+  const [gender, setGender] = useState("");
+  const [phone, setPhone] = useState("");
 
   const ref = useRef(null);
 
@@ -33,6 +41,14 @@ const EditProfile = () => {
       console.log("Error loading message from backend", error);
     }
   };
+
+  const handleSubmitChange = (e) => {
+    e.preventDefault();
+
+    actions.changeDataUser(name, lastName, adress, gender, phone);
+    console.log(name);
+  };
+  console.log(name);
   return (
     <>
       <div className="card mt-5 editprofile-bg">
@@ -57,48 +73,65 @@ const EditProfile = () => {
               <h5 className="text-uppercase">Mi perfil</h5>
               <form
                 className="container row col-md-8 text-start"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  actions.changeDataUser(e);
-                }}
+                onSubmit={handleSubmitChange}
               >
                 <div className="my-2">
                   <label className="col-12 col-md-10 col-lg-2 mx-2">
                     Nombre*
                   </label>
-                  <input type="text" ref={ref} defaultValue={store.userName} />
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                    defaultValue={store.userName}
+                  />
                 </div>
                 <div>
                   <label className="col-12 col-md-2 mx-2">Apellidos</label>
-                  <input type="text" ref={ref} defaultValue={store.userName} />
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setLastName(e.target.value);
+                    }}
+                    defaultValue={store.userLastName}
+                  />
                 </div>
                 <div className="my-2">
                   <label className="col-12 col-md-2 mx-2">E-mail*</label>
-                  <input
-                    type="email"
-                    ref={ref}
-                    defaultValue={store.userEmail}
-                    disabled
-                  />
+                  <input type="email" defaultValue={store.userEmail} disabled />
                 </div>
                 <div className="my-2">
                   <label className="col-12 col-md-2 mx-2">Dirección</label>
                   <input
                     type="text"
-                    ref={ref}
+                    onChange={(e) => {
+                      setAdress(e.target.value);
+                    }}
                     defaultValue={store.userAdress}
                   />
                 </div>
                 <div className="my-2">
                   <label className="col-12 col-md-2 mx-2">Teléfono</label>
-                  <input type="tel" ref={ref} defaultValue={store.userPhone} />
+                  <input
+                    type="tel"
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                    }}
+                    defaultValue={store.userPhone}
+                  />
                 </div>
                 <div className="my-2">
                   <label className="col-2 mx-2">Sexo</label>
-                  <select placeholder="seleccionar">
+                  <select
+                    onChange={(e) => {
+                      setGender(e.target.value);
+                    }}
+                    placeholder="seleccionar"
+                  >
                     <option>Seleccionar</option>
-                    <option>Mujer</option>
-                    <option>Hombre</option>
+                    <option value={"femenino"}>Mujer</option>
+                    <option value={"masculino"}>Hombre</option>
                   </select>
                 </div>
                 <div className="d-flex justify-content-end">
@@ -107,7 +140,7 @@ const EditProfile = () => {
                   </button>
                   <button
                     className="btn btn-primary me-5"
-                    onClick={(e) => actions.changeDataUser(e)}
+                    onClick={handleSubmitChange}
                   >
                     Guardar Cambios
                   </button>

@@ -8,66 +8,65 @@ import { Context } from "../../store/appContext";
 function Sidebar() {
   const { store, actions } = useContext(Context);
   return (
-    <div className="col-12">
-      <div className="row flex-nowrap">
-        <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 sidebar-bg">
-          <div className="min-vh-100">
-            <ul
-              className="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-              id="menu"
-            >
+
+    <aside className="col-auto">
+      <div className="sidebar-bg">
+        <div className="min-vh-100">
+          <ul
+            className="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
+            id="menu"
+          >
+            <li>
+              <Link
+                to="/edit-profile"
+                className="nav-link text-capitalize sidebar-text"
+              >
+                <i className="fs-4 bi bi-person"></i>{" "}
+                <span className="ms-1 d-none d-sm-inline">Editar perfil</span>
+              </Link>
+            </li>
+    
+            {store.userRol === "Rol.administration" && (
               <li>
                 <Link
-                  to="/edit-profile"
+                  to="/create-competition"
                   className="nav-link text-capitalize sidebar-text"
                 >
-                  <i className="fs-4 bi bi-person"></i>{" "}
-                  <span className="ms-1 d-none d-sm-inline">Editar perfil</span>
-                </Link>
-              </li>
-
-              {store.userRol === "Rol.administration" && (
-                <li>
-                  <Link
-                    to="/create-competition"
-                    className="nav-link text-capitalize sidebar-text"
-                  >
-                    <i className="fs-6 bi-pencil-square"></i>{" "}
-                    <span className="ms-1 d-none d-sm-inline">
-                      Crear competición
-                    </span>{" "}
-                  </Link>
-                </li>
-              )}
-
-              <li>
-                <Link
-                  to="/my-all-competition"
-                  className="nav-link text-capitalize sidebar-text"
-                >
-                  <i className="fs-6 bi-stopwatch"></i>{" "}
+                  <i className="fs-6 bi-pencil-square"></i>{" "}
                   <span className="ms-1 d-none d-sm-inline">
-                    Mis competiciones
+                    Crear competición
                   </span>{" "}
                 </Link>
               </li>
+            )}
 
-              <li>
-                <Link
-                  to="/about-us"
-                  className="nav-link text-capitalize mt-4 border-top border-bottom border-secondary sidebar-text"
-                >
-                  <BsEnvelope />
-                  <span className="ms-2 d-none d-sm-inline">
-                    Sobre Nosotros
-                  </span>{" "}
-                </Link>
-              </li>
-            </ul>
-          </div>
+            <li>
+              <Link
+                to="/my-all-competition"
+                className="nav-link text-capitalize sidebar-text"
+              >
+                <i className="fs-6 bi-stopwatch"></i>{" "}
+                <span className="ms-1 d-none d-sm-inline">
+                  Mis competiciones
+                </span>{" "}
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                to="/about-us"
+                className="nav-link text-capitalize mt-4 border-top border-bottom border-secondary sidebar-text"
+              >
+                <BsEnvelope />
+                <span className="ms-2 d-none d-sm-inline">
+                  Sobre Nosotros
+                </span>{" "}
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }
 

@@ -16,23 +16,27 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if ([email, password].includes("")) {
       setMensaje("Todos los campos son obligatorios");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
-    }
-
-    let loginUser = await actions.login(email, password);
-    if (loginUser) {
-      navigate("/home/user");
+      return;
     } else {
       setMensaje("Datos Inválidos");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
+      return;
+    }
+
+    let loginUser = await actions.login(email, password);
+    if (loginUser) {
+      navigate("/home/user");
+      return;
     }
   };
 

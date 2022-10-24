@@ -21,11 +21,8 @@ const Signup = () => {
     let regex = new RegExp(
       "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
     );
-    let signupUser = await actions.signup(email, password1, password2);
 
-    if (signupUser) {
-      navigate("/home/user");
-    } else if ([email, password1, password2].includes("")) {
+    if ([email, password1, password2].includes("")) {
       setMensaje("Todos los campos son obligatorios");
 
       setTimeout(() => {
@@ -39,13 +36,19 @@ const Signup = () => {
         setMensaje("");
       }, 2500);
       return;
-    } /* else if (!regex.test(email)) {
+    } else if (!regex.test(email)) {
       setMensaje("E-mail no válido");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
-    } */
+      return;
+    }
+    let signupUser = await actions.signup(email, password1, password2);
+
+    if (signupUser) {
+      navigate("/home/user");
+    }
   };
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">

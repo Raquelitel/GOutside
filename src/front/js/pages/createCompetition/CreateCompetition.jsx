@@ -20,7 +20,6 @@ const stages = [
 ];
 
 function CreateCompetition() {
-  
   //CAMBIAR ESTO LO PRIMERO
 
   // if (store.tokenLS === user) {
@@ -36,7 +35,7 @@ function CreateCompetition() {
   const [stage, setStage] = useState("");
 
   const create_competition = () => {
-    const url = process.env.BACKEND_URL + "api/create-competition";
+    const url = process.env.BACKEND_URL + "/api/create-competition";
 
     const body = {
       competition_name: name,

@@ -8,6 +8,7 @@ import { Context } from "../../store/appContext";
 function Sidebar() {
   const { store, actions } = useContext(Context);
   return (
+
     <aside className="col-auto">
       <div className="sidebar-bg">
         <div className="min-vh-100">
@@ -24,7 +25,7 @@ function Sidebar() {
                 <span className="ms-1 d-none d-sm-inline">Editar perfil</span>
               </Link>
             </li>
-
+    
             {store.userRol === "Rol.administration" && (
               <li>
                 <Link

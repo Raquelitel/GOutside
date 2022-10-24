@@ -10,7 +10,7 @@ const EditProfile = () => {
   const [files, setFiles] = useState(null);
 
   const [mensaje, setMensaje] = useState("");
-  const [name, setName] = useState("");
+  const [name, setName] = useState(store.userName);
   const [lastName, setLastname] = useState("");
   const [adress, setAdress] = useState("");
   const [gender, setGender] = useState("");
@@ -46,6 +46,7 @@ const EditProfile = () => {
     e.preventDefault();
 
     actions.changeDataUser(name, lastName, adress, gender, phone);
+    console.log(name);
   };
 
   return (

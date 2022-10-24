@@ -95,6 +95,12 @@ def post_user():
     db.session.commit()
     response_body = {
         "result": "Datos modificados correctamente",
+        "name": user.name,
+        "last_name": user.last_name,
+        "adress": user.adress,
+        "gender": str(user.gender),
+        "phone": user.phone,
+
     }
 
     return jsonify(response_body), 200

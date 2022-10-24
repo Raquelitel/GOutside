@@ -118,13 +118,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
         const data = await resp.json();
         if (resp.status === 200) {
+          getActions().getUser();
+          console.log(data);
           setStore({
             userName: data.name,
-            userLastName: data.userLastName,
-            userAdress: data.userAdress,
-            userGender: data.userGender,
+            userLastName: data.last_name,
+            userAdress: data.adress,
+            userGender: data.gender,
             userPhone: data.phone,
           });
+
           return true;
         } else {
           return false;

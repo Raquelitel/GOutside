@@ -10,8 +10,8 @@ const EditProfile = () => {
   const [files, setFiles] = useState(null);
 
   const [mensaje, setMensaje] = useState("");
-  const [name, setName] = useState(store.userName);
-  const [lastName, setLastname] = useState("");
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [adress, setAdress] = useState("");
   const [gender, setGender] = useState("");
   const [phone, setPhone] = useState("");
@@ -48,7 +48,7 @@ const EditProfile = () => {
     actions.changeDataUser(name, lastName, adress, gender, phone);
     console.log(name);
   };
-
+  console.log(name);
   return (
     <>
       <div className="card mt-5 editprofile-bg">
@@ -79,32 +79,47 @@ const EditProfile = () => {
                   <label className="col-12 col-md-10 col-lg-2 mx-2">
                     Nombre*
                   </label>
-                  <input type="text" ref={ref} defaultValue={store.userName} />
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                    defaultValue={store.userName}
+                  />
                 </div>
                 <div>
                   <label className="col-12 col-md-2 mx-2">Apellidos</label>
-                  <input type="text" ref={ref} defaultValue={store.userName} />
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setLastName(e.target.value);
+                    }}
+                    defaultValue={store.userLastName}
+                  />
                 </div>
                 <div className="my-2">
                   <label className="col-12 col-md-2 mx-2">E-mail*</label>
-                  <input
-                    type="email"
-                    ref={ref}
-                    defaultValue={store.userEmail}
-                    disabled
-                  />
+                  <input type="email" defaultValue={store.userEmail} disabled />
                 </div>
                 <div className="my-2">
                   <label className="col-12 col-md-2 mx-2">Dirección</label>
                   <input
                     type="text"
-                    ref={ref}
+                    onChange={(e) => {
+                      setAdress(e.target.value);
+                    }}
                     defaultValue={store.userAdress}
                   />
                 </div>
                 <div className="my-2">
                   <label className="col-12 col-md-2 mx-2">Teléfono</label>
-                  <input type="tel" ref={ref} defaultValue={store.userPhone} />
+                  <input
+                    type="tel"
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                    }}
+                    defaultValue={store.userPhone}
+                  />
                 </div>
                 <div className="my-2">
                   <label className="col-2 mx-2">Sexo</label>
@@ -120,7 +135,7 @@ const EditProfile = () => {
                   </button>
                   <button
                     className="btn btn-primary me-5"
-                    onClick={(e) => actions.changeDataUser(e)}
+                    onClick={handleSubmitChange}
                   >
                     Guardar Cambios
                   </button>

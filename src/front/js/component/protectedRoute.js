@@ -7,16 +7,16 @@ import Sidebar from "./sidebar/Sidebar.jsx";
 const ProtectedRoute = ({ children }) => {
   const { store, actions } = useContext(Context);
 
-  if (store.tokenLS === null) {
+  /*   if (store.tokenLS === null) {
     return <Navigate to="/login" replace />;
-  }
+  } */
   return (
     <div>
       <Navbar />
-      <div className="">
+      <div className="row">
         <Sidebar />
 
-        <main className="">
+        <main className="col-9 mx-auto">
           <Outlet />
         </main>
       </div>

@@ -18,30 +18,34 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if ([email, password1, password2].includes("")) {
+    let regex = new RegExp(
+      "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
+    );
+    let signupUser = await actions.signup(email, password1, password2);
+
+    if (signupUser) {
+      navigate("/home/user");
+    } else if ([email, password1, password2].includes("")) {
       setMensaje("Todos los campos son obligatorios");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
+      return;
     } else if (password1 != password2) {
       setMensaje("Las contraseñas deben ser iguales");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
-    }
-
-    let signupUser = await actions.signup(email, password1, password2);
-    if (signupUser) {
-      navigate("/home/user");
-    } else {
-      setMensaje("Datos Inválidos");
+      return;
+    } /* else if (!regex.test(email)) {
+      setMensaje("E-mail no válido");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
-    }
+    } */
   };
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">

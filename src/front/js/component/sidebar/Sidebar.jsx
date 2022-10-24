@@ -8,7 +8,7 @@ import { Context } from "../../store/appContext";
 function Sidebar() {
   const { store, actions } = useContext(Context);
   return (
-    <div className="col-12">
+    <aside className="col-12">
       <div className="row ">
         <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 sidebar-bg">
           <div className="min-vh-100">
@@ -67,7 +67,7 @@ function Sidebar() {
           </div>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }
 

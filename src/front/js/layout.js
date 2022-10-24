@@ -45,12 +45,9 @@ const Layout = () => {
               />
 
               <Route path="/edit-profile" element={<EditProfile />} />
-              <Route
-                path="/all-commpetition"
-                element={<AllCompetition.jsx />}
-              />
+              <Route path="/all-commpetition" element={<AllCompetition />} />
               <Route path="/competition/:id" element={<InfoCompetition />} />
-              
+
               <Route
                 path="/my-all-competition"
                 element={<MyAllCompetition />}

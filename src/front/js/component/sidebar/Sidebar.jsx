@@ -21,7 +21,7 @@ function Sidebar() {
                   to="/edit-profile"
                   className="nav-link text-capitalize sidebar-text"
                 >
-                  <i class="fs-4 bi bi-person"></i>{" "}
+                  <i className="fs-4 bi bi-person"></i>{" "}
                   <span className="ms-1 d-none d-sm-inline">Editar perfil</span>
                 </Link>
               </li>

@@ -123,10 +123,15 @@ const EditProfile = () => {
                 </div>
                 <div className="my-2">
                   <label className="col-2 mx-2">Sexo</label>
-                  <select placeholder="seleccionar">
+                  <select
+                    onChange={(e) => {
+                      setGender(e.target.value);
+                    }}
+                    placeholder="seleccionar"
+                  >
                     <option>Seleccionar</option>
-                    <option>Mujer</option>
-                    <option>Hombre</option>
+                    <option value={"femenino"}>Mujer</option>
+                    <option value={"masculino"}>Hombre</option>
                   </select>
                 </div>
                 <div className="d-flex justify-content-end">

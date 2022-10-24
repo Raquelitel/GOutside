@@ -94,19 +94,15 @@ def post_user():
 
     db.session.query(User).filter(
         User.id == current_user_id).update({"name": user.name})
-
     db.session.query(User).filter(
         User.id == current_user_id).update({"last_name": user.last_name})
-
     db.session.query(User).filter(
         User.id == current_user_id).update({"adress": user.adress})
 
-#    db.session.query(User).filter(
-#        User.id == current_user_id).update({"gender": user.gender})
-
     db.session.query(User).filter(
         User.id == current_user_id).update({"phone": user.phone})
-
+    db.session.query(User).filter(
+        User.id == current_user_id).update({"gender": user.gender})
     db.session.commit()
     response_body = {
         "result": "Datos modificados correctamente",

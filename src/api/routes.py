@@ -83,10 +83,14 @@ def post_user():
     user = User.query.get(current_user_id)
     if data["name"]:
         user.name = data["name"]
-    user.last_name = data["last_name"]
-    user.adress = data["adress"]
-    user.gender = data["gender"]
-    user.phone = data["phone"]
+    if data["last_name"]:
+        user.last_name = data["last_name"]
+    if data["adress"]:
+        user.adress = data["adress"]
+    if data["gender"]:
+        user.gender = data["gender"]
+    if data["phone"]:
+        user.phone = data["phone"]
 
     db.session.commit()
     response_body = {

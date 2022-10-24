@@ -42,34 +42,11 @@ const EditProfile = () => {
     }
   };
 
-  /* const changeDataUser = async () => {
-    const body = {
-      name,
-      last_name: lastName,
-      adress,
-      gender,
-      phone,
-    };
-    const options = {
-      method: "PUT",
-      body: JSON.stringify(body),
-      headers: { Authorization: "Bearer " + actions.getTokenLS() },
-    };
+  const handleSubmitChange = (e) => {
+    e.preventDefault();
 
-    try {
-      const resp = await fetch(process.env.BACKEND_URL + "/api/user", options);
-      setStore({
-        userName: name,
-        userLastName: lastName,
-        userAdress: adress,
-        userGender: gender,
-        userPhone: phone,
-      });
-      return resp;
-    } catch (error) {
-      console.log("Error loading message from backend", error);
-    }
-  }; */
+    actions.changeDataUser(name, lastName, adress, gender, phone);
+  };
 
   return (
     <>
@@ -95,10 +72,7 @@ const EditProfile = () => {
               <h5 className="text-uppercase">Mi perfil</h5>
               <form
                 className="container row col-md-8 text-start"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  actions.changeDataUser(e);
-                }}
+                onSubmit={handleSubmitChange}
               >
                 <div className="my-2">
                   <label className="col-12 col-md-10 col-lg-2 mx-2">

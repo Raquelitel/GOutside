@@ -24,18 +24,18 @@ const Login = () => {
         setMensaje("");
       }, 2500);
       return;
+    }
+
+    let loginUser = await actions.login(email, password);
+    if (loginUser) {
+      navigate("/home/user");
+      return;
     } else {
       setMensaje("Datos Inválidos");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
-      return;
-    }
-
-    let loginUser = await actions.login(email, password);
-    if (loginUser) {
-      navigate("/home/user");
       return;
     }
   };

@@ -36,14 +36,14 @@ const Signup = () => {
         setMensaje("");
       }, 2500);
       return;
-    } else if (!regex.test(email)) {
+    } /* else if (!regex.test(email)) {
       setMensaje("E-mail no válido");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
       return;
-    }
+    } */
     let signupUser = await actions.signup(email, password1, password2);
 
     if (signupUser) {

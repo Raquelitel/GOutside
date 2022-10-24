@@ -93,42 +93,45 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
-      changeDataUser: async () => {
+      changeDataUser: async (name, last_name, adress, gender, phone) => {
         const body = {
-          /* "name" */
-          last_name: "amigo",
-          adress: "direcciones",
-          gender: "femenino",
-          phone: 123,
+          name: name,
+          last_name: last_name,
+          adress: adress,
+          gender: gender,
+          phone: phone,
         };
 
         const options = {
           method: "PUT",
           body: JSON.stringify(body),
-          headers: { Authorization: "Bearer " + getActions().getTokenLS() },
+          headers: {
+            Authorization: "Bearer " + getActions().getTokenLS(),
+            "Content-Type": "application/json",
+          },
         };
 
-        try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/user",
-            options
-          );
-          const data = await resp.json();
-          if (resp.status === 200) {
-            setStore({
-              userName: data.name,
-              userLastName: data.userLastName,
-              userAdress: data.userAdress,
-              userGender: data.userGender,
-              userPhone: data.phone,
-            });
-            return true;
-          } else {
-            return false;
-          }
-        } catch (error) {
-          console.log("Error loading message from backend", error);
+        /*  try { */
+        const resp = await fetch(
+          process.env.BACKEND_URL + "/api/user",
+          options
+        );
+        const data = await resp.json();
+        if (resp.status === 200) {
+          setStore({
+            userName: data.name,
+            userLastName: data.userLastName,
+            userAdress: data.userAdress,
+            userGender: data.userGender,
+            userPhone: data.phone,
+          });
+          return true;
+        } else {
+          return false;
         }
+        /*         } catch (error) {
+          console.log("Error loading message from backend", error);
+        } */
       },
       deleteUser: async () => {
         const options = {

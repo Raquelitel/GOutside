@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
+import Mensaje from "../mensaje/Mensaje.jsx";
 import "./deleteprofile.css";
 
 const DeleteProfile = () => {
   const { store, actions } = useContext(Context);
-
+  const [mensaje, setMensaje] = useState("");
   let navigate = useNavigate();
 
   const goNavigate = () => {
@@ -47,8 +48,11 @@ const DeleteProfile = () => {
               ></button>
             </div>
             <div className="modal-body">
-              ¿Seguro que desea eliminar su cuenta? Una vez eliminada, se
-              perderán todos sus datos
+              {mensaje ? (
+                <Mensaje tipo="mensaje-correcto">{children}</Mensaje>
+              ) : (
+                "¿Seguro que quiere eliminar la cuenta?"
+              )}
             </div>
             <div className="modal-footer">
               <button

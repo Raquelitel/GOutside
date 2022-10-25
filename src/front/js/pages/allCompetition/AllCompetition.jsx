@@ -8,10 +8,10 @@ const AllCompetition = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    get_cards_info();
+    getCardsInfo();
   }, [id]);
 
-  const get_cards_info = () => {
+  const getCardsInfo = () => {
     const url = process.env.BACKEND_URL + "/api/competitions";
 
     const options = {

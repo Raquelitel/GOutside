@@ -8,10 +8,10 @@ const InfoCompetition = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    get_competition_info();
+    getCompetitionInfo();
   }, [id]);
 
-  const get_competition_info = () => {
+  const getCompetitionInfo = () => {
     const url = process.env.BACKEND_URL + `/api/competition/${id}`;
 
     const options = {
@@ -73,7 +73,7 @@ const InfoCompetition = () => {
         <div className="d-flex justify-content-around text-center align-items-center">
           <button
             className="btn btn-success"
-            onClick={() => get_competition_info()}
+            onClick={() => getCompetitionInfo()}
           >
             Este boton tiene que llevar la validación de que es ADMIN y además
             ha creado esta competición para poder editar.

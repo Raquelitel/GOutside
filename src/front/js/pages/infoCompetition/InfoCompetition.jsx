@@ -5,13 +5,6 @@ import { useParams } from "react-router-dom";
 
 const InfoCompetition = () => {
   const { id } = useParams();
-  const [name, setName] = useState("");
-  const [date, setDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [category, setCategory] = useState([]);
-  const [requirements, setRequirements] = useState("");
-  const [description, setDescription] = useState("");
-  const [stage, setStage] = useState("");
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -20,16 +13,6 @@ const InfoCompetition = () => {
 
   const get_competition_info = () => {
     const url = process.env.BACKEND_URL + `/api/competition/${id}`;
-
-    // const body = {
-    //   competition_name: name,
-    //   qualifier_date: date,
-    //   location: location,
-    //   category: category.map((cat) => cat.value),
-    //   requirements: requirements,
-    //   description: description,
-    //   stage: stage,
-    // };
 
     const options = {
       headers: { "Content-Type": "application/json" },
@@ -41,21 +24,6 @@ const InfoCompetition = () => {
         setData(data.competition);
       });
   };
-
-  // useEffect(() => {
-  //   const url = process.env.BACKEND_URL + `api/competition/:id`;
-
-  //   fetch(url, {
-  //     method: "GET",
-  //     headers: new Headers({
-  //       "Content-Type": "application/json",
-  //       "Access-Control-Allow-Origin": "*",
-  //     }),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => console.log(data))
-  //     .catch((err) => console.log(err));
-  // }, []);
 
   return (
     <div className="container-lg-fluid text-center align-items-center justify-content-center m-auto p-5">

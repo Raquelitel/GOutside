@@ -61,7 +61,7 @@ def signup():
 
 
 @api.route('/home/user', methods=['GET'])
-@jwt_required()
+# @jwt_required()
 def private():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
@@ -72,7 +72,7 @@ def private():
 
 
 @api.route('/user', methods=['GET'])
-@jwt_required()
+# @jwt_required()
 def get_user():
     user_id = get_jwt_identity()
     user = User.query.filter_by(id=user_id).first()
@@ -122,7 +122,7 @@ def post_user():
 
 
 @api.route("/user", methods=['DELETE'])
-@jwt_required()
+# @jwt_required()
 def delete_user():
     current_user_id = get_jwt_identity()
     delete_user = User.query.filter_by(id=current_user_id).first()
@@ -150,7 +150,7 @@ def refresh_users_token():
 
 
 @api.route('/competitions', methods=['GET'])
-@jwt_required()
+# @jwt_required()
 def get_all_competitions():
     all_competitions = Competition.query.order_by(Competition.id.asc()).all()
     competition_serializer = list(
@@ -163,7 +163,7 @@ def get_all_competitions():
 
 
 @api.route('/competition/<int:id>', methods=['GET'])
-@jwt_required()
+# @jwt_required()
 def get_one_competition(id):
     competition = Competition.query.get(id)
     competition_serializer = competition.serialize()
@@ -175,7 +175,7 @@ def get_one_competition(id):
 
 
 @api.route('/create-competition', methods=['POST'])
-@jwt_required()
+# @jwt_required()
 def create_competition():
     data = request.get_json()
     category = list(data["category"])
@@ -199,7 +199,7 @@ def create_competition():
 
 
 @api.route('/create-competition/<int:competition_id>', methods=['PUT'])
-@jwt_required()
+# @jwt_required()
 def modify_competition(competition_id):
     data = request.get_json()
     competition = Competition.query.get(competition_id)

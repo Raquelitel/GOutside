@@ -45,7 +45,7 @@ const Layout = () => {
               />
 
               <Route path="/edit-profile" element={<EditProfile />} />
-              <Route path="/all-commpetition" element={<AllCompetition />} />
+              <Route path="/all-competition" element={<AllCompetition />} />
               <Route path="/competition/:id" element={<InfoCompetition />} />
 
               <Route

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import Mensaje from "../mensaje/Mensaje.jsx";
 import "./deleteprofile.css";
@@ -62,17 +62,19 @@ const DeleteProfile = () => {
               >
                 Cancelar
               </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={(e) => {
-                  e.preventDefault();
-                  actions.deleteUser(e);
-                  goNavigate();
-                }}
-              >
-                Eliminar
-              </button>
+              <Link to="/">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    actions.deleteUser(e);
+                    localStorage.clear();
+                  }}
+                >
+                  Eliminar
+                </button>
+              </Link>
             </div>
           </div>
         </div>

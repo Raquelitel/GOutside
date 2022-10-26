@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import MapView from "../../component/MapView/MapView.jsx";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 import { useParams } from "react-router-dom";
-import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 
 const InfoCompetition = () => {
   const { id } = useParams();

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function AboutUs() {
   const [name, setName] = useState("");
@@ -40,6 +41,7 @@ function AboutUs() {
 
           <div className="col-4 align-items-center justify-content-center ">
             <input
+              placeholder="Apellidos"
               className="form-control"
               type="text"
               onChange={(e) => {
@@ -67,7 +69,7 @@ function AboutUs() {
             <textarea
               className="form-control create-description"
               aria-label="With textarea"
-              placeholder="Cuentanos tú consulta, queremos escucharte"
+              placeholder="Convirtamos tu box en un referente, queremos escucharte"
               onChange={(e) => {
                 setContactRequest(e.target.value);
               }}
@@ -79,8 +81,9 @@ function AboutUs() {
           <button className="btn btn-success" onClick={() => contact_us()}>
             Quiero más información
           </button>
-          <br />
-          <button className="btn btn-danger">Borrar</button>
+          <Link to="/">
+            <button className="btn btn-danger">Volver</button>
+          </Link>
         </div>
       </div>
     </div>

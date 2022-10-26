@@ -80,7 +80,7 @@ def get_user():
 
 
 @api.route('/user', methods=['PUT'])
-# @jwt_required()
+@jwt_required()
 def post_user():
     current_user_id = get_jwt_identity()
     data = request.get_json()
@@ -137,7 +137,7 @@ def delete_user():
 
 
 @api.route("/token/refresh", methods=['GET'])
-# @jwt_required(refresh=True)
+@jwt_required(refresh=True)
 def refresh_users_token():
     identity = get_jwt_identity()
     access_token = create_access_token(identity=user.id)
@@ -225,7 +225,7 @@ def modify_competition(competition_id):
 
 
 @api.route('/my-competitions', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def my_competition():
     competitor_id = get_jwt_identity()
     competitor = User.query.get(competitor_id)
@@ -242,7 +242,7 @@ def my_competition():
 
 
 @api.route('/create-competitor/<int:competitor_id>', methods=['PUT'])
-# @jwt_required()
+@jwt_required()
 def modify_competitor(user_id):
     data = request.get_json()
     competitor = User.query.get(user_id)
@@ -267,7 +267,7 @@ def modify_competitor(user_id):
 # ------------  CLOUDINARY --------------------------
 
 @api.route('/upload', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 def handle_upload():
     user_id = get_jwt_identity()
     if 'profile_image' in request.files:

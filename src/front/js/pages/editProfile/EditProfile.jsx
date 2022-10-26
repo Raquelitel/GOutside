@@ -4,6 +4,9 @@ import DeleteProfile from "../../component/deleteProfile/DeleteProfile.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./editProfile.css";
 import "../../component/mensaje/mensaje.css";
+import { useNavigate } from "react-router-dom";
+import Mensaje from "../../component/mensaje/Mensaje.jsx";
+import "../../component/mensaje/mensaje.css";
 
 const EditProfile = () => {
   const { store, actions } = useContext(Context);
@@ -16,7 +19,7 @@ const EditProfile = () => {
   const [gender, setGender] = useState("");
   const [phone, setPhone] = useState("");
 
-  const ref = useRef(null);
+  const navigate = useNavigate();
 
   const uploadImage = async (e) => {
     e.preventDefault();
@@ -46,11 +49,17 @@ const EditProfile = () => {
     e.preventDefault();
 
     actions.changeDataUser(name, lastName, adress, gender, phone);
-    console.log(name);
+    setMensaje("Datos modificados correctamente");
+
+    setTimeout(() => {
+      setMensaje("");
+      navigate("/home/user");
+    }, 2500);
   };
-  console.log(name);
+
   return (
     <>
+      {mensaje && <Mensaje tipo="mensaje-correcto">{mensaje}</Mensaje>}
       <div className="card mt-5 editprofile-bg">
         <div className="row g-0">
           <div className="col-md-4">

@@ -111,30 +111,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
 
-        /*  try { */
-        const resp = await fetch(
-          process.env.BACKEND_URL + "/api/user",
-          options
-        );
-        const data = await resp.json();
-        if (resp.status === 200) {
-          getActions().getUser();
-          console.log(data);
-          setStore({
-            userName: data.name,
-            userLastName: data.last_name,
-            userAdress: data.adress,
-            userGender: data.gender,
-            userPhone: data.phone,
-          });
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/user",
+            options
+          );
+          const data = await resp.json();
+          if (resp.status === 200) {
+            getActions().getUser();
+            setStore({
+              userName: data.name,
+              userLastName: data.last_name,
+              userAdress: data.adress,
+              userGender: data.gender,
+              userPhone: data.phone,
+            });
 
-          return true;
-        } else {
-          return false;
-        }
-        /*         } catch (error) {
+            return true;
+          } else {
+            return false;
+          }
+        } catch (error) {
           console.log("Error loading message from backend", error);
-        } */
+        }
       },
       deleteUser: async () => {
         const options = {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MapView from "../../component/MapView/MapView.jsx";
-import { Context } from "../../store/appContext.js";
+import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 import { useParams } from "react-router-dom";
 
 const InfoCompetition = () => {
@@ -30,7 +30,7 @@ const InfoCompetition = () => {
       <div className="row d-flex create-title">
         <h1 className="text-center">Info detallada de la competición</h1>
       </div>
-      {/* <PosterCompetition /> */}
+      <PosterCompetition />
       <div className="row justify-content-center mt-5 mb-5">
         <div className="col-4 align-items-center justify-content-center">
           <input type="text" value={data.name} />

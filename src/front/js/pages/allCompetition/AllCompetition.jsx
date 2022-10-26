@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 const AllCompetition = () => {
   const { id } = useParams();
-  const [data, setData] = useState({});
+  const [competitions, setCompetitions] = useState([]);
 
   useEffect(() => {
     getCardsInfo();
@@ -21,24 +21,26 @@ const AllCompetition = () => {
     fetch(url, options)
       .then((response) => response.json())
       .then((data) => {
-        setData(data.competitions);
+        setCompetitions(data.competitions);
         console.log(data.competitions);
       });
   };
 
-  return (
-    <div className="card" style="width: 18rem;">
-      <div className="card-body">
-        <h4 className="card-title">{data.name}</h4>
-        <h5 className="card-text">{data.qualifier_date}</h5>
-        <h5 className="card-text">{data.category}</h5>
-        <h5 className="card-text">{data.stage}</h5>
-        <Link to="/competition/:id">
-          <button className="home-button2">+INFO</button>
-        </Link>
+  return competitions.map((param) => {
+    return (
+      <div key={param.id} className="card" style="width: 18rem;">
+        <div className="card-body">
+          <h4 className="card-title">{param.competition_name}</h4>
+          <h5 className="card-text">{param.qualifier_date}</h5>
+          <h5 className="card-text">{param.category}</h5>
+          <h5 className="card-text">{param.stage}</h5>
+          <Link to="/competition/:id">
+            <button className="home-button2">+INFO</button>
+          </Link>
+        </div>
       </div>
-    </div>
-  );
+    );
+  });
 };
 
 export default AllCompetition;

@@ -81,7 +81,7 @@ const EditProfile = () => {
             <div className="card-body">
               <h5 className="text-uppercase">Mi perfil</h5>
               <form
-                className="container row col-md-8 text-start"
+                className="container row col-md-12 text-start"
                 onSubmit={handleSubmitChange}
               >
                 <div className="my-2">
@@ -97,7 +97,9 @@ const EditProfile = () => {
                   />
                 </div>
                 <div>
-                  <label className="col-12 col-md-2 mx-2">Apellidos</label>
+                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                    Apellidos
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -107,11 +109,15 @@ const EditProfile = () => {
                   />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-2 mx-2">E-mail*</label>
+                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                    E-mail*
+                  </label>
                   <input type="email" defaultValue={store.userEmail} disabled />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-2 mx-2">Dirección</label>
+                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                    Dirección
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -121,7 +127,9 @@ const EditProfile = () => {
                   />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-2 mx-2">Teléfono</label>
+                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                    Teléfono
+                  </label>
                   <input
                     type="tel"
                     onChange={(e) => {

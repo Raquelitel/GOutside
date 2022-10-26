@@ -27,15 +27,15 @@ export const Navbar = () => {
           <img src={logo} alt="GOutside Logo" style={{ width: "4rem" }} />
         </div>
         <div className="col-6 col-md-8 col-lg-9">
-          <div className="d-flex justify-content-between">
-            <form className="">
+          <div className="">
+            {/*             <form className="">
               <input
                 placeholder="Buscar..."
                 type="text"
                 className="navbar-input"
               />
-            </form>
-            <div className="d-flex ">
+            </form> */}
+            <div className="d-flex justify-content-evenly">
               <Link to="/home/user">
                 <button className="btn btn-menu mx-2">
                   <BsHouseFill className="btn-icon" />
@@ -81,7 +81,7 @@ export const Navbar = () => {
             <li>
               <Link
                 to="/edit-profile"
-                className="dropdown-item text-capitalize navbar-menu-li "
+                className="dropdown-item mb-3 text-capitalize navbar-menu-li "
               >
                 editar perfil
               </Link>

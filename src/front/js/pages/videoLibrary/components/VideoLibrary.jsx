@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar.jsx";
 import VideoList from "./VideoList.jsx";
 import VideoDetail from "./VideoDetail.jsx";
-import { Navbar } from "../../../component/navbar/navbar.jsx";
 import Library from "../library/Library.jsx";
-import '../style/VideoStyles.css';
-
+import "../style/VideoStyles.css";
 
 const VideoLibrary = () => {
   const [videos, setVideos] = useState([]);
@@ -16,7 +14,6 @@ const VideoLibrary = () => {
     console.log(term);
 
     if (term === "" || term === undefined) {
-
       setVideos([]);
     } else {
       fetch(
@@ -38,13 +35,11 @@ const VideoLibrary = () => {
 
   return (
     <div className="align-items-center justify-content-md-center text-center container-library">
-      <div className="row">
-        <Navbar />
-      </div>
-
       <div className="position-relative justify-content-start mt-3 p-5 library-card">
         <div className="row">
-          <div className="mb-3 video-header"><h3>Pulsa en el ejercicio para verlo o busca el que necesites</h3></div>
+          <div className="mb-3 video-header">
+            <h3>Pulsa en el ejercicio para verlo o busca el que necesites</h3>
+          </div>
           <SearchBar handleFormSubmit={(term) => handleSubmit(term)} />
         </div>
         <div className="row">

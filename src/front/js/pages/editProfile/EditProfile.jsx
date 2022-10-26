@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { Context } from "../../store/appContext";
+import { useNavigate } from "react-router-dom";
+import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import DeleteProfile from "../../component/deleteProfile/DeleteProfile.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./editProfile.css";
@@ -16,7 +18,7 @@ const EditProfile = () => {
   const [gender, setGender] = useState("");
   const [phone, setPhone] = useState("");
 
-  const ref = useRef(null);
+  const navigate = useNavigate();
 
   const uploadImage = async (e) => {
     e.preventDefault();
@@ -46,9 +48,14 @@ const EditProfile = () => {
     e.preventDefault();
 
     actions.changeDataUser(name, lastName, adress, gender, phone);
-    console.log(name);
+    setMensaje("Datos modificados correctamente");
+
+    setTimeout(() => {
+      setMensaje("");
+      navigate("/home/user");
+    }, 2500);
   };
-  console.log(name);
+
   return (
     <>
       <div className="card mt-5 editprofile-bg">
@@ -65,14 +72,17 @@ const EditProfile = () => {
             />
             <form className="m-2" onSubmit={uploadImage}>
               <input type="file" onChange={(e) => setFiles(e.target.files)} />
-              <button className="btn btn-primary">cambiar foto</button>
+              <button className="btn editProfile-btn-primary">
+                cambiar foto
+              </button>
             </form>
           </div>
           <div className="col-md-8">
             <div className="card-body">
+              {mensaje && <Mensaje tipo="mensaje-correcto">{mensaje}</Mensaje>}
               <h5 className="text-uppercase">Mi perfil</h5>
               <form
-                className="container row col-md-8 text-start"
+                className="container row col-md-12 text-start"
                 onSubmit={handleSubmitChange}
               >
                 <div className="my-2">
@@ -88,7 +98,9 @@ const EditProfile = () => {
                   />
                 </div>
                 <div>
-                  <label className="col-12 col-md-2 mx-2">Apellidos</label>
+                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                    Apellidos
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -98,11 +110,15 @@ const EditProfile = () => {
                   />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-2 mx-2">E-mail*</label>
+                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                    E-mail*
+                  </label>
                   <input type="email" defaultValue={store.userEmail} disabled />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-2 mx-2">Dirección</label>
+                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                    Dirección
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -112,7 +128,9 @@ const EditProfile = () => {
                   />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-2 mx-2">Teléfono</label>
+                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                    Teléfono
+                  </label>
                   <input
                     type="tel"
                     onChange={(e) => {
@@ -135,11 +153,8 @@ const EditProfile = () => {
                   </select>
                 </div>
                 <div className="d-flex justify-content-end">
-                  <button className="btn editprofile-btn-borrar mx-2">
-                    Borrar
-                  </button>
                   <button
-                    className="btn btn-primary me-5"
+                    className="btn me-5 editProfile-btn-primary"
                     onClick={handleSubmitChange}
                   >
                     Guardar Cambios

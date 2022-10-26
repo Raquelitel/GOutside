@@ -32,7 +32,6 @@
 }
 
 .btn-menu {
-  /* width: 9rem; */
   height: 3rem;
   background: var(--color-dark-blue);
   color: var(--color-light);
@@ -68,12 +67,14 @@
   transform: translateY(-50%);
 }
 
-.btn:hover .btn-icon {
-  top: -100%;
-}
+@media (min-width: 790px) {
+  .btn:hover .btn-icon {
+    top: -100%;
+  }
 
-.btn:hover .btn-text {
-  top: 50%;
+  .btn:hover .btn-text {
+    top: 50%;
+  }
 }
 
 .navbar-photo-profile {

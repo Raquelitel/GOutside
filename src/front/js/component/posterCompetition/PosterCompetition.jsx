@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../../store/appContext";
+import logo from "../../../img/logo-GOutside.png";
 import "./posterCompetition.css";
 
 const PosterCompetition = () => {
@@ -37,7 +38,9 @@ const PosterCompetition = () => {
       />
       <form className="m-2" onSubmit={uploadPosterImage}>
         <input type="file" onChange={(e) => setFiles(e.target.files)} />
-        <button className="btn btn-primary">cambiar cartel</button>
+        <button className="btn postercompetition-btn-primary">
+          cambiar cartel
+        </button>
       </form>
     </div>
   );

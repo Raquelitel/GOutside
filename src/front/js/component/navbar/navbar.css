@@ -32,7 +32,6 @@
 }
 
 .btn-menu {
-  /* width: 9rem; */
   height: 3rem;
   background: var(--color-dark-blue);
   color: var(--color-light);

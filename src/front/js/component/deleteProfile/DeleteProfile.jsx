@@ -10,12 +10,18 @@ const DeleteProfile = () => {
   let navigate = useNavigate();
 
   const goNavigate = () => {
-    localStorage.clear();
-    navigate("/");
+    setMensaje("Datos modificados correctamente");
+
+    setTimeout(() => {
+      setMensaje("");
+      actions.deleteUser();
+      localStorage.clear();
+      navigate("/");
+    }, 2500);
   };
 
   return (
-    <div>
+    <div className="delete-text-color">
       <button
         type="button"
         className="btn btn-warning profile-btn-delete-bg"
@@ -34,12 +40,6 @@ const DeleteProfile = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1
-                className="modal-title fs-5 text-capitalize"
-                id="exampleModalLabel"
-              >
-                Eliminar cuenta
-              </h1>
               <button
                 type="button"
                 className="btn-close"
@@ -47,9 +47,9 @@ const DeleteProfile = () => {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body text-center">
               {mensaje ? (
-                <Mensaje tipo="mensaje-correcto">{children}</Mensaje>
+                <Mensaje tipo="mensaje-correcto">{mensaje}</Mensaje>
               ) : (
                 "¿Seguro que quiere eliminar la cuenta?"
               )}
@@ -62,19 +62,16 @@ const DeleteProfile = () => {
               >
                 Cancelar
               </button>
-              <Link to="/">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    actions.deleteUser(e);
-                    localStorage.clear();
-                  }}
-                >
-                  Eliminar
-                </button>
-              </Link>
+              <button
+                type="button"
+                className="btn delete-profiile-btn-danger"
+                onClick={(e) => {
+                  e.preventDefault();
+                  goNavigate();
+                }}
+              >
+                Eliminar
+              </button>
             </div>
           </div>
         </div>

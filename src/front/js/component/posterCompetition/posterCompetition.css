@@ -1,2 +1,13 @@
 .poster-competition-photo {
+  max-width: 25vh;
+  max-height: 50vh;
+}
+
+.postercompetition-btn-primary {
+  background-color: var(--color-light-blue);
+  color: var(--color-dark-grey);
+}
+
+.postercompetition-btn-primary:hover {
+  background-color: var(--color-light);
 }

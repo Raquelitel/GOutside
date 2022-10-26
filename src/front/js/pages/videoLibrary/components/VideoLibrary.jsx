@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar.jsx";
 import VideoList from "./VideoList.jsx";
 import VideoDetail from "./VideoDetail.jsx";
-import { Navbar } from "../../../component/navbar/navbar.jsx";
 import Library from "../library/Library.jsx";
 import "../style/VideoStyles.css";
 
@@ -36,10 +35,6 @@ const VideoLibrary = () => {
 
   return (
     <div className="align-items-center justify-content-md-center text-center container-library">
-      {/*       <div className="row">
-        <Navbar />
-      </div> */}
-
       <div className="position-relative justify-content-start mt-3 p-5 library-card">
         <div className="row">
           <div className="mb-3 video-header">

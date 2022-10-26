@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { Context } from "../../store/appContext";
+import { useNavigate } from "react-router-dom";
+import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import DeleteProfile from "../../component/deleteProfile/DeleteProfile.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./editProfile.css";
-import "../../component/mensaje/mensaje.css";
-import { useNavigate } from "react-router-dom";
-import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import "../../component/mensaje/mensaje.css";
 
 const EditProfile = () => {
@@ -59,7 +58,6 @@ const EditProfile = () => {
 
   return (
     <>
-      {mensaje && <Mensaje tipo="mensaje-correcto">{mensaje}</Mensaje>}
       <div className="card mt-5 editprofile-bg">
         <div className="row g-0">
           <div className="col-md-4">
@@ -74,11 +72,14 @@ const EditProfile = () => {
             />
             <form className="m-2" onSubmit={uploadImage}>
               <input type="file" onChange={(e) => setFiles(e.target.files)} />
-              <button className="btn btn-primary">cambiar foto</button>
+              <button className="btn editProfile-btn-primary">
+                cambiar foto
+              </button>
             </form>
           </div>
           <div className="col-md-8">
             <div className="card-body">
+              {mensaje && <Mensaje tipo="mensaje-correcto">{mensaje}</Mensaje>}
               <h5 className="text-uppercase">Mi perfil</h5>
               <form
                 className="container row col-md-12 text-start"
@@ -152,11 +153,8 @@ const EditProfile = () => {
                   </select>
                 </div>
                 <div className="d-flex justify-content-end">
-                  <button className="btn editprofile-btn-borrar mx-2">
-                    Borrar
-                  </button>
                   <button
-                    className="btn btn-primary me-5"
+                    className="btn me-5 editProfile-btn-primary"
                     onClick={handleSubmitChange}
                   >
                     Guardar Cambios

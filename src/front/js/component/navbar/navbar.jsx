@@ -49,7 +49,7 @@ export const Navbar = () => {
                   <span className="btn-text">BIBLIOTECA</span>
                 </button>
               </Link>
-              <Link to="/all-commpetition">
+              <Link to="/competitions">
                 <button className="btn btn-menu mx-2">
                   <BsFillTrophyFill className="btn-icon" />
 

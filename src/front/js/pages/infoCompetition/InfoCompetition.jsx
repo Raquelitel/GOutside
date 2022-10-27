@@ -37,35 +37,35 @@ const InfoCompetition = () => {
         </div>
 
         <div className="col-4 align-items-center justify-content-center ">
-          <input type="text" disabled value={data.qualifier_date} />
+          <input type="text" value={data.qualifier_date} />
         </div>
 
         <div className="col-4 align-items-center justify-content-center ">
-          <input type="text" disabled value={data.category} />
+          <input type="text" value={data.category} />
         </div>
       </div>
 
       <div className="row d-flex justify-content-center">
         <div className="col-4 align-items-center justify-content-center">
-          <input type="text" disabled value={data.location} />
+          <input type="text" value={data.location} />
         </div>
 
         <div className="col-6 align-items-center justify-content-center mb-5 ">
           <div className="create-category">
-            <input type="text" disabled value={data.requirements} />
+            <input type="text" value={data.requirements} />
           </div>
         </div>
       </div>
 
       <div className="row d-flex justify-content-center">
         <div className="input-group align-items-center justify-content-center mb-5">
-          <input type="text" disabled value={data.description} />
+          <input type="text" value={data.description} />
         </div>
       </div>
 
       <div className="row justify-content-center ">
         <div className="input-group align-items-center justify-content-center mb-5">
-          <input type="text" disabled value={data.stage} />
+          <input type="text" value={data.stage} />
         </div>
       </div>
 

@@ -61,7 +61,7 @@ def signup():
 
 
 @api.route('/home/user', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def private():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
@@ -72,7 +72,7 @@ def private():
 
 
 @api.route('/user', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def get_user():
     user_id = get_jwt_identity()
     user = User.query.filter_by(id=user_id).first()
@@ -122,7 +122,7 @@ def post_user():
 
 
 @api.route("/user", methods=['DELETE'])
-# @jwt_required()
+@jwt_required()
 def delete_user():
     current_user_id = get_jwt_identity()
     delete_user = User.query.filter_by(id=current_user_id).first()
@@ -282,7 +282,7 @@ def handle_upload():
 
 
 @api.route('/poster-upload', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 def handle_poster_upload():
     user_id = get_jwt_identity()
     if 'poster_image' in request.files:

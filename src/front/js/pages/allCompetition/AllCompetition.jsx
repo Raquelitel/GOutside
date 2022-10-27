@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MapView from "../../component/MapView/MapView.jsx";
 import { Link } from "react-router-dom";
 import "./allCompetition.css";
@@ -6,6 +6,7 @@ import logo from "../../../img/logo-GOutside.png";
 
 const AllCompetition = () => {
   const [competitions, setCompetitions] = useState([]);
+  const { store } = useContext(Context);
 
   useEffect(() => {
     getCardsInfo();
@@ -25,29 +26,45 @@ const AllCompetition = () => {
       });
   };
 
+  const addCompetitorToCompetition = (competitor_id, competition_id) => {
+    const url = process.env.BACKEND_URL + "/api/my-competitions";
+
+    const body = {
+      competitor_id,
+      competition_id,
+    };
+
+    const options = {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify(body),
+    };
+    fetch(url, options).then((response) => response.json());
+  };
+
   return (
-    <div className="d-flex justify-content-center">
-      {competitions.map((param) => {
+
+    <>
+      {competitions.map((competition) => {
         return (
-          <div key={param.id} className=" col-md-6 col-lg-4">
-            <div className="card m-2">
-              <img
-                src={!param.poster_image_url ? logo : param.poster_image_url}
-                className="competition-img-card"
-                alt="cartel competicion"
-              />
-              <div className="card-body">
-                <h4 className="card-title">{param.competition_name}</h4>
-                <h5 className="card-text">{param.qualifier_date}</h5>
-                <h5 className="card-text">{param.category}</h5>
-                <h5 className="card-text">{param.stage}</h5>
-                <div className="d-flex justify-content-center gap-3">
-                  <Link to={`/competition/${param.id}`}>
-                    <button className="btn btn-sucessfull">+INFO</button>
-                  </Link>
-                  <button className="btn btn-validacion">Participar</button>
-                </div>
-              </div>
+          <div key={competition.id} className="card">
+            <div className="card-body">
+              <h4 className="card-title">{competition.competition_name}</h4>
+              <h5 className="card-text">{competition.qualifier_date}</h5>
+              <h5 className="card-text">{competition.category}</h5>
+              <h5 className="card-text">{competition.stage}</h5>
+              <Link to={`/competition/${competition.id}`}>
+                <button className="home-button2">+INFO</button>
+              </Link>
+              <button
+                className="home-button2"
+                onClick={() =>
+                  addCompetitorToCompetition(store.userId, competition.id)
+                }
+              >
+                Participar
+              </button>
+
             </div>
           </div>
         );

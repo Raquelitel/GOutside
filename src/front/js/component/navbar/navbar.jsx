@@ -23,18 +23,11 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-color">
       <div className="container-fluid">
-        <div className="navbar-brand">
-          <img src={logo} alt="GOutside Logo" style={{ width: "4rem" }} />
-        </div>
+        <Link to="/" className="navbar-brand">
+          <img src={logo} className="navbar-logo-size" alt="GOutside Logo" />
+        </Link>
         <div className="col-6 col-md-8 col-lg-9">
-          <div className="">
-            {/*             <form className="">
-              <input
-                placeholder="Buscar..."
-                type="text"
-                className="navbar-input"
-              />
-            </form> */}
+          <div>
             <div className="d-flex justify-content-evenly">
               <Link to="/home/user">
                 <button className="btn btn-menu mx-2">

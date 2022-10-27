@@ -18,22 +18,22 @@ const MyAllCompetitions = () => {
     fetch(url, options)
       .then((response) => response.json())
       .then((data) => {
-        setMyCompetitions(data.myCompetitions);
-        console.log(data.myCompetitions);
+        console.log(data);
+        setMyCompetitions(data);
       });
   };
 
   return (
     <>
-      {myCompetitions.map((param) => {
+      {myCompetitions.map((myCompetition) => {
         return (
-          <div key={param.id} className="card">
+          <div key={myCompetition.id} className="card">
             <div className="card-body">
-              <h4 className="card-title">{param.competition_name}</h4>
-              <h5 className="card-text">{param.qualifier_date}</h5>
-              <h5 className="card-text">{param.category}</h5>
-              <h5 className="card-text">{param.stage}</h5>
-              <Link to={`/competition/${param.id}`}>
+              <h4 className="card-title">{myCompetition.competition_name}</h4>
+              <h5 className="card-text">{myCompetition.qualifier_date}</h5>
+              <h5 className="card-text">{myCompetition.category}</h5>
+              <h5 className="card-text">{myCompetition.stage}</h5>
+              <Link to={`/competition/${myCompetition.id}`}>
                 <button className="home-button2">+INFO</button>
               </Link>
             </div>

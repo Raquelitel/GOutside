@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       tokenLS: null,
       userRol: null,
+      userId: null,
       userEmail: null,
       userName: null,
       userLastName: null,
@@ -55,7 +56,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await resp.json();
           if (resp.status === 200) {
             localStorage.setItem("token", data.token);
-            setStore({ tokenLS: data.token, userRol: data.rol });
+            setStore({
+              tokenLS: data.token,
+              userRol: data.rol,
+              userId: data.user_id,
+            });
             return true;
           } else {
             return false;

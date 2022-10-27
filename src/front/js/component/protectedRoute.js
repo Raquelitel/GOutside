@@ -16,7 +16,7 @@ const ProtectedRoute = ({ children }) => {
       <div className="row">
         <Sidebar />
 
-        <main className="col mx-auto">
+        <main className="col-10 mx-auto">
           <Outlet />
         </main>
       </div>

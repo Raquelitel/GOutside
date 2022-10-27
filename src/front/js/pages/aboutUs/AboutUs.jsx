@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../img/logo-GOutside.png";
-
+import Mensaje from "../../component/mensaje/Mensaje.jsx";
 
 function AboutUs() {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
   const [contactRequest, setContactRequest] = useState("");
+  const [mensaje, setMensaje] = useState("");
 
   const contactUs = () => {
     const url = process.env.BACKEND_URL + "/api/about-us";
@@ -23,6 +24,14 @@ function AboutUs() {
       body: JSON.stringify(body),
     };
     fetch(url, options);
+    /*     setMensaje(
+      "Muchas gracias por contactar con el equipo de GOutside. En breve, un agente se pondrá en contacto con usted"
+    );
+
+    setTimeout(() => {
+      setMensaje("");
+    }, 9000);
+    return; */
   };
 
   return (
@@ -46,6 +55,8 @@ function AboutUs() {
           versions of Lorem Ipsum.
         </p>
       </div>
+
+      {mensaje && <Mensaje tipo="mensaje-correcto">{mensaje}</Mensaje>}
 
       <h2 className="text-center text-capitalize aboutUs-title-color">
         Contacta con nosotros

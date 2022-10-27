@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import MapView from "../../component/MapView/MapView.jsx";
-import { Context } from "../../store/appContext.js";
 import { Link } from "react-router-dom";
+import "./allCompetition.css";
+import logo from "../../../img/logo-GOutside.png";
 
 const AllCompetition = () => {
   const [competitions, setCompetitions] = useState([]);
@@ -42,6 +43,7 @@ const AllCompetition = () => {
   };
 
   return (
+
     <>
       {competitions.map((competition) => {
         return (
@@ -62,11 +64,12 @@ const AllCompetition = () => {
               >
                 Participar
               </button>
+
             </div>
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

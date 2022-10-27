@@ -21,9 +21,9 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-color">
-      <div className="container-fluid">
-        <Link to="/" className="navbar-brand">
+    <nav className="navbar navbar-expand-lg navbar-color ">
+      <div className="container-fluid d-flex justify-content-center">
+        <Link to="/" className="navbar-brand d-flex justify-content-center">
           <img src={logo} className="navbar-logo-size" alt="GOutside Logo" />
         </Link>
         <div className="col-6 col-md-8 col-lg-9">
@@ -82,7 +82,7 @@ export const Navbar = () => {
             <li>
               <button
                 onClick={logout}
-                className="btn text-uppercase border-top border-bottom border-secondary navbar-menu-button"
+                className="btn dropdown-item text-uppercase border-top border-bottom border-secondary navbar-menu-button"
               >
                 Cerrar sesión
               </button>

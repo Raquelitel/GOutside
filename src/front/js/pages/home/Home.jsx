@@ -2,9 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import GOutside_transp from "../../../img/GOutside_transp.png";
 import X_transp from "../../../img/X_transp.png";
-import Logo_Malaga_Throwdown from "../../../img/Logo_Malaga_Throwdown.jpg";
-import Logo_Battle_Cancer from "../../../img/Logo_Battle_Cancer.jpg";
-import Logo_Costa_Azahar from "../../../img/Logo_Costa_Azahar.jpg";
 
 export const Home = () => {
   return (
@@ -36,7 +33,7 @@ export const Home = () => {
             className="carousel slide carousel-fade"
             data-bs-ride="carousel"
           >
-            <div className="align-items-center justify-content-center text-center carousel-inner">
+            {/*             <div className="align-items-center justify-content-center text-center carousel-inner">
               <div className="carousel-item active">
                 <img src={Logo_Malaga_Throwdown} className="w-50" alt="..." />
               </div>
@@ -46,8 +43,8 @@ export const Home = () => {
               <div className="carousel-item">
                 <img src={Logo_Costa_Azahar} className="w-50" alt="..." />
               </div>
-            </div>
-            <button
+            </div> */}
+            {/*             <button
               className="carousel-control-prev"
               type="button"
               data-bs-target="#carouselExampleFade"
@@ -58,8 +55,8 @@ export const Home = () => {
                 aria-hidden="true"
               ></span>
               <span className="visually-hidden">Previous</span>
-            </button>
-            <button
+            </button> */}
+            {/*             <button
               className="carousel-control-next"
               type="button"
               data-bs-target="#carouselExampleFade"
@@ -70,7 +67,7 @@ export const Home = () => {
                 aria-hidden="true"
               ></span>
               <span className="visually-hidden">Next</span>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

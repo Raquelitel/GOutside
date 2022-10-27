@@ -83,11 +83,11 @@ function AboutUs() {
           }}
         ></textarea>
         <div className="d-flex justify-content-end gap-2 mb-3">
-          <button className="btn btn-success" onClick={() => contactUs()}>
+          <button className="btn btn-validacion" onClick={() => contactUs()}>
             Quiero más información
           </button>
           <Link to={-1}>
-            <button className="btn btn-danger">Volver atrás</button>
+            <button className="btn btn-cancelar">Volver atrás</button>
           </Link>
         </div>
       </form>

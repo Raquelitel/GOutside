@@ -60,8 +60,8 @@ function AboutUs() {
         />
         <input
           className="form-control"
-          placeholder="Apellidos"
-          type="text"
+          placeholder="Correo electrónico"
+          type="email"
           onChange={(e) => {
             setSurname(e.target.value);
           }}

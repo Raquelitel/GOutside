@@ -38,7 +38,9 @@ const VideoLibrary = () => {
       <div className="position-relative justify-content-start mt-3 p-5 library-card">
         <div className="row">
           <div className="mb-3 video-header">
-            <h3>Pulsa en el ejercicio para verlo o busca el que necesites</h3>
+            <h3 className="library-text-color">
+              Pulsa en el ejercicio para verlo o busca el que necesites
+            </h3>
           </div>
           <SearchBar handleFormSubmit={(term) => handleSubmit(term)} />
         </div>

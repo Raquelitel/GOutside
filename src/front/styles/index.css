@@ -1,3 +1,5 @@
+/* -------------------- VARAIABLES ------------------- */
+
 :root {
   --color-dark-grey: #2c3333;
   --color-dark-blue: #395b64;
@@ -5,16 +7,69 @@
   --color-light: #e7f6f2;
   --color-red: #ff4c29;
   --color-red-hover: #ff1c10;
+  --color-sucessfull: #5fd6b6;
 }
 
+/* -------------------- GENERALES ------------------- */
+
 * {
-  margin: 0vw;
+  /*   margin: 0vw;
   padding: 0vw;
-  box-sizing: border-box;
+  box-sizing: border-box; */
   font-family: "Montserrat", sans-serif;
 }
 
 body {
   background-color: var(--color-dark-grey);
   font-family: "Montserrat", sans-serif;
+}
+
+h1,
+h2,
+h3,
+p {
+  color: var(--color-light);
+}
+
+h1 {
+  font-weight: 700;
+}
+
+/* -------------------- BOTONES - LINKS COLORS ------------------- */
+
+.btn-validacion {
+  color: var(--color-light);
+  background-color: var(--color-dark-blue);
+}
+
+.btn-validacion:hover {
+  background-color: var(--color-light-blue);
+  color: var(--color-dark-grey);
+}
+
+.btn-cancelar {
+  background-color: var(--color-red);
+  color: var(--color-dark-grey);
+}
+
+.btn-cancelar:hover {
+  background-color: var(--color-red-hover);
+  color: var(--color-dark-blue);
+}
+
+.btn-sucessfull {
+  background-color: var(--color-sucessfull);
+  color: var(--color-dark-grey);
+}
+
+.btn-sucessfull:hover {
+  background-color: var(--color-light-blue);
+  color: var(--color-dark-blue);
+}
+
+.color-link {
+  color: var(--color-sucessfull);
+}
+.color-link:hover {
+  color: var(--color-light-blue);
 }

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import logo from "../../../img/logo-GOutside.png";
 
 function AboutUs() {
   const [name, setName] = useState("");
@@ -6,7 +8,7 @@ function AboutUs() {
   const [phone, setPhone] = useState("");
   const [contactRequest, setContactRequest] = useState("");
 
-  const contact_us = () => {
+  const contactUs = () => {
     const url = process.env.BACKEND_URL + "/api/about-us";
     const body = {
       name: name,
@@ -23,66 +25,72 @@ function AboutUs() {
   };
 
   return (
-    <div className="container text-center align-items-center justify-content-center">
-      <h1 className="text-center">Contacta con nosotros</h1>
-      <div className="card p-5">
-        <div className="row justify-content-center mt-5 mb-5">
-          <div className="col-4 align-items-center justify-content-center">
-            <input
-              placeholder="Nombre"
-              className="form-control"
-              type="text"
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
-          </div>
+    <div className="container">
+      <h1 className="text-center text-capitalize mt-5 aboutUs-title-color">
+        ¿Quiénes somos?
+      </h1>
+      <div className="d-lg-flex align-items-center justify-content-evenly">
+        <Link to="/">
+          <img src={logo} alt="GOutside" />
+        </Link>
+        <p className="text-sm-start lh-lg aboutUs-title-color">
+          {" "}
+          Lorem Ipsum has been the industry's standard dummy text ever since the
+          1500s, when an unknown printer took a galley of type and scrambled it
+          to make a type specimen book. It has survived not only five centuries,
+          but also the leap into electronic typesetting, remaining essentially
+          unchanged. It was popularised in the 1960s with the release of
+          Letraset sheets containing Lorem Ipsum passages, and more recently
+          with desktop publishing software like Aldus PageMaker including
+          versions of Lorem Ipsum.
+        </p>
+      </div>
 
-          <div className="col-4 align-items-center justify-content-center ">
-            <input
-              className="form-control"
-              type="text"
-              onChange={(e) => {
-                setSurname(e.target.value);
-              }}
-            />
-          </div>
-        </div>
-
-        <div className="row d-flex justify-content-center">
-          <div className="col-4 align-items-center justify-content-center ">
-            <input
-              placeholder="Telefono"
-              className="form-control"
-              type="tel"
-              onChange={(e) => {
-                setPhone(e.target.value);
-              }}
-            />
-          </div>
-        </div>
-
-        <div className="row justify-content-center ">
-          <div className="input-group align-items-center justify-content-center mb-5">
-            <textarea
-              className="form-control create-description"
-              aria-label="With textarea"
-              placeholder="Cuentanos tú consulta, queremos escucharte"
-              onChange={(e) => {
-                setContactRequest(e.target.value);
-              }}
-            ></textarea>
-          </div>
-        </div>
-
-        <div className="position-absolute bottom-0 end-0 d-flex mb-3 me-5 create-button">
-          <button className="btn btn-success" onClick={() => contact_us()}>
+      <h2 className="text-center text-capitalize aboutUs-title-color">
+        Contacta con nosotros
+      </h2>
+      <form className="d-flex flex-column gap-4">
+        <input
+          placeholder="Nombre"
+          className="form-control"
+          type="text"
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+        <input
+          className="form-control"
+          placeholder="Correo electrónico"
+          type="email"
+          onChange={(e) => {
+            setSurname(e.target.value);
+          }}
+        />
+        <input
+          placeholder="Telefono"
+          className="form-control"
+          type="tel"
+          onChange={(e) => {
+            setPhone(e.target.value);
+          }}
+        />
+        <textarea
+          className="form-control"
+          aria-label="With textarea"
+          placeholder="Cuentanos tú consulta, queremos escucharte"
+          onChange={(e) => {
+            setContactRequest(e.target.value);
+          }}
+        ></textarea>
+        <div className="d-flex justify-content-end gap-2 mb-3">
+          <button className="btn btn-validacion" onClick={() => contactUs()}>
             Quiero más información
           </button>
-          <br />
-          <button className="btn btn-danger">Borrar</button>
+          <Link to={-1}>
+            <button className="btn btn-cancelar">Volver atrás</button>
+          </Link>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

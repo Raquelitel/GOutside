@@ -3,7 +3,6 @@ import { Context } from "../../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
-import "./signup.css";
 import "../../component/mensaje/mensaje.css";
 
 const Signup = () => {
@@ -52,9 +51,9 @@ const Signup = () => {
   };
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">
-      <div className="">
+      <Link to="/" className="">
         <img src={logo} alt="GOutside" />
-      </div>
+      </Link>
       <form className="d-flex flex-column col-md-5" onSubmit={handleSubmit}>
         <h1 className="text-capitalize text-center">Crear cuenta</h1>
         {mensaje && <Mensaje tipo="mensaje-error">{mensaje}</Mensaje>}
@@ -76,14 +75,14 @@ const Signup = () => {
           type="password"
           onChange={(e) => setPassword2(e.target.value)}
         />
-        <button className="btn text-uppercase mb-1 shadow signup-btn">
+        <button className="btn text-uppercase mb-1 shadow btn-validacion">
           crear usuario
         </button>
         <div className="d-flex justify-content-around">
           <p>¿Ya tienes cuenta?</p>
           <Link
             to="/login"
-            className="text-decoration-none text-capitalize signup-link"
+            className="text-decoration-none text-capitalize color-link"
           >
             Inicia sesión
           </Link>

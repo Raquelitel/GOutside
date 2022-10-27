@@ -72,7 +72,7 @@ const EditProfile = () => {
             />
             <form className="m-2" onSubmit={uploadImage}>
               <input type="file" onChange={(e) => setFiles(e.target.files)} />
-              <button className="btn editProfile-btn-primary">
+              <button className="btn mt-2 editProfile-btn-primary">
                 cambiar foto
               </button>
             </form>

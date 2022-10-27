@@ -70,7 +70,7 @@ function CreateCompetition() {
       <div className="row d-flex create-title">
         <h1 className="text-center">Crea tu competición</h1>
       </div>
-      {/* <PosterCompetition /> */}
+      <PosterCompetition />
       <div className="row justify-content-center mt-5 mb-5">
         <div className="col-4 align-items-center justify-content-center">
           <input

@@ -39,7 +39,7 @@ const PosterCompetition = () => {
       <form className="m-2" onSubmit={uploadPosterImage}>
         <input type="file" onChange={(e) => setFiles(e.target.files)} />
         <button className="btn postercompetition-btn-primary">
-          cambiar cartel
+          añadir cartel
         </button>
       </form>
     </div>

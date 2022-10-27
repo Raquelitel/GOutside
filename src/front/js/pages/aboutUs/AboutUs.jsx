@@ -1,19 +1,48 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../img/logo-GOutside.png";
-
+import Mensaje from "../../component/mensaje/Mensaje.jsx";
 
 function AboutUs() {
   const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [contactRequest, setContactRequest] = useState("");
+  const [mensaje, setMensaje] = useState("");
+  const [tipoMensaje, setTipoMensaje] = useState("");
+
+  const sendContact = (e) => {
+    e.preventDefault();
+    console.log(name);
+    console.log(email);
+    console.log(phone);
+    console.log(contactRequest);
+
+    if (name === "" || email === "" || phone === "" || contactRequest === "") {
+      setMensaje("Todos los campos son obligatorios");
+      setTipoMensaje("mensaje-error");
+      setTimeout(() => {
+        setMensaje("");
+        setTipoMensaje("");
+      }, 2500);
+    } else {
+      setMensaje(
+        "Muchas gracias por contactar con el equipo de GOutside. En breve, un agente se pondrá en contacto con usted"
+      );
+      setTipoMensaje("mensaje-correcto");
+      setTimeout(() => {
+        setMensaje("");
+        setTipoMensaje("");
+      }, 5000);
+      contactUs();
+    }
+  };
 
   const contactUs = () => {
     const url = process.env.BACKEND_URL + "/api/about-us";
     const body = {
       name: name,
-      surname: surname,
+      email: email,
       phone: phone,
       contact_request: contactRequest,
     };
@@ -47,6 +76,8 @@ function AboutUs() {
         </p>
       </div>
 
+      {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
+
       <h2 className="text-center text-capitalize aboutUs-title-color">
         Contacta con nosotros
       </h2>
@@ -64,7 +95,7 @@ function AboutUs() {
           placeholder="Correo electrónico"
           type="email"
           onChange={(e) => {
-            setSurname(e.target.value);
+            setEmail(e.target.value);
           }}
         />
         <input
@@ -84,7 +115,10 @@ function AboutUs() {
           }}
         ></textarea>
         <div className="d-flex justify-content-end gap-2 mb-3">
-          <button className="btn btn-validacion" onClick={() => contactUs()}>
+          <button
+            className="btn btn-validacion"
+            onClick={(e) => sendContact(e)}
+          >
             Quiero más información
           </button>
           <Link to={-1}>

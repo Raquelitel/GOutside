@@ -285,14 +285,16 @@ def handle_upload():
 @jwt_required()
 def handle_poster_upload():
     user_id = get_jwt_identity()
+    competition = Competition.query.get(competition_id)
     if 'poster_image' in request.files:
         result = cloudinary.uploader.upload(request.files['poster_image'])
-        user_update = User.query.filter_by(id=user_id).first()
-        user_update.poster_image_url = result['secure_url']
+        competition_update = Competition.query.filter_by(
+            id=competition_id).first()
+        competition_update.poster_image_url = result['secure_url']
 
-        db.session.add(user_update)
+        db.session.add(user_competition)
         db.session.commit()
-        return jsonify(user_update.serialize()), 200
+        return jsonify(competition_update.serialize()), 200
     return jsonify({"message": "error"}), 400
 
 

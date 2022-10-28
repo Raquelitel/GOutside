@@ -25,7 +25,7 @@ const MyAllCompetitions = () => {
 
   return (
     <>
-      {myCompetitions.map((param) => {
+      {myCompetitions && myCompetitions.map((param) => {
         return (
           <div key={param.id} className="card">
             <div className="card-body">

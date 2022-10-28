@@ -1,5 +1,5 @@
+import MyAllCompetitions from "../myAllCompetition/MyAllCompetition.jsx";
 import React from "react";
-import { Link } from "react-router-dom";
 import Card from "./cards/Card.jsx";
 import "./HomeUser.css";
 
@@ -17,13 +17,14 @@ const HomeUser = () => {
               <h2 className="mt-3">Si te atreves con este ejercicio...</h2>
               <p>Visita nuestra <a href="/Video-library">Biblioteca</a></p>
                 <div className="ratio ratio-4x3 home-user-video-container">
-                  <iframe className="p-5" src="https://www.youtube.com/embed/1ZXobu7JvvE" title="YouTube video player" frameborder="0" allowfullscreen/>
+                  <iframe className="p-5" src="https://www.youtube.com/embed/1ZXobu7JvvE" title="YouTube video player" frameBorder="0" allowFullScreen/>
                 </div>
             </div>
           </div>
           <div className="carousel-item">
             <div className="card align-items-center justify-content-md-center text-center">
               <h2>MIS COMPETICIONES</h2>
+              <MyAllCompetitions />
             </div>
           </div>
           <div className="carousel-item">
@@ -35,7 +36,7 @@ const HomeUser = () => {
           <div className="carousel-item">
             <div className="card align-items-center justify-content-md-center text-center">
               <h2>ECHA UN VISTAZO A LAS PRÓXIMAS COMPETICIONES</h2>
-              <div className="mb-5"><Card /></div>
+              <div className="align-items-center justify-content-md-center text-center mb-5"><Card /></div>
             </div>
           </div>
         </div>

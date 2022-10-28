@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Rol, Competition, About_us
+from api.models import db, User, Rol, Competition, About_us, Competition_user
 from api.utils import generate_sitemap, APIException
 from datetime import timedelta
 from flask_jwt_extended import (
@@ -53,6 +53,9 @@ def signup():
         )
         db.session.add(new_user)
         db.session.commit()
+
+        print("##################### usuario id", new_user.id)
+
         access_token = create_access_token(
             identity=new_user.id, expires_delta=timedelta(days=20))
         return jsonify({"logged": True, "token": access_token, "message": "Usuario creado correctamente", "rol": str(new_user.rol), "competitor": new_user.serialize()}), 200
@@ -150,7 +153,7 @@ def refresh_users_token():
 
 
 @api.route('/competitions', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def get_all_competitions():
     all_competitions = Competition.query.order_by(Competition.id.asc()).all()
     competition_serializer = list(
@@ -163,7 +166,7 @@ def get_all_competitions():
 
 
 @api.route('/competition/<int:id>', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def get_one_competition(id):
     competition = Competition.query.get(id)
     competition_serializer = competition.serialize()
@@ -175,7 +178,7 @@ def get_one_competition(id):
 
 
 @api.route('/create-competition', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 def create_competition():
     data = request.get_json()
     category = list(data["category"])
@@ -190,8 +193,10 @@ def create_competition():
         stage=data["stage"],
         # competition_competitor=data["competition_competitor"]
     )
+
     db.session.add(competition)
     db.session.commit()
+
     response_body = {
         "result": "Competición añadida correctamente"
     }
@@ -199,7 +204,7 @@ def create_competition():
 
 
 @api.route('/create-competition/<int:competition_id>', methods=['PUT'])
-# @jwt_required()
+@jwt_required()
 def modify_competition(competition_id):
     data = request.get_json()
     competition = Competition.query.get(competition_id)
@@ -231,12 +236,30 @@ def my_competition():
     competitor = User.query.get(competitor_id)
     my_competitions = Competition.query.filter(
         Competition.competition_competitor.any(User.id == competitor_id)).all()
-    print(competitor)
     if len(my_competitions) > 0:
         my_competition_serializer = list(
             map(lambda param: param.serialize(), my_competitions))
-        return jsonify({"data": my_competition_serializer}), 200
+        return jsonify(my_competition_serializer), 200
     return jsonify({"message": "Todavía no se ha inscrito en ninguna competición"}), 204
+
+
+@api.route('/my-competitions', methods=['POST'])
+@jwt_required()
+def add_my_competition():
+    competitor_id = get_jwt_identity()
+    data = request.get_json()
+    my_competition = Competition_user(
+        competitor_id=competitor_id,
+        competition_id=data["competition_id"]
+    )
+
+    db.session.add(my_competition)
+    db.session.commit()
+
+    response_body = {
+        "result": "Competición añadida correctamente a mis competiciones"
+    }
+    return jsonify(response_body), 200
 
 # ------------  COMPETITORS (Tabla USERS) --------------------------
 
@@ -305,7 +328,7 @@ def contactForm():
     data = request.get_json()
     aboutUs = About_us(
         name=data["name"],
-        surname=data["surname"],
+        email=data["email"],
         phone=data["phone"],
         contact_request=data["contact_request"],
 

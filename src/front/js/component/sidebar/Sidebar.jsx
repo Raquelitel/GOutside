@@ -41,7 +41,7 @@ function Sidebar() {
 
             <li>
               <Link
-                to="/my-all-competition"
+                to="/my-competitions"
                 className="nav-link text-capitalize sidebar-text"
               >
                 <i className="fs-6 bi-stopwatch"></i>{" "}

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../../store/appContext";
 import MapView from "../../component/MapView/MapView.jsx";
 import { Link } from "react-router-dom";
 import "./allCompetition.css";
@@ -6,7 +7,7 @@ import logo from "../../../img/logo-GOutside.png";
 
 const AllCompetition = () => {
   const [competitions, setCompetitions] = useState([]);
-  const { store } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
   useEffect(() => {
     getCardsInfo();
@@ -16,7 +17,10 @@ const AllCompetition = () => {
     const url = process.env.BACKEND_URL + "/api/competitions";
 
     const options = {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + actions.getTokenLS(),
+      },
       method: "GET",
     };
     fetch(url, options)
@@ -30,12 +34,14 @@ const AllCompetition = () => {
     const url = process.env.BACKEND_URL + "/api/my-competitions";
 
     const body = {
-      competitor_id,
       competition_id,
     };
 
     const options = {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + actions.getTokenLS(),
+      },
       method: "POST",
       body: JSON.stringify(body),
     };
@@ -43,7 +49,6 @@ const AllCompetition = () => {
   };
 
   return (
-
     <>
       {competitions.map((competition) => {
         return (
@@ -64,12 +69,11 @@ const AllCompetition = () => {
               >
                 Participar
               </button>
-
             </div>
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 

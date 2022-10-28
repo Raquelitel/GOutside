@@ -113,16 +113,19 @@ class Competition(db.Model):
         'Competition_user', backref='competition', lazy=True)
 
     def serialize(self):
+        category = []
+        for cat in self.category:
+            category.append(cat.name)
         return {
             "id": self.id,
             "competition_name": self.competition_name,
             "qualifier_date": self.qualifier_date,
             "location": self.location,
-            "category": str(self.category),
+            "category": list(map(lambda param: param, category)),
             "requirements": self.requirements,
             "description": self.description,
             "create_at": self.create_at,
-            "stage": str(self.stage)
+            "stage": self.stage.name
         }
 
 

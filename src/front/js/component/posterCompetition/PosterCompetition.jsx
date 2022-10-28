@@ -24,7 +24,7 @@ const PosterCompetition = () => {
         options
       );
       const data = await resp.json();
-      console.log(data);
+      actions.setUrlImagen(data.url);
     } catch (error) {
       console.log("Error loading message from backend", error);
     }

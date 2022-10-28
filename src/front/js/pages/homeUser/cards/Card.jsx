@@ -7,7 +7,7 @@ const Card = () => {
   return (
     <div className="card cards">
       <div className="cards-details">
-        <img src={logo} alt="/" />
+        <img className="cards-img" src={logo} alt="/" />
       </div>
       <Link to="/competitions">
       <button className="cards-button">Más info aquí</button>

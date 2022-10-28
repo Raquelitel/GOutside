@@ -10,7 +10,7 @@
 .cards {
     height: 30vw;
     border-radius: 20px;
-    background: var(--color-light-blue);
+    background: var(--color-dark-blue);
     padding: 1.8rem;
     border: 2px solid var(--color-dark-grey);
     transition: 0.5s ease-out;
@@ -63,7 +63,7 @@
     opacity: 1;
 }
 
-img{
+.cards-img{
     height: 20vw;
     width: 20vw;
 }

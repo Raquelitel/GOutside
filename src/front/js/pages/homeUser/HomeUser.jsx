@@ -1,5 +1,6 @@
-import MyAllCompetitions from "../myAllCompetition/MyAllCompetition.jsx";
 import React from "react";
+import { Link } from "react-router-dom";
+import MyAllCompetitions from "../myAllCompetition/MyAllCompetition.jsx";
 import Card from "./cards/Card.jsx";
 import "./HomeUser.css";
 
@@ -13,29 +14,34 @@ const HomeUser = () => {
       >
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <div className="card align-items-center justify-content-md-center text-center library">
-              <h2 className="mt-3">Si te atreves con este ejercicio...</h2>
-              <p>Visita nuestra <a href="/Video-library">Biblioteca</a></p>
-                <div className="ratio ratio-4x3 home-user-video-container">
-                  <iframe className="p-5" src="https://www.youtube.com/embed/1ZXobu7JvvE" title="YouTube video player" frameBorder="0" allowFullScreen/>
-                </div>
+            <div className="card align-items-center justify-content-md-center text-center home-user-card">
+              <div className="container-fluid align-items-center d-flex justify-content-between">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <h2 className="m-3">¿Te atreves con más ejercicios?</h2><h2>Visita nuestra <Link to="/Video-library">Biblioteca</Link></h2>
+                <span className="carousel-control-next-icon " aria-hidden="true"></span>
+              </div>
+              <div className="ratio ratio-4x3 home-user-video-container">
+                <iframe className="p-5" src="https://www.youtube.com/embed/1ZXobu7JvvE" title="YouTube video player" frameBorder="0" allowFullScreen/>
+              </div>
             </div>
           </div>
           <div className="carousel-item">
-            <div className="card align-items-center justify-content-md-center text-center">
-              <h2>MIS COMPETICIONES</h2>
+            <div className="card align-items-center justify-content-md-center text-center home-user-card">
+              <div className="container-fluid align-items-center d-flex justify-content-between">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <h2 className="m-3">MIS COMPETICIONES</h2>
+                <span className="carousel-control-next-icon " aria-hidden="true"></span>
+              </div>
               <MyAllCompetitions />
             </div>
           </div>
           <div className="carousel-item">
-            <div className="card align-items-center justify-content-md-center text-center">
-              <p>¿Todavía no te has apuntado a ninguna competición?</p>
-              <h2>Descubre tu próximo reto... ¡APÚNTATE!</h2>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <div className="card align-items-center justify-content-md-center text-center">
-              <h2>ECHA UN VISTAZO A LAS PRÓXIMAS COMPETICIONES</h2>
+            <div className="card align-items-center justify-content-md-center text-center home-user-card">
+              <div className="container-fluid align-items-center d-flex justify-content-between">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <h2 className="m-3">Descubre tu próximo reto... ¡APÚNTATE!</h2>
+                <span className="carousel-control-next-icon " aria-hidden="true"></span>
+              </div>
               <div className="align-items-center justify-content-md-center text-center mb-5"><Card /></div>
             </div>
           </div>
@@ -46,7 +52,7 @@ const HomeUser = () => {
           data-bs-target="#carouselExampleFade"
           data-bs-slide="prev"
         >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="carousel-control-prev-icon visually-hidden" aria-hidden="true"></span>
           <span className="visually-hidden">Previous</span>
         </button>
         <button
@@ -55,7 +61,7 @@ const HomeUser = () => {
           data-bs-target="#carouselExampleFade"
           data-bs-slide="next"
         >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="carousel-control-next-icon visually-hidden" aria-hidden="true"></span>
           <span className="visually-hidden">Next</span>
         </button>
       </div>

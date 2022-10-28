@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import Select from "react-select";
 import MapView from "../../component/MapView/MapView.jsx";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
+import { Context } from "../../store/appContext.js";
 
 const categories = [
   { label: "RX Femenino", value: "rx_femenino" },
@@ -25,6 +27,7 @@ function CreateCompetition() {
   // if (store.tokenLS === user) {
   //   return <Navigate to="/" replace />;
   // }
+  const {store, actions} = useContext(Context)
 
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -45,6 +48,7 @@ function CreateCompetition() {
       requirements: requirements,
       description: description,
       stage: stage,
+      poster_image_url: store.posterImagenUrl
     };
     const options = {
       headers: { "Content-Type": "application/json" },
@@ -52,6 +56,10 @@ function CreateCompetition() {
       body: JSON.stringify(body),
     };
     fetch(url, options);
+
+    // actions.deleteUrlImg()
+
+
   };
   // const [inputs, setInputs] = useState("");
 

@@ -32,7 +32,7 @@ const MyAllCompetitions = () => {
     <>
       {myCompetitions.map((myCompetition) => {
         return (
-          <div key={myCompetition.id} className="card">
+          <div key={myCompetition.id} className=" col-md-6 col-lg-4">
             <div className="card-body">
               <h4 className="card-title">{myCompetition.competition_name}</h4>
               <h5 className="card-text">{myCompetition.qualifier_date}</h5>

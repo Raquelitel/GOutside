@@ -11,7 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       userGender: null,
       userPhone: null,
       userProfileImagen: null,
-      posterImagen: null,
+      posterImagenUrl: null,
       competitions: [],
     },
     actions: {
@@ -167,6 +167,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       getTokenLS: () => {
         return localStorage.getItem("token");
+      },
+      setUrlImagen: (url) => {
+        setStore({ posterImagenUrl: url });
       },
     },
   };

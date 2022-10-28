@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../../store/appContext";
 
 const MyAllCompetitions = () => {
   const [myCompetitions, setMyCompetitions] = useState([]);
+  const { store, actions } = useContext(Context);
 
   useEffect(() => {
     getMyCompetitions();
@@ -12,7 +14,10 @@ const MyAllCompetitions = () => {
     const url = process.env.BACKEND_URL + "/api/my-competitions";
 
     const options = {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + actions.getTokenLS(),
+      },
       method: "GET",
     };
     fetch(url, options)

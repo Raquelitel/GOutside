@@ -15,9 +15,10 @@ const ProtectedRoute = ({ children }) => {
       <Navbar />
       <div className="row">
         <Sidebar />
-
-        <main className="col-10 mx-auto">
-          <Outlet />
+        <main className="container col-10 mx-auto">
+          <div className="row">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>

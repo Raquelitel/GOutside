@@ -13,10 +13,6 @@ function AboutUs() {
 
   const sendContact = (e) => {
     e.preventDefault();
-    console.log(name);
-    console.log(email);
-    console.log(phone);
-    console.log(contactRequest);
 
     if (name === "" || email === "" || phone === "" || contactRequest === "") {
       setMensaje("Todos los campos son obligatorios");

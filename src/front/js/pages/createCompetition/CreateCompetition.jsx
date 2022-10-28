@@ -36,6 +36,27 @@ function CreateCompetition() {
   const [requirements, setRequirements] = useState("");
   const [description, setDescription] = useState("");
   const [stage, setStage] = useState("");
+  const [mensaje, setMensaje] = useState("");
+  const [tipoMensaje, setTipoMensaje] = useState("");
+
+  if (name === "" || date === "" || location === "" || category === [] || requirements === "" || description === "" || stage === "" ) {
+    setMensaje("Todos los campos son obligatorios");
+    setTipoMensaje("mensaje-error");
+    setTimeout(() => {
+      setMensaje("");
+      setTipoMensaje("");
+    }, 2500);
+  } else {
+    setMensaje(
+      "Muchas gracias por contactar con el equipo de GOutside. En breve, un agente se pondrá en contacto con usted"
+    );
+    setTipoMensaje("mensaje-correcto");
+    setTimeout(() => {
+      setMensaje("");
+      setTipoMensaje("");
+    }, 5000);
+    contactUs();
+  }
 
   const create_competition = () => {
     const url = process.env.BACKEND_URL + "/api/create-competition";

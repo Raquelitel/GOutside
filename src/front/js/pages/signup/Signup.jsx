@@ -23,7 +23,7 @@ const Signup = () => {
     );
 
     let regexPassword = new RegExp(
-      "(?=.*d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])S{8,16}$"
+      "^(?=.*d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])S{8,16}$"
     );
 
     if ([email, password1, password2].includes("")) {
@@ -47,12 +47,10 @@ const Signup = () => {
         setMensaje("");
       }, 2500);
       return;
-    } else if (!regexPassword.test(password1)) {
-      console.log(password1);
+    } else if (regexPassword.test(password1)) {
       setMensaje(
         "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
       );
-
       setTimeout(() => {
         setMensaje("");
       }, 5000);

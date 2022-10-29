@@ -78,7 +78,7 @@ function AboutUs() {
           </p>
           <p className="text-sm-start lh-lg aboutUs-title-color">
             {" "}
-            Queremos crecer contigo.
+            Unete a nuestra comunidad, crezcamos juntos.
           </p>
         </div>
       </div>
@@ -116,7 +116,7 @@ function AboutUs() {
         <textarea
           className="form-control"
           aria-label="With textarea"
-          placeholder="Cuentanos tú consulta, queremos escucharte"
+          placeholder="Queremos escucharte, hablemos y compartamos ideas"
           onChange={(e) => {
             setContactRequest(e.target.value);
           }}

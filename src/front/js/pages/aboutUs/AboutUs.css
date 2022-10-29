@@ -1,3 +1,7 @@
 .aboutUs-title-color {
   color: var(--color-light-blue);
 }
+
+textarea {
+  resize: none;
+}

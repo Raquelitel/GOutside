@@ -56,24 +56,31 @@ function AboutUs() {
 
   return (
     <div className="container">
-      <h1 className="text-center text-capitalize mt-5 aboutUs-title-color">
+      <h1 className="text-center text-capitalize mt-3 aboutUs-title-color">
         ¿Quiénes somos?
       </h1>
       <div className="d-lg-flex align-items-center justify-content-evenly">
         <Link to="/">
           <img src={logo} alt="GOutside" />
         </Link>
-        <p className="text-sm-start lh-lg aboutUs-title-color">
-          {" "}
-          Lorem Ipsum has been the industry's standard dummy text ever since the
-          1500s, when an unknown printer took a galley of type and scrambled it
-          to make a type specimen book. It has survived not only five centuries,
-          but also the leap into electronic typesetting, remaining essentially
-          unchanged. It was popularised in the 1960s with the release of
-          Letraset sheets containing Lorem Ipsum passages, and more recently
-          with desktop publishing software like Aldus PageMaker including
-          versions of Lorem Ipsum.
-        </p>
+        <div className="d-lg-flex-column align-items-center justify-content-evenly ms-5">
+          <p className="text-sm-start lh-lg aboutUs-title-color">
+            {" "}
+            Hemos venido a revolucionar las competiciones de entrenamiento
+            funcional.
+          </p>
+          <p className="text-sm-start lh-lg aboutUs-title-color">
+            {" "}
+            Hasta ahora las pruebas deportivas dependían del boca a boca en los
+            propios box, desde ahora podrás promocionar tus eventos de nuestra
+            mano accediendo de forma inmediata a un mercado de más de 100.000
+            usuarios.
+          </p>
+          <p className="text-sm-start lh-lg aboutUs-title-color">
+            {" "}
+            Queremos crecer contigo.
+          </p>
+        </div>
       </div>
 
       {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}

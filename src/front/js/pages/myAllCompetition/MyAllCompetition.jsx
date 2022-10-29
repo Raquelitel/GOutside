@@ -30,21 +30,38 @@ const MyAllCompetitions = () => {
 
   return (
     <>
-      {myCompetitions.map((myCompetition) => {
-        return (
-          <div key={myCompetition.id} className=" col-md-6 col-lg-4">
-            <div className="card-body">
-              <h4 className="card-title">{myCompetition.competition_name}</h4>
-              <h5 className="card-text">{myCompetition.qualifier_date}</h5>
-              <h5 className="card-text">{myCompetition.category}</h5>
-              <h5 className="card-text">{myCompetition.stage}</h5>
-              <Link to={`/competition/${myCompetition.id}`}>
-                <button className="home-button2">+INFO</button>
-              </Link>
+      <div className="d-flex justify-content-center">
+        {myCompetitions.map((myCompetition) => {
+          return (
+            <div key={myCompetition.id} className=" col-md-6 col-lg-4">
+              <div className="card m-2">
+                <img
+                  src={
+                    !myCompetition.poster_image_url
+                      ? logo
+                      : myCompetition.poster_image_url
+                  }
+                  className="competition-img-card"
+                  alt="cartel competicion"
+                />
+                <div className="card-body">
+                  <h4 className="card-title">
+                    {myCompetition.competition_name}
+                  </h4>
+                  <h5 className="card-text">{myCompetition.qualifier_date}</h5>
+                  <h5 className="card-text">{myCompetition.category}</h5>
+                  <h5 className="card-text">{myCompetition.stage}</h5>
+                  <div className="d-flex justify-content-center gap-3">
+                    <Link to={`/competition/${myCompetition.id}`}>
+                      <button className="home-button2">+INFO</button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </>
   );
 };

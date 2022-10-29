@@ -47,7 +47,10 @@ function CreateCompetition() {
       stage: stage,
     };
     const options = {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + actions.getTokenLS(),
+      },
       method: "POST",
       body: JSON.stringify(body),
     };

@@ -113,14 +113,14 @@ function AboutUs() {
             setPhone(e.target.value);
           }}
         />
-        <textarea
+        <input
           className="form-control"
           aria-label="With textarea"
           placeholder="Queremos escucharte, hablemos y compartamos ideas"
           onChange={(e) => {
             setContactRequest(e.target.value);
           }}
-        ></textarea>
+        ></input>
         <div className="d-flex justify-content-end gap-2 mb-3">
           <button
             className="btn btn-validacion"

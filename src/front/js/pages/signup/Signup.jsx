@@ -3,6 +3,7 @@ import { Context } from "../../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
+import "./signup.css";
 import "../../component/mensaje/mensaje.css";
 
 const Signup = () => {
@@ -52,7 +53,7 @@ const Signup = () => {
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">
       <Link to="/" className="">
-        <img src={logo} alt="GOutside" />
+        <img className="signup-logo-size" src={logo} alt="GOutside" />
       </Link>
       <form className="d-flex flex-column col-md-5" onSubmit={handleSubmit}>
         <h1 className="text-capitalize text-center">Crear cuenta</h1>

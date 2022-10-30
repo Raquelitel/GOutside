@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       userProfileImagen: null,
       posterImagenUrl: null,
       competitions: [],
+      signupError: false,
     },
     actions: {
       signup: async (email, password1, password2) => {
@@ -29,6 +30,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
           });
           const data = await resp.json();
+          if (resp.status === 400) {
+            setStore({ signupError: true });
+            return;
+          }
           if (resp.status === 200) {
             localStorage.setItem("token", data.token);
             setStore({ tokenLS: data.token, userRol: data.rol });
@@ -173,6 +178,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       deleteUrlImg: () => {
         setStore({ posterImagenUrl: null });
+      },
+      deleteSignupError: () => {
+        setStore({ signupError: false });
       },
     },
   };

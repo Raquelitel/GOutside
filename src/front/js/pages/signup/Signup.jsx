@@ -26,6 +26,14 @@ const Signup = () => {
       "^(?=.*d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])S{8,16}$"
     );
 
+    if (store.signupError === true) {
+      setMensaje("El correo electrónico ya dispone de cuenta");
+      setTimeout(() => {
+        setMensaje("");
+        actions.deleteSignupError();
+      }, 2500);
+      return;
+    }
     if ([email, password1, password2].includes("")) {
       setMensaje("Todos los campos son obligatorios");
 

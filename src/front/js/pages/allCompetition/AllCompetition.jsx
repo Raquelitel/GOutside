@@ -36,7 +36,7 @@ const AllCompetition = () => {
       });
   };
 
-  const addCompetitorToCompetition = (competitor_id, competition_id) => {
+  const addCompetitorToCompetition = (competition_id) => {
     const url = process.env.BACKEND_URL + "/api/my-competitions";
 
     const body = {
@@ -52,6 +52,7 @@ const AllCompetition = () => {
       body: JSON.stringify(body),
     };
     const resp = fetch(url, options).then((response) => response.json());
+    console.log(resp);
     if (resp.status === 200) {
       setMensaje(
         "¡FELICIDADES! Tu inscripción se ha realizado con éxito. Por favor, acude a tu correo electrónico para finalizar el proceso"

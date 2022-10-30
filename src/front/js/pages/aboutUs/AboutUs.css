@@ -5,3 +5,7 @@
 textarea {
   resize: both;
 }
+
+.login-logo-size {
+  width: 70vh;
+}

@@ -13,11 +13,6 @@ function AboutUs() {
 
   const sendContact = (e) => {
     e.preventDefault();
-    console.log(name);
-    console.log(email);
-    console.log(phone);
-    console.log(contactRequest);
-
     if (name === "" || email === "" || phone === "" || contactRequest === "") {
       setMensaje("Todos los campos son obligatorios");
       setTipoMensaje("mensaje-error");
@@ -61,7 +56,7 @@ function AboutUs() {
       </h1>
       <div className="d-lg-flex align-items-center justify-content-evenly">
         <Link to="/">
-          <img src={logo} alt="GOutside" />
+          <img src={logo} className="login-logo-size" alt="GOutside" />
         </Link>
         <div className="d-lg-flex-column align-items-center justify-content-evenly ms-5">
           <p className="text-sm-start lh-lg aboutUs-title-color">

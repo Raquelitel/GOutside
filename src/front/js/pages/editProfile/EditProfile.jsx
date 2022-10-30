@@ -52,7 +52,7 @@ const EditProfile = () => {
 
     setTimeout(() => {
       setMensaje("");
-      navigate("/home/user");
+      navigate(-1);
     }, 2500);
   };
 

@@ -197,6 +197,15 @@ const InfoCompetition = () => {
               Participar
             </button>
           </div>
+          <div>
+            {store.userRol === "Rol.administration" && (
+              <Link to="/create-competition">
+                <button className="btn btn-sucessfull">
+                  Editar Competición
+                </button>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </>

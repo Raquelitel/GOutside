@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useContext } from "react";
+import { Navigate } from "react-router-dom";
 import Select from "react-select";
 import MapView from "../../component/MapView/MapView.jsx";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 import { Context } from "../../store/appContext.js";
+import Mensaje from "../../component/mensaje/Mensaje.jsx";
+
 
 const categories = [
   { label: "RX Femenino", value: "rx_femenino" },
@@ -22,12 +25,12 @@ const stages = [
 ];
 
 function CreateCompetition() {
-  //CAMBIAR ESTO LO PRIMERO
+  
+  const {store, actions} = useContext(Context)
 
-  // if (store.tokenLS === user) {
+  // if (store.userRol != "Rol.administration") {
   //   return <Navigate to="/" replace />;
   // }
-  const {store, actions} = useContext(Context)
 
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -39,60 +42,55 @@ function CreateCompetition() {
   const [mensaje, setMensaje] = useState("");
   const [tipoMensaje, setTipoMensaje] = useState("");
 
-  if (name === "" || date === "" || location === "" || category === [] || requirements === "" || description === "" || stage === "" ) {
-    setMensaje("Todos los campos son obligatorios");
-    setTipoMensaje("mensaje-error");
-    setTimeout(() => {
-      setMensaje("");
-      setTipoMensaje("");
-    }, 2500);
-  } else {
-    setMensaje(
-      "Muchas gracias por contactar con el equipo de GOutside. En breve, un agente se pondrá en contacto con usted"
-    );
-    setTipoMensaje("mensaje-correcto");
-    setTimeout(() => {
-      setMensaje("");
-      setTipoMensaje("");
-    }, 5000);
-    contactUs();
+  const validation = () => {
+    if (name === "" || date === "" || category === [] || requirements === "" || description === "" || stage === "" ) {
+      return false
+    } else {
+      return true
+    }
   }
 
   const create_competition = () => {
     const url = process.env.BACKEND_URL + "/api/create-competition";
 
-    const body = {
-      competition_name: name,
-      qualifier_date: date,
-      location: location,
-      category: category.map((cat) => cat.value),
-      requirements: requirements,
-      description: description,
-      stage: stage,
-      poster_image_url: store.posterImagenUrl
-    };
-    const options = {
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-      body: JSON.stringify(body),
-    };
-    fetch(url, options);
-
+    if (validation()){
+      const body = {
+        competition_name: name,
+        qualifier_date: date,
+        location: location,
+        category: category.map((cat) => cat.value),
+        requirements: requirements,
+        description: description,
+        stage: stage,
+        poster_image_url: store.posterImagenUrl
+      };
+      const options = {
+        headers: { "Content-Type": "application/json", Authorization: "Bearer " + store.tokenLS },
+        method: "POST",
+        body: JSON.stringify(body),
+      };
+      fetch(url, options).then(() => {
+        setMensaje(
+          "Competición creada"
+        );
+        setTipoMensaje("mensaje-correcto");
+        setTimeout(() => {
+          setMensaje("");
+          setTipoMensaje("");
+        }, 5000);
+      }) 
+    }else{
+      setMensaje("Todos los campos son obligatorios");
+      setTipoMensaje("mensaje-error");
+      setTimeout(() => {
+        setMensaje("");
+        setTipoMensaje("");
+      }, 2500);
+    }
+    
     // actions.deleteUrlImg()
 
-
   };
-  // const [inputs, setInputs] = useState("");
-
-  // function clearForm() {
-  //   const inputsArray = Object.entries(inputs);
-
-  //   const clearInputsArray = inputsArray.map(([key]) => [key, ""]);
-
-  //   const inputsJson = Object.fromEntries(clearInputsArray);
-
-  //   setInputs(inputsJson);
-  // }
 
   return (
     <div className="container-lg-fluid text-center align-items-center justify-content-center m-auto p-5">
@@ -137,9 +135,9 @@ function CreateCompetition() {
       </div>
 
       <div className="row d-flex justify-content-center">
-        <div className="col-4 align-items-center justify-content-center">
+        {/* <div className="col-4 align-items-center justify-content-center">
           <MapView />
-        </div>
+        </div> */}
 
         <div className="col-6 align-items-center justify-content-center mb-5 ">
           <div className="create-category">
@@ -183,7 +181,7 @@ function CreateCompetition() {
           ></textarea>
         </div>
       </div>
-
+      {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
       <div className="row create-button">
         <div className="d-flex justify-content-around text-center align-items-center">
           <button

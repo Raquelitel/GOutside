@@ -89,6 +89,8 @@ const getState = ({ getStore, getActions, setStore }) => {
               userGender: data.gender,
               userPhone: data.phone,
               userProfileImagen: data.profile_image,
+              userRol: data.rol,
+              tokenLS: getActions().getTokenLS()
             });
             return true;
           } else {

@@ -1,10 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, Navigate } from "react-router-dom";
 import "./home.css";
 import logo from "../../../img/logo-GOutside.png";
 import X_transp from "../../../img/X_transp.png";
+import { Context } from "../../store/appContext";
 
 export const Home = () => {
+  const {store, actions} = useContext(Context)
+  if (store.userRol != "Rol.administration") {
+    return <Navigate to="/home/user" replace />;
+  }
   return (
     <div className="container-fluid text-center">
       <h1 className="d-flex mt-4 justify-content-center align-items-center home-title-size">

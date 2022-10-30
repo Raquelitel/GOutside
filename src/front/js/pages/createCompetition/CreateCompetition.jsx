@@ -27,7 +27,7 @@ function CreateCompetition() {
   // if (store.tokenLS === user) {
   //   return <Navigate to="/" replace />;
   // }
-  const {store, actions} = useContext(Context)
+  const { store, actions } = useContext(Context);
 
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -48,7 +48,7 @@ function CreateCompetition() {
       requirements: requirements,
       description: description,
       stage: stage,
-      poster_image_url: store.posterImagenUrl
+      poster_image_url: store.posterImagenUrl,
     };
     const options = {
       headers: {
@@ -61,8 +61,6 @@ function CreateCompetition() {
     fetch(url, options);
 
     // actions.deleteUrlImg()
-
-
   };
   // const [inputs, setInputs] = useState("");
 

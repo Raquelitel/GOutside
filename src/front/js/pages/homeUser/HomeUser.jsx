@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext.js";
+import AllCompetition from "../allCompetition/AllCompetition.jsx";
 import MyAllCompetitions from "../myAllCompetition/MyAllCompetition.jsx";
 import Card from "./cards/Card.jsx";
 import "./HomeUser.css";
@@ -41,6 +42,28 @@ const HomeUser = () => {
                   allowFullScreen
                 />
               </div>
+            </div>
+          </div>
+          <div className="carousel-item active">
+            <div className="card align-items-center justify-content-md-center text-center home-user-card">
+              <div className="container-fluid align-items-center d-flex justify-content-between">
+                <span
+                  className="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <h2 className="m-3">
+                  Echa un vistazo a las{" "}
+                  <Link to="/competitions">competiciones</Link>
+                </h2>
+                <span
+                  className="carousel-control-next-icon "
+                  aria-hidden="true"
+                ></span>
+              </div>
+              <div className="row d-flex flex-column p-5">
+                <AllCompetition />
+              </div>
+              
             </div>
           </div>
           {store.userRol != "Rol.administration" && (

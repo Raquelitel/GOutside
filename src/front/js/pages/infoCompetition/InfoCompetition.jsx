@@ -17,7 +17,10 @@ const InfoCompetition = () => {
     const url = process.env.BACKEND_URL + `/api/competition/${id}`;
 
     const options = {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + actions.getTokenLS(),
+      },
       method: "GET",
     };
     fetch(url, options)

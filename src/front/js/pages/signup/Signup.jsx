@@ -26,7 +26,7 @@ const Signup = () => {
       "^(?=.*d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])S{8,16}$"
     );
 
-    if (store.signupError === true) {
+    if (store.error === true) {
       setMensaje("El correo electrónico ya dispone de cuenta");
       setTimeout(() => {
         setMensaje("");

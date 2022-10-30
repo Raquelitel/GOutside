@@ -54,8 +54,6 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
 
-        print("##################### usuario id", new_user.id)
-
         access_token = create_access_token(
             identity=new_user.id, expires_delta=timedelta(days=20))
         return jsonify({"logged": True, "token": access_token, "message": "Usuario creado correctamente", "rol": str(new_user.rol), "competitor": new_user.serialize()}), 200

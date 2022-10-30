@@ -53,7 +53,7 @@ export const Navbar = () => {
           </div>
         </div>
 
-        <div className="dropdown-center">
+        <div className="dropdown">
           <button
             className="btn dropdown-toggle"
             type="button"

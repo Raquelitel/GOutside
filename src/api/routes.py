@@ -192,6 +192,7 @@ def create_competition():
         # create_at=data["create_at"],
         stage=data["stage"],
         # competition_competitor=data["competition_competitor"]
+        poster_image_url=data["poster_image_url"]
     )
 
     db.session.add(competition)

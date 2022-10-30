@@ -171,8 +171,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       setUrlImagen: (url) => {
         setStore({ posterImagenUrl: url });
       },
+      deleteUrlImg: () => {
+        setStore({ posterImagenUrl: null });
+      },
     },
   };
 };
+
+//
 
 export default getState;

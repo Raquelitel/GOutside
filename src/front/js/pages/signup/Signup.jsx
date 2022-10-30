@@ -30,7 +30,7 @@ const Signup = () => {
       setMensaje("El correo electrónico ya dispone de cuenta");
       setTimeout(() => {
         setMensaje("");
-        actions.deleteSignupError();
+        actions.changeError();
       }, 2500);
       return;
     }

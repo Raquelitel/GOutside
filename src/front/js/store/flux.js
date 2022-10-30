@@ -13,7 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       userProfileImagen: null,
       posterImagenUrl: null,
       competitions: [],
-      signupError: false,
+      error: false,
     },
     actions: {
       signup: async (email, password1, password2) => {
@@ -31,7 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           });
           const data = await resp.json();
           if (resp.status === 400) {
-            setStore({ signupError: true });
+            setStore({ error: true });
             return;
           }
           if (resp.status === 200) {
@@ -179,8 +179,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       deleteUrlImg: () => {
         setStore({ posterImagenUrl: null });
       },
-      deleteSignupError: () => {
-        setStore({ signupError: false });
+      changeError: () => {
+        setStore({ error: !error });
       },
     },
   };

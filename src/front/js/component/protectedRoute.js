@@ -5,12 +5,12 @@ import { Navbar } from "./navbar/navbar.jsx";
 import Sidebar from "./sidebar/Sidebar.jsx";
 
 const ProtectedRoute = ({ children }) => {
-  const { store, actions } = useContext(Context);
+  /*   const { store, actions } = useContext(Context);
   const token = actions.getTokenLS();
 
   if (token === null) {
     return <Navigate to="/login" replace />;
-  }
+  } */
   return (
     <div>
       <Navbar />

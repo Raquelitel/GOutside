@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
     return <Navigate to="/login" replace />;
   }
   return (
-    <div>
+    <div className="h-100">
       <Navbar />
       <div className="row">
         <Sidebar />

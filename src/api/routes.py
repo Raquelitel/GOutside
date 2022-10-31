@@ -12,6 +12,7 @@ import json
 import cloudinary
 import cloudinary.uploader
 from flask_cors import cross_origin, CORS
+from sqlalchemy import or_
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -179,8 +180,17 @@ def get_one_competition(id):
 @jwt_required()
 def create_competition():
     data = request.get_json()
+    userid = get_jwt_identity()
+    user = User.query.get(id=userid)
+    if user.rol != "administration":
+        response_body = {
+            "result": "No puedes crear una competición"
+        }
+        return jsonify(response_body), 401
+
     category = list(data["category"])
     competition = Competition(
+        adminid=userid,
         competition_name=data["competition_name"],
         qualifier_date=data["qualifier_date"],
         location=data["location"],
@@ -233,8 +243,8 @@ def modify_competition(competition_id):
 def my_competition():
     competitor_id = get_jwt_identity()
     competitor = User.query.get(competitor_id)
-    my_competitions = Competition.query.filter(
-        Competition.competition_competitor.any(User.id == competitor_id)).all()
+    my_competitions = Competition.query.filter(or_(
+        Competition.competition_competitor.any(User.id == competitor_id)), Competition.adminid == competitor_id).all()
     if len(my_competitions) > 0:
         my_competition_serializer = list(
             map(lambda param: param.serialize(), my_competitions))

@@ -36,7 +36,7 @@ const AllCompetition = () => {
       });
   };
 
-  const addCompetitorToCompetition = (competition_id) => {
+  const addCompetitorToCompetition = async (competition_id) => {
     const url = process.env.BACKEND_URL + "/api/my-competitions";
 
     const body = {
@@ -51,7 +51,8 @@ const AllCompetition = () => {
       method: "POST",
       body: JSON.stringify(body),
     };
-    const resp = fetch(url, options).then((response) => response.json());
+    const resp = await fetch(url, options);
+    const data = await resp.json();
     console.log(resp);
     if (resp.status === 200) {
       setMensaje(
@@ -65,7 +66,7 @@ const AllCompetition = () => {
       return;
     } else {
       setMensaje(
-        "se ha producido un error en la inscripción. Contacte con el administrador"
+        "Se ha producido un error en la inscripción. Contacte con el administrador"
       );
       setTipoMensaje("mensaje-error");
 

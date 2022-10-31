@@ -9,9 +9,9 @@ function Sidebar() {
   const { store, actions } = useContext(Context);
 
   return (
-    <aside className="col-auto">
-      <div className="sidebar-bg">
-        <div className="min-vh-100">
+    <aside className="col-auto ">
+      <div className="sidebar-bg sidebar-size">
+        <div className="">
           <ul
             className="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
             id="menu"

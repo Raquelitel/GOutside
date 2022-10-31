@@ -46,7 +46,7 @@ const PosterCompetition = () => {
           onChange={(e) => setFiles(e.target.files)}
         />
         <button
-          className="btn col-12 m-2 postercompetition-btn-primary"
+          className="btn col-12 m-2 btn-sucessfull"
           onClick={uploadPosterImage}
         >
           Añadir cartel

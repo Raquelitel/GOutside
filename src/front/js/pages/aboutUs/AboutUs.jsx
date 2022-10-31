@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../img/logo-GOutside.png";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
+import "./AboutUs.css"
 
 function AboutUs() {
   const [name, setName] = useState("");

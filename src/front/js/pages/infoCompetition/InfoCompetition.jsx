@@ -15,6 +15,9 @@ const InfoCompetition = () => {
   const [tipoMensaje, setTipoMensaje] = useState("");
   const [navegar, setNavegar] = useState(false);
 
+  const fecha = parseInt(datas.qualifier_date)
+  const fechaCorregida = fecha.substring(0, fecha.length - 8);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -105,8 +108,9 @@ const InfoCompetition = () => {
     } else {
       addCompetitorToCompetition();
     }
+     
   };
-
+  
   return (
     <>
       {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
@@ -129,7 +133,7 @@ const InfoCompetition = () => {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title fw-bold">{datas.competition_name}</h5>
-              <p className="infocompetition-text-p ">{datas.qualifier_date}</p>
+              <p className="infocompetition-text-p ">{fechaCorregida}</p>
               <p className="infocompetition-text-p ">{datas.category}</p>
               <p className="infocompetition-text-p ">{datas.stage}</p>
               <p className="infocompetition-text-p ">{datas.location}</p>

@@ -95,7 +95,7 @@ function CreateCompetition() {
       }, 2500);
       return;
     }
-    // actions.deleteUrlImg()
+    actions.deleteUrlImg()
   };
 
   return (

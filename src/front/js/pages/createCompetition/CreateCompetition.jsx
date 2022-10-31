@@ -177,7 +177,7 @@ function CreateCompetition() {
 
           <div className="col-md-12 d-flex align-items-center justify-content-evenly">
             <button
-              className="btn createCompetition-btn-primary col-5"
+              className="btn col-5 btn-sucessfull"
               onClick={() => create_competition()}
             >
               Crear competición

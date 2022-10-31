@@ -56,7 +56,8 @@ function CreateCompetition() {
     }
   };
 
-  const create_competition = () => {
+  const create_competition = (e) => {
+    e.preventDefault();
     const url = process.env.BACKEND_URL + "/api/create-competition";
     if (validation()) {
       const body = {
@@ -115,7 +116,10 @@ function CreateCompetition() {
             </div>
           </div>
         </div>
-        <form className="d-flex flex-column gap-3">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="d-flex flex-column gap-3"
+        >
           <input
             placeholder="Nombre de la competición"
             className="form-control"
@@ -178,7 +182,7 @@ function CreateCompetition() {
           <div className="col-md-12 d-flex align-items-center justify-content-evenly">
             <button
               className="btn col-5 btn-sucessfull"
-              onClick={() => create_competition()}
+              onClick={(e) => create_competition(e)}
             >
               Crear competición
             </button>

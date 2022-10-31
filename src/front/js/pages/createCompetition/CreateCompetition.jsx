@@ -6,7 +6,8 @@ import Select from "react-select";
 import MapView from "../../component/MapView/MapView.jsx";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
-import "./CreateCompetition.css"; 
+import logo from "../../../img/logo-GOutside.png";
+import "./CreateCompetition.css";
 
 const categories = [
   { label: "RX Femenino", value: "rx_femenino" },
@@ -27,11 +28,9 @@ const stages = [
 function CreateCompetition() {
   const { store, actions } = useContext(Context);
 
-  // if (store.userRol != "Rol.administration") {
-  //   return <Navigate to="/" replace />;
-  // }
-
-  const { store, actions } = useContext(Context);
+  if (store.userRol != "Rol.administration") {
+    return <Navigate to="/" replace />;
+  }
 
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -193,13 +192,13 @@ function CreateCompetition() {
         <div className="row container-fluid align-items-center d-flex justify-content-center mt-4 mb-4 create-button">
           <div className="d-flex justify-content-around text-center align-items-center">
             <button
-              className="btn btn-success"
+              className="btn createCompetition-btn-primary"
               onClick={() => create_competition()}
             >
               Crear competición
             </button>
             <br />
-            <button className="btn btn-danger" onClick={() => clearForm()}>
+            <button className="btn btn-cancelar" onClick={() => clearForm()}>
               Borrar
             </button>
           </div>

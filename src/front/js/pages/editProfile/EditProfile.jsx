@@ -58,7 +58,7 @@ const EditProfile = () => {
 
   return (
     <>
-      <div className="card mt-5 editprofile-bg">
+      <div className="card editprofile-bg">
         <div className="row g-0">
           <div className="col-md-4">
             <img

@@ -2,6 +2,10 @@
   content: none;
 }
 
+.sidebar-size {
+  min-height: 100%;
+}
+
 .sidebar-bg {
   background-color: var(--color-dark-blue);
 }

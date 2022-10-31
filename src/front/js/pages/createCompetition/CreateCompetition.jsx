@@ -84,6 +84,7 @@ function CreateCompetition() {
           setMensaje("");
           setTipoMensaje("");
         }, 5000);
+        return;
       });
     } else {
       setMensaje("Todos los campos son obligatorios");
@@ -92,115 +93,103 @@ function CreateCompetition() {
         setMensaje("");
         setTipoMensaje("");
       }, 2500);
+      return;
     }
     // actions.deleteUrlImg()
   };
 
   return (
     <div className="container-lg-fluid">
-      <div className="card text-center align-items-center justify-content-center m-3 create-comp-cont">
+      <div className="">
         <div className="row create-title">
-          <h1 className="text-center m-3">Crea tu competición</h1>
+          <h1 className="text-center my-4">Crea tu competición</h1>
+          {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
         </div>
-        <PosterCompetition />
-        <div className="row container-fluid justify-content-center mt-4 mb-4">
-          <div className="col-4 align-items-center justify-content-center">
-            <input
-              placeholder="Nombre de la competición"
-              className="form-control"
-              type="text"
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
+        <div className="text-center">
+          <div className="d-lg-flex">
+            <div className="col-12 col-lg-8">
+              <PosterCompetition />
+            </div>
+            <div className="col-12 col-lg-4">
+              <MapView />
+            </div>
           </div>
-
-          <div className="col-4 align-items-center justify-content-center ">
+        </div>
+        <form className="d-flex flex-column gap-3">
+          <input
+            placeholder="Nombre de la competición"
+            className="form-control"
+            type="text"
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+          <div className="d-lg-flex justify-content-center gap-1">
             <input
-              className="form-control"
+              className="rounded col-pill"
               type="date"
               onChange={(e) => {
                 setDate(e.target.value);
               }}
             />
-          </div>
 
-          <div className="col-4 align-items-center justify-content-center ">
             <Select
               name="stage"
               placeholder="Estado de la competición"
               options={stages}
-              className="basic-single"
+              className="basic-single col-12 col-lg-4 mt-2"
               classNamePrefix="select"
               onChange={(e) => {
                 setStage(e.value);
               }}
             />
-          </div>
-        </div>
 
-        <div className="row container-fluid d-flex justify-content-between ">
-          <div className="col-4 align-items-center justify-content-center">
-            <MapView />
-          </div>
-
-          <div className="col-6 align-items-center justify-content-center mt-5">
-            <div className="create-category">
-              <Select
-                isMulti
-                name="category"
-                placeholder="Categoría"
-                options={categories}
-                className="basic-multi-select"
-                classNamePrefix="select"
-                onChange={(e) => {
-                  setCategory(e);
-                }}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="row container-fluid align-items-center d-flex justify-content-center mt-4">
-          <div className="input-group">
-            <textarea
-              className="form-control create-requirements"
-              placeholder="Requisitos"
-              aria-label="With textarea"
+            <Select
+              isMulti
+              name="category"
+              placeholder="Categoría"
+              options={categories}
+              className="basic-multi-select col-12 col-lg-5 mt-2"
+              classNamePrefix="select"
               onChange={(e) => {
-                setRequirements(e.target.value);
+                setCategory(e);
               }}
-            ></textarea>
+            />
           </div>
-        </div>
 
-        <div className="row container-fluid align-items-center d-flex justify-content-center mt-4 ">
-          <div className="input-group">
-            <textarea
-              className="form-control create-description"
-              aria-label="With textarea"
-              placeholder="Descripción de la competición"
-              onChange={(e) => {
-                setDescription(e.target.value);
-              }}
-            ></textarea>
-          </div>
-        </div>
-        {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
-        <div className="row container-fluid align-items-center d-flex justify-content-center mt-4 mb-4 create-button">
-          <div className="d-flex justify-content-around text-center align-items-center">
+          <textarea
+            className="form-control create-requirements"
+            placeholder="Requisitos"
+            aria-label="With textarea"
+            onChange={(e) => {
+              setRequirements(e.target.value);
+            }}
+          ></textarea>
+
+          <textarea
+            className="form-control create-description"
+            aria-label="With textarea"
+            placeholder="Descripción de la competición"
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
+          ></textarea>
+
+          <div className="col-md-12 d-flex align-items-center justify-content-evenly">
             <button
-              className="btn createCompetition-btn-primary"
+              className="btn createCompetition-btn-primary col-5"
               onClick={() => create_competition()}
             >
               Crear competición
             </button>
-            <br />
-            <button className="btn btn-cancelar" onClick={() => clearForm()}>
+            <button
+              className="btn col-5 btn-cancelar"
+              onClick={() => clearForm()}
+            >
               Borrar
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

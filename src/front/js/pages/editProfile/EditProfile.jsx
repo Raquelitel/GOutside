@@ -71,8 +71,12 @@ const EditProfile = () => {
               alt="profile photo"
             />
             <form className="m-2" onSubmit={uploadImage}>
-              <input type="file" onChange={(e) => setFiles(e.target.files)} />
-              <button className="btn mt-2 editProfile-btn-primary">
+              <input
+                type="file"
+                className="form-control"
+                onChange={(e) => setFiles(e.target.files)}
+              />
+              <button className="btn col-12 mt-2 btn-sucessfull">
                 cambiar foto
               </button>
             </form>
@@ -154,7 +158,7 @@ const EditProfile = () => {
                 </div>
                 <div className="d-flex justify-content-end">
                   <button
-                    className="btn me-5 editProfile-btn-primary"
+                    className="btn me-5 btn-sucessfull"
                     onClick={handleSubmitChange}
                   >
                     Guardar Cambios

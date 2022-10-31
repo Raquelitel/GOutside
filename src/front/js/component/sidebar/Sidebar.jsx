@@ -7,6 +7,7 @@ import { Context } from "../../store/appContext";
 
 function Sidebar() {
   const { store, actions } = useContext(Context);
+
   return (
     <aside className="col-auto">
       <div className="sidebar-bg">
@@ -38,7 +39,7 @@ function Sidebar() {
                 </Link>
               </li>
             )}
-
+            {store.userRol != "Rol.administration" && (
             <li>
               <Link
                 to="/my-competitions"
@@ -50,6 +51,7 @@ function Sidebar() {
                 </span>{" "}
               </Link>
             </li>
+            )}
 
             <li>
               <Link

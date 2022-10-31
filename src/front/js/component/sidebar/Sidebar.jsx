@@ -43,7 +43,7 @@ function Sidebar() {
             <li>
               <Link
                 to="/my-competitions"
-                className="nav-link text-capitalize sidebar-text"
+                className="nav-link mt-4 text-capitalize sidebar-text"
               >
                 <i className="fs-6 bi-stopwatch"></i>{" "}
                 <span className="ms-1 d-none d-sm-inline">

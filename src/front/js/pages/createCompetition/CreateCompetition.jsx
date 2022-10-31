@@ -31,6 +31,8 @@ function CreateCompetition() {
   //   return <Navigate to="/" replace />;
   // }
 
+  const { store, actions } = useContext(Context);
+
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
@@ -58,7 +60,6 @@ function CreateCompetition() {
 
   const create_competition = () => {
     const url = process.env.BACKEND_URL + "/api/create-competition";
-
     if (validation()) {
       const body = {
         competition_name: name,

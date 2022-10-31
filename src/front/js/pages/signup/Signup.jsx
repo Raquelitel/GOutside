@@ -3,6 +3,7 @@ import { Context } from "../../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
+import "./signup.css";
 import "../../component/mensaje/mensaje.css";
 
 const Signup = () => {
@@ -17,10 +18,22 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let regex = new RegExp(
+    let regexEmail = new RegExp(
       "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
     );
 
+    let regexPassword = new RegExp(
+      "^(?=.*d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])S{8,16}$"
+    );
+
+    if (store.error === true) {
+      setMensaje("El correo electrónico ya dispone de cuenta");
+      setTimeout(() => {
+        setMensaje("");
+        actions.changeError();
+      }, 2500);
+      return;
+    }
     if ([email, password1, password2].includes("")) {
       setMensaje("Todos los campos son obligatorios");
 
@@ -35,14 +48,22 @@ const Signup = () => {
         setMensaje("");
       }, 2500);
       return;
-    } /* else if (!regex.test(email)) {
+    } else if (!regexEmail.test(email)) {
       setMensaje("E-mail no válido");
 
       setTimeout(() => {
         setMensaje("");
       }, 2500);
       return;
-    } */
+    } else if (regexPassword.test(password1)) {
+      setMensaje(
+        "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico."
+      );
+      setTimeout(() => {
+        setMensaje("");
+      }, 5000);
+      return;
+    }
     let signupUser = await actions.signup(email, password1, password2);
 
     if (signupUser) {
@@ -52,7 +73,7 @@ const Signup = () => {
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">
       <Link to="/" className="">
-        <img src={logo} alt="GOutside" />
+        <img className="signup-logo-size" src={logo} alt="GOutside" />
       </Link>
       <form className="d-flex flex-column col-md-5" onSubmit={handleSubmit}>
         <h1 className="text-capitalize text-center">Crear cuenta</h1>

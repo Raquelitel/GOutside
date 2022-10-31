@@ -1,10 +1,12 @@
 .home-X-icon {
   max-width: 4rem;
 }
-
 .home-title-size {
   font-size: 9vh;
 }
-.home-logo{
-  max-width: 40vw;
+.home-logo {
+  width: 70vh;
+}
+.home-p-size {
+  font-size: large;
 }

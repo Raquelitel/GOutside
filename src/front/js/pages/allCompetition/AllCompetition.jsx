@@ -1,13 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/appContext";
+import { Link, useNavigate } from "react-router-dom";
 import MapView from "../../component/MapView/MapView.jsx";
-import { Link } from "react-router-dom";
-import "./allCompetition.css";
+import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
+import "./allCompetition.css";
 
 const AllCompetition = () => {
   const [competitions, setCompetitions] = useState([]);
   const { store, actions } = useContext(Context);
+
+  const [mensaje, setMensaje] = useState("");
+  const [tipoMensaje, setTipoMensaje] = useState("");
+  const [navegar, setNavegar] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCardsInfo();
@@ -15,7 +22,6 @@ const AllCompetition = () => {
 
   const getCardsInfo = () => {
     const url = process.env.BACKEND_URL + "/api/competitions";
-
     const options = {
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +36,7 @@ const AllCompetition = () => {
       });
   };
 
-  const addCompetitorToCompetition = (competitor_id, competition_id) => {
+  const addCompetitorToCompetition = (competition_id) => {
     const url = process.env.BACKEND_URL + "/api/my-competitions";
 
     const body = {
@@ -45,11 +51,69 @@ const AllCompetition = () => {
       method: "POST",
       body: JSON.stringify(body),
     };
-    fetch(url, options).then((response) => response.json());
+    const resp = fetch(url, options).then((response) => response.json());
+    console.log(resp);
+    if (resp.status === 200) {
+      setMensaje(
+        "¡FELICIDADES! Tu inscripción se ha realizado con éxito. Por favor, acude a tu correo electrónico para finalizar el proceso"
+      );
+      setTipoMensaje("mensaje-correcto");
+      setTimeout(() => {
+        setMensaje("");
+        setTipoMensaje("");
+      }, 7000);
+      return;
+    } else {
+      setMensaje(
+        "se ha producido un error en la inscripción. Contacte con el administrador"
+      );
+      setTipoMensaje("mensaje-error");
+
+      setTimeout(() => {
+        setMensaje("");
+        setTipoMensaje("");
+      }, 3000);
+      return;
+    }
+  };
+
+  const navigateProfile = () => {
+    navigate("/edit-profile");
+  };
+
+  const handleInscription = () => {
+    if (
+      store.userName === null ||
+      store.userLastName === null ||
+      store.userAdress === null ||
+      store.userGender === null ||
+      store.userPhone === null
+    ) {
+      setMensaje(
+        "Para poder inscribirse debe completar todos los datos de su perfil. Una vez completados, vuelva a la inscripción."
+      );
+      setTipoMensaje("mensaje-error");
+      setNavegar(true);
+      setTimeout(() => {
+        setMensaje("");
+        setTipoMensaje("");
+        setNavegar(false);
+      }, 3000);
+      return;
+    } else {
+      addCompetitorToCompetition();
+    }
   };
 
   return (
     <>
+      {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
+
+      {navegar && (
+        <button className="btn btn-sucessfull" onClick={navigateProfile}>
+          Editar Perfil
+        </button>
+      )}
       <div className="d-flex justify-content-center">
         {competitions.map((param) => {
           return (
@@ -69,7 +133,12 @@ const AllCompetition = () => {
                     <Link to={`/competition/${param.id}`}>
                       <button className="btn btn-sucessfull">+INFO</button>
                     </Link>
-                    <button className="btn btn-validacion">Participar</button>
+                    <button
+                      className="btn btn-validacion"
+                      onClick={handleInscription}
+                    >
+                      Participar
+                    </button>
                   </div>
                 </div>
               </div>

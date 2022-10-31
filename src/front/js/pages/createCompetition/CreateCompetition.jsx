@@ -6,7 +6,7 @@ import Select from "react-select";
 import MapView from "../../component/MapView/MapView.jsx";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
-import "./CreateCompetition.css"; 
+import "./CreateCompetition.css";
 
 const categories = [
   { label: "RX Femenino", value: "rx_femenino" },
@@ -27,11 +27,9 @@ const stages = [
 function CreateCompetition() {
   const { store, actions } = useContext(Context);
 
-  // if (store.userRol != "Rol.administration") {
-  //   return <Navigate to="/" replace />;
-  // }
-
-  const { store, actions } = useContext(Context);
+  if (store.userRol != "Rol.administration") {
+    return <Navigate to="/" replace />;
+  }
 
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -95,7 +93,6 @@ function CreateCompetition() {
         setTipoMensaje("");
       }, 2500);
     }
-
     // actions.deleteUrlImg()
   };
 
@@ -103,7 +100,7 @@ function CreateCompetition() {
     <div className="container-lg-fluid">
       <div className="card text-center align-items-center justify-content-center m-3 create-comp-cont">
         <div className="row create-title">
-          <h2 className="text-center m-3">Crea tu competición</h2>
+          <h1 className="text-center m-3">Crea tu competición</h1>
         </div>
         <PosterCompetition />
         <div className="row container-fluid justify-content-center mt-4 mb-4">
@@ -193,13 +190,13 @@ function CreateCompetition() {
         <div className="row container-fluid align-items-center d-flex justify-content-center mt-4 mb-4 create-button">
           <div className="d-flex justify-content-around text-center align-items-center">
             <button
-              className="btn btn-success"
+              className="btn createCompetition-btn-primary"
               onClick={() => create_competition()}
             >
               Crear competición
             </button>
             <br />
-            <button className="btn btn-danger" onClick={() => clearForm()}>
+            <button className="btn btn-cancelar" onClick={() => clearForm()}>
               Borrar
             </button>
           </div>

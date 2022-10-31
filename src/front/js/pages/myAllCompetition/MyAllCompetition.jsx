@@ -53,7 +53,7 @@ const MyAllCompetitions = () => {
                   <h5 className="card-text">{myCompetition.stage}</h5>
                   <div className="d-flex justify-content-center gap-3">
                     <Link to={`/competition/${myCompetition.id}`}>
-                      <button className="home-button2">+INFO</button>
+                      <button className="btn-sucessfull">+INFO</button>
                     </Link>
                   </div>
                 </div>

@@ -39,7 +39,7 @@ function Sidebar() {
                 </Link>
               </li>
             )}
-            {store.userRol != "Rol.administration" && (
+
             <li>
               <Link
                 to="/my-competitions"
@@ -51,7 +51,6 @@ function Sidebar() {
                 </span>{" "}
               </Link>
             </li>
-            )}
 
             <li>
               <Link

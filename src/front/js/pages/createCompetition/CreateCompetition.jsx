@@ -84,6 +84,7 @@ function CreateCompetition() {
           setMensaje("");
           setTipoMensaje("");
         }, 5000);
+        return;
       });
     } else {
       setMensaje("Todos los campos son obligatorios");
@@ -92,6 +93,7 @@ function CreateCompetition() {
         setMensaje("");
         setTipoMensaje("");
       }, 2500);
+      return;
     }
     // actions.deleteUrlImg()
   };
@@ -104,12 +106,13 @@ function CreateCompetition() {
           {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
         </div>
         <div className="text-center">
-          <div className="d-flex">
-            <div className="col-8">
+          <div className="d-lg-flex">
+            <div className="col-12 col-lg-8">
               <PosterCompetition />
             </div>
-
-            <MapView />
+            <div className="col-12 col-lg-4">
+              <MapView />
+            </div>
           </div>
         </div>
         <form className="d-flex flex-column gap-3">
@@ -121,7 +124,7 @@ function CreateCompetition() {
               setName(e.target.value);
             }}
           />
-          <div className="d-flex justify-content-center gap-1">
+          <div className="d-lg-flex justify-content-center gap-1">
             <input
               className="rounded col-pill"
               type="date"
@@ -134,7 +137,7 @@ function CreateCompetition() {
               name="stage"
               placeholder="Estado de la competición"
               options={stages}
-              className="basic-single col-4"
+              className="basic-single col-12 col-lg-4 mt-2"
               classNamePrefix="select"
               onChange={(e) => {
                 setStage(e.value);
@@ -146,7 +149,7 @@ function CreateCompetition() {
               name="category"
               placeholder="Categoría"
               options={categories}
-              className="basic-multi-select col-5"
+              className="basic-multi-select col-12 col-lg-5 mt-2"
               classNamePrefix="select"
               onChange={(e) => {
                 setCategory(e);

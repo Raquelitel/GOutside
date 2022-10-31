@@ -114,32 +114,32 @@ const AllCompetition = () => {
           Editar Perfil
         </button>
       )}
-      <div className="d-flex justify-content-center">
+      <div className="row">
         {competitions.map((param) => {
           return (
-            <div key={param.id} className=" col-md-6 col-lg-4">
-              <div className="card m-2">
-                <img
-                  src={!param.poster_image_url ? logo : param.poster_image_url}
-                  className="competition-img-card"
-                  alt="cartel competicion"
-                />
-                <div className="card-body">
-                  <h4 className="card-title">{param.competition_name}</h4>
-                  <h5 className="card-text">{param.qualifier_date}</h5>
-                  <h5 className="card-text">{param.category}</h5>
-                  <h5 className="card-text">{param.stage}</h5>
-                  <div className="d-flex justify-content-center gap-3">
-                    <Link to={`/competition/${param.id}`}>
-                      <button className="btn btn-sucessfull">+INFO</button>
-                    </Link>
-                    <button
-                      className="btn btn-validacion"
-                      onClick={handleInscription}
-                    >
-                      Participar
-                    </button>
-                  </div>
+            <div key={param.id} className="card m-2 allcompetition-card-size">
+              <img
+                src={!param.poster_image_url ? logo : param.poster_image_url}
+                className="competition-img-card"
+                alt="cartel competicion"
+              />
+              <div className="card-body">
+                <h5 className="fw-bold card-title">{param.competition_name}</h5>
+                <p className="m-0 allcompetition-text-p">
+                  {param.qualifier_date}
+                </p>
+                <p className="m-0 allcompetition-text-p">{param.category}</p>
+                <p className="allcompetition-text-p">{param.stage}</p>
+                <div className="d-flex justify-content-center gap-3 mb-3 position-absolute bottom-0 start-50 translate-middle-x">
+                  <Link to={`/competition/${param.id}`}>
+                    <button className="btn btn-sucessfull">+INFO</button>
+                  </Link>
+                  <button
+                    className="btn btn-validacion"
+                    onClick={handleInscription}
+                  >
+                    Participar
+                  </button>
                 </div>
               </div>
             </div>

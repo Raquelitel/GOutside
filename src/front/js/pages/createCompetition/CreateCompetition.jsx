@@ -6,7 +6,6 @@ import Select from "react-select";
 import MapView from "../../component/MapView/MapView.jsx";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
-import logo from "../../../img/logo-GOutside.png";
 import "./CreateCompetition.css";
 
 const categories = [
@@ -94,7 +93,6 @@ function CreateCompetition() {
         setTipoMensaje("");
       }, 2500);
     }
-
     // actions.deleteUrlImg()
   };
 
@@ -102,7 +100,7 @@ function CreateCompetition() {
     <div className="container-lg-fluid">
       <div className="card text-center align-items-center justify-content-center m-3 create-comp-cont">
         <div className="row create-title">
-          <h2 className="text-center m-3">Crea tu competición</h2>
+          <h1 className="text-center m-3">Crea tu competición</h1>
         </div>
         <PosterCompetition />
         <div className="row container-fluid justify-content-center mt-4 mb-4">

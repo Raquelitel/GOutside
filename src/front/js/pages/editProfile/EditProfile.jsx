@@ -80,7 +80,7 @@ const EditProfile = () => {
           <div className="col-md-8">
             <div className="card-body">
               {mensaje && <Mensaje tipo="mensaje-correcto">{mensaje}</Mensaje>}
-              <h5 className="text-uppercase">Mi perfil</h5>
+              <h1>Mi perfil</h1>
               <form
                 className="container row col-md-12 text-start"
                 onSubmit={handleSubmitChange}

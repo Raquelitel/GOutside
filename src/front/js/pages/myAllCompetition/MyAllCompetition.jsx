@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext";
-
+import logo from "../../../img/logo-GOutside.png";
 const MyAllCompetitions = () => {
   const [myCompetitions, setMyCompetitions] = useState([]);
   const { store, actions } = useContext(Context);

@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       tokenLS: null,
       userRol: null,
+      userId: null,
       userEmail: null,
       userName: null,
       userLastName: null,
@@ -10,8 +11,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       userGender: null,
       userPhone: null,
       userProfileImagen: null,
-      posterImagen: null,
+      posterImagenUrl: null,
       competitions: [],
+      error: false,
     },
     actions: {
       signup: async (email, password1, password2) => {
@@ -28,6 +30,10 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
           });
           const data = await resp.json();
+          if (resp.status === 400) {
+            setStore({ error: true });
+            return;
+          }
           if (resp.status === 200) {
             localStorage.setItem("token", data.token);
             setStore({ tokenLS: data.token, userRol: data.rol });
@@ -55,7 +61,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await resp.json();
           if (resp.status === 200) {
             localStorage.setItem("token", data.token);
-            setStore({ tokenLS: data.token, userRol: data.rol });
+            setStore({
+              tokenLS: data.token,
+              userRol: data.rol,
+              userId: data.user_id,
+            });
             return true;
           } else {
             return false;
@@ -84,6 +94,8 @@ const getState = ({ getStore, getActions, setStore }) => {
               userGender: data.gender,
               userPhone: data.phone,
               userProfileImagen: data.profile_image,
+              userRol: data.rol,
+              tokenLS: getActions().getTokenLS()
             });
             return true;
           } else {
@@ -111,30 +123,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
 
-        /*  try { */
-        const resp = await fetch(
-          process.env.BACKEND_URL + "/api/user",
-          options
-        );
-        const data = await resp.json();
-        if (resp.status === 200) {
-          getActions().getUser();
-          console.log(data);
-          setStore({
-            userName: data.name,
-            userLastName: data.last_name,
-            userAdress: data.adress,
-            userGender: data.gender,
-            userPhone: data.phone,
-          });
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/user",
+            options
+          );
+          const data = await resp.json();
+          if (resp.status === 200) {
+            getActions().getUser();
+            setStore({
+              userName: data.name,
+              userLastName: data.last_name,
+              userAdress: data.adress,
+              userGender: data.gender,
+              userPhone: data.phone,
+            });
 
-          return true;
-        } else {
-          return false;
-        }
-        /*         } catch (error) {
+            return true;
+          } else {
+            return false;
+          }
+        } catch (error) {
           console.log("Error loading message from backend", error);
-        } */
+        }
       },
       deleteUser: async () => {
         const options = {
@@ -164,8 +175,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       getTokenLS: () => {
         return localStorage.getItem("token");
       },
+      setUrlImagen: (url) => {
+        setStore({ posterImagenUrl: url });
+      },
+      deleteUrlImg: () => {
+        setStore({ posterImagenUrl: null });
+      },
+      changeError: () => {
+        setStore({ error: !error });
+      },
     },
   };
 };
+
+//
 
 export default getState;

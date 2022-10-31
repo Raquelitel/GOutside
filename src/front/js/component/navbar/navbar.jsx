@@ -21,21 +21,14 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-color">
-      <div className="container-fluid">
-        <div className="navbar-brand">
-          <img src={logo} alt="GOutside Logo" style={{ width: "4rem" }} />
-        </div>
+    <nav className="navbar navbar-expand-lg navbar-color ">
+      <div className="container-fluid d-flex justify-content-center">
+        <Link to="/" className="navbar-brand d-flex justify-content-center">
+          <img src={logo} className="navbar-logo-size" alt="GOutside Logo" />
+        </Link>
         <div className="col-6 col-md-8 col-lg-9">
-          <div className="d-flex justify-content-between">
-            <form className="">
-              <input
-                placeholder="Buscar..."
-                type="text"
-                className="navbar-input"
-              />
-            </form>
-            <div className="d-flex ">
+          <div>
+            <div className="d-flex justify-content-evenly">
               <Link to="/home/user">
                 <button className="btn btn-menu mx-2">
                   <BsHouseFill className="btn-icon" />
@@ -49,7 +42,7 @@ export const Navbar = () => {
                   <span className="btn-text">BIBLIOTECA</span>
                 </button>
               </Link>
-              <Link to="/all-commpetition">
+              <Link to="/competitions">
                 <button className="btn btn-menu mx-2">
                   <BsFillTrophyFill className="btn-icon" />
 
@@ -60,7 +53,7 @@ export const Navbar = () => {
           </div>
         </div>
 
-        <div className="dropdown-center">
+        <div className="dropdown">
           <button
             className="btn dropdown-toggle"
             type="button"
@@ -81,7 +74,7 @@ export const Navbar = () => {
             <li>
               <Link
                 to="/edit-profile"
-                className="dropdown-item text-capitalize navbar-menu-li "
+                className="dropdown-item mb-3 text-capitalize navbar-menu-li "
               >
                 editar perfil
               </Link>
@@ -89,7 +82,7 @@ export const Navbar = () => {
             <li>
               <button
                 onClick={logout}
-                className="btn text-uppercase border-top border-bottom border-secondary navbar-menu-button"
+                className="btn dropdown-item text-uppercase border-top border-bottom border-secondary navbar-menu-button"
               >
                 Cerrar sesión
               </button>

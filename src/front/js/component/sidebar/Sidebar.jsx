@@ -7,8 +7,8 @@ import { Context } from "../../store/appContext";
 
 function Sidebar() {
   const { store, actions } = useContext(Context);
-  return (
 
+  return (
     <aside className="col-auto">
       <div className="sidebar-bg">
         <div className="min-vh-100">
@@ -19,18 +19,18 @@ function Sidebar() {
             <li>
               <Link
                 to="/edit-profile"
-                className="nav-link text-capitalize sidebar-text"
+                className="nav-link mt-5 text-capitalize sidebar-text"
               >
                 <i className="fs-4 bi bi-person"></i>{" "}
                 <span className="ms-1 d-none d-sm-inline">Editar perfil</span>
               </Link>
             </li>
-    
+
             {store.userRol === "Rol.administration" && (
               <li>
                 <Link
                   to="/create-competition"
-                  className="nav-link text-capitalize sidebar-text"
+                  className="nav-link mt-4 text-capitalize sidebar-text"
                 >
                   <i className="fs-6 bi-pencil-square"></i>{" "}
                   <span className="ms-1 d-none d-sm-inline">
@@ -39,11 +39,11 @@ function Sidebar() {
                 </Link>
               </li>
             )}
-
+            {store.userRol != "Rol.administration" && (
             <li>
               <Link
-                to="/my-all-competition"
-                className="nav-link text-capitalize sidebar-text"
+                to="/my-competitions"
+                className="nav-link mt-4 text-capitalize sidebar-text"
               >
                 <i className="fs-6 bi-stopwatch"></i>{" "}
                 <span className="ms-1 d-none d-sm-inline">
@@ -51,6 +51,7 @@ function Sidebar() {
                 </span>{" "}
               </Link>
             </li>
+            )}
 
             <li>
               <Link

@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Rol, Competition, About_us
+from api.models import db, User, Rol, Competition, About_us, Competition_user
 from api.utils import generate_sitemap, APIException
 from datetime import timedelta
 from flask_jwt_extended import (
@@ -53,6 +53,7 @@ def signup():
         )
         db.session.add(new_user)
         db.session.commit()
+
         access_token = create_access_token(
             identity=new_user.id, expires_delta=timedelta(days=20))
         return jsonify({"logged": True, "token": access_token, "message": "Usuario creado correctamente", "rol": str(new_user.rol), "competitor": new_user.serialize()}), 200
@@ -80,7 +81,7 @@ def get_user():
 
 
 @api.route('/user', methods=['PUT'])
-# @jwt_required()
+@jwt_required()
 def post_user():
     current_user_id = get_jwt_identity()
     data = request.get_json()
@@ -137,7 +138,7 @@ def delete_user():
 
 
 @api.route("/token/refresh", methods=['GET'])
-# @jwt_required(refresh=True)
+@jwt_required(refresh=True)
 def refresh_users_token():
     identity = get_jwt_identity()
     access_token = create_access_token(identity=user.id)
@@ -189,9 +190,12 @@ def create_competition():
         # create_at=data["create_at"],
         stage=data["stage"],
         # competition_competitor=data["competition_competitor"]
+        poster_image_url=data["poster_image_url"]
     )
+
     db.session.add(competition)
     db.session.commit()
+
     response_body = {
         "result": "Competición añadida correctamente"
     }
@@ -225,24 +229,42 @@ def modify_competition(competition_id):
 
 
 @api.route('/my-competitions', methods=['GET'])
-# @jwt_required()
+@jwt_required()
 def my_competition():
     competitor_id = get_jwt_identity()
     competitor = User.query.get(competitor_id)
     my_competitions = Competition.query.filter(
         Competition.competition_competitor.any(User.id == competitor_id)).all()
-    print(competitor)
     if len(my_competitions) > 0:
         my_competition_serializer = list(
             map(lambda param: param.serialize(), my_competitions))
-        return jsonify({"data": my_competition_serializer}), 200
+        return jsonify(my_competition_serializer), 200
     return jsonify({"message": "Todavía no se ha inscrito en ninguna competición"}), 204
+
+
+@api.route('/my-competitions', methods=['POST'])
+@jwt_required()
+def add_my_competition():
+    competitor_id = get_jwt_identity()
+    data = request.get_json()
+    my_competition = Competition_user(
+        competitor_id=competitor_id,
+        competition_id=data["competition_id"]
+    )
+
+    db.session.add(my_competition)
+    db.session.commit()
+
+    response_body = {
+        "result": "Competición añadida correctamente a mis competiciones"
+    }
+    return jsonify(response_body), 200
 
 # ------------  COMPETITORS (Tabla USERS) --------------------------
 
 
 @api.route('/create-competitor/<int:competitor_id>', methods=['PUT'])
-# @jwt_required()
+@jwt_required()
 def modify_competitor(user_id):
     data = request.get_json()
     competitor = User.query.get(user_id)
@@ -267,7 +289,7 @@ def modify_competitor(user_id):
 # ------------  CLOUDINARY --------------------------
 
 @api.route('/upload', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 def handle_upload():
     user_id = get_jwt_identity()
     if 'profile_image' in request.files:
@@ -282,17 +304,14 @@ def handle_upload():
 
 
 @api.route('/poster-upload', methods=['POST'])
-# @jwt_required()
+@jwt_required()
 def handle_poster_upload():
     user_id = get_jwt_identity()
+
     if 'poster_image' in request.files:
         result = cloudinary.uploader.upload(request.files['poster_image'])
-        user_update = User.query.filter_by(id=user_id).first()
-        user_update.poster_image_url = result['secure_url']
 
-        db.session.add(user_update)
-        db.session.commit()
-        return jsonify(user_update.serialize()), 200
+        return jsonify({"url": result['secure_url']}), 200
     return jsonify({"message": "error"}), 400
 
 
@@ -303,7 +322,7 @@ def contactForm():
     data = request.get_json()
     aboutUs = About_us(
         name=data["name"],
-        surname=data["surname"],
+        email=data["email"],
         phone=data["phone"],
         contact_request=data["contact_request"],
 

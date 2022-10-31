@@ -1,13 +1,3 @@
-h1,
-p {
-  color: var(--color-light);
-}
-
-.login-btn {
-  color: var(--color-light);
-  background-color: var(--color-dark-blue);
-}
-
-.login-link {
-  color: var(--color-red);
+.login-logo-size {
+  width: 70vh;
 }

@@ -45,13 +45,10 @@ const Layout = () => {
               />
 
               <Route path="/edit-profile" element={<EditProfile />} />
-              <Route path="/all-commpetition" element={<AllCompetition />} />
+              <Route path="/competitions" element={<AllCompetition />} />
               <Route path="/competition/:id" element={<InfoCompetition />} />
 
-              <Route
-                path="/my-all-competition"
-                element={<MyAllCompetition />}
-              />
+              <Route path="/my-competitions" element={<MyAllCompetition />} />
             </Route>
 
             <Route element={<h1>Not found!</h1>} />

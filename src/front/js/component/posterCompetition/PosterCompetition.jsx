@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../../store/appContext";
+import logo from "../../../img/logo-GOutside.png";
 import "./posterCompetition.css";
 
 const PosterCompetition = () => {
@@ -23,21 +24,23 @@ const PosterCompetition = () => {
         options
       );
       const data = await resp.json();
-      console.log(data);
+      actions.setUrlImagen(data.url);
     } catch (error) {
       console.log("Error loading message from backend", error);
     }
   };
   return (
-    <div className="col-md-4">
+    <div className="col-md-4 d-flex">
       <img
         src={store.posterImagen === null ? logo : store.posterImagen}
-        className="mt-4 img-fluid poster-competition-photo"
+        className="m-2 img-fluid poster-competition-photo"
         alt="poster photo"
       />
-      <form className="m-2" onSubmit={uploadPosterImage}>
+      <form className="d-flex align-items-center justify-content-center m-2" onSubmit={uploadPosterImage}>
         <input type="file" onChange={(e) => setFiles(e.target.files)} />
-        <button className="btn btn-primary">cambiar cartel</button>
+        <button className="btn postercompetition-btn-primary">
+          Añadir cartel
+        </button>
       </form>
     </div>
   );

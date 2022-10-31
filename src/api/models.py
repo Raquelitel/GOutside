@@ -113,16 +113,19 @@ class Competition(db.Model):
         'Competition_user', backref='competition', lazy=True)
 
     def serialize(self):
+        category = []
+        for cat in self.category:
+            category.append(cat.name)
         return {
             "id": self.id,
             "competition_name": self.competition_name,
             "qualifier_date": self.qualifier_date,
             "location": self.location,
-            "category": str(self.category),
+            "category": list(map(lambda param: param, category)),
             "requirements": self.requirements,
             "description": self.description,
             "create_at": self.create_at,
-            "stage": str(self.stage)
+            "stage": self.stage.name
         }
 
 
@@ -154,7 +157,7 @@ class Qualifier(db.Model):
 class About_us(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
-    surname = db.Column(db.String(120), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
     phone = db.Column(db.Integer, unique=False, nullable=False)
     contact_request = db.Column(db.String(3000), unique=False, nullable=False)
 
@@ -162,7 +165,7 @@ class About_us(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "surname": self.surname,
+            "email": self.email,
             "phone": self.phone,
             "contact_request": self.contact_request,
         }

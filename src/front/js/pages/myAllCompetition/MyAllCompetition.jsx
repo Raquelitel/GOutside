@@ -50,8 +50,12 @@ const MyAllCompetitions = () => {
                     {myCompetition.competition_name}
                   </h4>
                   <h5 className="card-text">{myCompetition.qualifier_date}</h5>
-                  <h5 className="card-text">{myCompetition.category}</h5>
-                  <h5 className="card-text">{myCompetition.stage}</h5>
+                  <h5 className="card-text">
+                    {myCompetition.category?.toString()?.replace("_", " ")}
+                  </h5>
+                  <h5 className="card-text">
+                    {myCompetition.stage?.toString()?.replace("_", " ")}
+                  </h5>
                   <div className="d-flex justify-content-center gap-3">
                     <Link to={`/competition/${myCompetition.id}`}>
                       <button className="btn-sucessfull">+INFO</button>

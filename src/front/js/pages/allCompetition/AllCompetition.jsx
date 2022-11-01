@@ -141,7 +141,9 @@ const AllCompetition = () => {
                 <p className="m-0 allcompetition-text-p">
                   {competition.category?.toString()?.replace("_", " ")}
                 </p>
-                <p className="allcompetition-text-p">{competition.stage}</p>
+                <p className="allcompetition-text-p">
+                  {competition.stage?.toString()?.replace("_", " ")}
+                </p>
                 <div className="d-flex justify-content-center gap-3 mb-3 position-absolute bottom-0 start-50 translate-middle-x">
                   <Link to={`/competition/${competition.id}`}>
                     <button className="btn btn-sucessfull">+INFO</button>

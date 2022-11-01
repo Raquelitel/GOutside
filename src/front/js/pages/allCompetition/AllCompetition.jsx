@@ -139,19 +139,29 @@ const AllCompetition = () => {
                   {competition.qualifier_date}
                 </p>
                 <p className="m-0 allcompetition-text-p">
-                  {competition.category}
+                  {competition.category?.toString()?.replace("_", " ")}
                 </p>
                 <p className="allcompetition-text-p">{competition.stage}</p>
                 <div className="d-flex justify-content-center gap-3 mb-3 position-absolute bottom-0 start-50 translate-middle-x">
                   <Link to={`/competition/${competition.id}`}>
                     <button className="btn btn-sucessfull">+INFO</button>
                   </Link>
-                  <button
-                    className="btn btn-validacion"
-                    onClick={() => handleInscription(competition.id)}
-                  >
-                    Participar
-                  </button>
+
+                  {competition.adminid === store.userId ? (
+                    <button
+                      className="btn btn-validacion"
+                      onClick={() => console.log("enviar a otra pagina")}
+                    >
+                      Editar
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-validacion"
+                      onClick={() => handleInscription(competition.id)}
+                    >
+                      Participar
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

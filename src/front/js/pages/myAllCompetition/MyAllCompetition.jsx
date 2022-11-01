@@ -63,7 +63,7 @@ const MyAllCompetitions = () => {
           );
         })}
       </div>
-      {store.userRol != "Rol.administration" && (
+      {/* {store.userRol != "Rol.administration" && (
         <>
           <div className="carousel-item">
             <div className="card align-items-center justify-content-md-center text-center home-user-card">
@@ -95,12 +95,12 @@ const MyAllCompetitions = () => {
                 ></span>
               </div>
               <div className="align-items-center justify-content-md-center text-center mb-5">
-                {/* <Card /> */}
+               <Card />
               </div>
             </div>
           </div>
         </>
-      )}
+      )} */}
     </>
   );
 };

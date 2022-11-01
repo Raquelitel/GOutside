@@ -181,12 +181,17 @@ def get_one_competition(id):
 def create_competition():
     data = request.get_json()
     userid = get_jwt_identity()
-    user = User.query.get(id=userid)
-    if user.rol != "administration":
-        response_body = {
-            "result": "No puedes crear una competición"
-        }
-        return jsonify(response_body), 401
+    user = User.query.get(userid)
+
+    print("---------", user.rol)
+    print("---------", user.rol != "Rol.administration")
+    # if user.rol != "Rol.administration":
+    #     response_body = {
+    #         "result": "No puedes crear una competición"
+    #     }
+    #     return jsonify(response_body), 401
+
+    # Aunque el rol es admin el resultado me devuelve un true (No es un admin)
 
     category = list(data["category"])
     competition = Competition(

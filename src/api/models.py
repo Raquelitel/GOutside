@@ -100,8 +100,7 @@ class Stages(enum.Enum):
 
 class Competition(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    adminid = db.Column(db.Integer, db.ForeignKey(
-        'user.id'), nullable=False)
+    adminid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     competition_name = db.Column(db.String(120), unique=False, nullable=False)
     qualifier_date = db.Column(db.DateTime())
     location = db.Column(db.String(240), unique=False, nullable=False)

@@ -27,7 +27,7 @@ const stages = [
 function CreateCompetition() {
   const { store, actions } = useContext(Context);
 
-  if (store.userRol != "Rol.administration") {
+  if (store.userRol && store.userRol != "Rol.administration") {
     return <Navigate to="/" replace />;
   }
 
@@ -72,21 +72,27 @@ function CreateCompetition() {
       };
       const options = {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: "Bearer " + store.tokenLS,
         },
         method: "POST",
+        mode: 'cors',
         body: JSON.stringify(body),
       };
-      fetch(url, options).then(() => {
-        setMensaje("Competición creada");
+
+      fetch(url, options).then((response) => {
+        if (response.status === 401) {
+          setTipoMensaje("mensaje-error");
+      }else{
         setTipoMensaje("mensaje-correcto");
+      } 
+        return response.json()
+      }).then((data)=>{                  
+        setMensaje(data.result);
         setTimeout(() => {
           setMensaje("");
           setTipoMensaje("");
-        }, 5000);
-        return;
-      });
+        }, 2500);});
     } else {
       setMensaje("Todos los campos son obligatorios");
       setTipoMensaje("mensaje-error");
@@ -94,7 +100,6 @@ function CreateCompetition() {
         setMensaje("");
         setTipoMensaje("");
       }, 2500);
-      return;
     }
     actions.deleteUrlImg()
   };

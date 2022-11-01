@@ -48,7 +48,7 @@ function CreateCompetition() {
       category === [] ||
       requirements === "" ||
       description === "" ||
-      stage === ""
+      stage === []
     ) {
       return false;
     } else {
@@ -104,7 +104,6 @@ function CreateCompetition() {
       <div className="">
         <div className="row create-title">
           <h1 className="text-center my-4">Crea tu competición</h1>
-          {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
         </div>
         <div className="text-center">
           <div className="d-lg-flex">
@@ -143,6 +142,7 @@ function CreateCompetition() {
               options={stages}
               className="basic-single col-12 col-lg-4 mt-2"
               classNamePrefix="select"
+              isSearchable={false}
               onChange={(e) => {
                 setStage(e.value);
               }}
@@ -155,6 +155,7 @@ function CreateCompetition() {
               options={categories}
               className="basic-multi-select col-12 col-lg-5 mt-2"
               classNamePrefix="select"
+              isSearchable={false}
               onChange={(e) => {
                 setCategory(e);
               }}
@@ -180,18 +181,19 @@ function CreateCompetition() {
           ></textarea>
 
           <div className="col-md-12 d-flex align-items-center justify-content-evenly">
+          {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
             <button
               className="btn col-5 btn-sucessfull"
               onClick={(e) => create_competition(e)}
             >
               Crear competición
             </button>
-            <button
+            {/* <button
               className="btn col-5 btn-cancelar"
               onClick={() => clearForm()}
             >
               Borrar
-            </button>
+            </button> */}
           </div>
         </form>
       </div>

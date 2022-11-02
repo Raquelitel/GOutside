@@ -182,8 +182,7 @@ def create_competition():
     data = request.get_json()
     userid = get_jwt_identity()
     user = User.query.get(userid)
-
-    if user.rol != "Rol.administration":
+    if user.rol != Rol.administration:
         response_body = {
             "result": "No puedes crear una competición. Ponte en contacto con GOutside"
         }

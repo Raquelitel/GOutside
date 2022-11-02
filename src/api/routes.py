@@ -217,7 +217,7 @@ def create_competition():
     return jsonify(response_body), 200
 
 
-@api.route('/create-competition/<int:competition_id>', methods=['PUT'])
+@api.route('/edit-competition/<int:competition_id>', methods=['PUT'])
 @jwt_required()
 def modify_competition(competition_id):
     data = request.get_json()

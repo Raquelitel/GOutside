@@ -150,12 +150,9 @@ const AllCompetition = () => {
                   </Link>
 
                   {competition.adminid === store.userId ? (
-                    <button
-                      className="btn btn-validacion"
-                      onClick={() => console.log("enviar a otra pagina")}
-                    >
-                      Editar
-                    </button>
+                    <Link to={`/edit-competition/${competition.id}`}>
+                      <button className="btn btn-sucessfull">Editar</button>
+                    </Link>
                   ) : (
                     <button
                       className="btn btn-validacion"

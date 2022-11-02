@@ -18,9 +18,9 @@ const categories = [
 ];
 
 const stages = [
-  { label: "Inscripción abierta", value: "inscripción_abierta" },
-  { label: "Inscripción cerrada", value: "inscripción_cerrada" },
-  { label: "Competición finalizada", value: "competición_finalizada" },
+  { label: "Inscripción abierta", value: "inscripcion_abierta" },
+  { label: "Inscripción cerrada", value: "inscripcion_cerrada" },
+  { label: "Competición finalizada", value: "competicion_finalizada" },
 ];
 
 function EditCompetition() {
@@ -64,12 +64,12 @@ function EditCompetition() {
 
   const validation = () => {
     if (
-      name === "" ||
-      date === "" ||
-      category === [] ||
-      requirements === "" ||
-      description === "" ||
-      stage === ""
+      datas.competition_name === "" ||
+      datas.qualifier_date === "" ||
+      datas.category === [] ||
+      datas.requirements === "" ||
+      datas.description === "" ||
+      datas.stage === ""
     ) {
       return false;
     } else {
@@ -82,14 +82,14 @@ function EditCompetition() {
     const url = process.env.BACKEND_URL + `/api/edit-competition/${id}`;
     if (validation()) {
       const body = {
-        competition_name: name,
-        qualifier_date: date,
-        location: location,
-        category: category.map((cat) => cat.value),
-        requirements: requirements,
-        description: description,
-        stage: stage,
-        poster_image_url: store.posterImagenUrl,
+        competition_name: datas.competition_name,
+        qualifier_date: datas.qualifier_date,
+        location: datas.location,
+        category: datas.category.map((cat) => cat.value),
+        requirements: datas.requirements,
+        description: datas.description,
+        stage: datas.stage,
+        poster_image_url: datas.poster_image_url,
       };
       const options = {
         headers: {
@@ -155,18 +155,24 @@ function EditCompetition() {
             className="form-control"
             type="text"
             onChange={(e) => {
-              setName(e.target.value);
+              setData({
+                ...datas,
+                competition_name: e.target.value,
+              });
             }}
-            defaultValue={datas.competition_name}
+            value={datas?.competition_name}
           />
           <div className="d-lg-flex justify-content-center gap-1">
             <input
               className="rounded col-pill"
               type="date"
               onChange={(e) => {
-                setDate(e.target.value);
+                setData({
+                  ...datas,
+                  qualifier_date: e.target.value,
+                });
               }}
-              defaultValue={convertDate(datas.qualifier_date)}
+              defaultValue={convertDate(datas?.qualifier_date)}
             />
 
             <Select
@@ -176,7 +182,10 @@ function EditCompetition() {
               className="basic-single col-12 col-lg-4 mt-2"
               classNamePrefix="select"
               onChange={(e) => {
-                setStage(e.value);
+                setData({
+                  ...datas,
+                  stage: e.value,
+                });
               }}
               value={{
                 label: datas.stage?.toString()?.replace("_", " "),
@@ -192,9 +201,14 @@ function EditCompetition() {
               className="basic-multi-select col-12 col-lg-5 mt-2"
               classNamePrefix="select"
               onChange={(e) => {
-                setCategory(e);
+                setData({
+                  ...datas,
+                  category: e,
+                });
               }}
               value={{
+                // datas.category.map() => {
+                // }
                 label: datas.category?.toString()?.replace("_", " "),
                 value: datas.category?.toString()?.replace("_", " "),
               }}
@@ -206,7 +220,10 @@ function EditCompetition() {
             placeholder="Requisitos"
             aria-label="With textarea"
             onChange={(e) => {
-              setRequirements(e.target.value);
+              setData({
+                ...datas,
+                requirements: e.target.value,
+              });
             }}
             defaultValue={datas.requirements}
           ></textarea>
@@ -216,7 +233,10 @@ function EditCompetition() {
             aria-label="With textarea"
             placeholder="Descripción de la competición"
             onChange={(e) => {
-              setDescription(e.target.value);
+              setData({
+                ...datas,
+                description: e.target.value,
+              });
             }}
             defaultValue={datas.description}
           ></textarea>

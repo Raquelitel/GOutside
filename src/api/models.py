@@ -86,15 +86,15 @@ class Category(enum.Enum):
 
 
 class Stages(enum.Enum):
-    inscripción_abierta = 1
-    inscripción_cerrada = 2
-    competición_finalizada = 3
+    inscripcion_abierta = 1
+    inscripcion_cerrada = 2
+    competicion_finalizada = 3
 
     def serialize(self):
         return {
-            "inscripción_abierta": self.inscripción_abierta,
-            "inscripción_cerrada": self.inscripción_cerrada,
-            "competición_finalizada": self.competición_finalizada,
+            "inscripción_abierta": self.inscripcion_abierta,
+            "inscripción_cerrada": self.inscripcion_cerrada,
+            "competición_finalizada": self.competicion_finalizada,
         }
 
 
@@ -127,7 +127,8 @@ class Competition(db.Model):
             "requirements": self.requirements,
             "description": self.description,
             "create_at": self.create_at,
-            "stage": self.stage.name
+            "stage": self.stage.name,
+            "poster_image_url": self.poster_image_url
         }
 
 

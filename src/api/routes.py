@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Rol, Competition, About_us, Competition_user
+from api.models import db, User, Rol, Competition, About_us, Competition_user, Stages
 from api.utils import generate_sitemap, APIException
 from datetime import timedelta
 from flask_jwt_extended import (
@@ -13,6 +13,7 @@ import cloudinary
 import cloudinary.uploader
 from flask_cors import cross_origin, CORS
 from sqlalchemy import or_
+
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -183,15 +184,11 @@ def create_competition():
     userid = get_jwt_identity()
     user = User.query.get(userid)
 
-    print("---------", user.rol)
-    print("---------", user.rol != "Rol.administration")
-    # if user.rol != "Rol.administration":
-    #     response_body = {
-    #         "result": "No puedes crear una competición"
-    #     }
-    #     return jsonify(response_body), 401
-
-    # Aunque el rol es admin el resultado me devuelve un true (No es un admin)
+    if str(user.rol) != "Rol.administration":
+        response_body = {
+            "result": "No puedes crear una competición"
+        }
+        return jsonify(response_body), 401
 
     category = list(data["category"])
     competition = Competition(
@@ -202,9 +199,7 @@ def create_competition():
         category=data["category"],
         requirements=data["requirements"],
         description=data["description"],
-        # create_at=data["create_at"],
         stage=data["stage"],
-        # competition_competitor=data["competition_competitor"]
         poster_image_url=data["poster_image_url"]
     )
 
@@ -221,17 +216,25 @@ def create_competition():
 @jwt_required()
 def modify_competition(competition_id):
     data = request.get_json()
+    userid = get_jwt_identity()
+    user = User.query.get(userid)
+
+    if str(user.rol) != "Rol.administration":
+        response_body = {
+            "result": "No puedes crear una competición"
+        }
+        return jsonify(response_body), 401
+
     competition = Competition.query.get(competition_id)
     if data is not None and competition:
-        competition.competition_name = data["competition_name"],
-        competition.qualifier_date = data["qualifier_date"],
-        competition.location = data["location"],
-        competition.category = data["category"],
-        competition.requirements = data["requirements"],
-        competition.description = data["description"],
-        competition.create_at = data["create_at"],
-        competition.stage = data["stage"],
-        competition.competition_competitor = data["competition_competitor"]
+        competition.competition_name = data["competition_name"]
+        competition.qualifier_date = data["qualifier_date"]
+        competition.location = data["location"]
+        competition.category = data["category"]
+        competition.requirements = data["requirements"]
+        competition.description = data["description"]
+        competition.stage = data["stage"]
+        competition.poster_image_url = data["poster_image_url"]
         db.session.commit()
 
         response_body = {

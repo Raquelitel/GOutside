@@ -121,7 +121,7 @@ class Competition(db.Model):
             "id": self.id,
             "adminid": self.adminid,
             "competition_name": self.competition_name,
-            "qualifier_date": self.qualifier_date,
+            "qualifier_date": self.qualifier_date.strftime("%m/%d/%Y, %H:%M:%S"),
             "location": self.location,
             "category": list(map(lambda param: param, category)),
             "requirements": self.requirements,

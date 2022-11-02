@@ -120,6 +120,15 @@ function EditCompetition() {
     actions.deleteUrlImg();
   };
 
+  const convertDate = (date) => {
+    if (date) {
+      let curr = new Date(date);
+      curr.setDate(curr.getDate() + 3);
+      return curr.toISOString().substring(0, 10);
+    }
+    return "";
+  };
+
   return (
     <div className="container-lg-fluid">
       <div className="">
@@ -157,7 +166,7 @@ function EditCompetition() {
               onChange={(e) => {
                 setDate(e.target.value);
               }}
-              defaultValue={datas.qualifier_date}
+              defaultValue={convertDate(datas.qualifier_date)}
             />
 
             <Select
@@ -169,7 +178,10 @@ function EditCompetition() {
               onChange={(e) => {
                 setStage(e.value);
               }}
-              defaultValue={datas.stage?.toString()?.replace("_", " ")}
+              value={{
+                label: datas.stage?.toString()?.replace("_", " "),
+                value: datas.stage?.toString()?.replace("_", " "),
+              }}
             />
 
             <Select
@@ -182,7 +194,10 @@ function EditCompetition() {
               onChange={(e) => {
                 setCategory(e);
               }}
-              defaultValue={datas.category?.toString()?.replace("_", " ")}
+              value={{
+                label: datas.category?.toString()?.replace("_", " "),
+                value: datas.category?.toString()?.replace("_", " "),
+              }}
             />
           </div>
 

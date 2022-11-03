@@ -107,9 +107,8 @@ const InfoCompetition = () => {
     } else {
       addCompetitorToCompetition();
     }
-     
   };
-  
+
   return (
     <>
       {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
@@ -132,9 +131,13 @@ const InfoCompetition = () => {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title fw-bold">{datas.competition_name}</h5>
-              <p className="infocompetition-text-p ">{competition_date}</p>
-              <p className="infocompetition-text-p ">{datas.category}</p>
-              <p className="infocompetition-text-p ">{datas.stage}</p>
+              <p className="infocompetition-text-p ">{datas.qualifier_date}</p>
+              <p className="infocompetition-text-p ">
+                {datas.category?.toString()?.replace("_", " ")}
+              </p>
+              <p className="infocompetition-text-p ">
+                {datas.stage?.toString()?.replace("_", " ")}
+              </p>
               <p className="infocompetition-text-p ">{datas.location}</p>
               <p className="infocompetition-text-p ">{datas.requirements}</p>
               <p className="infocompetition-text-p ">{datas.description}</p>
@@ -144,19 +147,32 @@ const InfoCompetition = () => {
                     Volver
                   </button>
                 </Link>
-                <button
+
+                {competition.adminid === store.userId ? (
+                  <Link to={`/edit-competition/${datas.id}`}>
+                    <button className="btn btn-validacion">Editar</button>
+                  </Link>
+                ) : (
+                  <button
+                    className="btn btn-validacion"
+                    onClick={() => handleInscription()}
+                  >
+                    Participar
+                  </button>
+                )}
+                {/* <button
                   className="btn col-12 col-md-3 m-1 btn-validacion"
                   onClick={handleInscription}
                 >
                   Participar
                 </button>
                 {store.userRol === "Rol.administration" && (
-                  <Link to="/create-competition">
+                  <Link to="/edit-competition">
                     <button className="btn col-12 col-md-4 m-1 btn-cancelar">
                       Editar Competición
                     </button>
                   </Link>
-                )}
+                )} */}
               </div>
             </div>
           </div>

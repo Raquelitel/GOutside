@@ -16,6 +16,7 @@ import AboutUs from "./pages/aboutUs/AboutUs.jsx";
 
 import VideoLibrary from "./pages/videoLibrary/components/VideoLibrary.jsx";
 import CreateCompetition from "./pages/createCompetition/CreateCompetition.jsx";
+import EditCompetition from "./pages/editCompetition/EditCompetition.jsx";
 import ProtectedRoute from "./component/protectedRoute";
 import MyAllCompetition from "./pages/myAllCompetition/MyAllCompetition.jsx";
 
@@ -42,6 +43,10 @@ const Layout = () => {
               <Route
                 path="/create-competition"
                 element={<CreateCompetition />}
+              />
+              <Route
+                path="/edit-competition/:id"
+                element={<EditCompetition />}
               />
 
               <Route path="/edit-profile" element={<EditProfile />} />

@@ -100,8 +100,7 @@ class Stages(enum.Enum):
 
 class Competition(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    adminid = db.Column(db.Integer, db.ForeignKey(
-        'user.id'), nullable=False)
+    adminid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     competition_name = db.Column(db.String(120), unique=False, nullable=False)
     qualifier_date = db.Column(db.DateTime())
     location = db.Column(db.String(240), unique=False, nullable=False)
@@ -122,13 +121,14 @@ class Competition(db.Model):
             "id": self.id,
             "adminid": self.adminid,
             "competition_name": self.competition_name,
-            "qualifier_date": self.qualifier_date,
+            "qualifier_date": self.qualifier_date.strftime("%m/%d/%Y, %H:%M:%S"),
             "location": self.location,
             "category": list(map(lambda param: param, category)),
             "requirements": self.requirements,
             "description": self.description,
             "create_at": self.create_at,
-            "stage": self.stage.name
+            "stage": self.stage.name,
+            "poster_image_url": self.poster_image_url
         }
 
 

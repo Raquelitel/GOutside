@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useParams, useNavigate, Navigate } from "react-router-dom";
 import { Context } from "../../store/appContext.js";
-import { Navigate } from "react-router-dom";
 import Select from "react-select";
 import MapView from "../../component/MapView/MapView.jsx";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
-import "./CreateCompetition.css";
+import "./editCompetition.css";
 
 const categories = [
   { label: "RX Femenino", value: "rx_femenino" },
@@ -19,15 +18,15 @@ const categories = [
 ];
 
 const stages = [
-  { label: "Inscripción abierta", value: "inscripción_abierta" },
-  { label: "Inscripción cerrada", value: "inscripción_cerrada" },
-  { label: "Competición finalizada", value: "competición_finalizada" },
+  { label: "Inscripción abierta", value: "inscripcion_abierta" },
+  { label: "Inscripción cerrada", value: "inscripcion_cerrada" },
+  { label: "Competición finalizada", value: "competicion_finalizada" },
 ];
 
-function CreateCompetition() {
+function EditCompetition() {
   const { store, actions } = useContext(Context);
-
-  if (store.userRol && store.userRol != "Rol.administration") {
+  const { id } = useParams();
+  if (store.userRol != "Rol.administration") {
     return <Navigate to="/" replace />;
   }
 
@@ -40,15 +39,37 @@ function CreateCompetition() {
   const [stage, setStage] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [tipoMensaje, setTipoMensaje] = useState("");
+  const [datas, setData] = useState({});
+
+  useEffect(() => {
+    getCompetitionInfo();
+  }, [id]);
+
+  const getCompetitionInfo = () => {
+    const url = process.env.BACKEND_URL + `/api/competition/${id}`;
+
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + actions.getTokenLS(),
+      },
+      method: "GET",
+    };
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data.competition);
+      });
+  };
 
   const validation = () => {
     if (
-      name === "" ||
-      date === "" ||
-      category === [] ||
-      requirements === "" ||
-      description === "" ||
-      stage === []
+      datas.competition_name === "" ||
+      datas.qualifier_date === "" ||
+      datas.category === [] ||
+      datas.requirements === "" ||
+      datas.description === "" ||
+      datas.stage === ""
     ) {
       return false;
     } else {
@@ -56,43 +77,37 @@ function CreateCompetition() {
     }
   };
 
-  const create_competition = (e) => {
+  const edit_competition = (e) => {
     e.preventDefault();
-    const url = process.env.BACKEND_URL + "/api/create-competition";
+    const url = process.env.BACKEND_URL + `/api/edit-competition/${id}`;
     if (validation()) {
       const body = {
-        competition_name: name,
-        qualifier_date: date,
-        location: location,
-        category: category.map((cat) => cat.value),
-        requirements: requirements,
-        description: description,
-        stage: stage,
-        poster_image_url: store.posterImagenUrl,
+        competition_name: datas.competition_name,
+        qualifier_date: datas.qualifier_date,
+        location: datas.location,
+        category: datas.category.map((cat) => cat.value),
+        requirements: datas.requirements,
+        description: datas.description,
+        stage: datas.stage,
+        poster_image_url: datas.poster_image_url,
       };
       const options = {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: "Bearer " + store.tokenLS,
         },
-        method: "POST",
-        mode: 'cors',
+        method: "PUT",
         body: JSON.stringify(body),
       };
-
-      fetch(url, options).then((response) => {
-        if (response.status === 401) {
-          setTipoMensaje("mensaje-error");
-      }else{
+      fetch(url, options).then(() => {
+        setMensaje("Competición creada");
         setTipoMensaje("mensaje-correcto");
-      } 
-        return response.json()
-      }).then((data)=>{                  
-        setMensaje(data.result);
         setTimeout(() => {
           setMensaje("");
           setTipoMensaje("");
-        }, 2500);});
+        }, 5000);
+        return;
+      });
     } else {
       setMensaje("Todos los campos son obligatorios");
       setTipoMensaje("mensaje-error");
@@ -100,15 +115,26 @@ function CreateCompetition() {
         setMensaje("");
         setTipoMensaje("");
       }, 2500);
+      return;
     }
     actions.deleteUrlImg();
+  };
+
+  const convertDate = (date) => {
+    if (date) {
+      let curr = new Date(date);
+      curr.setDate(curr.getDate() + 3);
+      return curr.toISOString().substring(0, 10);
+    }
+    return "";
   };
 
   return (
     <div className="container-lg-fluid">
       <div className="">
         <div className="row create-title">
-          <h1 className="text-center my-4">Crea tu competición</h1>
+          <h1 className="text-center my-4">Edita tu competición</h1>
+          {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
         </div>
         <div className="text-center">
           <div className="d-lg-flex">
@@ -129,16 +155,24 @@ function CreateCompetition() {
             className="form-control"
             type="text"
             onChange={(e) => {
-              setName(e.target.value);
+              setData({
+                ...datas,
+                competition_name: e.target.value,
+              });
             }}
+            value={datas?.competition_name}
           />
           <div className="d-lg-flex justify-content-center gap-1">
             <input
               className="rounded col-pill"
               type="date"
               onChange={(e) => {
-                setDate(e.target.value);
+                setData({
+                  ...datas,
+                  qualifier_date: e.target.value,
+                });
               }}
+              defaultValue={convertDate(datas?.qualifier_date)}
             />
 
             <Select
@@ -147,9 +181,15 @@ function CreateCompetition() {
               options={stages}
               className="basic-single col-12 col-lg-4 mt-2"
               classNamePrefix="select"
-              isSearchable={false}
               onChange={(e) => {
-                setStage(e.value);
+                setData({
+                  ...datas,
+                  stage: e.value,
+                });
+              }}
+              value={{
+                label: datas.stage?.toString()?.replace("_", " "),
+                value: datas.stage?.toString()?.replace("_", " "),
               }}
             />
 
@@ -160,9 +200,17 @@ function CreateCompetition() {
               options={categories}
               className="basic-multi-select col-12 col-lg-5 mt-2"
               classNamePrefix="select"
-              isSearchable={false}
               onChange={(e) => {
-                setCategory(e);
+                setData({
+                  ...datas,
+                  category: e,
+                });
+              }}
+              value={{
+                // datas.category.map() => {
+                // }
+                label: datas.category?.toString()?.replace("_", " "),
+                value: datas.category?.toString()?.replace("_", " "),
               }}
             />
           </div>
@@ -172,8 +220,12 @@ function CreateCompetition() {
             placeholder="Requisitos"
             aria-label="With textarea"
             onChange={(e) => {
-              setRequirements(e.target.value);
+              setData({
+                ...datas,
+                requirements: e.target.value,
+              });
             }}
+            defaultValue={datas.requirements}
           ></textarea>
 
           <textarea
@@ -181,24 +233,27 @@ function CreateCompetition() {
             aria-label="With textarea"
             placeholder="Descripción de la competición"
             onChange={(e) => {
-              setDescription(e.target.value);
+              setData({
+                ...datas,
+                description: e.target.value,
+              });
             }}
+            defaultValue={datas.description}
           ></textarea>
 
           <div className="col-md-12 d-flex align-items-center justify-content-evenly">
-          {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
             <button
               className="btn col-5 btn-sucessfull"
-              onClick={(e) => create_competition(e)}
+              onClick={(e) => edit_competition(e)}
             >
-              Crear competición
+              Guardar
             </button>
-            {/* <button
+            <button
               className="btn col-5 btn-cancelar"
               onClick={() => clearForm()}
             >
               Borrar
-            </button> */}
+            </button>
           </div>
         </form>
       </div>
@@ -206,4 +261,4 @@ function CreateCompetition() {
   );
 }
 
-export default CreateCompetition;
+export default EditCompetition;

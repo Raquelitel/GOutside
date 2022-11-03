@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import Card from "../homeUser/cards/Card.jsx";
 import logo from "../../../img/logo-GOutside.png";
+
 const MyAllCompetitions = () => {
   const [myCompetitions, setMyCompetitions] = useState([]);
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
     getMyCompetitions();
+    console.log(myCompetitions);
   }, []);
 
-  const getMyCompetitions = () => {
+  const getMyCompetitions = async () => {
     const url = process.env.BACKEND_URL + "/api/my-competitions";
-
     const options = {
       headers: {
         "Content-Type": "application/json",
@@ -21,12 +22,15 @@ const MyAllCompetitions = () => {
       },
       method: "GET",
     };
-    fetch(url, options)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setMyCompetitions(data);
-      });
+    const resp = await fetch(url, options);
+    const data = await resp.json();
+    console.log("data", data);
+    if (resp.status === 200) {
+      console.log("------------", data);
+      setMyCompetitions(data);
+    } else {
+      console.log("Error");
+    }
   };
 
   return (
@@ -67,44 +71,6 @@ const MyAllCompetitions = () => {
           );
         })}
       </div>
-      {/* {store.userRol != "Rol.administration" && (
-        <>
-          <div className="carousel-item">
-            <div className="card align-items-center justify-content-md-center text-center home-user-card">
-              <div className="container-fluid align-items-center d-flex justify-content-between">
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <h2 className="m-3">MIS COMPETICIONES</h2>
-                <span
-                  className="carousel-control-next-icon "
-                  aria-hidden="true"
-                ></span>
-              </div>
-              <MyAllCompetitions />
-            </div>
-          </div>
-          <div className="carousel-item">
-            <div className="card align-items-center justify-content-md-center text-center home-user-card">
-              <div className="container-fluid align-items-center d-flex justify-content-between">
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <h2 className="m-3">Descubre tu próximo reto... ¡APÚNTATE!</h2>
-                <span
-                  className="carousel-control-next-icon "
-                  aria-hidden="true"
-                ></span>
-              </div>
-              <div className="align-items-center justify-content-md-center text-center mb-5">
-               <Card />
-              </div>
-            </div>
-          </div>
-        </>
-      )} */}
     </>
   );
 };

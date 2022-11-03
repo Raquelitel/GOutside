@@ -19,9 +19,9 @@ const categories = [
 ];
 
 const stages = [
-  { label: "Inscripción abierta", value: "inscripcion_abierta" },
-  { label: "Inscripción cerrada", value: "inscripcion_cerrada" },
-  { label: "Competición finalizada", value: "competicion_finalizada" },
+  { label: "Inscripción abierta", value: "inscripción_abierta" },
+  { label: "Inscripción cerrada", value: "inscripción_cerrada" },
+  { label: "Competición finalizada", value: "competición_finalizada" },
 ];
 
 function CreateCompetition() {

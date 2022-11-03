@@ -250,13 +250,20 @@ def modify_competition(competition_id):
 @jwt_required()
 def my_competition():
     competitor_id = get_jwt_identity()
-    competitor = User.query.get(competitor_id)
-    my_competitions = Competition.query.filter(or_(
-        Competition.competition_competitor.any(User.id == competitor_id)), Competition.adminid == competitor_id).all()
-    if len(my_competitions) > 0:
-        my_competition_serializer = list(
-            map(lambda param: param.serialize(), my_competitions))
-        return jsonify(my_competition_serializer), 200
+
+    my_competition_ids = Competition_user.query.filter(
+        Competition_user.competitor_id == competitor_id).all()
+
+    competition_ids = list(
+        map(lambda param: param.competition_id, my_competition_ids))
+
+    competitions = Competition.query.filter(
+        Competition.id.in_(competition_ids)).all()
+
+    if len(competitions) > 0:
+        my_competitions_serializer = list(
+            map(lambda param: param.serialize(), competitions))
+        return jsonify(my_competitions_serializer), 200
     return jsonify({"message": "Todavía no se ha inscrito en ninguna competición"}), 204
 
 

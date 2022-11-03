@@ -151,7 +151,7 @@ const InfoCompetition = () => {
 
                 {competition.adminid === store.userId ? (
                   <Link to={`/edit-competition/${datas.id}`}>
-                    <button className="btn btn-sucessfull">Editar</button>
+                    <button className="btn btn-validacion">Editar</button>
                   </Link>
                 ) : (
                   <button

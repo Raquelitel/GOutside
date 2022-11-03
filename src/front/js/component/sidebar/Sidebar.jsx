@@ -9,8 +9,8 @@ function Sidebar() {
   const { store, actions } = useContext(Context);
 
   return (
-    <aside className="col-auto ">
-      <div className="sidebar-bg sidebar-size">
+    <aside className="col-auto sidebar-size sidebar-bg ">
+      <div className=" ">
         <div className="">
           <ul
             className="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
@@ -22,7 +22,7 @@ function Sidebar() {
                 className="nav-link mt-5 text-capitalize sidebar-text"
               >
                 <i className="fs-4 bi bi-person"></i>{" "}
-                <span className="ms-1 d-none d-sm-inline">Editar perfil</span>
+                <span className="ms-1 d-none d-lg-inline">Editar perfil</span>
               </Link>
             </li>
 
@@ -33,7 +33,7 @@ function Sidebar() {
                   className="nav-link mt-4 text-capitalize sidebar-text"
                 >
                   <i className="fs-6 bi-pencil-square"></i>{" "}
-                  <span className="ms-1 d-none d-sm-inline">
+                  <span className="ms-1 d-none d-lg-inline">
                     Crear competición
                   </span>{" "}
                 </Link>
@@ -46,7 +46,7 @@ function Sidebar() {
                 className="nav-link mt-4 text-capitalize sidebar-text"
               >
                 <i className="fs-6 bi-stopwatch"></i>{" "}
-                <span className="ms-1 d-none d-sm-inline">
+                <span className="ms-1 d-none d-lg-inline">
                   Mis competiciones
                 </span>{" "}
               </Link>
@@ -58,7 +58,7 @@ function Sidebar() {
                 className="nav-link text-capitalize mt-4 border-top border-bottom border-secondary sidebar-text"
               >
                 <BsEnvelope />
-                <span className="ms-2 d-none d-sm-inline">
+                <span className="ms-2 d-none d-lg-inline">
                   Sobre Nosotros
                 </span>{" "}
               </Link>

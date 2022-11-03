@@ -186,7 +186,7 @@ def create_competition():
 
     if str(user.rol) != "Rol.administration":
         response_body = {
-            "result": "No puedes crear una competición"
+            "result": "No puedes crear una competición. Ponte en contacto con GOutside"
         }
         return jsonify(response_body), 401
 

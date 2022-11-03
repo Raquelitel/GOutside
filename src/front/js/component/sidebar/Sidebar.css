@@ -3,7 +3,7 @@
 }
 
 .sidebar-size {
-  height: 100%;
+  min-height: 87vh;
 }
 
 .sidebar-bg {

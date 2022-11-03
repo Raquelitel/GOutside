@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
   return (
     <div className="h-100">
       <Navbar />
-      <div className="row">
+      <div className="d-flex flex-nowrap row">
         <Sidebar />
         <main className="container-fluid col-10 col-md-9">
           <div className="row mt-3">

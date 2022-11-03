@@ -15,9 +15,8 @@ const InfoCompetition = () => {
   const [tipoMensaje, setTipoMensaje] = useState("");
   const [navegar, setNavegar] = useState(false);
 
-  // const fecha = parseInt(datas.qualifier_date);
-  // const fechaCorregida = fecha.substring(0, fecha.length - 8);
-
+  const competition_date = new Date(datas.qualifier_date).toLocaleDateString('es-ES')
+  
   const navigate = useNavigate();
 
   useEffect(() => {

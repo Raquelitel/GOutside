@@ -148,7 +148,20 @@ const InfoCompetition = () => {
                     Volver
                   </button>
                 </Link>
-                <button
+
+                {competition.adminid === store.userId ? (
+                  <Link to={`/edit-competition/${datas.id}`}>
+                    <button className="btn btn-sucessfull">Editar</button>
+                  </Link>
+                ) : (
+                  <button
+                    className="btn btn-validacion"
+                    onClick={() => handleInscription()}
+                  >
+                    Participar
+                  </button>
+                )}
+                {/* <button
                   className="btn col-12 col-md-3 m-1 btn-validacion"
                   onClick={handleInscription}
                 >
@@ -160,7 +173,7 @@ const InfoCompetition = () => {
                       Editar Competición
                     </button>
                   </Link>
-                )}
+                )} */}
               </div>
             </div>
           </div>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext";
-import Card from "../homeUser/cards/Card.jsx";
 import logo from "../../../img/logo-GOutside.png";
 
 const MyAllCompetitions = () => {
@@ -10,7 +9,6 @@ const MyAllCompetitions = () => {
 
   useEffect(() => {
     getMyCompetitions();
-    console.log(myCompetitions);
   }, []);
 
   const getMyCompetitions = async () => {
@@ -24,9 +22,7 @@ const MyAllCompetitions = () => {
     };
     const resp = await fetch(url, options);
     const data = await resp.json();
-    console.log("data", data);
     if (resp.status === 200) {
-      console.log("------------", data);
       setMyCompetitions(data);
     } else {
       console.log("Error");

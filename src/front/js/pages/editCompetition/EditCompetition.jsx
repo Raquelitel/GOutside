@@ -131,7 +131,7 @@ function EditCompetition() {
 
   return (
     <div className="container-lg-fluid">
-      <div className="">
+      <div>
         <div className="row create-title">
           <h1 className="text-center my-4">Edita tu competición</h1>
           {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}

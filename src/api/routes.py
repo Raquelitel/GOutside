@@ -1,6 +1,3 @@
-"""
-This module takes care of starting the API Server, Loading the DB and Adding the endpoints
-"""
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Rol, Competition, About_us, Competition_user, Stages
 from api.utils import generate_sitemap, APIException
@@ -17,8 +14,6 @@ from sqlalchemy import or_
 
 app = Flask(__name__)
 cors = CORS(app)
-
-
 api = Blueprint('api', __name__)
 
 

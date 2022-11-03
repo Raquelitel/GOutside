@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
-import MapView from "../../component/MapView/MapView.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./allCompetition.css";
@@ -52,8 +51,7 @@ const AllCompetition = () => {
       body: JSON.stringify(body),
     };
     const resp = await fetch(url, options);
-    const data = await resp.json();
-    console.log(resp);
+
     if (resp.status === 200) {
       setMensaje(
         "¡FELICIDADES! Tu inscripción se ha realizado con éxito. Por favor, acude a tu correo electrónico para finalizar el proceso"

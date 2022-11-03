@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
-import logo from "../../../img/logo-GOutside.png";
-import "./navbar.css";
 import {
   BsHouseFill,
   BsFillCollectionPlayFill,
   BsFillTrophyFill,
-  BsList,
 } from "react-icons/bs";
+import logo from "../../../img/logo-GOutside.png";
+import "./navbar.css";
+
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);

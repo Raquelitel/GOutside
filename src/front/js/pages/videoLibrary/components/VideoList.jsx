@@ -1,6 +1,5 @@
 import React from "react";
 import VideoDetail from "./VideoDetail.jsx";
-// import VideoItem from "./VideoItem.jsx";
 
 const VideoList = ({ videos, handleVideoSelect }) => {
 

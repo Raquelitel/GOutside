@@ -37,7 +37,6 @@ const EditProfile = () => {
         options
       );
       const data = await resp.json();
-      console.log(data);
       actions.getUser();
     } catch (error) {
       console.log("Error loading message from backend", error);

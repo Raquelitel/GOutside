@@ -56,7 +56,6 @@ const InfoCompetition = () => {
       body: JSON.stringify(body),
     };
     const resp = fetch(url, options).then((response) => response.json());
-    console.log(resp);
     if (resp.status === 200) {
       setMensaje(
         "¡FELICIDADES! Tu inscripción se ha realizado con éxito. Por favor, acude a tu correo electrónico para finalizar el proceso"
@@ -141,7 +140,7 @@ const InfoCompetition = () => {
               <p className="infocompetition-text-p ">{datas.location}</p>
               <p className="infocompetition-text-p ">{datas.requirements}</p>
               <p className="infocompetition-text-p ">{datas.description}</p>
-              <div className="">
+              <div>
                 <Link to={-1}>
                   <button className="btn col-12 col-md-2 m-1 btn-sucessfull">
                     Volver

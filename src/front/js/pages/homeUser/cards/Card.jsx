@@ -1,7 +1,7 @@
-import "./Card.css";
 import React from "react";
-import logo from "../../../../img/logo-GOutside.png";
 import { Link } from "react-router-dom";
+import logo from "../../../../img/logo-GOutside.png";
+import "./Card.css";
 
 const Card = () => {
   return (

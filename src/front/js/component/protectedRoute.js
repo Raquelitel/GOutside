@@ -4,7 +4,7 @@ import { Context } from "../store/appContext.js";
 import { Navbar } from "./navbar/navbar.jsx";
 import Sidebar from "./sidebar/Sidebar.jsx";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = () => {
   const { store, actions } = useContext(Context);
   const token = actions.getTokenLS();
 

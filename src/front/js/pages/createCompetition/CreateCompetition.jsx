@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { Context } from "../../store/appContext.js";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Select from "react-select";
 import MapView from "../../component/MapView/MapView.jsx";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
@@ -26,6 +26,7 @@ const stages = [
 
 function CreateCompetition() {
   const { store, actions } = useContext(Context);
+  let navigate = useNavigate();
 
   if (store.userRol && store.userRol != "Rol.administration") {
     return <Navigate to="/" replace />;
@@ -72,27 +73,31 @@ function CreateCompetition() {
       };
       const options = {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: "Bearer " + store.tokenLS,
         },
         method: "POST",
-        mode: 'cors',
+        mode: "cors",
         body: JSON.stringify(body),
       };
 
-      fetch(url, options).then((response) => {
-        if (response.status === 401) {
-          setTipoMensaje("mensaje-error");
-      }else{
-        setTipoMensaje("mensaje-correcto");
-      } 
-        return response.json()
-      }).then((data)=>{                  
-        setMensaje(data.result);
-        setTimeout(() => {
-          setMensaje("");
-          setTipoMensaje("");
-        }, 2500);});
+      fetch(url, options)
+        .then((response) => {
+          if (response.status === 401) {
+            setTipoMensaje("mensaje-error");
+          } else {
+            setTipoMensaje("mensaje-correcto");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setMensaje(data.result);
+          setTimeout(() => {
+            setMensaje("");
+            setTipoMensaje("");
+            navigate("/home/user");
+          }, 2500);
+        });
     } else {
       setMensaje("Todos los campos son obligatorios");
       setTipoMensaje("mensaje-error");
@@ -186,19 +191,13 @@ function CreateCompetition() {
           ></textarea>
 
           <div className="col-md-12 d-flex align-items-center justify-content-evenly">
-          {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
+            {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
             <button
               className="btn col-5 btn-sucessfull"
               onClick={(e) => create_competition(e)}
             >
               Crear competición
             </button>
-            {/* <button
-              className="btn col-5 btn-cancelar"
-              onClick={() => clearForm()}
-            >
-              Borrar
-            </button> */}
           </div>
         </form>
       </div>

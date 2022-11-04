@@ -137,7 +137,7 @@ const AllCompetition = () => {
                   {competition.qualifier_date}
                 </p>
                 <p className="m-0 allcompetition-text-p">
-                  {competition.category?.toString()?.replace("_", " ")}
+                  {competition.location}
                 </p>
                 <p className="allcompetition-text-p">
                   {competition.stage?.toString()?.replace("_", " ")}

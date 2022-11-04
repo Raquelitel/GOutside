@@ -19,8 +19,6 @@ const AllCompetition = () => {
     getCardsInfo();
   }, [store.userId]);
 
-  console.log(store.userId);
-
   const getCardsInfo = () => {
     const url = process.env.BACKEND_URL + "/api/competitions";
     const options = {

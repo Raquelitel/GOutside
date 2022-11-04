@@ -10,7 +10,6 @@ const MyAllCompetitions = () => {
 
   useEffect(() => {
     getMyCompetitions();
-    console.log(myCompetitions);
   }, []);
 
   const getMyCompetitions = async () => {
@@ -24,13 +23,7 @@ const MyAllCompetitions = () => {
     };
     const resp = await fetch(url, options);
     const data = await resp.json();
-    console.log("data", data);
-    if (resp.status === 200) {
-      console.log("------------", data);
-      setMyCompetitions(data);
-    } else {
-      console.log("Error");
-    }
+    resp.status === 200 && setMyCompetitions(data);
   };
 
   return (

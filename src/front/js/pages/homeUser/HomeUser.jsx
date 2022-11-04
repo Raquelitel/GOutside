@@ -17,7 +17,7 @@ const HomeUser = () => {
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
-          <div className="carousel-item active">
+          <div className="carousel-item">
             <div className="card align-items-center justify-content-md-center text-center home-user-card">
               <div className="container-fluid align-items-center d-flex justify-content-between">
                 <span
@@ -47,7 +47,7 @@ const HomeUser = () => {
               </div>
             </div>
           </div>
-          <div className="carousel-item">
+          <div className="carousel-item active">
             <div className="card align-items-center justify-content-md-center text-center home-user-card">
               <div className="container-fluid align-items-center d-flex justify-content-between">
                 <span

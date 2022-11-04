@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext";
-import Card from "../homeUser/cards/Card.jsx";
 import logo from "../../../img/logo-GOutside.png";
 
 const MyAllCompetitions = () => {

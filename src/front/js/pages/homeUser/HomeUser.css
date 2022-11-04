@@ -1,9 +1,9 @@
-a {
+.color-link {
   text-decoration: none;
 }
 
-a:hover {
-  color: var(--color-red);
+Link:hover {
+  color: #ff4c29;
   text-decoration: none;
 }
 

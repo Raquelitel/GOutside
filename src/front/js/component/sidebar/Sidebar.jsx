@@ -1,17 +1,16 @@
 import React, { useContext } from "react";
-import "./Sidebar.css";
-import GOutside_transp from "../../../img/GOutside_transp.png";
 import { Link } from "react-router-dom";
 import { BsEnvelope } from "react-icons/bs";
 import { Context } from "../../store/appContext";
+import "./Sidebar.css";
 
 function Sidebar() {
   const { store, actions } = useContext(Context);
 
   return (
     <aside className="col-auto sidebar-size sidebar-bg ">
-      <div className=" ">
-        <div className="">
+      <div>
+        <div>
           <ul
             className="nav flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
             id="menu"

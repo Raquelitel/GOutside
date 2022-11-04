@@ -106,7 +106,7 @@ function CreateCompetition() {
 
   return (
     <div className="container-lg-fluid">
-      <div className="">
+      <div>
         <div className="row create-title">
           <h1 className="text-center my-4">Crea tu competición</h1>
         </div>

@@ -72,7 +72,7 @@ const Signup = () => {
   };
   return (
     <div className="d-md-flex align-items-center justify-content-evenly">
-      <Link to="/" className="">
+      <Link to="/">
         <img className="signup-logo-size" src={logo} alt="GOutside" />
       </Link>
       <form className="d-flex flex-column col-md-5" onSubmit={handleSubmit}>

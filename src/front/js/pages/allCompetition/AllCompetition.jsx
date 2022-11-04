@@ -51,8 +51,7 @@ const AllCompetition = () => {
       body: JSON.stringify(body),
     };
     const resp = await fetch(url, options);
-    const data = await resp.json();
-    console.log(resp);
+
     if (resp.status === 200) {
       setMensaje(
         "¡FELICIDADES! Tu inscripción se ha realizado con éxito. Por favor, acude a tu correo electrónico para finalizar el proceso"

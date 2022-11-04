@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import injectContext, { Context } from "./store/appContext";
+import { Home } from "./pages/home/Home.jsx";
 
 import ScrollToTop from "./component/scrollToTop";
 
-import { Home } from "./pages/home/Home.jsx";
-import injectContext, { Context } from "./store/appContext";
 import Signup from "./pages/signup/Signup.jsx";
 import Login from "./pages/login/Login.jsx";
 import HomeUser from "./pages/homeUser/HomeUser.jsx";

@@ -245,21 +245,30 @@ def modify_competition(competition_id):
 @jwt_required()
 def my_competition():
     competitor_id = get_jwt_identity()
+    user = User.query.get(competitor_id)
+    print(user.rol)
+    if user.rol != Rol.administration:
+        print("siiiiiiiiii")
+        my_competition_ids = Competition_user.query.filter(
+            Competition_user.competitor_id == competitor_id).all()
 
-    my_competition_ids = Competition_user.query.filter(
-        Competition_user.competitor_id == competitor_id).all()
+        competition_ids = list(
+            map(lambda param: param.competition_id, my_competition_ids))
 
-    competition_ids = list(
-        map(lambda param: param.competition_id, my_competition_ids))
+        competitions = Competition.query.filter(
+            Competition.id.in_(competition_ids)).all()
 
-    competitions = Competition.query.filter(
-        Competition.id.in_(competition_ids)).all()
+        if len(competitions) > 0:
+            my_competitions_serializer = list(
+                map(lambda param: param.serialize(), competitions))
+            return jsonify(my_competitions_serializer), 200
+        return jsonify({"message": "Todavía no se ha inscrito en ninguna competición"}), 204
 
-    if len(competitions) > 0:
+    else:
+        my_competitions = Competition.query.filter_by(adminid=competitor_id)
         my_competitions_serializer = list(
-            map(lambda param: param.serialize(), competitions))
+            map(lambda param: param.serialize(), my_competitions))
         return jsonify(my_competitions_serializer), 200
-    return jsonify({"message": "Todavía no se ha inscrito en ninguna competición"}), 204
 
 
 @api.route('/my-competitions', methods=['POST'])
@@ -267,6 +276,13 @@ def my_competition():
 def add_my_competition():
     competitor_id = get_jwt_identity()
     data = request.get_json()
+    user_in = Competition_user.query.filter_by(competitor_id=competitor_id,
+                                               competition_id=data["competition_id"]).all()
+    if user_in:
+        response_body = {
+            "result": "Ya estas apuntado en esta competición"
+        }
+        return jsonify(response_body), 400
     my_competition = Competition_user(
         competitor_id=competitor_id,
         competition_id=data["competition_id"]

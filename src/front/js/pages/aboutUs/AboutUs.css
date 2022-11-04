@@ -9,3 +9,9 @@ textarea {
 .login-logo-size {
   width: 18vw;
 }
+
+.cofundador-img {
+  border-radius: 50%;
+  width: 15vh;
+  height: 15vh;
+}

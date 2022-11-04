@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../img/logo-GOutside.png";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
+import coFundadorRaquel from "../../../img/co_fundador_raquel.jpeg";
+import coFundadorNico from "../../../img/cofundador_Nico.jpeg";
+import coFundadorAle from "../../../img/cofundador_Ale.jpeg";
 import "./AboutUs.css";
 
 function AboutUs() {
@@ -55,11 +58,11 @@ function AboutUs() {
       <h1 className="text-center text-capitalize mt-3 aboutUs-title-color">
         ¿Quiénes somos?
       </h1>
-      <div className="d-lg-flex align-items-center justify-content-evenly text-center ">
+      <div className="d-lg-flex align-items-center justify-content-evenly text-center">
         <Link to="/">
           <img src={logo} className="me-2 login-logo-size" alt="GOutside" />
         </Link>
-        <div className="d-lg-flex-column align-items-center justify-content-center ms-auto">
+        <div className="d-lg-flex-column align-items-center justify-content-evenly ms-auto">
           <p className="text-sm-start lh-lg aboutUs-title-color">
             {" "}
             Hemos venido a revolucionar las competiciones de entrenamiento
@@ -76,6 +79,33 @@ function AboutUs() {
             {" "}
             Unete a nuestra comunidad, crezcamos juntos.
           </p>
+        </div>
+      </div>
+      <h3 className="fw-bold text-center aboutUs-title-color">Co-Fundadores</h3>
+      <div className="d-flex justify-content-around mt-3">
+        <div>
+          <img
+            src={coFundadorAle}
+            className="shadow cofundador-img"
+            alt="Co-fundador foto"
+          />
+          <p className="mt-1 aboutUs-title-color">Ale Romero</p>
+        </div>
+        <div>
+          <img
+            src={coFundadorRaquel}
+            className="shadow cofundador-img"
+            alt="Co-fundador foto"
+          />
+          <p className="mt-1 aboutUs-title-color">Raquel Martín</p>
+        </div>
+        <div>
+          <img
+            src={coFundadorNico}
+            className="shadow cofundador-img"
+            alt="Co-fundador foto"
+          />
+          <p className="mt-1 aboutUs-title-color">Nico Martín</p>
         </div>
       </div>
 

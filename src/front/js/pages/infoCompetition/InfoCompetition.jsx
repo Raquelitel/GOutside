@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext.js";
-import MapView from "../../component/MapView/MapView.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./InfoCompetition.css";
@@ -120,42 +119,68 @@ const InfoCompetition = () => {
         </button>
       )}
 
-      <div className="card mb-3">
-        <div className="row g-0">
-          <div className="col-md-4">
+      <div className="container-fluid mb-3 rounded infocompetition-card-size">
+        <div className="row">
+          <div className="col-md-3 m-2 d-flex justify-content-center align-items-center">
             <img
               src={!datas.poster_image_url ? logo : datas.poster_image_url}
-              className="infocompetition-img-card"
+              className="rounded infocompetition-img-card"
               alt="cartel competicion"
             />
           </div>
           <div className="col-md-8">
-            <div className="card-body">
-              <h5 className="card-title fw-bold">{datas.competition_name}</h5>
-              <p className="infocompetition-text-p ">{datas.qualifier_date}</p>
-              <p className="infocompetition-text-p ">
-                {datas.category?.toString()?.replace("_", " ")}
-              </p>
-              <p className="infocompetition-text-p ">
-                {datas.stage?.toString()?.replace("_", " ")}
-              </p>
-              <p className="infocompetition-text-p ">{datas.location}</p>
+            <div className="card-body col-12">
+              <div className="d-flex">
+                <div className="col-8">
+                  <h5 className="card-title fw-bold">
+                    {datas.competition_name}
+                  </h5>
+                  <p className="infocompetition-text-p ">
+                    {datas.qualifier_date}
+                  </p>
+                  <p className="infocompetition-text-p ">{datas.location}</p>
+                </div>
+
+                <div>
+                  <h5 className="fw-bold infocompetition-text-p">Estado</h5>
+                  <p className="infocompetition-text-p ">
+                    {datas.stage?.toString()?.replace("_", " ")}
+                  </p>
+                </div>
+              </div>
+
+              <div className="d-flex">
+                <div>
+                  <h5 className="fw-bold infocompetition-text-p">Categorías</h5>
+                  <div className="d-lg-flex gap-4 col-8">
+                    {datas.category?.map((categoria) => (
+                      <p key={categoria} className="infocompetition-text-p col">
+                        {categoria.toString()?.replace("_", " ")}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <h5 className="fw-bold infocompetition-text-p">Requisitos</h5>
               <p className="infocompetition-text-p ">{datas.requirements}</p>
+              <h5 className="fw-bold infocompetition-text-p">Descripción</h5>
               <p className="infocompetition-text-p ">{datas.description}</p>
-              <div>
+              <div className="">
                 <Link to={-1}>
-                  <button className="btn col-12 col-md-2 m-1 btn-sucessfull">
+                  <button className="btn col-12 col-md-5 m-1 btn-sucessfull">
                     Volver
                   </button>
                 </Link>
 
                 {datas.adminid === store.userId ? (
                   <Link to={`/edit-competition/${datas.id}`}>
-                    <button className="btn btn-validacion">Editar</button>
+                    <button className="btn col-12 col-md-5 m-1 btn-validacion">
+                      Editar
+                    </button>
                   </Link>
                 ) : (
                   <button
-                    className="btn btn-validacion"
+                    className="btn col-12 col-md-5 m-1 btn-validacion"
                     onClick={() => handleInscription()}
                   >
                     Participar

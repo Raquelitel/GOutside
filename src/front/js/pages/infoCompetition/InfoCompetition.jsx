@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext.js";
-import MapView from "../../component/MapView/MapView.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./InfoCompetition.css";

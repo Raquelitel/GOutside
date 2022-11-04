@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { Context } from "../../store/appContext.js";
 import { Navigate, useNavigate } from "react-router-dom";
 import Select from "react-select";
-import MapView from "../../component/MapView/MapView.jsx";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import "./CreateCompetition.css";
@@ -114,14 +113,12 @@ function CreateCompetition() {
       <div>
         <div className="row create-title">
           <h1 className="text-center my-4">Crea tu competición</h1>
+          {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
         </div>
         <div className="text-center">
           <div className="d-lg-flex">
             <div className="col-12 col-lg-8">
               <PosterCompetition />
-            </div>
-            <div className="col-12 col-lg-4">
-              <MapView />
             </div>
           </div>
         </div>
@@ -172,6 +169,17 @@ function CreateCompetition() {
             />
           </div>
 
+          <div>
+            <input
+              placeholder="Dirección"
+              className="form-control"
+              type="text"
+              onChange={(e) => {
+                setLocation(e.target.value);
+              }}
+            />
+          </div>
+
           <textarea
             className="form-control create-requirements"
             placeholder="Requisitos"
@@ -191,7 +199,6 @@ function CreateCompetition() {
           ></textarea>
 
           <div className="col-md-12 d-flex align-items-center justify-content-evenly">
-            {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
             <button
               className="btn col-5 btn-sucessfull"
               onClick={(e) => create_competition(e)}

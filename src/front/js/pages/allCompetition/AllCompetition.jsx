@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
-import MapView from "../../component/MapView/MapView.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./allCompetition.css";
@@ -18,7 +17,9 @@ const AllCompetition = () => {
 
   useEffect(() => {
     getCardsInfo();
-  }, []);
+  }, [store.userId]);
+
+  console.log(store.userId);
 
   const getCardsInfo = () => {
     const url = process.env.BACKEND_URL + "/api/competitions";

@@ -126,7 +126,7 @@ const AllCompetition = () => {
                     ? logo
                     : competition.poster_image_url
                 }
-                className="competition-img-card"
+                className="allcompetition-img-card"
                 alt="cartel competicion"
               />
               <div className="card-body">

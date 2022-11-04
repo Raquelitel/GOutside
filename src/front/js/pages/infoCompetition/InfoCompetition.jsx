@@ -120,7 +120,7 @@ const InfoCompetition = () => {
         </button>
       )}
 
-      <div className="container-fluid mb-3 infocompetition-card-size">
+      <div className="container-fluid mb-3 rounded infocompetition-card-size">
         <div className="row">
           <div className="col-md-3 m-2 d-flex justify-content-center align-items-center">
             <img

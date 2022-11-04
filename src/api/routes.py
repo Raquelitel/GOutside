@@ -1,8 +1,5 @@
-"""
-This module takes care of starting the API Server, Loading the DB and Adding the endpoints
-"""
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Rol, Competition, About_us, Competition_user
+from api.models import db, User, Rol, Competition, About_us, Competition_user, Stages
 from api.utils import generate_sitemap, APIException
 from datetime import timedelta
 from flask_jwt_extended import (
@@ -12,11 +9,11 @@ import json
 import cloudinary
 import cloudinary.uploader
 from flask_cors import cross_origin, CORS
+from sqlalchemy import or_
+
 
 app = Flask(__name__)
 cors = CORS(app)
-
-
 api = Blueprint('api', __name__)
 
 
@@ -179,17 +176,25 @@ def get_one_competition(id):
 @jwt_required()
 def create_competition():
     data = request.get_json()
+    userid = get_jwt_identity()
+    user = User.query.get(userid)
+
+    if str(user.rol) != "Rol.administration":
+        response_body = {
+            "result": "No puedes crear una competición. Ponte en contacto con GOutside"
+        }
+        return jsonify(response_body), 401
+
     category = list(data["category"])
     competition = Competition(
+        adminid=userid,
         competition_name=data["competition_name"],
         qualifier_date=data["qualifier_date"],
         location=data["location"],
-        category=data["category"],
+        category=category,
         requirements=data["requirements"],
         description=data["description"],
-        # create_at=data["create_at"],
         stage=data["stage"],
-        # competition_competitor=data["competition_competitor"]
         poster_image_url=data["poster_image_url"]
     )
 
@@ -202,21 +207,29 @@ def create_competition():
     return jsonify(response_body), 200
 
 
-@api.route('/create-competition/<int:competition_id>', methods=['PUT'])
+@api.route('/edit-competition/<int:competition_id>', methods=['PUT'])
 @jwt_required()
 def modify_competition(competition_id):
     data = request.get_json()
+    userid = get_jwt_identity()
+    user = User.query.get(userid)
+
+    if str(user.rol) != "Rol.administration":
+        response_body = {
+            "result": "No puedes crear una competición"
+        }
+        return jsonify(response_body), 401
+
     competition = Competition.query.get(competition_id)
     if data is not None and competition:
-        competition.competition_name = data["competition_name"],
-        competition.qualifier_date = data["qualifier_date"],
-        competition.location = data["location"],
-        competition.category = data["category"],
-        competition.requirements = data["requirements"],
-        competition.description = data["description"],
-        competition.create_at = data["create_at"],
-        competition.stage = data["stage"],
-        competition.competition_competitor = data["competition_competitor"]
+        competition.competition_name = data["competition_name"]
+        competition.qualifier_date = data["qualifier_date"]
+        competition.location = data["location"]
+        competition.category = data["category"]
+        competition.requirements = data["requirements"]
+        competition.description = data["description"]
+        competition.stage = data["stage"]
+        competition.poster_image_url = data["poster_image_url"]
         db.session.commit()
 
         response_body = {
@@ -232,14 +245,30 @@ def modify_competition(competition_id):
 @jwt_required()
 def my_competition():
     competitor_id = get_jwt_identity()
-    competitor = User.query.get(competitor_id)
-    my_competitions = Competition.query.filter(
-        Competition.competition_competitor.any(User.id == competitor_id)).all()
-    if len(my_competitions) > 0:
-        my_competition_serializer = list(
+    user = User.query.get(competitor_id)
+    print(user.rol)
+    if user.rol != Rol.administration:
+        print("siiiiiiiiii")
+        my_competition_ids = Competition_user.query.filter(
+            Competition_user.competitor_id == competitor_id).all()
+
+        competition_ids = list(
+            map(lambda param: param.competition_id, my_competition_ids))
+
+        competitions = Competition.query.filter(
+            Competition.id.in_(competition_ids)).all()
+
+        if len(competitions) > 0:
+            my_competitions_serializer = list(
+                map(lambda param: param.serialize(), competitions))
+            return jsonify(my_competitions_serializer), 200
+        return jsonify({"message": "Todavía no se ha inscrito en ninguna competición"}), 204
+
+    else:
+        my_competitions = Competition.query.filter_by(adminid=competitor_id)
+        my_competitions_serializer = list(
             map(lambda param: param.serialize(), my_competitions))
-        return jsonify(my_competition_serializer), 200
-    return jsonify({"message": "Todavía no se ha inscrito en ninguna competición"}), 204
+        return jsonify(my_competitions_serializer), 200
 
 
 @api.route('/my-competitions', methods=['POST'])
@@ -247,6 +276,13 @@ def my_competition():
 def add_my_competition():
     competitor_id = get_jwt_identity()
     data = request.get_json()
+    user_in = Competition_user.query.filter_by(competitor_id=competitor_id,
+                                               competition_id=data["competition_id"]).all()
+    if user_in:
+        response_body = {
+            "result": "Ya estas apuntado en esta competición"
+        }
+        return jsonify(response_body), 400
     my_competition = Competition_user(
         competitor_id=competitor_id,
         competition_id=data["competition_id"]

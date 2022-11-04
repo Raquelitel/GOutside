@@ -4,20 +4,20 @@ import { Context } from "../store/appContext.js";
 import { Navbar } from "./navbar/navbar.jsx";
 import Sidebar from "./sidebar/Sidebar.jsx";
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = () => {
   const { store, actions } = useContext(Context);
-  const token = actions.getTokenLS()
-   
+  const token = actions.getTokenLS();
+
   if (token === null) {
-   return <Navigate to="/login" replace />;
+    return <Navigate to="/login" replace />;
   }
   return (
-    <div>
+    <div className="h-100">
       <Navbar />
-      <div className="row">
+      <div className="d-flex flex-nowrap row">
         <Sidebar />
-        <main className="container col-10 mx-auto">
-          <div className="row">
+        <main className="container-fluid col-10 col-md-9">
+          <div className="row mt-3">
             <Outlet />
           </div>
         </main>

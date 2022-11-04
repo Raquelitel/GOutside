@@ -5,9 +5,7 @@ from sqlalchemy import Enum, DateTime
 from sqlalchemy.dialects.postgresql import ARRAY
 from datetime import datetime
 
-
 db = SQLAlchemy()
-
 
 class Rol(enum.Enum):
     competitor = 1
@@ -19,11 +17,9 @@ class Rol(enum.Enum):
             "competitor": self.competitor
         }
 
-
 class Gender(enum.Enum):
     masculino = 1
     femenino = 2
-
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -55,7 +51,6 @@ class User(db.Model):
             "rol": str(self.rol)
         }
 
-
 class Competition_user(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     competitor_id = db.Column(db.Integer, db.ForeignKey(
@@ -84,7 +79,6 @@ class Category(enum.Enum):
             "equipos": self.equipos
         }
 
-
 class Stages(enum.Enum):
     inscripción_abierta = 1
     inscripción_cerrada = 2
@@ -97,9 +91,9 @@ class Stages(enum.Enum):
             "competición_finalizada": self.competición_finalizada,
         }
 
-
 class Competition(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    adminid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     competition_name = db.Column(db.String(120), unique=False, nullable=False)
     qualifier_date = db.Column(db.DateTime())
     location = db.Column(db.String(240), unique=False, nullable=False)
@@ -118,16 +112,17 @@ class Competition(db.Model):
             category.append(cat.name)
         return {
             "id": self.id,
+            "adminid": self.adminid,
             "competition_name": self.competition_name,
-            "qualifier_date": self.qualifier_date,
+            "qualifier_date": self.qualifier_date.strftime("%m/%d/%Y, %H:%M:%S"),
             "location": self.location,
             "category": list(map(lambda param: param, category)),
             "requirements": self.requirements,
             "description": self.description,
             "create_at": self.create_at,
-            "stage": self.stage.name
+            "stage": self.stage.name,
+            "poster_image_url": self.poster_image_url
         }
-
 
 class Qualifier_competitor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -135,7 +130,6 @@ class Qualifier_competitor(db.Model):
         'qualifier.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'user.id'), nullable=False)
-
 
 class Qualifier(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -152,7 +146,6 @@ class Qualifier(db.Model):
             "comment": self.comment,
             "previous_result": self.previous_result
         }
-
 
 class About_us(db.Model):
     id = db.Column(db.Integer, primary_key=True)

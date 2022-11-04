@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import Mensaje from "../mensaje/Mensaje.jsx";
 import "./deleteprofile.css";
@@ -24,7 +24,7 @@ const DeleteProfile = () => {
     <div className="delete-text-color">
       <button
         type="button"
-        className="btn btn-warning profile-btn-delete-bg"
+        className="btn btn-cancelar"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SearchBar from "./SearchBar.jsx";
 import VideoList from "./VideoList.jsx";
 import VideoDetail from "./VideoDetail.jsx";
@@ -11,7 +11,6 @@ const VideoLibrary = () => {
 
   const handleSubmit = async (term) => {
     setSelectedVideo(null);
-    console.log(term);
 
     if (term === "" || term === undefined) {
       setVideos([]);
@@ -23,7 +22,6 @@ const VideoLibrary = () => {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           setVideos(data.items);
         });
     }

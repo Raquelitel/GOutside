@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import MapView from "../../component/MapView/MapView.jsx";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { Context } from "../../store/appContext.js";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
-import { Context } from "../../store/appContext.js";
+import "./InfoCompetition.css";
 
 const InfoCompetition = () => {
   const { id } = useParams();
@@ -13,6 +13,10 @@ const InfoCompetition = () => {
   const [mensaje, setMensaje] = useState("");
   const [tipoMensaje, setTipoMensaje] = useState("");
   const [navegar, setNavegar] = useState(false);
+
+  const competition_date = new Date(datas.qualifier_date).toLocaleDateString(
+    "es-ES"
+  );
 
   const navigate = useNavigate();
 
@@ -53,7 +57,6 @@ const InfoCompetition = () => {
       body: JSON.stringify(body),
     };
     const resp = fetch(url, options).then((response) => response.json());
-    console.log(resp);
     if (resp.status === 200) {
       setMensaje(
         "¡FELICIDADES! Tu inscripción se ha realizado con éxito. Por favor, acude a tu correo electrónico para finalizar el proceso"
@@ -107,66 +110,6 @@ const InfoCompetition = () => {
   };
 
   return (
-    // <div className="container-lg-fluid text-center align-items-center justify-content-center m-auto p-5">
-    //   <div className="row d-flex create-title">
-    //     <h1 className="text-center">Info detallada de la competición</h1>
-    //   </div>
-    //   <img
-    //     src={store.posterImagenUrl === null ? logo : store.posterImagenUrl}
-    //     className="navbar-photo-profile"
-    //     alt="profile photo"
-    //   />
-    //   <div className="row justify-content-center mt-5 mb-5">
-    //     <div className="col-4 align-items-center justify-content-center">
-    //       <input type="text" value={datas.competition_name} />
-    //     </div>
-
-    //     <div className="col-4 align-items-center justify-content-center ">
-    //       <input type="text" value={datas.qualifier_date} />
-    //     </div>
-
-    //     <div className="col-4 align-items-center justify-content-center ">
-    //       <input type="text" value={datas.category} />
-    //     </div>
-    //   </div>
-
-    //   <div className="row d-flex justify-content-center">
-    //     <div className="col-4 align-items-center justify-content-center">
-    //       <input type="text" value={datas.location} />
-    //     </div>
-
-    //     <div className="col-6 align-items-center justify-content-center mb-5 ">
-    //       <div className="create-category">
-    //         <input type="text" value={datas.requirements} />
-    //       </div>
-    //     </div>
-    //   </div>
-
-    //   <div className="row d-flex justify-content-center">
-    //     <div className="input-group align-items-center justify-content-center mb-5">
-    //       <input type="text" value={datas.description} />
-    //     </div>
-    //   </div>
-
-    //   <div className="row justify-content-center ">
-    //     <div className="input-group align-items-center justify-content-center mb-5">
-    //       <input type="text" value={datas.stage} />
-    //     </div>
-    //   </div>
-
-    //   <div className="row create-button">
-    //     <div className="d-flex justify-content-around text-center align-items-center">
-    //       <button
-    //         className="btn btn-success"
-    //         onClick={() => getCompetitionInfo()}
-    //       >
-    //         Este boton tiene que llevar la validación de que es ADMIN y además
-    //         ha creado esta competición para poder editar.
-    //       </button>
-    //       <br />
-    //     </div>
-    //   </div>
-    // </div>
     <>
       {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
 
@@ -175,36 +118,76 @@ const InfoCompetition = () => {
           Editar Perfil
         </button>
       )}
-      <div className="card m-2">
-        <img
-          src={!datas.poster_image_url ? logo : datas.poster_image_url}
-          className="competition-img-card"
-          alt="cartel competicion"
-        />
-        <div className="card-body">
-          <h4 className="card-title">{datas.competition_name}</h4>
-          <h5 className="card-text">{datas.qualifier_date}</h5>
-          <h5 className="card-text">{datas.category}</h5>
-          <h5 className="card-text">{datas.stage}</h5>
-          <h5 className="card-text">{datas.location}</h5>
-          <h5 className="card-text">{datas.requirements}</h5>
-          <h5 className="card-text">{datas.description}</h5>
-          <div className="d-flex justify-content-center gap-3">
-            <Link to={-1}>
-              <button className="btn btn-sucessfull">Volver</button>
-            </Link>
-            <button className="btn btn-validacion" onClick={handleInscription}>
-              Participar
-            </button>
+
+      <div className="container-fluid mb-3 rounded infocompetition-card-size">
+        <div className="row">
+          <div className="col-md-3 m-2 d-flex justify-content-center align-items-center">
+            <img
+              src={!datas.poster_image_url ? logo : datas.poster_image_url}
+              className="rounded infocompetition-img-card"
+              alt="cartel competicion"
+            />
           </div>
-          <div>
-            {store.userRol === "Rol.administration" && (
-              <Link to="/create-competition">
-                <button className="btn btn-sucessfull">
-                  Editar Competición
-                </button>
-              </Link>
-            )}
+          <div className="col-md-8">
+            <div className="card-body col-12">
+              <div className="d-flex">
+                <div className="col-8">
+                  <h5 className="card-title fw-bold">
+                    {datas.competition_name}
+                  </h5>
+                  <p className="infocompetition-text-p ">
+                    {datas.qualifier_date}
+                  </p>
+                  <p className="infocompetition-text-p ">{datas.location}</p>
+                </div>
+
+                <div>
+                  <h5 className="fw-bold infocompetition-text-p">Estado</h5>
+                  <p className="infocompetition-text-p ">
+                    {datas.stage?.toString()?.replace("_", " ")}
+                  </p>
+                </div>
+              </div>
+
+              <div className="d-flex">
+                <div>
+                  <h5 className="fw-bold infocompetition-text-p">Categorías</h5>
+                  <div className="d-lg-flex gap-4 col-8">
+                    {datas.category?.map((categoria) => (
+                      <p key={categoria} className="infocompetition-text-p col">
+                        {categoria.toString()?.replace("_", " ")}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <h5 className="fw-bold infocompetition-text-p">Requisitos</h5>
+              <p className="infocompetition-text-p ">{datas.requirements}</p>
+              <h5 className="fw-bold infocompetition-text-p">Descripción</h5>
+              <p className="infocompetition-text-p ">{datas.description}</p>
+              <div className="">
+                <Link to={-1}>
+                  <button className="btn col-12 col-md-5 m-1 btn-sucessfull">
+                    Volver
+                  </button>
+                </Link>
+
+                {datas.adminid === store.userId ? (
+                  <Link to={`/edit-competition/${datas.id}`}>
+                    <button className="btn col-12 col-md-5 m-1 btn-validacion">
+                      Editar
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    className="btn col-12 col-md-5 m-1 btn-validacion"
+                    onClick={() => handleInscription()}
+                  >
+                    Participar
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import injectContext, { Context } from "./store/appContext";
+import { Home } from "./pages/home/Home.jsx";
 
 import ScrollToTop from "./component/scrollToTop";
 
-import { Home } from "./pages/home/Home.jsx";
-import injectContext, { Context } from "./store/appContext";
 import Signup from "./pages/signup/Signup.jsx";
 import Login from "./pages/login/Login.jsx";
 import HomeUser from "./pages/homeUser/HomeUser.jsx";
@@ -16,6 +16,7 @@ import AboutUs from "./pages/aboutUs/AboutUs.jsx";
 
 import VideoLibrary from "./pages/videoLibrary/components/VideoLibrary.jsx";
 import CreateCompetition from "./pages/createCompetition/CreateCompetition.jsx";
+import EditCompetition from "./pages/editCompetition/EditCompetition.jsx";
 import ProtectedRoute from "./component/protectedRoute";
 import MyAllCompetition from "./pages/myAllCompetition/MyAllCompetition.jsx";
 
@@ -42,6 +43,10 @@ const Layout = () => {
               <Route
                 path="/create-competition"
                 element={<CreateCompetition />}
+              />
+              <Route
+                path="/edit-competition/:id"
+                element={<EditCompetition />}
               />
 
               <Route path="/edit-profile" element={<EditProfile />} />

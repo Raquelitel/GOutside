@@ -1,11 +1,13 @@
-:root {
-  --color-dark-grey: #2c3333;
-  --color-dark-blue: #395b64;
-  --color-light-blue: #a5c9ca;
-  --color-light: #e7f6f2;
-  --color-red: #ff4c29;
+.infocompetition-img-card {
+  height: 45vh;
+  width: 30vh;
 }
 
-.container {
-  background-color: var(--color-light-blue);
+.infocompetition-text-p {
+  color: var(--color-dark-grey);
+}
+
+.infocompetition-card-size {
+  min-height: 50vh;
+  background-color: var(--color-light-card);
 }

@@ -1,4 +1,4 @@
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ getActions, setStore }) => {
   return {
     store: {
       tokenLS: null,
@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       posterImagenUrl: null,
       competitions: [],
       error: false,
+      loading: true
     },
     actions: {
       signup: async (email, password1, password2) => {
@@ -95,7 +96,8 @@ const getState = ({ getStore, getActions, setStore }) => {
               userPhone: data.phone,
               userProfileImagen: data.profile_image,
               userRol: data.rol,
-              tokenLS: getActions().getTokenLS()
+              loading: false,
+              tokenLS: getActions().getTokenLS(),
             });
             return true;
           } else {
@@ -188,6 +190,5 @@ const getState = ({ getStore, getActions, setStore }) => {
   };
 };
 
-//
 
 export default getState;

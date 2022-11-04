@@ -30,15 +30,25 @@ const PosterCompetition = () => {
     }
   };
   return (
-    <div className="col-md-4 d-flex">
+    <div className="col-md-12 d-flex">
       <img
-        src={store.posterImagen === null ? logo : store.posterImagen}
-        className="m-2 img-fluid poster-competition-photo"
+        src={store.posterImagenUrl === null ? logo : store.posterImagenUrl}
+        className="m-2 img-fluid rounded poster-competition-photo"
         alt="poster photo"
       />
-      <form className="d-flex align-items-center justify-content-center m-2" onSubmit={uploadPosterImage}>
-        <input type="file" onChange={(e) => setFiles(e.target.files)} />
-        <button className="btn postercompetition-btn-primary">
+      <form
+        className="d-flex flex-column align-items-center justify-content-center m-2"
+        onSubmit={uploadPosterImage}
+      >
+        <input
+          type="file"
+          className="form-control"
+          onChange={(e) => setFiles(e.target.files)}
+        />
+        <button
+          className="btn col-12 m-2 btn-sucessfull"
+          onClick={uploadPosterImage}
+        >
           Añadir cartel
         </button>
       </form>

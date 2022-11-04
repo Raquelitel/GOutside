@@ -10,14 +10,14 @@ const HomeUser = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="align-items-center justify-content-md-center text-center mt-5 home-user-container">
+    <div className="align-items-center justify-content-md-center text-center home-user-container">
       <div
         id="carouselExampleFade"
         className="carousel slide carousel-fade"
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
-          <div className="carousel-item active">
+          <div className="carousel-item">
             <div className="card align-items-center justify-content-md-center text-center home-user-card">
               <div className="container-fluid align-items-center d-flex justify-content-between">
                 <span
@@ -26,7 +26,10 @@ const HomeUser = () => {
                 ></span>
                 <h2 className="m-3">¿Te atreves con más ejercicios?</h2>
                 <h2>
-                  Visita nuestra <Link to="/Video-library">Biblioteca</Link>
+                  Visita nuestra{" "}
+                  <Link to="/Video-library" className="color-link">
+                    Biblioteca
+                  </Link>
                 </h2>
                 <span
                   className="carousel-control-next-icon "
@@ -53,17 +56,18 @@ const HomeUser = () => {
                 ></span>
                 <h2 className="m-3">
                   Echa un vistazo a las{" "}
-                  <Link to="/competitions">competiciones</Link>
+                  <Link to="/competitions" className="color-link">
+                    competiciones
+                  </Link>
                 </h2>
                 <span
                   className="carousel-control-next-icon "
                   aria-hidden="true"
                 ></span>
               </div>
-              <div className="row d-flex flex-column p-5">
+              <div className="mx-5">
                 <AllCompetition />
               </div>
-              
             </div>
           </div>
           {store.userRol != "Rol.administration" && (

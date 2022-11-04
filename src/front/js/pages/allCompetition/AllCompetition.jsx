@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
-import MapView from "../../component/MapView/MapView.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./allCompetition.css";
@@ -18,7 +17,7 @@ const AllCompetition = () => {
 
   useEffect(() => {
     getCardsInfo();
-  }, []);
+  }, [store.userId]);
 
   const getCardsInfo = () => {
     const url = process.env.BACKEND_URL + "/api/competitions";
@@ -36,7 +35,7 @@ const AllCompetition = () => {
       });
   };
 
-  const addCompetitorToCompetition = (competition_id) => {
+  const addCompetitorToCompetition = async (competition_id) => {
     const url = process.env.BACKEND_URL + "/api/my-competitions";
 
     const body = {
@@ -51,8 +50,8 @@ const AllCompetition = () => {
       method: "POST",
       body: JSON.stringify(body),
     };
-    const resp = fetch(url, options).then((response) => response.json());
-    console.log(resp);
+    const resp = await fetch(url, options);
+
     if (resp.status === 200) {
       setMensaje(
         "¡FELICIDADES! Tu inscripción se ha realizado con éxito. Por favor, acude a tu correo electrónico para finalizar el proceso"
@@ -65,7 +64,7 @@ const AllCompetition = () => {
       return;
     } else {
       setMensaje(
-        "se ha producido un error en la inscripción. Contacte con el administrador"
+        "Se ha producido un error en la inscripción. Contacte con el administrador"
       );
       setTipoMensaje("mensaje-error");
 
@@ -81,7 +80,7 @@ const AllCompetition = () => {
     navigate("/edit-profile");
   };
 
-  const handleInscription = () => {
+  const handleInscription = (competitionId) => {
     if (
       store.userName === null ||
       store.userLastName === null ||
@@ -101,7 +100,7 @@ const AllCompetition = () => {
       }, 3000);
       return;
     } else {
-      addCompetitorToCompetition();
+      addCompetitorToCompetition(competitionId);
     }
   };
 
@@ -114,32 +113,52 @@ const AllCompetition = () => {
           Editar Perfil
         </button>
       )}
-      <div className="d-flex justify-content-center">
-        {competitions.map((param) => {
+      <div className="row">
+        {competitions.map((competition) => {
           return (
-            <div key={param.id} className=" col-md-6 col-lg-4">
-              <div className="card m-2">
-                <img
-                  src={!param.poster_image_url ? logo : param.poster_image_url}
-                  className="competition-img-card"
-                  alt="cartel competicion"
-                />
-                <div className="card-body">
-                  <h4 className="card-title">{param.competition_name}</h4>
-                  <h5 className="card-text">{param.qualifier_date}</h5>
-                  <h5 className="card-text">{param.category}</h5>
-                  <h5 className="card-text">{param.stage}</h5>
-                  <div className="d-flex justify-content-center gap-3">
-                    <Link to={`/competition/${param.id}`}>
-                      <button className="btn btn-sucessfull">+INFO</button>
+            <div
+              key={competition.id}
+              className="card m-2 allcompetition-card-size"
+            >
+              <img
+                src={
+                  !competition.poster_image_url
+                    ? logo
+                    : competition.poster_image_url
+                }
+                className="allcompetition-img-card"
+                alt="cartel competicion"
+              />
+              <div className="card-body">
+                <h5 className="fw-bold card-title">
+                  {competition.competition_name}
+                </h5>
+                <p className="m-0 allcompetition-text-p">
+                  {competition.qualifier_date}
+                </p>
+                <p className="m-0 allcompetition-text-p">
+                  {competition.location}
+                </p>
+                <p className="allcompetition-text-p">
+                  {competition.stage?.toString()?.replace("_", " ")}
+                </p>
+                <div className="d-flex justify-content-center gap-3 mb-3 position-absolute bottom-0 start-50 translate-middle-x">
+                  <Link to={`/competition/${competition.id}`}>
+                    <button className="btn btn-sucessfull">+INFO</button>
+                  </Link>
+
+                  {competition.adminid === store.userId ? (
+                    <Link to={`/edit-competition/${competition.id}`}>
+                      <button className="btn btn-validacion">Editar</button>
                     </Link>
+                  ) : (
                     <button
                       className="btn btn-validacion"
-                      onClick={handleInscription}
+                      onClick={() => handleInscription(competition.id)}
                     >
                       Participar
                     </button>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>

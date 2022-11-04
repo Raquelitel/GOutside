@@ -37,7 +37,6 @@ const EditProfile = () => {
         options
       );
       const data = await resp.json();
-      console.log(data);
       actions.getUser();
     } catch (error) {
       console.log("Error loading message from backend", error);
@@ -58,7 +57,7 @@ const EditProfile = () => {
 
   return (
     <>
-      <div className="card mt-5 editprofile-bg">
+      <div className="card editprofile-bg">
         <div className="row g-0">
           <div className="col-md-4">
             <img
@@ -71,8 +70,12 @@ const EditProfile = () => {
               alt="profile photo"
             />
             <form className="m-2" onSubmit={uploadImage}>
-              <input type="file" onChange={(e) => setFiles(e.target.files)} />
-              <button className="btn mt-2 editProfile-btn-primary">
+              <input
+                type="file"
+                className="form-control"
+                onChange={(e) => setFiles(e.target.files)}
+              />
+              <button className="btn col-12 mt-2 btn-sucessfull">
                 cambiar foto
               </button>
             </form>
@@ -80,7 +83,7 @@ const EditProfile = () => {
           <div className="col-md-8">
             <div className="card-body">
               {mensaje && <Mensaje tipo="mensaje-correcto">{mensaje}</Mensaje>}
-              <h5 className="text-uppercase">Mi perfil</h5>
+              <h1>Mi perfil</h1>
               <form
                 className="container row col-md-12 text-start"
                 onSubmit={handleSubmitChange}
@@ -154,7 +157,7 @@ const EditProfile = () => {
                 </div>
                 <div className="d-flex justify-content-end">
                   <button
-                    className="btn me-5 editProfile-btn-primary"
+                    className="btn me-5 btn-sucessfull"
                     onClick={handleSubmitChange}
                   >
                     Guardar Cambios

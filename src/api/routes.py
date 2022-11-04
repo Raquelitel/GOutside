@@ -191,7 +191,7 @@ def create_competition():
         competition_name=data["competition_name"],
         qualifier_date=data["qualifier_date"],
         location=data["location"],
-        category=data["category"],
+        category=category,
         requirements=data["requirements"],
         description=data["description"],
         stage=data["stage"],

@@ -17,7 +17,7 @@ const AllCompetition = () => {
 
   useEffect(() => {
     getCardsInfo();
-  }, []);
+  }, [store.userId]);
 
   const getCardsInfo = () => {
     const url = process.env.BACKEND_URL + "/api/competitions";

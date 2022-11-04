@@ -22,11 +22,7 @@ const MyAllCompetitions = () => {
     };
     const resp = await fetch(url, options);
     const data = await resp.json();
-    if (resp.status === 200) {
-      setMyCompetitions(data);
-    } else {
-      console.log("Error");
-    }
+    resp.status === 200 && setMyCompetitions(data);
   };
 
   return (

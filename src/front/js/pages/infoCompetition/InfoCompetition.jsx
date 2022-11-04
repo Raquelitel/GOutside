@@ -15,8 +15,10 @@ const InfoCompetition = () => {
   const [tipoMensaje, setTipoMensaje] = useState("");
   const [navegar, setNavegar] = useState(false);
 
-  const competition_date = new Date(datas.qualifier_date).toLocaleDateString('es-ES')
-  
+  const competition_date = new Date(datas.qualifier_date).toLocaleDateString(
+    "es-ES"
+  );
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -147,7 +149,7 @@ const InfoCompetition = () => {
                   </button>
                 </Link>
 
-                {competition.adminid === store.userId ? (
+                {datas.adminid === store.userId ? (
                   <Link to={`/edit-competition/${datas.id}`}>
                     <button className="btn btn-validacion">Editar</button>
                   </Link>
@@ -159,19 +161,6 @@ const InfoCompetition = () => {
                     Participar
                   </button>
                 )}
-                {/* <button
-                  className="btn col-12 col-md-3 m-1 btn-validacion"
-                  onClick={handleInscription}
-                >
-                  Participar
-                </button>
-                {store.userRol === "Rol.administration" && (
-                  <Link to="/edit-competition">
-                    <button className="btn col-12 col-md-4 m-1 btn-cancelar">
-                      Editar Competición
-                    </button>
-                  </Link>
-                )} */}
               </div>
             </div>
           </div>

@@ -100,7 +100,7 @@ function EditCompetition() {
         body: JSON.stringify(body),
       };
       fetch(url, options).then(() => {
-        setMensaje("Competición creada");
+        setMensaje("Competición modificada");
         setTipoMensaje("mensaje-correcto");
         setTimeout(() => {
           setMensaje("");

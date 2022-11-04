@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { Context } from "../../store/appContext.js";
 import Select from "react-select";
-import MapView from "../../component/MapView/MapView.jsx";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import "./editCompetition.css";
@@ -141,9 +140,6 @@ function EditCompetition() {
             <div className="col-12 col-lg-8">
               <PosterCompetition />
             </div>
-            <div className="col-12 col-lg-4">
-              <MapView />
-            </div>
           </div>
         </div>
         <form
@@ -207,11 +203,21 @@ function EditCompetition() {
                 });
               }}
               value={{
-                // datas.category.map() => {
-                // }
                 label: datas.category?.toString()?.replace("_", " "),
                 value: datas.category?.toString()?.replace("_", " "),
               }}
+            />
+          </div>
+
+          <div>
+            <input
+              placeholder="Dirección"
+              className="form-control"
+              type="text"
+              onChange={(e) => {
+                setData({ ...datas, location: e.target.value });
+              }}
+              value={datas?.location}
             />
           </div>
 
@@ -247,12 +253,6 @@ function EditCompetition() {
               onClick={(e) => edit_competition(e)}
             >
               Guardar
-            </button>
-            <button
-              className="btn col-5 btn-cancelar"
-              onClick={() => clearForm()}
-            >
-              Borrar
             </button>
           </div>
         </form>

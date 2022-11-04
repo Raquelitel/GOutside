@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { Context } from "../../store/appContext.js";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Select from "react-select";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
@@ -25,6 +25,7 @@ const stages = [
 
 function CreateCompetition() {
   const { store, actions } = useContext(Context);
+  let navigate = useNavigate();
 
   if (store.userRol && store.userRol != "Rol.administration") {
     return <Navigate to="/" replace />;
@@ -93,6 +94,7 @@ function CreateCompetition() {
           setTimeout(() => {
             setMensaje("");
             setTipoMensaje("");
+            navigate("/home/user");
           }, 2500);
         });
     } else {

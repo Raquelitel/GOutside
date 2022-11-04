@@ -65,7 +65,7 @@ const HomeUser = () => {
                   aria-hidden="true"
                 ></span>
               </div>
-              <div className="row d-flex flex-column p-5">
+              <div className="mx-5">
                 <AllCompetition />
               </div>
             </div>

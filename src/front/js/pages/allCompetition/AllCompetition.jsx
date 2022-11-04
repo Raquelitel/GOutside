@@ -126,7 +126,7 @@ const AllCompetition = () => {
                     ? logo
                     : competition.poster_image_url
                 }
-                className="competition-img-card"
+                className="allcompetition-img-card"
                 alt="cartel competicion"
               />
               <div className="card-body">
@@ -137,7 +137,7 @@ const AllCompetition = () => {
                   {competition.qualifier_date}
                 </p>
                 <p className="m-0 allcompetition-text-p">
-                  {competition.category?.toString()?.replace("_", " ")}
+                  {competition.location}
                 </p>
                 <p className="allcompetition-text-p">
                   {competition.stage?.toString()?.replace("_", " ")}

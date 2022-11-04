@@ -33,7 +33,7 @@ const PosterCompetition = () => {
     <div className="col-md-12 d-flex">
       <img
         src={store.posterImagenUrl === null ? logo : store.posterImagenUrl}
-        className="m-2 img-fluid poster-competition-photo"
+        className="m-2 img-fluid rounded poster-competition-photo"
         alt="poster photo"
       />
       <form

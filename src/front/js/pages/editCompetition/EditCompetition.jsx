@@ -26,9 +26,6 @@ const stages = [
 function EditCompetition() {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
-  if (store.userRol != "Rol.administration") {
-    return <Navigate to="/" replace />;
-  }
 
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -85,7 +82,7 @@ function EditCompetition() {
         competition_name: datas.competition_name,
         qualifier_date: datas.qualifier_date,
         location: datas.location,
-        category: datas.category.map((cat) => cat.value),
+        category: datas.category,
         requirements: datas.requirements,
         description: datas.description,
         stage: datas.stage,
@@ -129,6 +126,9 @@ function EditCompetition() {
     return "";
   };
 
+  if (store.userRol && store.userRol != "Rol.administration" && store.loading === false) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <div className="container-lg-fluid">
       <div>
@@ -203,15 +203,20 @@ function EditCompetition() {
               onChange={(e) => {
                 setData({
                   ...datas,
-                  category: e,
+                  category: e.map((cat) => cat.value),
                 });
               }}
-              value={{
-                // datas.category.map() => {
-                // }
-                label: datas.category?.toString()?.replace("_", " "),
-                value: datas.category?.toString()?.replace("_", " "),
-              }}
+              value={
+                datas?.category?.length &&
+                datas.category.map((cat) => {
+                  return cat
+                    ? {
+                        label: cat,
+                        value: cat,
+                      }
+                    : null;
+                })
+              }
             />
           </div>
 
@@ -247,12 +252,6 @@ function EditCompetition() {
               onClick={(e) => edit_competition(e)}
             >
               Guardar
-            </button>
-            <button
-              className="btn col-5 btn-cancelar"
-              onClick={() => clearForm()}
-            >
-              Borrar
             </button>
           </div>
         </form>

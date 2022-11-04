@@ -193,12 +193,6 @@ function CreateCompetition() {
             >
               Crear competición
             </button>
-            {/* <button
-              className="btn col-5 btn-cancelar"
-              onClick={() => clearForm()}
-            >
-              Borrar
-            </button> */}
           </div>
         </form>
       </div>

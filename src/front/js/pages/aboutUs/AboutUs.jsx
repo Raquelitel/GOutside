@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../img/logo-GOutside.png";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
-import "./AboutUs.css"
+import "./AboutUs.css";
 
 function AboutUs() {
   const [name, setName] = useState("");
@@ -55,11 +55,11 @@ function AboutUs() {
       <h1 className="text-center text-capitalize mt-3 aboutUs-title-color">
         ¿Quiénes somos?
       </h1>
-      <div className="d-lg-flex align-items-center justify-content-evenly">
+      <div className="d-lg-flex align-items-center justify-content-evenly text-center ">
         <Link to="/">
-          <img src={logo} className="login-logo-size" alt="GOutside" />
+          <img src={logo} className="me-2 login-logo-size" alt="GOutside" />
         </Link>
-        <div className="d-lg-flex-column align-items-center justify-content-evenly ms-5">
+        <div className="d-lg-flex-column align-items-center justify-content-center ms-auto">
           <p className="text-sm-start lh-lg aboutUs-title-color">
             {" "}
             Hemos venido a revolucionar las competiciones de entrenamiento

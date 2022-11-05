@@ -114,56 +114,64 @@ const AllCompetition = () => {
         </button>
       )}
       <div className="row">
-        {competitions.map((competition) => {
-          return (
-            <div
-              key={competition.id}
-              className="card m-2 allcompetition-card-size"
-            >
-              <img
-                src={
-                  !competition.poster_image_url
-                    ? logo
-                    : competition.poster_image_url
-                }
-                className="allcompetition-img-card"
-                alt="cartel competicion"
-              />
-              <div className="card-body">
-                <h5 className="fw-bold card-title">
-                  {competition.competition_name}
-                </h5>
-                <p className="m-0 allcompetition-text-p">
-                  {competition.qualifier_date}
-                </p>
-                <p className="m-0 allcompetition-text-p">
-                  {competition.location}
-                </p>
-                <p className="allcompetition-text-p">
-                  {competition.stage?.toString()?.replace("_", " ")}
-                </p>
-                <div className="d-flex justify-content-center gap-3 mb-3 position-absolute bottom-0 start-50 translate-middle-x">
-                  <Link to={`/competition/${competition.id}`}>
-                    <button className="btn btn-sucessfull">+INFO</button>
-                  </Link>
-
-                  {competition.adminid === store.userId ? (
-                    <Link to={`/edit-competition/${competition.id}`}>
-                      <button className="btn btn-validacion">Editar</button>
+        {competitions.length === 0 ? (
+          <div className="d-flex justify-content-center mt-5">
+            <h1 className="col-6 text-center">
+              Todavía no hay ninguna competición
+            </h1>
+          </div>
+        ) : (
+          competitions.map((competition) => {
+            return (
+              <div
+                key={competition.id}
+                className="card m-2 allcompetition-card-size"
+              >
+                <img
+                  src={
+                    !competition.poster_image_url
+                      ? logo
+                      : competition.poster_image_url
+                  }
+                  className="allcompetition-img-card"
+                  alt="cartel competicion"
+                />
+                <div className="card-body">
+                  <h5 className="fw-bold card-title">
+                    {competition.competition_name}
+                  </h5>
+                  <p className="m-0 allcompetition-text-p">
+                    {competition.qualifier_date}
+                  </p>
+                  <p className="m-0 allcompetition-text-p">
+                    {competition.location}
+                  </p>
+                  <p className="allcompetition-text-p">
+                    {competition.stage?.toString()?.replace("_", " ")}
+                  </p>
+                  <div className="d-flex justify-content-center gap-3 mb-3 position-absolute bottom-0 start-50 translate-middle-x">
+                    <Link to={`/competition/${competition.id}`}>
+                      <button className="btn btn-sucessfull">+INFO</button>
                     </Link>
-                  ) : (
-                    <button
-                      className="btn btn-validacion"
-                      onClick={() => handleInscription(competition.id)}
-                    >
-                      Participar
-                    </button>
-                  )}
+
+                    {competition.adminid === store.userId ? (
+                      <Link to={`/edit-competition/${competition.id}`}>
+                        <button className="btn btn-validacion">Editar</button>
+                      </Link>
+                    ) : (
+                      <button
+                        className="btn btn-validacion"
+                        onClick={() => handleInscription(competition.id)}
+                      >
+                        Participar
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
     </>
   );

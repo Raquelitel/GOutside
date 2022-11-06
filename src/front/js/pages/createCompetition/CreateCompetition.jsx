@@ -110,104 +110,102 @@ function CreateCompetition() {
 
   return (
     <div className="container-lg-fluid">
-      <div>
-        <div className="row create-title">
-          <h1 className="text-center my-4">Crea tu competición</h1>
-          {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
-        </div>
-        <div className="text-center">
-          <div className="d-lg-flex">
-            <div className="col-12 col-lg-8">
-              <PosterCompetition />
-            </div>
+      <div className="row create-title">
+        <h1 className="text-center my-4">Crea tu competición</h1>
+        {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
+      </div>
+      <div className="text-center">
+        <div className="d-lg-flex">
+          <div className="col-12 col-lg-8">
+            <PosterCompetition />
           </div>
         </div>
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="d-flex flex-column gap-3"
-        >
+      </div>
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="d-flex flex-column gap-3"
+      >
+        <input
+          placeholder="Nombre de la competición"
+          className="form-control"
+          type="text"
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+        <div className="d-lg-flex justify-content-center align-items-center text-center gap-1">
           <input
-            placeholder="Nombre de la competición"
+            className="rounded col-pill input-date mt-2"
+            type="date"
+            onChange={(e) => {
+              setDate(e.target.value);
+            }}
+          />
+
+          <Select
+            name="stage"
+            placeholder="Estado de la competición"
+            options={stages}
+            className="basic-single col-12 col-lg-4 mt-2"
+            classNamePrefix="select"
+            isSearchable={false}
+            onChange={(e) => {
+              setStage(e.value);
+            }}
+          />
+
+          <Select
+            isMulti
+            name="category"
+            placeholder="Categoría"
+            options={categories}
+            className="basic-multi-select col-12 col-lg-5 mt-2"
+            classNamePrefix="select"
+            isSearchable={false}
+            onChange={(e) => {
+              setCategory(e);
+            }}
+          />
+        </div>
+
+        <div>
+          <input
+            placeholder="Dirección"
             className="form-control"
             type="text"
             onChange={(e) => {
-              setName(e.target.value);
+              setLocation(e.target.value);
             }}
           />
-          <div className="d-lg-flex justify-content-center gap-1">
-            <input
-              className="rounded col-pill"
-              type="date"
-              onChange={(e) => {
-                setDate(e.target.value);
-              }}
-            />
+        </div>
 
-            <Select
-              name="stage"
-              placeholder="Estado de la competición"
-              options={stages}
-              className="basic-single col-12 col-lg-4 mt-2"
-              classNamePrefix="select"
-              isSearchable={false}
-              onChange={(e) => {
-                setStage(e.value);
-              }}
-            />
+        <textarea
+          className="form-control create-requirements"
+          placeholder="Requisitos"
+          aria-label="With textarea"
+          onChange={(e) => {
+            setRequirements(e.target.value);
+          }}
+        ></textarea>
 
-            <Select
-              isMulti
-              name="category"
-              placeholder="Categoría"
-              options={categories}
-              className="basic-multi-select col-12 col-lg-5 mt-2"
-              classNamePrefix="select"
-              isSearchable={false}
-              onChange={(e) => {
-                setCategory(e);
-              }}
-            />
-          </div>
+        <textarea
+          className="form-control create-description"
+          aria-label="With textarea"
+          placeholder="Descripción de la competición"
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        ></textarea>
 
-          <div>
-            <input
-              placeholder="Dirección"
-              className="form-control"
-              type="text"
-              onChange={(e) => {
-                setLocation(e.target.value);
-              }}
-            />
-          </div>
-
-          <textarea
-            className="form-control create-requirements"
-            placeholder="Requisitos"
-            aria-label="With textarea"
-            onChange={(e) => {
-              setRequirements(e.target.value);
-            }}
-          ></textarea>
-
-          <textarea
-            className="form-control create-description"
-            aria-label="With textarea"
-            placeholder="Descripción de la competición"
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
-          ></textarea>
-
-          <div className="col-md-12 d-flex align-items-center justify-content-evenly">
-            <button
-              className="btn col-5 btn-sucessfull"
-              onClick={(e) => create_competition(e)}
-            >
-              Crear competición
-            </button>
-          </div>
-        </form>
-      </div>
+        <div className="col-md-12 d-flex align-items-center justify-content-evenly">
+          <button
+            className="btn col-5 btn-sucessfull"
+            onClick={(e) => create_competition(e)}
+          >
+            Crear competición
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

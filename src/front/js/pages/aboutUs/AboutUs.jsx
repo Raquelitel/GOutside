@@ -60,7 +60,7 @@ function AboutUs() {
       </h1>
       <div className="d-lg-flex align-items-center justify-content-evenly text-center">
         <Link to="/">
-          <img src={logo} className="me-2 login-logo-size" alt="GOutside" />
+          <img src={logo} className="me-2 aboutUs-logo-size" alt="GOutside" />
         </Link>
         <div className="d-lg-flex-column align-items-center justify-content-evenly ms-auto">
           <p className="text-sm-start lh-lg aboutUs-title-color">

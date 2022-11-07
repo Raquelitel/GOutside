@@ -41,7 +41,7 @@ const Login = () => {
   };
 
   return (
-    <div className="d-md-flex align-items-center justify-content-evenly">
+    <div className="d-md-flex align-items-center justify-content-evenly text-center">
       <Link to="/">
         <img className="login-logo-size" src={logo} alt="GOutside" />
       </Link>

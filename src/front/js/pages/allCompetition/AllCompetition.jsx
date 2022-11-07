@@ -23,8 +23,6 @@ const AllCompetition = () => {
     [store.userRol]
   );
 
-  console.log(store.userRol);
-
   const getCardsInfo = () => {
     const url = process.env.BACKEND_URL + "/api/competitions";
     const options = {
@@ -122,7 +120,7 @@ const AllCompetition = () => {
       <div className="row">
         {competitions.length === 0 ? (
           <div className="d-flex justify-content-center mt-5">
-            <h1 className="col-6 text-center">
+            <h1 className="col-12 text-center">
               Todavía no hay ninguna competición
             </h1>
           </div>

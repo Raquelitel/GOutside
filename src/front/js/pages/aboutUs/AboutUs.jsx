@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../img/logo-GOutside.png";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import coFundadorRaquel from "../../../img/co_fundador_raquel.jpeg";
@@ -14,6 +14,8 @@ function AboutUs() {
   const [contactRequest, setContactRequest] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [tipoMensaje, setTipoMensaje] = useState("");
+
+  let navigate = useNavigate();
 
   const sendContact = (e) => {
     e.preventDefault();
@@ -32,6 +34,7 @@ function AboutUs() {
       setTimeout(() => {
         setMensaje("");
         setTipoMensaje("");
+        navigate("/home/user");
       }, 5000);
       contactUs();
     }
@@ -60,7 +63,7 @@ function AboutUs() {
       </h1>
       <div className="d-lg-flex align-items-center justify-content-evenly text-center">
         <Link to="/">
-          <img src={logo} className="me-2 login-logo-size" alt="GOutside" />
+          <img src={logo} className="me-2 aboutUs-logo-size" alt="GOutside" />
         </Link>
         <div className="d-lg-flex-column align-items-center justify-content-evenly ms-auto">
           <p className="text-sm-start lh-lg aboutUs-title-color">

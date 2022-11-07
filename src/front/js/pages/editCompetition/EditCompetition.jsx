@@ -165,9 +165,9 @@ function EditCompetition() {
             }}
             value={datas?.competition_name}
           />
-          <div className="d-lg-flex justify-content-center gap-1">
+          <div className="d-lg-flex justify-content-center align-items-center text-center gap-1">
             <input
-              className="rounded col-pill"
+              className="rounded col-pill input-date mt-2"
               type="date"
               onChange={(e) => {
                 setData({

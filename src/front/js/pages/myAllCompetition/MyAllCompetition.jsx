@@ -48,10 +48,10 @@ const MyAllCompetitions = () => {
                       ? logo
                       : myCompetition.poster_image_url
                   }
-                  className="mt-1 myCompetition-img-card"
+                  className="mt-2 rounded myCompetition-img-card"
                   alt="cartel competicion"
                 />
-                <div className="card-body">
+                <div className="card-body text-center">
                   <h5 className="fw-bold card-title">
                     {myCompetition.competition_name}
                   </h5>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, Navigate, useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext.js";
 import Select from "react-select";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
@@ -36,6 +36,8 @@ function EditCompetition() {
   const [mensaje, setMensaje] = useState("");
   const [tipoMensaje, setTipoMensaje] = useState("");
   const [datas, setData] = useState({});
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     getCompetitionInfo();
@@ -101,6 +103,7 @@ function EditCompetition() {
         setTimeout(() => {
           setMensaje("");
           setTipoMensaje("");
+          navigate("/home/user");
         }, 5000);
         return;
       });
@@ -125,7 +128,11 @@ function EditCompetition() {
     return "";
   };
 
-  if (store.userRol && store.userRol != "Rol.administration" && store.loading === false) {
+  if (
+    store.userRol &&
+    store.userRol != "Rol.administration" &&
+    store.loading === false
+  ) {
     return <Navigate to="/" replace />;
   }
   return (
@@ -158,9 +165,9 @@ function EditCompetition() {
             }}
             value={datas?.competition_name}
           />
-          <div className="d-lg-flex justify-content-center gap-1">
+          <div className="d-lg-flex justify-content-center align-items-center text-center gap-1">
             <input
-              className="rounded col-pill"
+              className="rounded col-pill input-date mt-2"
               type="date"
               onChange={(e) => {
                 setData({

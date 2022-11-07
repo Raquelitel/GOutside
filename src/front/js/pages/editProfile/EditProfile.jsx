@@ -60,15 +60,18 @@ const EditProfile = () => {
       <div className="card editprofile-bg">
         <div className="row g-0">
           <div className="col-md-4">
-            <img
-              src={
-                store.userProfileImagen === null
-                  ? logo
-                  : store.userProfileImagen
-              }
-              className="mt-4 img-fluid editprofile-photo"
-              alt="profile photo"
-            />
+            <div className="d-flex justify-content-center">
+              <img
+                src={
+                  store.userProfileImagen === null
+                    ? logo
+                    : store.userProfileImagen
+                }
+                className="mt-4 img-fluid editprofile-photo"
+                alt="profile photo"
+              />
+            </div>
+
             <form className="m-2" onSubmit={uploadImage}>
               <input
                 type="file"

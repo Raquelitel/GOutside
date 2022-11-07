@@ -10,3 +10,6 @@
 .createCompetition-btn-primary:hover {
   background-color: var(--color-light);
 }
+.input-date{
+  height: 40px;
+}

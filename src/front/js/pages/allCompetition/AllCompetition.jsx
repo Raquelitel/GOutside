@@ -139,10 +139,10 @@ const AllCompetition = () => {
                       ? logo
                       : competition.poster_image_url
                   }
-                  className="allcompetition-img-card"
+                  className="mt-2 rounded allcompetition-img-card"
                   alt="cartel competicion"
                 />
-                <div className="card-body">
+                <div className="card-body text-center">
                   <h5 className="fw-bold card-title">
                     {competition.competition_name}
                   </h5>

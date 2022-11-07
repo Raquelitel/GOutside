@@ -31,7 +31,7 @@ const MyAllCompetitions = () => {
       <div className="row">
         {myCompetitions.length === 0 ? (
           <div className="d-flex justify-content-center mt-5">
-            <h1 className="col-6 text-center">
+            <h1 className="col-12 text-center">
               Todavía no tienes ninguna competición
             </h1>
           </div>

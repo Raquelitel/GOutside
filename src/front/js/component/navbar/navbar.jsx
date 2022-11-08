@@ -9,7 +9,6 @@ import {
 import logo from "../../../img/logo-GOutside.png";
 import "./navbar.css";
 
-
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
   let navigate = useNavigate();
@@ -21,12 +20,12 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-color ">
-      <div className="container-fluid d-flex justify-content-center">
+    <nav className="navbar navbar-color ">
+      <div className="container-fluid d-flex justify-content-evenly">
         <Link to="/" className="navbar-brand d-flex justify-content-center">
           <img src={logo} className="navbar-logo-size" alt="GOutside Logo" />
         </Link>
-        <div className="col-6 col-md-8 col-lg-9">
+        <div className="col-5 col-md-8 col-lg-9">
           <div>
             <div className="d-flex justify-content-evenly">
               <Link to="/home/user">
@@ -53,7 +52,7 @@ export const Navbar = () => {
           </div>
         </div>
 
-        <div className="dropdown">
+        <div className="btn-group">
           <button
             className="btn dropdown-toggle"
             type="button"
@@ -70,7 +69,7 @@ export const Navbar = () => {
               alt="profile photo"
             />
           </button>
-          <ul className="dropdown-menu navbar-color navbar-menu-size">
+          <ul className="dropdown-menu dropdown-menu-end navbar-color navbar-menu-size">
             <li>
               <Link
                 to="/edit-profile"

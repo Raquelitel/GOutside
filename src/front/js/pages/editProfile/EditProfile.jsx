@@ -78,7 +78,7 @@ const EditProfile = () => {
                 className="form-control"
                 onChange={(e) => setFiles(e.target.files)}
               />
-              <button className="btn col-12 mt-2 btn-sucessfull">
+              <button className="btn col-12 mt-2 btn-validacion">
                 cambiar foto
               </button>
             </form>
@@ -86,7 +86,7 @@ const EditProfile = () => {
           <div className="col-md-8">
             <div className="card-body">
               {mensaje && <Mensaje tipo="mensaje-correcto">{mensaje}</Mensaje>}
-              <h1>Mi perfil</h1>
+              <h1 className="editprofile-title">Mi perfil</h1>
               <form
                 className="container row col-md-12 text-start"
                 onSubmit={handleSubmitChange}
@@ -96,6 +96,7 @@ const EditProfile = () => {
                     Nombre*
                   </label>
                   <input
+                    className="rounded"
                     type="text"
                     onChange={(e) => {
                       setName(e.target.value);
@@ -108,6 +109,7 @@ const EditProfile = () => {
                     Apellidos
                   </label>
                   <input
+                    className="rounded"
                     type="text"
                     onChange={(e) => {
                       setLastName(e.target.value);
@@ -119,13 +121,19 @@ const EditProfile = () => {
                   <label className="col-12 col-md-10 col-lg-2 mx-2">
                     E-mail*
                   </label>
-                  <input type="email" defaultValue={store.userEmail} disabled />
+                  <input
+                    className="rounded"
+                    type="email"
+                    defaultValue={store.userEmail}
+                    disabled
+                  />
                 </div>
                 <div className="my-2">
                   <label className="col-12 col-md-10 col-lg-2 mx-2">
                     Dirección
                   </label>
                   <input
+                    className="rounded"
                     type="text"
                     onChange={(e) => {
                       setAdress(e.target.value);
@@ -138,6 +146,7 @@ const EditProfile = () => {
                     Teléfono
                   </label>
                   <input
+                    className="rounded"
                     type="tel"
                     onChange={(e) => {
                       setPhone(e.target.value);
@@ -146,8 +155,9 @@ const EditProfile = () => {
                   />
                 </div>
                 <div className="my-2">
-                  <label className="col-2 mx-2">Sexo</label>
+                  <label className="col-12 col-md-10 col-lg-2 mx-2">Sexo</label>
                   <select
+                    className="rounded"
                     onChange={(e) => {
                       setGender(e.target.value);
                     }}
@@ -158,14 +168,13 @@ const EditProfile = () => {
                     <option value={"masculino"}>Hombre</option>
                   </select>
                 </div>
-                <div className="d-flex justify-content-end">
+                <div className="d-flex mt-2 gap-2 justify-content-center">
                   <button
-                    className="btn me-5 btn-sucessfull"
+                    className="btn btn-sucessfull"
                     onClick={handleSubmitChange}
                   >
                     Guardar Cambios
                   </button>
-
                   <DeleteProfile />
                 </div>
               </form>

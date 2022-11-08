@@ -45,7 +45,10 @@ const Login = () => {
       <Link to="/">
         <img className="login-logo-size" src={logo} alt="GOutside" />
       </Link>
-      <form className="d-flex flex-column col-md-5" onSubmit={handleSubmit}>
+      <form
+        className="d-flex flex-column col-md-5 gap-1"
+        onSubmit={handleSubmit}
+      >
         <h1 className="text-capitalize text-center">Iniciar sesión</h1>
         {mensaje && <Mensaje tipo="mensaje-error">{mensaje}</Mensaje>}
         <input
@@ -63,7 +66,7 @@ const Login = () => {
         <button className="btn text-uppercase mb-1 shadow btn-validacion">
           login
         </button>
-        <div className="d-flex justify-content-around">
+        <div className="d-flex mt-2 justify-content-around">
           <p>¿Todavía no tienes cuenta?</p>
           <Link
             to="/signup"

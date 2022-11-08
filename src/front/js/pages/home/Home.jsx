@@ -5,14 +5,17 @@ import logo from "../../../img/logo-GOutside.png";
 import X_transp from "../../../img/X_transp.png";
 import "./home.css";
 
-
 export const Home = () => {
   const { store, actions } = useContext(Context);
   return (
     <div className="container text-center">
-      <h1 className="d-flex mt-4 justify-content-center align-items-center home-title-size">
+      <h1 className="d-flex mt-5 justify-content-center align-items-center home-title-size">
         ¡Bienvenid{" "}
-        <img className="home-X-icon" src={X_transp} alt="titulo bienvenidos" />
+        <img
+          className="home-X-icon mt-2"
+          src={X_transp}
+          alt="titulo bienvenidos"
+        />
         s!
       </h1>
 
@@ -25,7 +28,7 @@ export const Home = () => {
                 ¿Quieres estar al día de las competiciones de tu región?
               </p>
             </div>
-            <div className="col-md-12 d-flex align-items-center justify-content-evenly">
+            <div className="col-md-12 d-flex gap-2 align-items-center justify-content-evenly">
               <Link to="/Signup">
                 <button className="btn btn-validacion">
                   Conviértete en GOutsider

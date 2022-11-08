@@ -12,6 +12,6 @@ textarea {
 
 .cofundador-img {
   border-radius: 50%;
-  width: 15vh;
-  height: 15vh;
+  max-width: 13vh;
+  max-height: 13vh;
 }

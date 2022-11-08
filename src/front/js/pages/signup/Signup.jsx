@@ -75,7 +75,10 @@ const Signup = () => {
       <Link to="/">
         <img className="signup-logo-size" src={logo} alt="GOutside" />
       </Link>
-      <form className="d-flex flex-column col-md-5" onSubmit={handleSubmit}>
+      <form
+        className="d-flex flex-column col-md-5 gap-1"
+        onSubmit={handleSubmit}
+      >
         <h1 className="text-capitalize text-center">Crear cuenta</h1>
         {mensaje && <Mensaje tipo="mensaje-error">{mensaje}</Mensaje>}
         <input
@@ -99,7 +102,7 @@ const Signup = () => {
         <button className="btn text-uppercase mb-1 shadow btn-validacion">
           crear usuario
         </button>
-        <div className="d-flex justify-content-around">
+        <div className="d-flex mt-2 justify-content-around">
           <p>¿Ya tienes cuenta?</p>
           <Link
             to="/login"

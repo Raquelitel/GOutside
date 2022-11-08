@@ -30,7 +30,7 @@ const PosterCompetition = () => {
     }
   };
   return (
-    <div className="col-md-12 d-flex">
+    <div className="col-md-12 d-md-flex">
       <img
         src={store.posterImagenUrl === null ? logo : store.posterImagenUrl}
         className="m-2 img-fluid rounded poster-competition-photo"
@@ -46,7 +46,7 @@ const PosterCompetition = () => {
           onChange={(e) => setFiles(e.target.files)}
         />
         <button
-          className="btn col-12 m-2 btn-sucessfull"
+          className="btn col-12 m-2 btn-validacion"
           onClick={uploadPosterImage}
         >
           Añadir cartel

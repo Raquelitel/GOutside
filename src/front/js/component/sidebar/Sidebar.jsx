@@ -8,7 +8,7 @@ function Sidebar() {
   const { store, actions } = useContext(Context);
 
   return (
-    <aside className="col-auto sidebar-size sidebar-bg ">
+    <aside className="col-auto sidebar-size sidebar-bg">
       <div>
         <div>
           <ul

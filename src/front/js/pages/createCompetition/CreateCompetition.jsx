@@ -111,7 +111,7 @@ function CreateCompetition() {
   return (
     <div className="container-lg-fluid">
       <div className="row create-title">
-        <h1 className="text-center my-4">Crea tu competición</h1>
+        <h1 className="text-center my-2">Crea tu competición</h1>
         {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
       </div>
       <div className="text-center">
@@ -135,7 +135,7 @@ function CreateCompetition() {
         />
         <div className="d-lg-flex justify-content-center align-items-center text-center gap-1">
           <input
-            className="rounded col-pill input-date mt-2"
+            className="d-flex justify-content-start rounded col-pill input-date"
             type="date"
             onChange={(e) => {
               setDate(e.target.value);
@@ -144,7 +144,7 @@ function CreateCompetition() {
 
           <Select
             name="stage"
-            placeholder="Estado de la competición"
+            placeholder="Estado"
             options={stages}
             className="basic-single col-12 col-lg-4 mt-2"
             classNamePrefix="select"
@@ -196,15 +196,12 @@ function CreateCompetition() {
             setDescription(e.target.value);
           }}
         ></textarea>
-
-        <div className="col-md-12 d-flex align-items-center justify-content-evenly">
-          <button
-            className="btn col-5 btn-sucessfull"
-            onClick={(e) => create_competition(e)}
-          >
-            Crear competición
-          </button>
-        </div>
+        <button
+          className="btn col-12 btn-sucessfull"
+          onClick={(e) => create_competition(e)}
+        >
+          Crear competición
+        </button>
       </form>
     </div>
   );

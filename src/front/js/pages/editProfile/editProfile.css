@@ -16,7 +16,12 @@ input {
 }
 
 .editprofile-bg {
-  background-color: var(--color-dark-blue);
+  background-color: var(--color-dark-grey);
+  border: none;
   color: var(--color-light-blue);
   height: auto;
+}
+
+.editprofile-title {
+  color: var(--color-light-blue);
 }

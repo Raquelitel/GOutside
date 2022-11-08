@@ -24,9 +24,8 @@ const HomeUser = () => {
                   className="carousel-control-prev-icon"
                   aria-hidden="true"
                 ></span>
-                <h2 className="m-3">¿Te atreves con más ejercicios?</h2>
-                <h2>
-                  Visita nuestra{" "}
+                <h2 className="mt-3">
+                  ¿Te atreves con más ejercicios? Visita nuestra{" "}
                   <Link to="/Video-library" className="color-link">
                     Biblioteca
                   </Link>
@@ -49,12 +48,12 @@ const HomeUser = () => {
           </div>
           <div className="carousel-item active">
             <div className="card align-items-center justify-content-md-center text-center home-user-card">
-              <div className="container-fluid align-items-center d-flex justify-content-between">
+              <div className="container-fluid align-items-center d-flex justify-content-between p-2">
                 <span
                   className="carousel-control-prev-icon"
                   aria-hidden="true"
                 ></span>
-                <h2 className="m-3">
+                <h2 className="mt-3">
                   Echa un vistazo a las{" "}
                   <Link to="/competitions" className="color-link">
                     competiciones
@@ -74,12 +73,12 @@ const HomeUser = () => {
             <>
               <div className="carousel-item">
                 <div className="card align-items-center justify-content-md-center text-center home-user-card">
-                  <div className="container-fluid align-items-center d-flex justify-content-between">
+                  <div className="container-fluid align-items-center d-flex justify-content-between p-2">
                     <span
                       className="carousel-control-prev-icon"
                       aria-hidden="true"
                     ></span>
-                    <h2 className="m-3">MIS COMPETICIONES</h2>
+                    <h2 className="mt-3">MIS COMPETICIONES</h2>
                     <span
                       className="carousel-control-next-icon "
                       aria-hidden="true"
@@ -95,7 +94,7 @@ const HomeUser = () => {
                       className="carousel-control-prev-icon"
                       aria-hidden="true"
                     ></span>
-                    <h2 className="m-3">
+                    <h2 className="mt-3">
                       Descubre tu próximo reto... ¡APÚNTATE!
                     </h2>
                     <span

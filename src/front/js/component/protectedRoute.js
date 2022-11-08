@@ -8,9 +8,9 @@ const ProtectedRoute = () => {
   const { store, actions } = useContext(Context);
   const token = actions.getTokenLS();
 
-  if (token === null) {
-    return <Navigate to="/login" replace />;
-  }
+  // if (token === null) {
+  //   return <Navigate to="/login" replace />;
+  // }
   return (
     <div>
       <Navbar />

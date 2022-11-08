@@ -111,12 +111,12 @@ function CreateCompetition() {
   return (
     <div className="container-lg-fluid">
       <div className="row create-title">
-        <h1 className="text-center my-2">Crea tu competición</h1>
+        <h1 className="text-center m-0">Crea tu competición</h1>
         {mensaje && <Mensaje tipo={tipoMensaje}>{mensaje}</Mensaje>}
       </div>
       <div className="text-center">
         <div className="d-lg-flex">
-          <div className="col-12 col-lg-8">
+          <div className="col-12 col-lg-8 align-items-center text-center">
             <PosterCompetition />
           </div>
         </div>
@@ -135,7 +135,7 @@ function CreateCompetition() {
         />
         <div className="d-lg-flex justify-content-center align-items-center text-center gap-1">
           <input
-            className="d-flex justify-content-start rounded col-pill input-date"
+            className="d-flex justify-content-start rounded col-pill input-date mt-2"
             type="date"
             onChange={(e) => {
               setDate(e.target.value);
@@ -197,7 +197,7 @@ function CreateCompetition() {
           }}
         ></textarea>
         <button
-          className="btn col-12 btn-sucessfull"
+          className="btn col-12 mb-5 btn-sucessfull"
           onClick={(e) => create_competition(e)}
         >
           Crear competición

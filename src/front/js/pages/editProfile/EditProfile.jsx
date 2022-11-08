@@ -57,7 +57,7 @@ const EditProfile = () => {
 
   return (
     <>
-      <div className="card editprofile-bg">
+      <div className="card editprofile-bg p-0">
         <div className="row g-0">
           <div className="col-md-4">
             <div className="d-flex justify-content-center">
@@ -67,7 +67,7 @@ const EditProfile = () => {
                     ? logo
                     : store.userProfileImagen
                 }
-                className="mt-4 img-fluid editprofile-photo"
+                className="img-fluid editprofile-photo"
                 alt="profile photo"
               />
             </div>
@@ -84,15 +84,15 @@ const EditProfile = () => {
             </form>
           </div>
           <div className="col-md-8">
-            <div className="card-body">
+            <div className="mt-2 p-0 align-items-center text-center card-body">
               {mensaje && <Mensaje tipo="mensaje-correcto">{mensaje}</Mensaje>}
               <h1 className="editprofile-title">Mi perfil</h1>
               <form
-                className="container row col-md-12 text-start"
+                className="container row col-md-12 text-start m-0 p-0"
                 onSubmit={handleSubmitChange}
               >
                 <div className="my-2">
-                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                  <label className="col-12 col-md-10 col-lg-2">
                     Nombre*
                   </label>
                   <input
@@ -105,7 +105,7 @@ const EditProfile = () => {
                   />
                 </div>
                 <div>
-                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                  <label className="col-12 col-md-10 col-lg-2 ">
                     Apellidos
                   </label>
                   <input
@@ -118,7 +118,7 @@ const EditProfile = () => {
                   />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                  <label className="col-12 col-md-10 col-lg-2">
                     E-mail*
                   </label>
                   <input
@@ -129,7 +129,7 @@ const EditProfile = () => {
                   />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                  <label className="col-12 col-md-10 col-lg-2">
                     Dirección
                   </label>
                   <input
@@ -142,7 +142,7 @@ const EditProfile = () => {
                   />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-10 col-lg-2 mx-2">
+                  <label className="col-12 col-md-10 col-lg-2 ">
                     Teléfono
                   </label>
                   <input
@@ -155,7 +155,7 @@ const EditProfile = () => {
                   />
                 </div>
                 <div className="my-2">
-                  <label className="col-12 col-md-10 col-lg-2 mx-2">Sexo</label>
+                  <label className="col-12 col-md-10 col-lg-2 ">Sexo</label>
                   <select
                     className="rounded"
                     onChange={(e) => {

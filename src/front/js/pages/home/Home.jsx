@@ -12,7 +12,7 @@ export const Home = () => {
       <h1 className="d-flex mt-5 justify-content-center align-items-center home-title-size">
         ¡Bienvenid{" "}
         <img
-          className="home-X-icon mt-2"
+          className="home-X-icon"
           src={X_transp}
           alt="titulo bienvenidos"
         />

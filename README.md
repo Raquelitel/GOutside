@@ -1,100 +1,83 @@
-# WebApp boilerplate with React JS and Flask API
+# GOutsiede
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-flask-hello.git)
+<img src="./src/front/img/responsive.jpg"/>
 
-> Documentation: https://start.4geeksacademy.com/
 
-<p align="center">
-<a href="https://www.loom.com/share/f37c6838b3f1496c95111e515e83dd9b"><img src="https://github.com/4GeeksAcademy/flask-rest-hello/blob/main/docs/assets/how-to.png?raw=true?raw=true" /></a>
-</p>
+## Tabla de Contenido.
+1. [Descripción](#descripción)
+2. [Stack](#Stack)
+3. [Instalación](#Instalación)
 
-- React.js front end and python/flask backend for your web application.
-- Extensive documentation [here](https://start.4geeksacademy.com/).
-- Integrated with Pipenv for package managing.
-- Fast deloyment to heroku [in just a few steps here](https://start.4geeksacademy.com/backend/deploy-heroku-posgres).
-- Use of .env file.
-- SQLAlchemy integration for database abstraction.
+### 📝 Descripción
+GOutside es una aplicación web pensada para gestionar eventos deportivos. 
+- ¿Quieres crear y controlar tus propios eventos deportivos?
+   * Los administradores podrán crear los eventos y en una única plataforma permitir que los deportistas se inscriban a las mismas
+- ¿Quieres estar al tanto de todas las competiciones de tu país?
+    * Regístrate como Goutsider, revisa las competiciones que se encuentran en fase de inscripción y apúntate a las de tu elección
 
-### Styles
+### 💻 Stack
 
-You can update the `styles/index.scss` or create new `.scss` files inside `styles/` and import them into your current scss or js files depending on your needs.
 
-### Components
+FRONT-END
 
-Add more files into your `./src/js/components` or styles folder as you need them and import them into your current files as needed.
+<p align="left">
+<a href="https://www.w3.org/html/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a>
+<a href="https://www.w3schools.com/css/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> 
+<a href="https://getbootstrap.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a>
+  
 
-💡Note: There is an example using the Context API inside `views/demo.js`;
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/>
+<a href="https://reactjs.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/react-colored.svg" width="60" height="40" alt="React" /></a>
 
-### Views (Components)
 
-Add more files into your `./src/js/views` and import them in `./src/js/layout.jsx`.
+BACK-END
 
-### Context
 
-This boilerplate comes with a centralized general Context API. The file `./src/js/store/flux.js` has a base structure for the store, we encourage you to change it and adapt it to your needs.
+<a href="https://www.python.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/python-colored.svg" width="36" height="36" alt="Python" /></a>
+<a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank" rel="noreferrer"><img src="https://miro.medium.com/max/1198/1*80vkyHOABsohPadzQjfEbQ.png" width="100" height="36" alt="Flask" /></a>
+<a href="https://www.mysql.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/mysql-colored.svg" width="36" height="36" alt="MySQL" /></a>
 
-React Context [docs](https://reactjs.org/docs/context.html)
-BreathCode Lesson [view](https://content.breatheco.de/lesson/react-hooks-explained)
+API's EXTERNAS
 
-The `Provider` is already set. You can consume from any component using the useContext hook to get the `store` and `actions` from the Context. Check `/views/demo.js` to see a demo.
+<a href="https://antoniofernandez.com/assets/blog/cloudinary.png" target="_blank" rel="noreferrer"><img src="https://antoniofernandez.com/assets/blog/cloudinary.png" width="36" height="36" alt="MySQL" /></a>
+<a href="https://www.mysql.com/" target="_blank" rel="noreferrer"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/YouTube_social_white_squircle.svg/2048px-YouTube_social_white_squircle.svg.png" width="36" height="36" alt="MySQL" /></a>
 
-```jsx
-import { Context } from "../store/appContext";
-const MyComponentSuper = () => {
-    //here you use useContext to get store and actions
-    const { store, actions } = useContext(Context);
-    return <div>{/* you can use your actions or store inside the html */}</div>;
-};
-```
 
-### Back-End Manual Installation:
 
-It is recomended to install the backend first, make sure you have Python 3.8, Pipenv and a database engine (Posgress recomended)
+### 💾 Instalación:
 
-1. Install the python packages: `$ pipenv install`
-2. Create a .env file based on the .env.example: `$ cp .env.example .env`
-3. Install your database engine and create your database, depending on your database you have to create a DATABASE_URL variable with one of the possible values, make sure yo replace the valudes with your database information:
+#### Instalación Back-End:
+
+Es recomendable instalar primero el back-end, asegurate de tener Python 3.8, Pipenv y un motor de base de datos (se recomienda Posgress)
+
+1. Instalar los paquetes de python: `$ pipenv install`
+2. Crear un archivo .env basado en el .env.example: `$ cp .env.example .env`
+3. Instala tu motor de base de datos y crea tu base de datos, dependiendo de tu base de datos tienes que crear una variable DATABASE_URL con uno de los posibles valores, asegúrate de reemplazar con la información de tu base de datos:
 
 | Engine    | DATABASE_URL                                        |
 | --------- | --------------------------------------------------- |
 | SQLite    | sqlite:////test.db                                  |
 | MySQL     | mysql://username:password@localhost:port/example    |
 | Postgress | postgres://username:password@localhost:5432/example |
+ 
+ ###
 
-4. Migrate the migrations: `$ pipenv run migrate` (skip if you have not made changes to the models on the `./src/api/models.py`)
-5. Run the migrations: `$ pipenv run upgrade`
-6. Run the application: `$ pipenv run start`
+4. Migrar las migraciones: `$ pipenv run migrate` (omitir si no ha realizado cambios en los modelos `./src/api/models.py`)
+5. Ejecutar las migraciones: `$ pipenv run upgrade`
+6. Instalar JWT : `$ pipenv install Flask-JWT`
+7. Instalar Bcrypt: `$ pipenv install flask-bcrypt`
+8. Instalar Flask-Mail: `$ pipenv install Flask-Mail`
+9. Ejecutar la aplicación: `$ pipenv run start`
 
-### Backend Populate Table Users
 
-To insert test users in the database execute the following command:
+#### Instalación Front-End:
 
-```sh
-$ flask insert-test-users 5
-```
+-   Asegúrate de que utilizas la versión 14+ de Node y de que ya has instalado y ejecutado con éxito el backend.
 
-And you will see the following message:
+1. Instalar los paquetes: `$ npm install`
+2. Comienza a codificar! inicia el servidor de desarrollo de webpack `$ npm run start`
+###
 
-```
-  Creating test users
-  test_user1@test.com created.
-  test_user2@test.com created.
-  test_user3@test.com created.
-  test_user4@test.com created.
-  test_user5@test.com created.
-  Users created successfully!
-```
+## 🚀 Proyecto desplegado :
 
-To update with all yours tables you can edit the file app.py and go to the line 80 to insert the code to populate others tables
-
-### Front-End Manual Installation:
-
--   Make sure you are using node version 14+ and that you have already successfully installed and runned the backend.
-
-1. Install the packages: `$ npm install`
-2. Start coding! start the webpack dev server `$ npm run start`
-
-## Publish your website!
-
-This boilerplate it's 100% integrated with Herkou, [follow this tutorial](https://start.4geeksacademy.com/backend/deploy-heroku-posgres) and just by pushing your changes to the heroku repository will deploy the website afterwards.
-DESCRIPTION
+https://goutside.herokuapp.com/

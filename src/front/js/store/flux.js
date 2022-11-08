@@ -14,7 +14,7 @@ const getState = ({ getActions, setStore }) => {
       posterImagenUrl: null,
       competitions: [],
       error: false,
-      loading: true
+      loading: true,
     },
     actions: {
       signup: async (email, password1, password2) => {
@@ -189,6 +189,5 @@ const getState = ({ getActions, setStore }) => {
     },
   };
 };
-
 
 export default getState;

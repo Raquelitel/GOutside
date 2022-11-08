@@ -36,6 +36,10 @@ h2 {
   text-transform: uppercase;
 }
 
+button {
+  text-transform: capitalize;
+}
+
 /* -------------------- BOTONES - LINKS COLORS ------------------- */
 
 .btn-validacion {

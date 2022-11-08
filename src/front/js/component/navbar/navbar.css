@@ -1,6 +1,6 @@
 .navbar-color {
   background-color: var(--color-dark-blue);
-  width: 100%;
+  /*  width: 100%; */
 }
 
 .navbar-input {
@@ -72,13 +72,13 @@
 }
 
 .navbar-photo-profile {
-  width: 5rem;
-  height: 5rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
 }
 
 .navbar-menu-size {
-  width: 50rem;
+  /*  width: 2rem; */
 }
 
 .navbar-menu-button {

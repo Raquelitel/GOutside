@@ -150,7 +150,7 @@ function AboutUs() {
             setContactRequest(e.target.value);
           }}
         ></input>
-        <div className="d-flex justify-content-end gap-2 mb-3">
+        <div className="d-flex justify-content-md-end justify-content-center gap-2 mb-3">
           <button
             className="btn btn-validacion"
             onClick={(e) => sendContact(e)}

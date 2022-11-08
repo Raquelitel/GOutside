@@ -16,7 +16,6 @@ const injectContext = (PassedComponent) => {
           }),
       })
     );
-
     useEffect(() => {
       state.actions.getUser();
     }, [state.store.tokenLS]);

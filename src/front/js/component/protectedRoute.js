@@ -12,11 +12,11 @@ const ProtectedRoute = () => {
     return <Navigate to="/login" replace />;
   }
   return (
-    <div className="h-100">
+    <div>
       <Navbar />
       <div className="d-flex flex-nowrap row">
         <Sidebar />
-        <main className="container-fluid col-10 col-md-9">
+        <main className="container-fluid col-8 col-md-8">
           <div className="row mt-3">
             <Outlet />
           </div>

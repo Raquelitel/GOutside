@@ -1,11 +1,11 @@
 .allcompetition-img-card {
   width: 100%;
-  height: 60%;
+  height: 50%;
 }
 
 .allcompetition-card-size {
-  width: 300px;
-  height: 400px;
+  width: 15rem;
+  height: 25rem;
   background-color: var(--color-light-card);
 }
 

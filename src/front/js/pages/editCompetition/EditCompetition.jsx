@@ -26,13 +26,6 @@ function EditCompetition() {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
 
-  const [name, setName] = useState("");
-  const [date, setDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [category, setCategory] = useState([]);
-  const [requirements, setRequirements] = useState("");
-  const [description, setDescription] = useState("");
-  const [stage, setStage] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [tipoMensaje, setTipoMensaje] = useState("");
   const [datas, setData] = useState({});
@@ -57,6 +50,7 @@ function EditCompetition() {
       .then((response) => response.json())
       .then((data) => {
         setData(data.competition);
+        actions.setUrlImagen(data.competition.poster_image_url);
       });
   };
 
@@ -103,6 +97,7 @@ function EditCompetition() {
         setTimeout(() => {
           setMensaje("");
           setTipoMensaje("");
+          actions.deleteUrlImg();
           navigate("/home/user");
         }, 5000);
         return;
@@ -116,7 +111,6 @@ function EditCompetition() {
       }, 2500);
       return;
     }
-    actions.deleteUrlImg();
   };
 
   const convertDate = (date) => {

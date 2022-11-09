@@ -15,13 +15,9 @@ const AllCompetition = () => {
 
   const navigate = useNavigate();
 
-  useEffect(
-    () => {
-      getCardsInfo();
-    },
-    [store.userId],
-    [store.userRol]
-  );
+  useEffect(() => {
+    getCardsInfo();
+  }, []);
 
   const getCardsInfo = () => {
     const url = process.env.BACKEND_URL + "/api/competitions";

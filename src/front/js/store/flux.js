@@ -172,7 +172,19 @@ const getState = ({ getActions, setStore }) => {
       },
 
       deleteTokenLS: () => {
-        setStore({ tokenLS: null });
+        setStore({
+          tokenLS: null,
+          userRol: null,
+          userId: null,
+          userEmail: null,
+          userName: null,
+          userLastName: null,
+          userAdress: null,
+          userGender: null,
+          userPhone: null,
+          userProfileImagen: null,
+          posterImagenUrl: null,
+        });
       },
       getTokenLS: () => {
         return localStorage.getItem("token");

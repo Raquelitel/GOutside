@@ -246,9 +246,7 @@ def modify_competition(competition_id):
 def my_competition():
     competitor_id = get_jwt_identity()
     user = User.query.get(competitor_id)
-    print(user.rol)
     if user.rol != Rol.administration:
-        print("siiiiiiiiii")
         my_competition_ids = Competition_user.query.filter(
             Competition_user.competitor_id == competitor_id).all()
 

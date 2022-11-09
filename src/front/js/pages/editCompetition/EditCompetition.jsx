@@ -36,7 +36,7 @@ function EditCompetition() {
     getCompetitionInfo();
   }, [id]);
 
-  const getCompetitionInfo = async () => {
+  const getCompetitionInfo = () => {
     const url = process.env.BACKEND_URL + `/api/competition/${id}`;
 
     const options = {
@@ -46,12 +46,12 @@ function EditCompetition() {
       },
       method: "GET",
     };
-    const resp = await fetch(url, options);
-      const data = await resp.json();
-        actions.setUrlImagen(data.poster_image_url);
-        console.log(data);
-        console.log(data.competition_name);
-      };
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data.competition);
+        actions.setUrlImagen(data.competition.poster_image_url);
+      });
   };
 
   const validation = () => {
@@ -97,6 +97,7 @@ function EditCompetition() {
         setTimeout(() => {
           setMensaje("");
           setTipoMensaje("");
+          actions.deleteUrlImg();
           navigate("/home/user");
         }, 5000);
         return;
@@ -110,7 +111,6 @@ function EditCompetition() {
       }, 2500);
       return;
     }
-    actions.deleteUrlImg();
   };
 
   const convertDate = (date) => {

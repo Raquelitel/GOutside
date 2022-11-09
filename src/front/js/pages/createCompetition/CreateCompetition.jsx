@@ -94,6 +94,7 @@ function CreateCompetition() {
           setTimeout(() => {
             setMensaje("");
             setTipoMensaje("");
+            actions.deleteUrlImg();
             navigate("/home/user");
           }, 2500);
         });
@@ -105,7 +106,6 @@ function CreateCompetition() {
         setTipoMensaje("");
       }, 2500);
     }
-    actions.deleteUrlImg();
   };
 
   return (

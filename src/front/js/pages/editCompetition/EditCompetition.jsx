@@ -81,7 +81,7 @@ function EditCompetition() {
         requirements: datas.requirements,
         description: datas.description,
         stage: datas.stage,
-        poster_image_url: datas.poster_image_url,
+        poster_image_url: store.posterImagenUrl,
       };
       const options = {
         headers: {

@@ -41,12 +41,12 @@ const Login = () => {
   };
 
   return (
-    <div className="d-md-flex align-items-center justify-content-evenly">
-      <Link to="/">
+    <div className="d-md-flex align-items-center text-center justify-content-evenly">
+      <Link  to="/">
         <img className="login-logo-size" src={logo} alt="GOutside" />
       </Link>
       <form
-        className="d-flex flex-column col-md-5 gap-1"
+        className="d-flex flex-column col-md-5 gap-1 ms-2 me-2"
         onSubmit={handleSubmit}
       >
         <h1 className="text-capitalize text-center">Iniciar sesión</h1>

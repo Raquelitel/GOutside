@@ -1,6 +1,8 @@
 .poster-competition-photo {
-  max-width: 25vh;
-  max-height: 50vh;
+  max-width: 20vw;
+  max-height: 20vw;
+  min-width: 10vw;
+  min-height: 10vw;
 }
 
 .postercompetition-btn-primary {

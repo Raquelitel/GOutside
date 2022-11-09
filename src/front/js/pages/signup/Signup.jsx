@@ -76,7 +76,7 @@ const Signup = () => {
         <img className="signup-logo-size" src={logo} alt="GOutside" />
       </Link>
       <form
-        className="d-flex flex-column col-md-5 gap-1"
+        className="d-flex flex-column col-md-5 gap-1 ms-2 me-2"
         onSubmit={handleSubmit}
       >
         <h1 className="text-capitalize text-center">Crear cuenta</h1>

@@ -86,26 +86,26 @@ function AboutUs() {
       </div>
       <h3 className="fw-bold text-center aboutUs-title-color">Co-Fundadores</h3>
       <div className="d-flex justify-content-around mt-3">
-        <div>
+        <div className="text-center">
           <img
             src={coFundadorAle}
-            className="shadow cofundador-img"
+            className="shadow text-center cofundador-img"
             alt="Co-fundador foto"
           />
           <p className="mt-1 aboutUs-title-color">Ale Romero</p>
         </div>
-        <div>
+        <div className="text-center">
           <img
             src={coFundadorRaquel}
-            className="shadow cofundador-img"
+            className="shadow text-center cofundador-img"
             alt="Co-fundador foto"
           />
           <p className="mt-1 aboutUs-title-color">Raquel Martín</p>
         </div>
-        <div>
+        <div className="text-center">
           <img
             src={coFundadorNico}
-            className="shadow cofundador-img"
+            className="shadow text-center cofundador-img"
             alt="Co-fundador foto"
           />
           <p className="mt-1 aboutUs-title-color">Nico Martín</p>
@@ -150,7 +150,7 @@ function AboutUs() {
             setContactRequest(e.target.value);
           }}
         ></input>
-        <div className="d-flex justify-content-md-end justify-content-center gap-2 mb-3">
+        <div className="d-flex justify-content-md-end justify-content-center gap-2 ">
           <button
             className="btn btn-validacion"
             onClick={(e) => sendContact(e)}

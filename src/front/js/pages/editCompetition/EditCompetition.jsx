@@ -26,13 +26,6 @@ function EditCompetition() {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
 
-  const [name, setName] = useState("");
-  const [date, setDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [category, setCategory] = useState([]);
-  const [requirements, setRequirements] = useState("");
-  const [description, setDescription] = useState("");
-  const [stage, setStage] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [tipoMensaje, setTipoMensaje] = useState("");
   const [datas, setData] = useState({});
@@ -43,7 +36,7 @@ function EditCompetition() {
     getCompetitionInfo();
   }, [id]);
 
-  const getCompetitionInfo = () => {
+  const getCompetitionInfo = async () => {
     const url = process.env.BACKEND_URL + `/api/competition/${id}`;
 
     const options = {
@@ -53,11 +46,12 @@ function EditCompetition() {
       },
       method: "GET",
     };
-    fetch(url, options)
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data.competition);
-      });
+    const resp = await fetch(url, options);
+      const data = await resp.json();
+        actions.setUrlImagen(data.poster_image_url);
+        console.log(data);
+        console.log(data.competition_name);
+      };
   };
 
   const validation = () => {

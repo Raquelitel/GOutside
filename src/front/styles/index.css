@@ -9,6 +9,14 @@
   --color-red-hover: #ff1c29;
   --color-sucessfull: #5fd6b6;
   --color-light-card: #d7eeef;
+
+  --rad: 0.5rem;
+  --dur: 0.3s;
+  --height: 2vw;
+  --btn-width: 3vw;
+  --bez: cubic-bezier(0, 0, 0.43, 1.49);
+
+
 }
 
 /* -------------------- GENERALES ------------------- */

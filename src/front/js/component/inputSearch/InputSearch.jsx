@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { Context } from "../../store/appContext";
+import "./InputSearch.css";
 
 const InputSearch = () => {
   const { store, actions } = useContext(Context);
@@ -40,13 +41,40 @@ const InputSearch = () => {
 
   return (
     <div className="row">
-      <form className="d-flex">
+      {/* <form className="d-flex inputForm">
         <input
+          className="inputSearch"
           placeholder="Buscar..."
           onChange={(e) => searchUser(e.target.value)}
           value={nameInput}
         />
-        <button onClick={(e) => handleSearch(e)}>Buscar</button>
+        <button className="inputButton" onClick={(e) => handleSearch(e)}>
+          Buscar
+        </button>
+      </form> */}
+
+      <form
+        className="d-flex inputForm p-0 "
+        onsubmit="event.preventDefault();"
+        role="search"
+      >
+        <input
+          id="search"
+          type="search"
+          className="inputSearch p-2"
+          placeholder="Buscar..."
+          onChange={(e) => searchUser(e.target.value)}
+          value={nameInput}
+          autofocus
+          required
+        />
+        <button
+          type="submit"
+          className="inputButton"
+          onClick={(e) => handleSearch(e)}
+        >
+          GO!
+        </button>
       </form>
       {mensaje && (
         <p className="bg-white overflow-scroll opacity-50 text-black">

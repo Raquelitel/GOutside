@@ -202,7 +202,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       addTemporalUserSearch: (data) => {
         const store = getStore();
         setStore({ temporalUserSearch: data.users });
-        console.log(store.temporalUserSearch);
       },
     },
   };

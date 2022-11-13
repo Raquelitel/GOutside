@@ -28,7 +28,6 @@ const InputSearch = () => {
       if (data.number > 0) {
         actions.addTemporalUserSearch(data);
       } else {
-        console.log(resp);
         setMensaje("No existen usuarios con ese nombre");
         setTimeout(() => {
           setMensaje("");
@@ -45,6 +44,7 @@ const InputSearch = () => {
         <input
           placeholder="Buscar..."
           onChange={(e) => searchUser(e.target.value)}
+          value={nameInput}
         />
         <button onClick={(e) => handleSearch(e)}>Buscar</button>
       </form>

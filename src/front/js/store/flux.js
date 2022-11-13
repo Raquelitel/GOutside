@@ -203,6 +203,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         setStore({ temporalUserSearch: data.users });
       },
+      deleteTemporalUserSearch: () => {
+        setStore({ temporalUserSearch: [] });
+      },
     },
   };
 };

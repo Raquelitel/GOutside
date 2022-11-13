@@ -1,4 +1,4 @@
-const getState = ({ getActions, setStore }) => {
+const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       tokenLS: null,
@@ -15,6 +15,7 @@ const getState = ({ getActions, setStore }) => {
       competitions: [],
       error: false,
       loading: true,
+      temporalUserSearch: [],
     },
     actions: {
       signup: async (email, password1, password2) => {
@@ -197,6 +198,11 @@ const getState = ({ getActions, setStore }) => {
       },
       changeError: () => {
         setStore({ error: !error });
+      },
+      addTemporalUserSearch: (data) => {
+        const store = getStore();
+        setStore({ temporalUserSearch: data.users });
+        console.log(store.temporalUserSearch);
       },
     },
   };

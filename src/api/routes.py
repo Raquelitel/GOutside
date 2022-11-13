@@ -159,14 +159,15 @@ def get_all_user():
 
 
 @api.route('/user/<name>', methods=['GET'])
-@jwt_required()
 def get_one_user(name):
-    user_search = User.query.filter_by(name=name).first()
+    user_search = User.query.filter_by(name=name)
     if user_search is None:
         return jsonify("no se encontraron resultados"), 404
-    user_search_serializer = user_search.serialize()
+    user_search_serializer = list(
+        map(lambda param: param.serialize(), user_search))
     response_body = {
-        "user": user_search_serializer
+        "users": user_search_serializer,
+        "number": len(user_search_serializer)
     }
     return jsonify(response_body), 200
 

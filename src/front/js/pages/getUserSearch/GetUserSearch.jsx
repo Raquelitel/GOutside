@@ -23,9 +23,14 @@ const GetUserSearch = () => {
                 <div className="d-flex">
                   <div className="col-8">
                     <h5 className="card-title fw-bold text-capitalize">
-                      {user.name}
+                      {user.name || "n/a"}
                     </h5>
-                    <p className="infocompetition-text-p ">{user.last_name}</p>
+                    <div className="d-flex gap-3">
+                      <p className="text-black">Apellidos</p>
+                      <p className="infocompetition-text-p text-capitalize">
+                        {user.last_name || "n/a"}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

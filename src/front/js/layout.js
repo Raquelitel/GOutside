@@ -19,6 +19,7 @@ import CreateCompetition from "./pages/createCompetition/CreateCompetition.jsx";
 import EditCompetition from "./pages/editCompetition/EditCompetition.jsx";
 import ProtectedRoute from "./component/protectedRoute";
 import MyAllCompetition from "./pages/myAllCompetition/MyAllCompetition.jsx";
+import GetUser from "./pages/getUser/GetUser.jsx";
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";
@@ -40,6 +41,9 @@ const Layout = () => {
 
               <Route element={<VideoLibrary />} path="/Video-library" />
 
+              <Route path="/user/:name" element={<GetUser />} />
+              <Route path="/edit-profile" element={<EditProfile />} />
+
               <Route
                 path="/create-competition"
                 element={<CreateCompetition />}
@@ -48,11 +52,8 @@ const Layout = () => {
                 path="/edit-competition/:id"
                 element={<EditCompetition />}
               />
-
-              <Route path="/edit-profile" element={<EditProfile />} />
               <Route path="/competitions" element={<AllCompetition />} />
               <Route path="/competition/:id" element={<InfoCompetition />} />
-
               <Route path="/my-competitions" element={<MyAllCompetition />} />
             </Route>
 

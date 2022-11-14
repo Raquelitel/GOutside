@@ -7,6 +7,7 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+
 class Rol(enum.Enum):
     competitor = 1
     administration = 2
@@ -17,9 +18,11 @@ class Rol(enum.Enum):
             "competitor": self.competitor
         }
 
+
 class Gender(enum.Enum):
     masculino = 1
     femenino = 2
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -51,6 +54,7 @@ class User(db.Model):
             "rol": str(self.rol)
         }
 
+
 class Competition_user(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     competitor_id = db.Column(db.Integer, db.ForeignKey(
@@ -79,6 +83,7 @@ class Category(enum.Enum):
             "equipos": self.equipos
         }
 
+
 class Stages(enum.Enum):
     inscripción_abierta = 1
     inscripción_cerrada = 2
@@ -91,10 +96,11 @@ class Stages(enum.Enum):
             "competición_finalizada": self.competición_finalizada,
         }
 
+
 class Competition(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     adminid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    competition_name = db.Column(db.String(120), unique=False, nullable=False)
+    competition_name = db.Column(db.String(12), unique=False, nullable=False)
     qualifier_date = db.Column(db.DateTime())
     location = db.Column(db.String(240), unique=False, nullable=False)
     category = db.Column(ARRAY(Enum(Category)))
@@ -124,12 +130,14 @@ class Competition(db.Model):
             "poster_image_url": self.poster_image_url
         }
 
+
 class Qualifier_competitor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     qualifier_id = db.Column(db.Integer, db.ForeignKey(
         'qualifier.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'user.id'), nullable=False)
+
 
 class Qualifier(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -146,6 +154,7 @@ class Qualifier(db.Model):
             "comment": self.comment,
             "previous_result": self.previous_result
         }
+
 
 class About_us(db.Model):
     id = db.Column(db.Integer, primary_key=True)

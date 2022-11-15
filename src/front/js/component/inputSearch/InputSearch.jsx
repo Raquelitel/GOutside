@@ -8,6 +8,7 @@ const InputSearch = () => {
   const { store, actions } = useContext(Context);
   const [nameInput, setNameInput] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const [tipoMensaje, setTipoMensaje] = useState("");
 
   const navigate = useNavigate();
 
@@ -34,8 +35,10 @@ const InputSearch = () => {
         setNameInput("");
       } else {
         setMensaje("No existen usuarios con ese nombre");
+        setTipoMensaje("mensaje-error");
         setTimeout(() => {
           setMensaje("");
+          setTipoMensaje("");
         }, 2500);
       }
     } catch (error) {
@@ -55,7 +58,7 @@ const InputSearch = () => {
         <button onClick={(e) => handleSearch(e)}>Buscar</button>
       </form>
       {mensaje && (
-        <p className="bg-white overflow-scroll opacity-50 text-black">
+        <p className={`overflow-scroll opacity-50 text-black ${tipoMensaje}`}>
           {mensaje}
         </p>
       )}

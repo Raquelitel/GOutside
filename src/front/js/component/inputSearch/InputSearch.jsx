@@ -48,14 +48,28 @@ const InputSearch = () => {
 
   return (
     <div className="row">
-      <form className="d-flex" onSubmit={(e) => handleSearch(e)}>
+      <form
+        className="d-flex inputForm p-0 "
+        onSubmit={(e) => handleSearch(e)}
+        role="search"
+      >
         <input
-          placeholder="Buscar..."
+          id="search"
+          type="search"
+          className="inputSearch p-2"
+          placeholder="Buscar usuario..."
           onChange={(e) => searchUser(e.target.value)}
           value={nameInput}
+          autofocus
+          required
         />
-
-        <button onClick={(e) => handleSearch(e)}>Buscar</button>
+        <button
+          type="submit"
+          className="inputButton"
+          onClick={(e) => handleSearch(e)}
+        >
+          GO!
+        </button>
       </form>
       {mensaje && (
         <p className={`overflow-scroll opacity-50 text-black ${tipoMensaje}`}>

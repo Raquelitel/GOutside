@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Navbar } from "./navbar/navbar.jsx";
 import Sidebar from "./sidebar/Sidebar.jsx";
+import GetUserSearch from "../pages/getUserSearch/GetUserSearch.jsx";
 
 const ProtectedRoute = () => {
   const { store, actions } = useContext(Context);

@@ -7,15 +7,12 @@ import "./home.css";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
+
   return (
     <div className="container text-center">
       <h1 className="d-flex mt-5 justify-content-center align-items-center home-title-size">
         ¡Bienvenid{" "}
-        <img
-          className="home-X-icon"
-          src={X_transp}
-          alt="titulo bienvenidos"
-        />
+        <img className="home-X-icon" src={X_transp} alt="titulo bienvenidos" />
         s!
       </h1>
 

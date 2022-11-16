@@ -6,6 +6,7 @@ import {
   BsFillCollectionPlayFill,
   BsFillTrophyFill,
 } from "react-icons/bs";
+import InputSearch from "../inputSearch/InputSearch.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./navbar.css";
 
@@ -25,6 +26,7 @@ export const Navbar = () => {
         <Link to="/" className="navbar-brand d-flex justify-content-center">
           <img src={logo} className="navbar-logo-size" alt="GOutside Logo" />
         </Link>
+        <InputSearch />
         <div className="col-5 col-md-8 col-lg-9">
           <div>
             <div className="d-flex justify-content-evenly">

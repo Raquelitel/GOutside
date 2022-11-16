@@ -6,6 +6,7 @@ import Select from "react-select";
 import PosterCompetition from "../../component/posterCompetition/PosterCompetition.jsx";
 import Mensaje from "../../component/mensaje/Mensaje.jsx";
 import "./CreateCompetition.css";
+import { useEffect } from "react";
 
 const categories = [
   { label: "RX Femenino", value: "rx_femenino" },
@@ -53,6 +54,16 @@ function CreateCompetition() {
       return false;
     } else {
       return true;
+    }
+  };
+
+  const handleName = () => {
+    if (name.length > 12) {
+      setMensaje("El nombre es demasiado largo, máximo 12 caracteres.");
+      setTipoMensaje("mensaje-error");
+    } else {
+      setMensaje("");
+      setTipoMensaje("");
     }
   };
 
@@ -131,6 +142,7 @@ function CreateCompetition() {
           type="text"
           onChange={(e) => {
             setName(e.target.value);
+            handleName();
           }}
         />
         <div className="d-lg-flex justify-content-center align-items-center text-center gap-1">

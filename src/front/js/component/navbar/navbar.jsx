@@ -26,7 +26,7 @@ export const Navbar = () => {
         <Link to="/" className="navbar-brand d-flex justify-content-center">
           <img src={logo} className="navbar-logo-size" alt="GOutside Logo" />
         </Link>
-        <InputSearch />
+        
         <div className="col-3 col-md-5 col-lg-6">
           <div>
             <div className="d-flex justify-content-evenly">

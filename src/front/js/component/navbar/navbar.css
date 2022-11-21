@@ -1,6 +1,5 @@
 .navbar-color {
   background-color: var(--color-dark-blue);
-  /*  width: 100%; */
 }
 
 .navbar-input {
@@ -75,10 +74,6 @@
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-}
-
-.navbar-menu-size {
-  /*  width: 2rem; */
 }
 
 .navbar-menu-button {

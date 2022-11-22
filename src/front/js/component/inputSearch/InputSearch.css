@@ -1,6 +1,6 @@
 .inputForm {
   position: relative;
-  width: 60vw;
+  width: 50vw;
   background: var(--color-light-blue);
   border-radius: var(--rad);
 }
@@ -10,11 +10,11 @@
   height: var(--height);
   border: 0;
   color: var(--color-dark-grey);
-  font-size: 1vw;
 }
 
 .inputSearch{
   outline: 0;
+  font-size: 1.5vw;
   width: 100%;
   background: var(--color-light);
   border-radius: var(--rad);
@@ -28,6 +28,7 @@
 }
 
 .inputButton {
+  font-size: 1vw;
   display: none;
   position: absolute;
   top: 0;

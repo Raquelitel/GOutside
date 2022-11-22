@@ -1,5 +1,5 @@
 .library-card {
-  background-color: white;
+  background-color: var(--color-light-card);
   width: 100%;
   height: auto;
   left: 0;

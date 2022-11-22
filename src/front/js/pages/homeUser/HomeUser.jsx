@@ -18,26 +18,7 @@ const HomeUser = () => {
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
-          {/* CARROUSEL ITEM */}
-          <div className="carousel-item active">
-            <div className="card align-items-center justify-content-md-center text-center home-user-card">
-              <div className="container-fluid align-items-center d-flex justify-content-between">
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <h2 className="mt-3">¡Busca lo que necesites!</h2>
-                <span
-                  className="carousel-control-next-icon "
-                  aria-hidden="true"
-                ></span>
-              </div>
-              <div className="m-5">
-                <InputSearch />
-              </div>
-            </div>
-          </div>
-          {/* CARROUSEL ITEM */}
+        {/* CARROUSEL ITEM */}
           <div className="carousel-item">
             <div className="card align-items-center justify-content-md-center text-center home-user-card">
               <div className="container-fluid align-items-center d-flex justify-content-between">
@@ -58,7 +39,7 @@ const HomeUser = () => {
               </div>
               <div className="ratio ratio-4x3 home-user-video-container">
                 <iframe
-                  className="p-4"
+                  className="p-5"
                   src="https://www.youtube.com/embed/1ZXobu7JvvE"
                   title="YouTube video player"
                   frameBorder="0"
@@ -68,7 +49,7 @@ const HomeUser = () => {
             </div>
           </div>
           {/* CARROUSEL ITEM */}
-          <div className="carousel-item">
+          <div className="carousel-item active">
             <div className="card align-items-center justify-content-md-center text-center home-user-card">
               <div className="container-fluid align-items-center d-flex justify-content-between p-2">
                 <span

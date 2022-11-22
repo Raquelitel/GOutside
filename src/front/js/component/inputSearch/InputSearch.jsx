@@ -40,11 +40,8 @@ const InputSearch = () => {
   };
 
   return (
-    <div className="row">
-      <form
-        className="d-flex inputForm p-0 "
-        role="search"
-      >
+    <div className="row align-items-center text-center">
+      <form className="d-flex inputForm p-0 " role="search">
         <input
           id="search"
           type="search"
@@ -63,11 +60,10 @@ const InputSearch = () => {
           GO!
         </button>
       </form>
-      {mensaje && (
-        <p className="bg-white overflow-scroll opacity-50 text-black">
-          {mensaje}
-        </p>
-      )}
+      <br />
+      <div className="">
+        {mensaje && <div className="card msg-card">{mensaje}</div>}
+      </div>
     </div>
   );
 };

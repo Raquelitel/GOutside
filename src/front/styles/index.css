@@ -20,13 +20,16 @@
 }
 
 /* -------------------- GENERALES ------------------- */
-
+.row{
+  --bs-gutter-x:0;
+  --bs-gutter-y:0;
+}
 * {
   font-family: "Montserrat", sans-serif;
 }
 
 body {
-  position:fixed;
+  position:absolute;
   width: 100%;
   height: 100%;
   background-color: var(--color-dark-grey);
@@ -49,6 +52,10 @@ h2 {
 
 button {
   text-transform: capitalize;
+}
+ 
+button:focus {
+  box-shadow:none !important;
 }
 
 /* -------------------- BOTONES - LINKS COLORS ------------------- */

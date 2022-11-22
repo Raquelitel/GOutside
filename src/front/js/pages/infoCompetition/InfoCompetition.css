@@ -1,6 +1,6 @@
 .infocompetition-img-card {
-  height: 45vh;
-  width: 30vh;
+  height: 15vw;
+  width: 13vw;
 }
 
 .infocompetition-text-p {
@@ -8,6 +8,6 @@
 }
 
 .infocompetition-card-size {
-  min-height: 50vh;
+  min-height: 20vw;
   background-color: var(--color-light-card);
 }

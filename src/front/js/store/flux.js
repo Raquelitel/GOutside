@@ -16,6 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       error: false,
       loading: true,
       temporalUserSearch: [],
+      pathName: window.location.pathname,
     },
     actions: {
       signup: async (email, password1, password2) => {
@@ -200,7 +201,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({ error: !error });
       },
       addTemporalUserSearch: (data) => {
-        const store = getStore();
         setStore({ temporalUserSearch: data.users });
       },
       deleteTemporalUserSearch: () => {

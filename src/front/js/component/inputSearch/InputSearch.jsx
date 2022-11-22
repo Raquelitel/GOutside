@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import "./InputSearch.css";
 
@@ -8,6 +9,9 @@ const InputSearch = () => {
   const { store, actions } = useContext(Context);
   const [nameInput, setNameInput] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const [tipoMensaje, setTipoMensaje] = useState("");
+
+  const navigate = useNavigate();
 
   const searchUser = (name) => {
     setNameInput(name.toLowerCase());
@@ -28,10 +32,14 @@ const InputSearch = () => {
       const data = await resp.json();
       if (data.number > 0) {
         actions.addTemporalUserSearch(data);
+        navigate(`user/${nameInput}`);
+        setNameInput("");
       } else {
         setMensaje("No existen usuarios con ese nombre");
+        setTipoMensaje("mensaje-error");
         setTimeout(() => {
           setMensaje("");
+          setTipoMensaje("");
         }, 2500);
       }
     } catch (error) {
@@ -41,7 +49,10 @@ const InputSearch = () => {
 
   return (
     <div className="row align-items-center text-center">
-      <form className="d-flex inputForm p-0 " role="search">
+      <form
+        className="d-flex inputForm p-0 "
+        onSubmit={(e) => handleSearch(e)}
+        role="search">
         <input
           id="search"
           type="search"

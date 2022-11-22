@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Navbar } from "./navbar/navbar.jsx";
@@ -19,11 +19,7 @@ const ProtectedRoute = () => {
         <Sidebar />
         <main className="container-fluid col-8 col-md-8">
           <div className="row mt-3">
-            {store.temporalUserSearch.length > 0 ? (
-              <GetUserSearch />
-            ) : (
-              <Outlet />
-            )}
+            <Outlet />
           </div>
         </main>
       </div>

@@ -21,7 +21,7 @@ Link:hover {
   width: 100%;
   max-width: auto;
   padding-top: 56.25%;
-  position: relative;
+  /* position: relative; */
 }
 
 iframe {

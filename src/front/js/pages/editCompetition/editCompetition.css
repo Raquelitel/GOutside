@@ -13,3 +13,6 @@
 .input-date{
   height: 40px;
 }
+.form-control, .basic-multi-select, .basic-single, .input-date {
+  font-size:1.5vw
+}

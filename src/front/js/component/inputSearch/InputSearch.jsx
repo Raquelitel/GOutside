@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../store/appContext";
+import "./InputSearch.css";
 
 const InputSearch = () => {
   const { store, actions } = useContext(Context);
@@ -47,20 +48,19 @@ const InputSearch = () => {
   };
 
   return (
-    <div className="row">
+    <div className="row align-items-center text-center">
       <form
         className="d-flex inputForm p-0 "
         onSubmit={(e) => handleSearch(e)}
-        role="search"
-      >
+        role="search">
         <input
           id="search"
           type="search"
           className="inputSearch p-2"
-          placeholder="Buscar usuario..."
+          placeholder="Buscar..."
           onChange={(e) => searchUser(e.target.value)}
           value={nameInput}
-          autofocus
+          autoFocus
           required
         />
         <button
@@ -71,11 +71,10 @@ const InputSearch = () => {
           GO!
         </button>
       </form>
-      {mensaje && (
-        <p className={`overflow-scroll opacity-50 text-black ${tipoMensaje}`}>
-          {mensaje}
-        </p>
-      )}
+      <br />
+      <div className="">
+        {mensaje && <div className="card msg-card">{mensaje}</div>}
+      </div>
     </div>
   );
 };

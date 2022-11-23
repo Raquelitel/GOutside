@@ -6,6 +6,7 @@ import {
   BsFillCollectionPlayFill,
   BsFillTrophyFill,
 } from "react-icons/bs";
+import {FaSearch} from "react-icons/fa"
 import InputSearch from "../inputSearch/InputSearch.jsx";
 import logo from "../../../img/logo-GOutside.png";
 import "./navbar.css";
@@ -22,35 +23,39 @@ export const Navbar = () => {
 
   return (
     <nav className="navbar navbar-color ">
-      <div className="container-fluid d-flex justify-content-evenly">
+      <div className="container-fluid d-flex justify-content-between">
         <Link to="/" className="navbar-brand d-flex justify-content-center">
           <img src={logo} className="navbar-logo-size" alt="GOutside Logo" />
         </Link>
-        <InputSearch />
-        <div className="col-5 col-md-8 col-lg-9">
-          <div>
-            <div className="d-flex justify-content-evenly">
-              <Link to="/home/user">
-                <button className="btn btn-menu mx-2">
-                  <BsHouseFill className="btn-icon" />
-                  <span className="btn-text">HOME</span>
-                </button>
-              </Link>
-              <Link to="/video-library">
-                <button className="btn btn-menu mx-2">
-                  <BsFillCollectionPlayFill className="btn-icon" />
 
-                  <span className="btn-text">BIBLIOTECA</span>
-                </button>
-              </Link>
-              <Link to="/competitions">
-                <button className="btn btn-menu mx-2">
-                  <BsFillTrophyFill className="btn-icon" />
+        <div className="col-5 col-md-4 col-lg-6 justify-content-between">
+          <div className="d-flex justify-content-between align-items-center text-center">
+            <Link to="/search">
+              <button className="btn btn-menu me-2">
+                <FaSearch className="btn-icon" />
+                <span className="btn-text">BUSCAR</span>
+              </button>
+            </Link>
+            <Link to="/home/user">
+              <button className="btn btn-menu ms-2 me-2">
+                <BsHouseFill className="btn-icon" />
+                <span className="btn-text">HOME</span>
+              </button>
+            </Link>
+            <Link to="/video-library">
+              <button className="btn btn-menu ms-2 me-2">
+                <BsFillCollectionPlayFill className="btn-icon" />
 
-                  <span className="btn-text">COMPETICIONES</span>
-                </button>
-              </Link>
-            </div>
+                <span className="btn-text">BIBLIOTECA</span>
+              </button>
+            </Link>
+            <Link to="/competitions">
+              <button className="btn btn-menu ms-2 me-2">
+                <BsFillTrophyFill className="btn-icon" />
+
+                <span className="btn-text">COMPETICIONES</span>
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -71,7 +76,7 @@ export const Navbar = () => {
               alt="profile photo"
             />
           </button>
-          <ul className="dropdown-menu dropdown-menu-end navbar-color navbar-menu-size">
+          <ul className="dropdown-menu dropdown-menu-end navbar-menu-size me-5">
             <li>
               <Link
                 to="/edit-profile"

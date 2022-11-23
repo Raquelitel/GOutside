@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import InputSearch from "../../component/inputSearch/InputSearch.jsx";
 import { Context } from "../../store/appContext.js";
 import AllCompetition from "../allCompetition/AllCompetition.jsx";
 import MyAllCompetitions from "../myAllCompetition/MyAllCompetition.jsx";
@@ -17,6 +18,7 @@ const HomeUser = () => {
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
+        {/* CARROUSEL ITEM */}
           <div className="carousel-item">
             <div className="card align-items-center justify-content-md-center text-center home-user-card">
               <div className="container-fluid align-items-center d-flex justify-content-between">
@@ -46,6 +48,7 @@ const HomeUser = () => {
               </div>
             </div>
           </div>
+          {/* CARROUSEL ITEM */}
           <div className="carousel-item active">
             <div className="card align-items-center justify-content-md-center text-center home-user-card">
               <div className="container-fluid align-items-center d-flex justify-content-between p-2">
@@ -71,6 +74,7 @@ const HomeUser = () => {
           </div>
           {store.userRol != "Rol.administration" && (
             <>
+              {/* CARROUSEL ITEM */}
               <div className="carousel-item">
                 <div className="card align-items-center justify-content-md-center text-center home-user-card">
                   <div className="container-fluid align-items-center d-flex justify-content-between p-2">
@@ -87,6 +91,7 @@ const HomeUser = () => {
                   <MyAllCompetitions />
                 </div>
               </div>
+              {/* CARROUSEL ITEM */}
               <div className="carousel-item">
                 <div className="card align-items-center justify-content-md-center text-center home-user-card">
                   <div className="container-fluid align-items-center d-flex justify-content-between">
@@ -107,6 +112,7 @@ const HomeUser = () => {
                   </div>
                 </div>
               </div>
+              {/* CARROUSEL END*/}
             </>
           )}
         </div>

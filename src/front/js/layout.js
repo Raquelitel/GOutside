@@ -19,6 +19,8 @@ import CreateCompetition from "./pages/createCompetition/CreateCompetition.jsx";
 import EditCompetition from "./pages/editCompetition/EditCompetition.jsx";
 import ProtectedRoute from "./component/protectedRoute";
 import MyAllCompetition from "./pages/myAllCompetition/MyAllCompetition.jsx";
+import GetUserSearch from "./pages/getUserSearch/GetUserSearch.jsx";
+import SearchPage from "./pages/SearchPage/SearchPage.jsx";
 
 const Layout = () => {
   const basename = process.env.BASENAME || "";
@@ -39,6 +41,10 @@ const Layout = () => {
               <Route path="/home/user" element={<HomeUser />} />
 
               <Route element={<VideoLibrary />} path="/Video-library" />
+              <Route element={<SearchPage />} path="/search" />
+
+              <Route path="/user/:name" element={<GetUserSearch />} />
+              <Route path="/edit-profile" element={<EditProfile />} />
 
               <Route
                 path="/create-competition"
@@ -48,11 +54,8 @@ const Layout = () => {
                 path="/edit-competition/:id"
                 element={<EditCompetition />}
               />
-
-              <Route path="/edit-profile" element={<EditProfile />} />
               <Route path="/competitions" element={<AllCompetition />} />
               <Route path="/competition/:id" element={<InfoCompetition />} />
-
               <Route path="/my-competitions" element={<MyAllCompetition />} />
             </Route>
 

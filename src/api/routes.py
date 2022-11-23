@@ -144,6 +144,34 @@ def refresh_users_token():
 
     return jsonify(response_body), 200
 
+
+@api.route('/all-user', methods=['GET'])
+@jwt_required()
+def get_all_user():
+    all_user = User.query.order_by(User.id.asc()).all()
+    all_user_serializer = list(
+        map(lambda param: param.serialize(), all_user))
+    response_body = {
+        "result": "usuarios obtenidos correctamente",
+        "user": all_user_serializer
+    }
+    return jsonify(response_body), 200
+
+
+@api.route('/user/<name>', methods=['GET'])
+def get_one_user(name):
+    user_search = User.query.filter_by(name=name)
+    if user_search is None:
+        return jsonify("no se encontraron resultados"), 404
+    user_search_serializer = list(
+        map(lambda param: param.serialize(), user_search))
+    response_body = {
+        "users": user_search_serializer,
+        "number": len(user_search_serializer)
+    }
+    return jsonify(response_body), 200
+
+
 # ------------  COMPETITIONS --------------------------
 
 

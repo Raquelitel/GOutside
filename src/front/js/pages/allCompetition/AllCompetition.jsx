@@ -32,6 +32,7 @@ const AllCompetition = () => {
       .then((response) => response.json())
       .then((data) => {
         setCompetitions(data.competitions);
+        actions.getImageCompetitions(data.competitions.poster_image_url);
       });
   };
 

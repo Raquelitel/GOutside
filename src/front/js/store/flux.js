@@ -17,6 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       loading: true,
       temporalUserSearch: [],
       pathName: window.location.pathname,
+      imageCompetitions: [],
     },
     actions: {
       signup: async (email, password1, password2) => {
@@ -186,6 +187,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           userPhone: null,
           userProfileImagen: null,
           posterImagenUrl: null,
+          imageCompetitions: null,
         });
       },
       getTokenLS: () => {
@@ -205,6 +207,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       deleteTemporalUserSearch: () => {
         setStore({ temporalUserSearch: [] });
+      },
+      getImageCompetitions: (data) => {
+        setStore({ imageCompetitions: data });
       },
     },
   };
